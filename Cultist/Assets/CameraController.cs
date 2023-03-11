@@ -16,16 +16,13 @@ public class CameraController : MonoBehaviour
     public float rotationAmount;
     public Vector3 zoomAmount;
     public float mouseRotationSpeed;
+    public float minZoom, maxZoom;
 
     public Vector3 newPosition;
 
     public Quaternion newRotation;
 
     public Vector3 newZoom;
-
-    public Vector3 dragStartPosition;
-
-    public Vector3 dragCurrentPosition;
 
     public Vector3 rotateStartPosition;
 
@@ -74,11 +71,12 @@ public class CameraController : MonoBehaviour
 
     private void HandleMouseZoom()
     {
-        if (Input.mouseScrollDelta.y > 0)
+        if (Input.mouseScrollDelta.y > 0 || cameraTransform.localPosition.y <= minZoom)
         {
             newZoom -= zoomAmount;
+            
         }
-        if (Input.mouseScrollDelta.y < 0)
+        if (Input.mouseScrollDelta.y < 0 || cameraTransform.localPosition.y >= maxZoom)
         {
             newZoom += zoomAmount;
         }
@@ -89,7 +87,6 @@ public class CameraController : MonoBehaviour
     {
         HandleKeyboardMovement();
         HandleKeyboardRotation();
-        HandleKeyboardZoom();
     }
     private void HandleKeyboardMovement()
     {
@@ -125,22 +122,7 @@ public class CameraController : MonoBehaviour
         }
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
     }
-
-    private void HandleKeyboardZoom()
-    {
-        if (Input.GetKey(KeyCode.KeypadPlus))
-        {
-            newZoom += zoomAmount;
-        }
-
-        if (Input.GetKey(KeyCode.KeypadMinus))
-        {
-            newZoom -= zoomAmount;
-        }
-
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
-    }
-
+    
     private void FollowPlayer()
     {
         if (followTransform != null)
