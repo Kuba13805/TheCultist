@@ -5,16 +5,20 @@ using UnityEngine.AI;
 
 public class CharacterMovement : MonoBehaviour
 {
+    public Animator playerAnimator;
+    public bool isIdle;
     public NavMeshAgent PlayerNavMeshAgent;
+
 
     public Camera PlayerCamera;
 
     void Update()
     {
+        IsMoving();
         MovePlayerToPosition();
     }
 
-    void MovePlayerToPosition()
+    private void MovePlayerToPosition()
     {
         if (Input.GetMouseButton(0))
         {
@@ -27,4 +31,24 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
+
+    private void IsMoving()
+    {
+        IsIdle();
+    }
+
+    private void IsIdle()
+    {
+        if (PlayerNavMeshAgent.remainingDistance <= PlayerNavMeshAgent.stoppingDistance)
+        {
+            isIdle = true;
+        }
+        else
+        {
+            isIdle = false;
+        }
+        
+        playerAnimator.SetBool("IsIdle", isIdle);
+    }
 }
+
