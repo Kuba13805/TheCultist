@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 1175818538}
   m_Layer: 0
   m_Name: FreeLookCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -827,9 +827,14 @@ MonoBehaviour:
   movementTime: 8
   rotationAmount: 0.05
   zoomAmount: {x: 0, y: -1, z: 1}
+  mouseRotationSpeed: 150
   newPosition: {x: 0, y: 0, z: 0}
   newRotation: {x: 0, y: 0, z: 0, w: 0}
   newZoom: {x: 0, y: 0, z: 0}
+  dragStartPosition: {x: 0, y: 0, z: 0}
+  dragCurrentPosition: {x: 0, y: 0, z: 0}
+  rotateStartPosition: {x: 0, y: 0, z: 0}
+  rotateCurrentPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1330036232
 Transform:
   m_ObjectHideFlags: 0
