@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController instance;
+    
+    public Transform followTransform;
     public Transform cameraTransform;
     public float movementSpeed;
 
@@ -29,6 +33,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         newPosition = transform.position;
         newRotation = transform.rotation;
         newZoom = cameraTransform.localPosition;
@@ -37,6 +42,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FollowPlayer();
         HandleMouseInput();
         HandleKeyboardInput();
     }
@@ -122,16 +128,29 @@ public class CameraController : MonoBehaviour
 
     private void HandleKeyboardZoom()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.KeypadPlus))
         {
             newZoom += zoomAmount;
         }
 
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.KeypadMinus))
         {
             newZoom -= zoomAmount;
         }
 
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+    }
+
+    private void FollowPlayer()
+    {
+        if (followTransform != null)
+        {
+            transform.position = followTransform.position;
+        }
+
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            followTransform = null;
+        }
     }
 }
