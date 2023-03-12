@@ -10,12 +10,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/FollowPlayerController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/PlayerData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/PlayerScript.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -80,7 +74,8 @@
       <workItem from="1678534208160" duration="11079000" />
       <workItem from="1678560476882" duration="2096000" />
       <workItem from="1678617433737" duration="3749000" />
-      <workItem from="1678625895440" duration="3176000" />
+      <workItem from="1678625895440" duration="3774000" />
+      <workItem from="1678645796464" duration="9023000" />
     </task>
     <servers />
   </component>
