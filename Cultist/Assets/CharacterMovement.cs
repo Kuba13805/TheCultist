@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class CharacterMovement : MonoBehaviour
 {
+    [SerializeField] GameObject markedDestination = null;
     public Animator playerAnimator;
     public bool isIdle;
     public NavMeshAgent PlayerNavMeshAgent;
@@ -28,6 +29,7 @@ public class CharacterMovement : MonoBehaviour
             if (Physics.Raycast(myRay, out myRaycastHit))
             {
                 PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
+                
             }
         }
     }

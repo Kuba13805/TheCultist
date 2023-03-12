@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397f540b789c0dd4f9e01a9311b2e7b0, type: 3}
+  m_Name: PlayerChatacterData
+  m_EditorClassIdentifier: 
+  name: John
+  nickname: 
+  health: 10
+  dexterity: 5
+  strength: 5
+  power: 5
+  condition: 5
+  wisdom: 5
+  perceptivity: 5
+  occultism: 5
+  medicine: 5
+  electrics: 5
+  history: 5
+  persuasion: 5
+  intimidation: 5
+  locksmithing: 5
+  mechanics: 5
+  psychology: 5
