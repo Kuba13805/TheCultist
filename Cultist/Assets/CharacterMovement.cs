@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] GameObject markedDestination = null;
+    [SerializeField] GameObject markedDestinationFlag = null;
     public Animator playerAnimator;
     public bool isIdle;
     public NavMeshAgent PlayerNavMeshAgent;
@@ -23,13 +24,12 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            Ray myRay = PlayerCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit myRaycastHit;
+            Ray myRay = PlayerCamera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(myRay, out myRaycastHit))
             {
                 PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
-                
             }
         }
     }
