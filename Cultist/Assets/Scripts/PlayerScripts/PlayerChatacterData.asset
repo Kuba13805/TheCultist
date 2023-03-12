@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerChatacterData
   m_EditorClassIdentifier: 
   name: John
-  nickname: 
+  nickname: Big J
   health: 10
   dexterity: 5
   strength: 5

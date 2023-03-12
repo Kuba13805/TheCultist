@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public Canvas_ShowHidePanel panel;
     public static CameraController instance;
     
     public Transform followTransform;
@@ -39,9 +40,12 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FollowPlayer();
-        HandleMouseInput();
-        HandleKeyboardInput();
+        if (panel.isActive == false)
+        {
+            FollowPlayer();
+            HandleMouseInput();
+            HandleKeyboardInput();
+        }
     }
 
     private void HandleMouseInput()

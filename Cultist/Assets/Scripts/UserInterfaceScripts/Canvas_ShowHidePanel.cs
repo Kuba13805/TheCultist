@@ -8,7 +8,7 @@ public class Canvas_ShowHidePanel : MonoBehaviour
     public KeyCode showPanel;
     public KeyCode hidePanel;
     public GameObject panel;
-    bool isActive = false;
+    public bool isActive = false;
 
     void Start()
     {
@@ -17,15 +17,28 @@ public class Canvas_ShowHidePanel : MonoBehaviour
 
     void Update()
     {
+        
         if (Input.GetKeyDown(showPanel) && !isActive)
         {
             panel.SetActive(true);
             isActive = true;
+            PauseGame();
         }
         if (Input.GetKeyDown(hidePanel) && isActive == true)
         {
             panel.SetActive(false);
             isActive = false;
+            ResumeGame();
         }
+    }
+
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }

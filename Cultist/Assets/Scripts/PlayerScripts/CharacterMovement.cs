@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -7,6 +8,7 @@ using UnityEngine.InputSystem;
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] GameObject markedDestinationFlag = null;
+    public Canvas_ShowHidePanel panel;
     public Animator playerAnimator;
     public bool isIdle;
     public NavMeshAgent PlayerNavMeshAgent;
@@ -22,14 +24,17 @@ public class CharacterMovement : MonoBehaviour
 
     private void MovePlayerToPosition()
     {
-        if (Input.GetMouseButton(0))
+        if (panel.isActive == false)
         {
-            RaycastHit myRaycastHit;
-            Ray myRay = PlayerCamera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(myRay, out myRaycastHit))
+            if (Input.GetMouseButton(0))
             {
-                PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
+                RaycastHit myRaycastHit;
+                Ray myRay = PlayerCamera.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(myRay, out myRaycastHit))
+                {
+                    PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
+                }
             }
         }
     }
