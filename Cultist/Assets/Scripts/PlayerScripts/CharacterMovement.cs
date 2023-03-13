@@ -11,13 +11,18 @@ public class CharacterMovement : MonoBehaviour
     public Canvas_ShowHidePanel panel;
     public Animator playerAnimator;
     public bool isIdle;
+    public bool isRunning;
+    private const float DoubleClickTime = .2f;
     public NavMeshAgent PlayerNavMeshAgent;
-
+    private float lastClickTime;
+    private bool doubledClicked;
+    public float runningSpeed;
 
     public Camera PlayerCamera;
 
     void Update()
     {
+        CheckForDoubleClick();
         IsMoving();
         MovePlayerToPosition();
     }
@@ -33,15 +38,23 @@ public class CharacterMovement : MonoBehaviour
 
                 if (Physics.Raycast(myRay, out myRaycastHit))
                 {
-                    PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
+                    if (isRunning == true)
+                    {
+                        PlayerNavMeshAgent.speed = runningSpeed;
+                        PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
+                    }
+                    else
+                    {
+                        PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
+                    }
                 }
             }
         }
     }
-
     private void IsMoving()
     {
         IsIdle();
+        IsRunning();
     }
 
     private void IsIdle()
@@ -56,6 +69,34 @@ public class CharacterMovement : MonoBehaviour
         }
         
         playerAnimator.SetBool("IsIdle", isIdle);
+    }
+    
+    private void IsRunning()
+    {
+        if (isIdle == false && doubledClicked == true)
+        {
+            isRunning = true;
+        }
+        else
+        {
+            isRunning = false;
+        }
+        
+        playerAnimator.SetBool("IsRunning", isRunning);
+    }
+
+    private void CheckForDoubleClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            doubledClicked = false;
+            float timeSinceLastClick = Time.time - lastClickTime;
+            if (timeSinceLastClick <= DoubleClickTime)
+            {
+                doubledClicked = true;
+            }
+            lastClickTime = Time.time;
+        }
     }
 }
 

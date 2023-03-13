@@ -15,18 +15,18 @@ MonoBehaviour:
   name: John
   nickname: Big J
   health: 10
-  dexterity: 5
-  strength: 5
-  power: 5
-  condition: 5
-  wisdom: 5
-  perceptivity: 5
-  occultism: 5
-  medicine: 5
-  electrics: 5
-  history: 5
-  persuasion: 5
-  intimidation: 5
-  locksmithing: 5
-  mechanics: 5
-  psychology: 5
+  dexterity: 4
+  strength: 2
+  power: 6
+  condition: 3
+  wisdom: 4
+  perceptivity: 10
+  occultism: 4
+  medicine: 7
+  electrics: 2
+  history: 2
+  persuasion: 8
+  intimidation: 7
+  locksmithing: 1
+  mechanics: 2
+  psychology: 4
