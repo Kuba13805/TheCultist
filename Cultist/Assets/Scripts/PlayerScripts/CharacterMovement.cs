@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -17,8 +18,14 @@ public class CharacterMovement : MonoBehaviour
     private float lastClickTime;
     private bool doubledClicked;
     public float runningSpeed;
+    private float normalSpeed;
 
     public Camera PlayerCamera;
+
+    private void Start()
+    {
+        normalSpeed = PlayerNavMeshAgent.speed;
+    }
 
     void Update()
     {
@@ -42,9 +49,12 @@ public class CharacterMovement : MonoBehaviour
                     {
                         PlayerNavMeshAgent.speed = runningSpeed;
                         PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
+                        PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
                     }
                     else
                     {
+                        PlayerNavMeshAgent.speed = normalSpeed;
+                        PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
                         PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
                     }
                 }

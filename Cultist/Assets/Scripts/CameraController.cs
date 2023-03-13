@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour
     {
         if (panel.isActive == false)
         {
-            FollowPlayer();
+            //FollowPlayer();
             HandleMouseInput();
             HandleKeyboardInput();
         }
@@ -126,7 +126,7 @@ public class CameraController : MonoBehaviour
         }
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
     }
-    
+    /*
     private void FollowPlayer()
     {
         if (followTransform != null)
@@ -139,4 +139,5 @@ public class CameraController : MonoBehaviour
             followTransform = null;
         }
     }
+    */
 }
