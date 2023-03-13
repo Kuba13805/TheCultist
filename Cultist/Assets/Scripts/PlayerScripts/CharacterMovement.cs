@@ -8,15 +8,23 @@ using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] GameObject markedDestinationFlag = null;
+    public GameObject markedDestinationFlag;
+    public bool hasSpawnedFlag = false;
+    GameObject flag = null;
+    
     public Canvas_ShowHidePanel panel;
+    
     public Animator playerAnimator;
+    
     public bool isIdle;
     public bool isRunning;
-    private const float DoubleClickTime = .2f;
+    
     public NavMeshAgent PlayerNavMeshAgent;
+    
+    private const float DoubleClickTime = .2f;
     private float lastClickTime;
     private bool doubledClicked;
+    
     public float runningSpeed;
     private float normalSpeed;
 
@@ -29,6 +37,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
+        DestroyFlagWhenDestinationReached();
         CheckForDoubleClick();
         IsMoving();
         MovePlayerToPosition();
@@ -45,6 +54,7 @@ public class CharacterMovement : MonoBehaviour
 
                 if (Physics.Raycast(myRay, out myRaycastHit))
                 {
+                    SpawnFlagAtDestination(myRaycastHit);
                     if (isRunning == true)
                     {
                         PlayerNavMeshAgent.speed = runningSpeed;
@@ -106,6 +116,34 @@ public class CharacterMovement : MonoBehaviour
                 doubledClicked = true;
             }
             lastClickTime = Time.time;
+        }
+    }
+
+    private void SpawnFlagAtDestination(RaycastHit hitPosition)
+    {
+        
+        Vector3 spawnPoint;
+        if (flag != null)
+        {
+            Destroy(flag);
+            hasSpawnedFlag = false;
+        }
+        
+        if (!hasSpawnedFlag)
+        {
+            float objectHeight = markedDestinationFlag.GetComponent<Renderer>().bounds.size.y / 2f;
+            spawnPoint = new Vector3(hitPosition.point.x, hitPosition.point.y + objectHeight, hitPosition.point.z);
+            flag = Instantiate(markedDestinationFlag, spawnPoint, Quaternion.identity);
+            hasSpawnedFlag = true;
+        }
+    }
+
+    private void DestroyFlagWhenDestinationReached()
+    {
+        if (hasSpawnedFlag && PlayerNavMeshAgent.remainingDistance == 0)
+        {
+            Destroy(flag);
+            hasSpawnedFlag = false;
         }
     }
 }
