@@ -8,8 +8,9 @@ public class CameraController : MonoBehaviour
 {
     public Canvas_ShowHidePanel panel;
     public static CameraController instance;
+
+    private GameObject player;
     
-    public Transform followTransform;
     public Transform cameraTransform;
     public float movementSpeed;
 
@@ -17,7 +18,7 @@ public class CameraController : MonoBehaviour
     public float rotationAmount;
     public Vector3 zoomAmount;
     public float mouseRotationSpeed;
-    public float minZoom, maxZoom;
+    private float minZoom, maxZoom;
 
     public Vector3 newPosition;
 
@@ -31,6 +32,8 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        
         instance = this;
         newPosition = transform.position;
         newRotation = transform.rotation;
@@ -40,6 +43,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateZoomLimits();
         if (panel.isActive == false)
         {
             //FollowPlayer();
@@ -126,18 +130,10 @@ public class CameraController : MonoBehaviour
         }
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
     }
-    /*
-    private void FollowPlayer()
-    {
-        if (followTransform != null)
-        {
-            transform.position = followTransform.position;
-        }
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            followTransform = null;
-        }
+    private void UpdateZoomLimits()
+    {
+        minZoom = player.transform.position.y - 10f;
+        maxZoom = player.transform.position.y + 10f;
     }
-    */
 }

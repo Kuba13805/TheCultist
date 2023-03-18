@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Canvas_ShowHidePanel : MonoBehaviour
@@ -12,7 +13,7 @@ public class Canvas_ShowHidePanel : MonoBehaviour
 
     void Start()
     {
-        panel.SetActive(false);
+        panel.GameObject().SetActive(false);
     }
 
     void Update()
@@ -20,13 +21,13 @@ public class Canvas_ShowHidePanel : MonoBehaviour
         
         if (Input.GetKeyDown(showPanel) && !isActive)
         {
-            panel.SetActive(true);
+            panel.GameObject().SetActive(true);
             isActive = true;
             PauseGame();
         }
         if (Input.GetKeyDown(hidePanel) && isActive == true)
         {
-            panel.SetActive(false);
+            panel.GameObject().SetActive(false);
             isActive = false;
             ResumeGame();
         }

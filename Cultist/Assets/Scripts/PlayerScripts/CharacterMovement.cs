@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,17 +10,17 @@ using UnityEngine.InputSystem;
 public class CharacterMovement : MonoBehaviour
 {
     public GameObject markedDestinationFlag;
-    public bool hasSpawnedFlag = false;
-    GameObject flag = null;
+    private bool hasSpawnedFlag = false;
+    GameObject flag;
     
     public Canvas_ShowHidePanel panel;
     
-    public Animator playerAnimator;
+    private Animator playerAnimator;
     
     public bool isIdle;
     public bool isRunning;
     
-    public NavMeshAgent PlayerNavMeshAgent;
+    private NavMeshAgent PlayerNavMeshAgent;
     
     private const float DoubleClickTime = .2f;
     private float lastClickTime;
@@ -30,8 +31,11 @@ public class CharacterMovement : MonoBehaviour
 
     public Camera PlayerCamera;
 
+
     private void Start()
     {
+        playerAnimator = GetComponentInChildren<Animator>();
+        PlayerNavMeshAgent = GetComponent<NavMeshAgent>();
         normalSpeed = PlayerNavMeshAgent.speed;
     }
 
@@ -55,6 +59,7 @@ public class CharacterMovement : MonoBehaviour
                 if (Physics.Raycast(myRay, out myRaycastHit))
                 {
                     SpawnFlagAtDestination(myRaycastHit);
+                    //Psuje działanie kamery atPlayer i animacje - player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(myRaycastHit.point), Time.deltaTime * 15f);
                     if (isRunning == true)
                     {
                         PlayerNavMeshAgent.speed = runningSpeed;
@@ -93,8 +98,12 @@ public class CharacterMovement : MonoBehaviour
     
     private void IsRunning()
     {
-        if (isIdle == false && doubledClicked == true)
+        if (isIdle == false && (doubledClicked || PlayerNavMeshAgent.remainingDistance >= 10f))
         {
+            if (PlayerNavMeshAgent.remainingDistance >= 10f)
+            {
+                doubledClicked = true;
+            }
             isRunning = true;
         }
         else
