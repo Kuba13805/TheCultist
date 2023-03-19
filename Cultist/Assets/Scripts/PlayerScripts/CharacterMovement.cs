@@ -58,19 +58,22 @@ public class CharacterMovement : MonoBehaviour
 
                 if (Physics.Raycast(myRay, out myRaycastHit))
                 {
-                    SpawnFlagAtDestination(myRaycastHit);
-                    //Psuje działanie kamery atPlayer i animacje - player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(myRaycastHit.point), Time.deltaTime * 15f);
-                    if (isRunning == true)
+                    if (myRaycastHit.transform.CompareTag("Floor"))
                     {
-                        PlayerNavMeshAgent.speed = runningSpeed;
-                        PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
-                        PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
-                    }
-                    else
-                    {
-                        PlayerNavMeshAgent.speed = normalSpeed;
-                        PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
-                        PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
+                        SpawnFlagAtDestination(myRaycastHit);
+                        //Psuje działanie kamery atPlayer i animacje - player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(myRaycastHit.point), Time.deltaTime * 15f);
+                        if (isRunning)
+                        {
+                            PlayerNavMeshAgent.speed = runningSpeed;
+                            PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
+                            PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
+                        }
+                        else
+                        {
+                            PlayerNavMeshAgent.speed = normalSpeed;
+                            PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
+                            PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
+                        }
                     }
                 }
             }
@@ -137,7 +140,6 @@ public class CharacterMovement : MonoBehaviour
             Destroy(flag);
             hasSpawnedFlag = false;
         }
-        
         if (!hasSpawnedFlag)
         {
             float objectHeight = markedDestinationFlag.GetComponent<Renderer>().bounds.size.y / 2f;
@@ -145,6 +147,7 @@ public class CharacterMovement : MonoBehaviour
             flag = Instantiate(markedDestinationFlag, spawnPoint, Quaternion.identity);
             hasSpawnedFlag = true;
         }
+        
     }
 
     private void DestroyFlagWhenDestinationReached()
