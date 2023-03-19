@@ -60,22 +60,54 @@ public class CharacterMovement : MonoBehaviour
                 {
                     if (myRaycastHit.transform.CompareTag("Floor"))
                     {
-                        SpawnFlagAtDestination(myRaycastHit);
-                        //Psuje działanie kamery atPlayer i animacje - player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(myRaycastHit.point), Time.deltaTime * 15f);
+                        SpawnFlagAtDestination(myRaycastHit.point);
                         if (isRunning)
                         {
-                            PlayerNavMeshAgent.speed = runningSpeed;
-                            PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
-                            PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
+                            ChangeMovement(runningSpeed, myRaycastHit.point);
                         }
                         else
                         {
-                            PlayerNavMeshAgent.speed = normalSpeed;
-                            PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
-                            PlayerNavMeshAgent.SetDestination(myRaycastHit.point);
+                            ChangeMovement(normalSpeed, myRaycastHit.point);
                         }
                     }
+                    else
+                    {
+                        MoveToInteract(myRaycastHit);
+                    }
                 }
+            }
+        }
+    }
+
+    private void MoveToInteract(RaycastHit myRaycastHit)
+    {
+        GameObject gameObjectToInteract = myRaycastHit.transform.gameObject;
+        Vector3 newPosition = this.transform.position;
+        Quaternion newRotation = this.transform.rotation;
+        bool interactorFound;
+        
+        try
+        {
+            newPosition = gameObjectToInteract.GetComponentInChildren<InteractorScript>().interactorPosition;
+            newRotation = gameObjectToInteract.GetComponentInChildren<InteractorScript>().interactorRotation;
+            
+            interactorFound = true;
+        }
+        catch (Exception e)
+        {
+            interactorFound = false;
+        }
+
+        if (interactorFound)
+        {
+            SpawnFlagAtDestination(newPosition);
+            if (isRunning)
+            {
+                ChangeMovement(runningSpeed, newPosition);
+            }
+            else
+            {
+                ChangeMovement(normalSpeed, newPosition);
             }
         }
     }
@@ -117,6 +149,13 @@ public class CharacterMovement : MonoBehaviour
         playerAnimator.SetBool("IsRunning", isRunning);
     }
 
+    private void ChangeMovement(float speed, Vector3 position)
+    {
+        PlayerNavMeshAgent.speed = speed;
+        PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
+        PlayerNavMeshAgent.SetDestination(position);
+    }
+
     private void CheckForDoubleClick()
     {
         if (Input.GetMouseButtonDown(0))
@@ -131,7 +170,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    private void SpawnFlagAtDestination(RaycastHit hitPosition)
+    private void SpawnFlagAtDestination(Vector3 hitPosition)
     {
         
         Vector3 spawnPoint;
@@ -143,7 +182,7 @@ public class CharacterMovement : MonoBehaviour
         if (!hasSpawnedFlag)
         {
             float objectHeight = markedDestinationFlag.GetComponent<Renderer>().bounds.size.y / 2f;
-            spawnPoint = new Vector3(hitPosition.point.x, hitPosition.point.y + objectHeight, hitPosition.point.z);
+            spawnPoint = new Vector3(hitPosition.x, hitPosition.y + objectHeight, hitPosition.z);
             flag = Instantiate(markedDestinationFlag, spawnPoint, Quaternion.identity);
             hasSpawnedFlag = true;
         }

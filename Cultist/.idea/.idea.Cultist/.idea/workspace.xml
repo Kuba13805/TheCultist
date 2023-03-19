@@ -11,9 +11,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameObjectsScripts/InteractableNPC.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameObjectsScripts/InteractableObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameObjectsScripts/InteractorScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterInfoPanelDisplays/Display Skills/CharacterPerceptivityFromData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CreateListOfInteractions.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -88,7 +88,7 @@
       <workItem from="1679063742928" duration="1195000" />
       <workItem from="1679082977328" duration="121000" />
       <workItem from="1679134243776" duration="4795000" />
-      <workItem from="1679224711043" duration="4522000" />
+      <workItem from="1679224711043" duration="12802000" />
     </task>
     <servers />
   </component>

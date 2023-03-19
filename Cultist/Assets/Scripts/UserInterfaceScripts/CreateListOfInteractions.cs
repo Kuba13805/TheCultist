@@ -2,24 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableObject : MonoBehaviour
+public class CreateListOfInteractions : MonoBehaviour
 {
-    public string objectName;
-    public int objectId;
-    private List<string> contextMenuOptions = new List<string>();
+    public List<string> contextMenuOptions = new List<string>();
     private bool isContextMenuOpen = false;
-
-    void Start()
-    {
-        // Add context menu options
-        contextMenuOptions.Add("Option 1");
-        contextMenuOptions.Add("Option 2");
-        contextMenuOptions.Add("Option 3");
-    }
 
     void Update()
     {
-        if (isContextMenuOpen && Input.GetKeyDown(KeyCode.T))
+        if (isContextMenuOpen && Input.GetMouseButtonDown(1))
         {
             CloseContextMenu();
         }
@@ -49,7 +39,7 @@ public class InteractableObject : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetMouseButtonDown(1))
         {
             // Open the context menu
             OpenContextMenu();
