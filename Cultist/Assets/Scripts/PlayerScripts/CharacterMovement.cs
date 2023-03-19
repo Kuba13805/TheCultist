@@ -83,14 +83,12 @@ public class CharacterMovement : MonoBehaviour
     {
         GameObject gameObjectToInteract = myRaycastHit.transform.gameObject;
         Vector3 newPosition = this.transform.position;
-        Quaternion newRotation = this.transform.rotation;
         bool interactorFound;
         
         try
         {
             newPosition = gameObjectToInteract.GetComponentInChildren<InteractorScript>().interactorPosition;
-            newRotation = gameObjectToInteract.GetComponentInChildren<InteractorScript>().interactorRotation;
-            
+
             interactorFound = true;
         }
         catch (Exception e)
@@ -104,10 +102,12 @@ public class CharacterMovement : MonoBehaviour
             if (isRunning)
             {
                 ChangeMovement(runningSpeed, newPosition);
+                transform.LookAt(gameObjectToInteract.transform);
             }
             else
             {
                 ChangeMovement(normalSpeed, newPosition);
+                transform.LookAt(gameObjectToInteract.transform);
             }
         }
     }
