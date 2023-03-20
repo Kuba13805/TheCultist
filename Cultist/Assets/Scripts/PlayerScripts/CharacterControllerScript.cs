@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterControllerScript : MonoBehaviour
 {
     public GameObject markedDestinationFlag;
     private bool hasSpawnedFlag = false;
@@ -31,6 +31,9 @@ public class CharacterMovement : MonoBehaviour
 
     public Camera PlayerCamera;
 
+    private BaseInteractableObject interactionToPerform;
+    
+    Vector3 newPosition;
 
     private void Start()
     {
@@ -49,12 +52,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void MovePlayerToPosition()
     {
-        if (panel.isActive == false)
+        if (Time.timeScale != 0)
         {
+            RaycastHit myRaycastHit;
+            Ray myRay = PlayerCamera.ScreenPointToRay(Input.mousePosition);
+            
             if (Input.GetMouseButton(0))
             {
-                RaycastHit myRaycastHit;
-                Ray myRay = PlayerCamera.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(myRay, out myRaycastHit))
                 {
@@ -79,16 +83,23 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    private void Interact(BaseInteractableObject interactionToPerform)
+    {
+        if (PlayerNavMeshAgent.remainingDistance == 0 && (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) < 1.0))
+        {
+            interactionToPerform.Interact();
+        }
+    }
     private void MoveToInteract(RaycastHit myRaycastHit)
     {
         GameObject gameObjectToInteract = myRaycastHit.transform.gameObject;
-        Vector3 newPosition = this.transform.position;
+        newPosition = transform.position;
         bool interactorFound;
         
         try
         {
             newPosition = gameObjectToInteract.GetComponentInChildren<InteractorScript>().interactorPosition;
-
+            interactionToPerform = gameObjectToInteract.GetComponent<BaseInteractableObject>();
             interactorFound = true;
         }
         catch (Exception e)
@@ -102,12 +113,20 @@ public class CharacterMovement : MonoBehaviour
             if (isRunning)
             {
                 ChangeMovement(runningSpeed, newPosition);
-                transform.LookAt(gameObjectToInteract.transform);
+                if (isIdle)
+                {
+                    Interact(interactionToPerform);
+                }
+                //transform.LookAt(gameObjectToInteract.transform);
             }
             else
             {
                 ChangeMovement(normalSpeed, newPosition);
-                transform.LookAt(gameObjectToInteract.transform);
+                if (isIdle)
+                {
+                    Interact(interactionToPerform);
+                }
+                //transform.LookAt(gameObjectToInteract.transform);
             }
         }
     }
@@ -179,7 +198,7 @@ public class CharacterMovement : MonoBehaviour
             Destroy(flag);
             hasSpawnedFlag = false;
         }
-        if (!hasSpawnedFlag)
+        if (!hasSpawnedFlag && Time.timeScale != 0)
         {
             float objectHeight = markedDestinationFlag.GetComponent<Renderer>().bounds.size.y / 2f;
             spawnPoint = new Vector3(hitPosition.x, hitPosition.y + objectHeight, hitPosition.z);

@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
     public float rotationAmount;
     public Vector3 zoomAmount;
     public float mouseRotationSpeed;
+    
     private float minZoom, maxZoom;
 
     public Vector3 newPosition;

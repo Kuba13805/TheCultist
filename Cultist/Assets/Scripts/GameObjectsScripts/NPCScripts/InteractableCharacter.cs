@@ -15,7 +15,6 @@ public class InteractableCharacter : BaseInteractableObject
 
     [SerializeField] private int difficultyToReadIntension;
     
-    private InteractorScript interactor;
 
     public void Start()
     {
@@ -23,6 +22,5 @@ public class InteractableCharacter : BaseInteractableObject
         {
             difficultyToReadIntension = characterClass.difficultyToReadIntension;
         }
-        interactor = GetComponentInChildren<InteractorScript>();
     }
 }

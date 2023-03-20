@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="CollectableWindow" style="height: 450px;">
+        <ui:Label text="Title" display-tooltip-when-elided="true" name="TitleOfCollectable" style="font-size: 28px; -unity-text-align: upper-center;" />
+        <ui:Label text="Desc" display-tooltip-when-elided="true" name="DescOfCollectable" style="height: 240px;" />
+        <ui:Button text="Close" display-tooltip-when-elided="true" name="CloseButton" style="-unity-text-align: middle-center; opacity: 1; overflow: hidden; position: absolute; top: 400px; left: 173px; right: 173px;" />
+    </ui:VisualElement>
+</ui:UXML>

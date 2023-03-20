@@ -5,9 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - NPC
-  - asteroid
-  - ship
   - Floor
+  - TravelPoint
   layers:
   - Default
   - TransparentFX

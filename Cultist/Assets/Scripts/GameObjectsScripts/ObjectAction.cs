@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class ObjectAction : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private GameObject player;
+    private GameObject interactableGameObject;
 }

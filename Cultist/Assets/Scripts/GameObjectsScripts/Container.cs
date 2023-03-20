@@ -1,16 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Container : BaseInteractableObject
 {
-    private enum containerType
+    private enum ContainerType
     {
         Chest,
         Barrel,
         Basket
     }
 
-    [SerializeField] private containerType type;
+    [SerializeField] private ContainerType type;
     public List<BaseItem> containerLoadout;
 }
