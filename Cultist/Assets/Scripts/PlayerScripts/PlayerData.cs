@@ -26,4 +26,6 @@ public class PlayerData : ScriptableObject
     public int locksmithing;
     public int mechanics;
     public int psychology;
+
+    public string lastLocation;
 }

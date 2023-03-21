@@ -6,7 +6,7 @@ using UnityEngine;
 public class BaseInteractableObject : MonoBehaviour, IInteractable
 {
     public string objectName;
-    [SerializeField] private int objectId;
+    [SerializeField] public int objectId;
     public InteractorScript interactor;
     public GameObject player;
 

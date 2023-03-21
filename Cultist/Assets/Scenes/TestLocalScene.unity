@@ -434,6 +434,16 @@ PrefabInstance:
       propertyPath: destinantionSceneName
       value: TestScene
       objectReference: {fileID: 0}
+    - target: {fileID: 3749418295683856541, guid: 943f4374e489b1840b813dd9a8ae2c9d,
+        type: 3}
+      propertyPath: pointIdFromWhichPlayerComes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749418295683856541, guid: 943f4374e489b1840b813dd9a8ae2c9d,
+        type: 3}
+      propertyPath: sceneNameFromWhichPlayerComes
+      value: TestScene
+      objectReference: {fileID: 0}
     - target: {fileID: 3749418295683856543, guid: 943f4374e489b1840b813dd9a8ae2c9d,
         type: 3}
       propertyPath: m_RootOrder
@@ -643,8 +653,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819946076}
-  m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 6, z: -6}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

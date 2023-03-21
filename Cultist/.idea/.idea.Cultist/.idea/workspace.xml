@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/BackButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GoBackToScene.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameObjectsScripts/BaseInteractableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameObjectsScripts/CollectableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameObjectsScripts/EnviromentObject.cs" root0="FORCE_HIGHLIGHTING" />
@@ -19,6 +19,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameObjectsScripts/InteractorScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameObjectsScripts/ObjectAction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameObjectsScripts/TravelPoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GameState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterInfoPanelDisplays/Display Skills/CharacterPerceptivityFromData.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -95,7 +97,8 @@
       <workItem from="1679082977328" duration="121000" />
       <workItem from="1679134243776" duration="4795000" />
       <workItem from="1679224711043" duration="27033000" />
-      <workItem from="1679309533975" duration="22906000" />
+      <workItem from="1679309533975" duration="24408000" />
+      <workItem from="1679388428527" duration="6268000" />
     </task>
     <servers />
   </component>
