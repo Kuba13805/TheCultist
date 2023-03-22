@@ -1,15 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BaseItem : MonoBehaviour
+[CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObjects/Item/Create New Item")]
+public class BaseItem : ScriptableObject
 {
     public string itemName;
-    [SerializeField] private int itemId;
+    public int itemId;
     public Text itemDesc;
     [SerializeField] private bool oneTimeItem;
-    public int price;
+    public int value;
     [SerializeField] private bool questItem;
+    public Sprite icon;
 
+    public ItemTypes itemType;
+    public enum ItemTypes
+    {
+        Armor,
+        Tool,
+        Food,
+        Trinket
+    }
+
+    public enum ArmorParts
+    {
+        Head,
+        Chest,
+        Pants,
+        Gloves,
+        Ring
+    }
+    [ShowIf("itemType", ItemTypes.Armor)] public ArmorParts armorPart;
 }

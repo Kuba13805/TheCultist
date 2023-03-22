@@ -1,13 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public BaseItem item;
+    
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
+
+    private void Start()
+    {
+        InitialiseItem(item);
+    }
+
+    public void InitialiseItem(BaseItem newItem)
+    {
+        GetComponentInChildren<LoadItemIcon>().LoadIcon();
+        GetComponentInChildren<TextMeshProUGUI>().text = newItem.itemName;
+    }
     
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -27,4 +42,5 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
     }
+
 }

@@ -51,31 +51,38 @@ public class CollectableObject : BaseInteractableObject
 
     private void LoadText(string elementToFind)
     {
-        if (type == CollectableObjectType.Book)
+        switch (type)
         {
-            GameObject textToDisplay = panelInstance.transform.Find(elementToFind).gameObject;
-            if (elementToFind == "CollectableDesc")
+            case CollectableObjectType.Book:
             {
-                textToDisplay.GetComponent<TextMeshProUGUI>().text = text;
-            }
+                GameObject textToDisplay = panelInstance.transform.Find(elementToFind).gameObject;
+                if (elementToFind == "CollectableDesc")
+                {
+                    textToDisplay.GetComponent<TextMeshProUGUI>().text = text;
+                }
 
-            if (elementToFind == "CollectableTitle")
-            {
-                textToDisplay.GetComponent<TextMeshProUGUI>().text = title;
+                if (elementToFind == "CollectableTitle")
+                {
+                    textToDisplay.GetComponent<TextMeshProUGUI>().text = title;
+                }
+
+                break;
             }
-        }
-        else if (type == CollectableObjectType.Scroll)
-        {
-            GameObject textToDisplay = GameObject.Find(elementToFind);
+            default:
+            {
+                GameObject textToDisplay = GameObject.Find(elementToFind);
             
-            if (elementToFind == "CollectableDesc")
-            {
-                textToDisplay.GetComponent<TextMeshProUGUI>().text = text;
-            }
+                if (elementToFind == "CollectableDesc")
+                {
+                    textToDisplay.GetComponent<TextMeshProUGUI>().text = text;
+                }
 
-            if (elementToFind == "CollectableTitle")
-            {
-                textToDisplay.GetComponent<TextMeshProUGUI>().text = title;
+                if (elementToFind == "CollectableTitle")
+                {
+                    textToDisplay.GetComponent<TextMeshProUGUI>().text = title;
+                }
+
+                break;
             }
         }
     }
