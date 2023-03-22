@@ -18,7 +18,7 @@ MonoBehaviour:
   dexterity: 4
   strength: 2
   power: 6
-  condition: 3
+  condition: 17
   wisdom: 4
   perceptivity: 10
   occultism: 4
@@ -30,3 +30,4 @@ MonoBehaviour:
   locksmithing: 1
   mechanics: 2
   psychology: 4
+  lastLocation: 2 TestScene

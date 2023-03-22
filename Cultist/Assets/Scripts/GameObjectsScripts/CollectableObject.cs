@@ -15,7 +15,9 @@ public class CollectableObject : BaseInteractableObject
         Scroll,
         Leaflet
     };
-    
+
+    public string title;
+    [TextAreaAttribute(15, 20)]
     public string text;
     [SerializeField] private CollectableObjectType type;
     private GameObject panelToDisplay;
@@ -49,8 +51,33 @@ public class CollectableObject : BaseInteractableObject
 
     private void LoadText(string elementToFind)
     {
-        GameObject textToDisplay = panelInstance.transform.Find(elementToFind).gameObject;
-        textToDisplay.GetComponent<TextMeshProUGUI>().text = text;
+        if (type == CollectableObjectType.Book)
+        {
+            GameObject textToDisplay = panelInstance.transform.Find(elementToFind).gameObject;
+            if (elementToFind == "CollectableDesc")
+            {
+                textToDisplay.GetComponent<TextMeshProUGUI>().text = text;
+            }
+
+            if (elementToFind == "CollectableTitle")
+            {
+                textToDisplay.GetComponent<TextMeshProUGUI>().text = title;
+            }
+        }
+        else if (type == CollectableObjectType.Scroll)
+        {
+            GameObject textToDisplay = GameObject.Find(elementToFind);
+            
+            if (elementToFind == "CollectableDesc")
+            {
+                textToDisplay.GetComponent<TextMeshProUGUI>().text = text;
+            }
+
+            if (elementToFind == "CollectableTitle")
+            {
+                textToDisplay.GetComponent<TextMeshProUGUI>().text = title;
+            }
+        }
     }
 
     private void DeterminePanelToShow()
@@ -72,6 +99,7 @@ public class CollectableObject : BaseInteractableObject
             panelToDisplay = Resources.Load<GameObject>("CollectableLeafletPanel");
         }
     }
+    
     void PauseGame()
     {
         Time.timeScale = 0;
