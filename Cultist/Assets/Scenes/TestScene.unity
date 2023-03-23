@@ -16834,8 +16834,11 @@ MonoBehaviour:
   inventoryItemPrefab: {fileID: 4247951788062489086, guid: 97368f4d83e905a4099f58c2d0f5e0dc,
     type: 3}
   type: 2
-  containerLoadout:
-  - {fileID: 0}
+  containerEmptySlots: []
+  itemsInContainer:
+  - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
+  - {fileID: 11400000, guid: e3870aa5cd4b9684b81ad6378f0dfb88, type: 2}
+  - {fileID: 11400000, guid: e3870aa5cd4b9684b81ad6378f0dfb88, type: 2}
   isActive: 0
 --- !u!114 &2027357094844370190
 MonoBehaviour:
