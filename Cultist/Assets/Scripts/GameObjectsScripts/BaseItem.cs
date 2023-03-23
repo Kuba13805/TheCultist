@@ -21,7 +21,7 @@ public class BaseItem : ScriptableObject
         Armor,
         Tool,
         Food,
-        Trinket
+        Junk
     }
 
     public enum ArmorParts

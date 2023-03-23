@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public PlayerData PlayerData;
+    public InventoryManager InventoryManager;
     public static GameManager Instance { get; private set; }
     
 
@@ -13,16 +14,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(this);
-        }
+        Instance = this;
     }
 
     public void UpdateGameState(GameState newState)

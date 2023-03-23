@@ -19,7 +19,7 @@ public class EquipmentSlot : InventorySlot
         if (transform.childCount == 0)
         {
             InventoryItemDragDrop inventoryItem = eventData.pointerDrag.GetComponent<InventoryItemDragDrop>();
-            if (inventoryItem.item.armorPart.ToString() == armorPartToEquipt.ToString())
+            if ((inventoryItem.item.itemType.ToString() == "Armor")&& (inventoryItem.item.armorPart.ToString() == armorPartToEquipt.ToString()))
             {
                 inventoryItem.parentAfterDrag = transform;
             }

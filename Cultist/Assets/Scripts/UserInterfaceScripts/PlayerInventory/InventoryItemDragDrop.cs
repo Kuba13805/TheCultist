@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerExitHandler
 {
     public BaseItem item;
-    
+    public Button button;
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
 
@@ -43,4 +43,24 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         transform.SetParent(parentAfterDrag);
     }
 
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            button.gameObject.SetActive(true);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (button.enabled)
+        {
+            button.gameObject.SetActive(false);
+        }
+    }
+
+    public void DestoryItem()
+    {
+        Destroy(this);
+    }
 }
