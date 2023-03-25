@@ -9,7 +9,8 @@ public class BaseItem : ScriptableObject
 {
     public string itemName;
     public int itemId;
-    public Text itemDesc;
+    [TextAreaAttribute(15, 20)]
+    public string itemDesc;
     [SerializeField] private bool oneTimeItem;
     public int value;
     [SerializeField] private bool questItem;

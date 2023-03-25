@@ -3,15 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerExitHandler
 {
+    public bool isInPlayerInventory;
     public BaseItem item;
     public Button button;
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
+    [HideInInspector] public Transform parentBeforeDrag;
+
+    public delegate void onItemChanged();
+
+    public static event onItemChanged OnItemChanged;
+    
+    public delegate void onItemAddedFromContainer(BaseItem item);
+
+    public static event onItemAddedFromContainer OnItemAddedFromContainer;
 
     private void Start()
     {
@@ -26,9 +37,12 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     
     public void OnBeginDrag(PointerEventData eventData)
     {
+        var transform1 = transform;
+        var parent = transform1.parent;
+        parentBeforeDrag = parent;
         image.raycastTarget = false;
-        parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
+        parentAfterDrag = parent;
+        transform.SetParent(transform1.root);
         transform.SetAsLastSibling();
     }
 
@@ -41,13 +55,35 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     {
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
+        if (parentBeforeDrag.GetComponent<InventorySlot>() && parentAfterDrag.GetComponent<EquipmentSlot>())
+        {
+            isInPlayerInventory = false;
+            GameManager.Instance.PlayerData.playerInventoryItems.Remove(item);
+            GameManager.Instance.PlayerData.characterEquipment.Add(item);
+            OnItemChanged?.Invoke();
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Right)
+        if (eventData.button == PointerEventData.InputButton.Right && isInPlayerInventory && transform.GetComponentInParent<InventorySlot>())
         {
             button.gameObject.SetActive(true);
+            return;
+        }
+
+        if (eventData.button == PointerEventData.InputButton.Left && !isInPlayerInventory && !transform.GetComponentInParent<EquipmentSlot>())
+        {
+            GameManager.Instance.PlayerData.playerInventoryItems.Add(item);
+            OnItemAddedFromContainer?.Invoke(item);
+            DestroyItem();
+        }
+        else if (eventData.button == PointerEventData.InputButton.Left && transform.GetComponentInParent<EquipmentSlot>())
+        {
+            GameManager.Instance.PlayerData.playerInventoryItems.Add(item);
+            GameManager.Instance.PlayerData.characterEquipment.Remove(item);
+            DestroyItem();
+            OnItemChanged?.Invoke();
         }
     }
 
@@ -58,9 +94,14 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
             button.gameObject.SetActive(false);
         }
     }
-
-    public void DestoryItem()
+    
+    public void DestroyItem()
     {
-        Destroy(this);
+        if (isInPlayerInventory)
+        {
+            GameManager.Instance.PlayerData.playerInventoryItems.Remove(item);
+        }
+        Destroy(gameObject);
+        OnItemChanged?.Invoke();
     }
 }

@@ -28,4 +28,8 @@ public class PlayerData : ScriptableObject
     public int psychology;
 
     public string lastLocation;
+
+    public List<BaseItem> playerInventoryItems;
+
+    public List<BaseItem> characterEquipment;
 }

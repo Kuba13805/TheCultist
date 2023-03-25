@@ -229,10 +229,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685c5044304f7494db7dc00f0a386ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInPlayerInventory: 0
   item: {fileID: 0}
   button: {fileID: 1878196829314438845}
   image: {fileID: 3718572777650502452}
   parentAfterDrag: {fileID: 0}
+  parentBeforeDrag: {fileID: 0}
+  onItemAdded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2051721210501961388, guid: e2d061f1b63d81e478278069a43bd6b8,
+          type: 3}
+        m_TargetAssemblyTypeName: DisplayPlayerInventory, Assembly-CSharp
+        m_MethodName: ReloadInventory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5317951723882843405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +583,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 799851261}
         m_TargetAssemblyTypeName: InventoryItemDragDrop, Assembly-CSharp
-        m_MethodName: DestoryItem
+        m_MethodName: DestroyItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
