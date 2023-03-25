@@ -4,7 +4,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObjects/Item/Create New Item")]
+[CreateAssetMenu(fileName = "NewItem", menuName = "ScriptableObjects/Item/Create New Item")]
 public class BaseItem : ScriptableObject
 {
     public string itemName;
@@ -33,5 +33,7 @@ public class BaseItem : ScriptableObject
         Gloves,
         Ring
     }
+
     [ShowIf("itemType", ItemTypes.Armor)] public ArmorParts armorPart;
+    public List<ItemEffect> effectsOnItem;
 }

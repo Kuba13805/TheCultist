@@ -86,7 +86,7 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
             OnItemChanged?.Invoke();
         }
     }
-
+ 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (button.enabled)
@@ -94,7 +94,6 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
             button.gameObject.SetActive(false);
         }
     }
-    
     public void DestroyItem()
     {
         if (isInPlayerInventory)
@@ -104,4 +103,5 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         Destroy(gameObject);
         OnItemChanged?.Invoke();
     }
+
 }
