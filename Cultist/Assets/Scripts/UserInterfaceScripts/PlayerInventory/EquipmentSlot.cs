@@ -10,6 +10,9 @@ public class EquipmentSlot : InventorySlot
     public GameObject inventoryItemPrefab;
     public partsOfArmorToEquipt armorPartToEquipt;
 
+    private BaseItem itemEquipped;
+
+    private List<ItemEffect> itemEffectsList;
     public enum partsOfArmorToEquipt
     {
         Head,
@@ -19,16 +22,26 @@ public class EquipmentSlot : InventorySlot
         Ring
     }
 
+    private void Update()
+    {
+        if (transform.childCount == 0)
+        {
+            itemEffectsList = null;
+        }
+    }
+
     public void OnEnable()
     {
         SpawnEquippedItem();
-        InventoryItemDragDrop.OnItemChanged += ChangeStatValueOverItemChange;
+        InventoryItemDragDrop.OnItemEquipped += OnEquipped;
+        InventoryItemDragDrop.OnItemStriped += OnNotEquipped;
     }
 
     public void OnDisable()
     {
         ClearInventoryAfterReload();
-        InventoryItemDragDrop.OnItemChanged -= ChangeStatValueOverItemChange;
+        InventoryItemDragDrop.OnItemEquipped -= OnEquipped;
+        InventoryItemDragDrop.OnItemStriped -= OnNotEquipped;
     }
 
     public override void OnDrop(PointerEventData eventData)
@@ -39,10 +52,10 @@ public class EquipmentSlot : InventorySlot
             if (inventoryItem.item.itemType.ToString() == "Armor" && inventoryItem.item.armorPart.ToString() == armorPartToEquipt.ToString())
             {
                 inventoryItem.parentAfterDrag = transform;
+                itemEffectsList = inventoryItem.item.effectsOnItem;
             }
         }
     }
-
     public void SpawnEquippedItem()
     {
         foreach (var item in GameManager.Instance.PlayerData.characterEquipment)
@@ -62,30 +75,20 @@ public class EquipmentSlot : InventorySlot
         }
     }
 
-    private void ChangeStatValueOverItemChange()
-    {
-        if (transform.childCount == 1)
-        {
-            OnNotEquipped();
-        }
-        else
-        {
-            OnEquipped();
-        }
-    }
-
     private void OnEquipped()
     {
-        foreach (var t in GetComponentInChildren<InventoryItemDragDrop>().item.effectsOnItem)
+        if (itemEffectsList == null || GetComponentInChildren<InventoryItemDragDrop>().effectsActive) return;
+        foreach (var t in itemEffectsList)
         {
             t.isEffectActive = true;
             CalculateStatValue(t);
         }
+        GetComponentInChildren<InventoryItemDragDrop>().effectsActive = true;
     }
-
     private void OnNotEquipped()
     {
-        foreach (var t in GetComponentInChildren<InventoryItemDragDrop>().item.effectsOnItem)
+        if (itemEffectsList == null || GetComponentInChildren<InventoryItemDragDrop>().effectsActive == false) return;
+        foreach (var t in itemEffectsList)
         {
             t.isEffectActive = false;
             CalculateStatValue(t);

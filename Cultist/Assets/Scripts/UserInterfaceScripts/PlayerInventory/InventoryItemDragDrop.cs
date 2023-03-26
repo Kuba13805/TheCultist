@@ -15,18 +15,34 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public Transform parentBeforeDrag;
+    public bool effectsActive;
 
     public delegate void onItemChanged();
 
     public static event onItemChanged OnItemChanged;
     
+    
     public delegate void onItemAddedFromContainer(BaseItem item);
 
     public static event onItemAddedFromContainer OnItemAddedFromContainer;
+    
+    public delegate void onItemEquipped();
+
+    public static event onItemEquipped OnItemEquipped;
+    
+    public delegate void onItemStriped();
+
+    public static event onItemStriped OnItemStriped;
 
     private void Start()
     {
+        OnItemEquipped += SetEffectsActive;
+        OnItemStriped += SetEffectsInactive;
         InitialiseItem(item);
+        if (!isInPlayerInventory && GetComponentInParent<EquipmentSlot>())
+        {
+            effectsActive = true;
+        }
     }
 
     public void InitialiseItem(BaseItem newItem)
@@ -60,6 +76,7 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
             isInPlayerInventory = false;
             GameManager.Instance.PlayerData.playerInventoryItems.Remove(item);
             GameManager.Instance.PlayerData.characterEquipment.Add(item);
+            OnItemEquipped?.Invoke();
             OnItemChanged?.Invoke();
         }
     }
@@ -83,6 +100,7 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
             GameManager.Instance.PlayerData.playerInventoryItems.Add(item);
             GameManager.Instance.PlayerData.characterEquipment.Remove(item);
             DestroyItem();
+            OnItemStriped?.Invoke();
             OnItemChanged?.Invoke();
         }
     }
@@ -102,6 +120,17 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         }
         Destroy(gameObject);
         OnItemChanged?.Invoke();
+        OnItemEquipped -= SetEffectsActive;
+        OnItemStriped -= SetEffectsInactive;
     }
 
+    private void SetEffectsActive()
+    {
+        effectsActive = true;
+    }
+
+    private void SetEffectsInactive()
+    {
+        effectsActive = false;
+    }
 }
