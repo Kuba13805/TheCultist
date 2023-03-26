@@ -22,11 +22,13 @@ public class EquipmentSlot : InventorySlot
     public void OnEnable()
     {
         SpawnEquippedItem();
+        InventoryItemDragDrop.OnItemChanged += ChangeStatValueOverItemChange;
     }
 
     public void OnDisable()
     {
         ClearInventoryAfterReload();
+        InventoryItemDragDrop.OnItemChanged -= ChangeStatValueOverItemChange;
     }
 
     public override void OnDrop(PointerEventData eventData)
@@ -58,5 +60,40 @@ public class EquipmentSlot : InventorySlot
         {
             Destroy(child.gameObject);
         }
+    }
+
+    private void ChangeStatValueOverItemChange()
+    {
+        if (transform.childCount == 1)
+        {
+            OnNotEquipped();
+        }
+        else
+        {
+            OnEquipped();
+        }
+    }
+
+    private void OnEquipped()
+    {
+        foreach (var t in GetComponentInChildren<InventoryItemDragDrop>().item.effectsOnItem)
+        {
+            t.isEffectActive = true;
+            CalculateStatValue(t);
+        }
+    }
+
+    private void OnNotEquipped()
+    {
+        foreach (var t in GetComponentInChildren<InventoryItemDragDrop>().item.effectsOnItem)
+        {
+            t.isEffectActive = false;
+            CalculateStatValue(t);
+        }
+    }
+
+    void CalculateStatValue(ItemEffect itemEffect)
+    {
+        itemEffect.AffectStat(GameManager.Instance.PlayerData);
     }
 }

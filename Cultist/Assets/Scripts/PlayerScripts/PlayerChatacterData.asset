@@ -31,5 +31,5 @@ MonoBehaviour:
   mechanics: 2
   psychology: 4
   lastLocation: 2 TestScene
-  playerInventoryItems:
-  - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+  playerInventoryItems: []
+  characterEquipment: []

@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewItemEffect", menuName = "ScriptableObjects/ItemEffects/Create New Item Effect", order = 1)]
 public class ItemEffect : ScriptableObject
 {
+    public bool isEffectActive;
     [SerializeField] private string effectName;
     [SerializeField] private int effectId;
     [SerializeField] private bool timeEffect;
+    [EnableIf("timeEffect")]
     [SerializeField] private float effectTime;
     [SerializeField] private int pointsAffecting;
     public charStatsToEffect statToEffect;
@@ -37,19 +41,79 @@ public class ItemEffect : ScriptableObject
         DecreaseStat
     }
 
-    public int AffectStat(charStatsToEffect stat, int playerDataStat)
+    private int CalculateStatValue(int playerDataStat)
     {
-        int updatedStat = 0;
-        switch (typeOfInfluence)
+        var updatedStat = playerDataStat;
+        if (isEffectActive)
         {
-            case typesOfInfluenceOnStat.IncreaseStat:
-                updatedStat = playerDataStat + pointsAffecting;
+            updatedStat = typeOfInfluence switch
+            {
+                typesOfInfluenceOnStat.IncreaseStat => playerDataStat + pointsAffecting,
+                typesOfInfluenceOnStat.DecreaseStat => playerDataStat - pointsAffecting,
+                _ => 0
+            };
+        }
+        else if (isEffectActive != true)
+        {
+            updatedStat = typeOfInfluence switch
+            {
+                typesOfInfluenceOnStat.IncreaseStat => playerDataStat - pointsAffecting,
+                typesOfInfluenceOnStat.DecreaseStat => playerDataStat + pointsAffecting,
+                _ => 0
+            };
+        }
+        return updatedStat;
+    }
+
+    public void AffectStat(PlayerData playerStats)
+    {
+        switch (statToEffect)
+        {
+            case charStatsToEffect.Perceptivity:
+                playerStats.perceptivity = CalculateStatValue(playerStats.perceptivity);
                 break;
-            case typesOfInfluenceOnStat.DecreaseStat:
-                updatedStat = playerDataStat - pointsAffecting;
+            case charStatsToEffect.Occultism:
+                playerStats.occultism = CalculateStatValue(playerStats.occultism);
+                break;
+            case charStatsToEffect.Medicine:
+                playerStats.medicine = CalculateStatValue(playerStats.medicine);
+                break;
+            case charStatsToEffect.Electrics:
+                playerStats.electrics = CalculateStatValue(playerStats.electrics);
+                break;
+            case charStatsToEffect.History:
+                playerStats.history = CalculateStatValue(playerStats.history);
+                break;
+            case charStatsToEffect.Persuasion:
+                playerStats.persuasion = CalculateStatValue(playerStats.persuasion);
+                break;
+            case charStatsToEffect.Intimidation:
+                playerStats.intimidation = CalculateStatValue(playerStats.intimidation);
+                break;
+            case charStatsToEffect.Locksmithing:
+                playerStats.locksmithing = CalculateStatValue(playerStats.locksmithing);
+                break;
+            case charStatsToEffect.Mechanics:
+                playerStats.mechanics = CalculateStatValue(playerStats.mechanics);
+                break;
+            case charStatsToEffect.Psychology:
+                playerStats.psychology = CalculateStatValue(playerStats.psychology);
+                break;
+            case charStatsToEffect.Strength:
+                playerStats.strength = CalculateStatValue(playerStats.strength);
+                break;
+            case charStatsToEffect.Dexterity:
+                playerStats.dexterity = CalculateStatValue(playerStats.dexterity);
+                break;
+            case charStatsToEffect.Power:
+                playerStats.power = CalculateStatValue(playerStats.power);
+                break;
+            case charStatsToEffect.Wisdom:
+                playerStats.wisdom = CalculateStatValue(playerStats.wisdom);
+                break;
+            case charStatsToEffect.Condition:
+                playerStats.condition = CalculateStatValue(playerStats.condition);
                 break;
         }
-
-        return updatedStat;
     }
 }

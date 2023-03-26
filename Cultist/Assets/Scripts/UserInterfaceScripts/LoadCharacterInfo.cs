@@ -51,11 +51,20 @@ public class LoadCharacterInfo : MonoBehaviour
         Mechanics,
         Psychology
     }
-    private void Start()
+
+    private void OnEnable()
     {
+        InventoryItemDragDrop.OnItemChanged += SwitchOnOff;
+        
         inputToLoad = GetComponent<TextMeshProUGUI>();
-        PlayerData = GameObject.Find("GameManager").GetComponent<GameManager>().PlayerData;
+        PlayerData = GameManager.Instance.PlayerData;
         LoadData();
+        
+    }
+
+    private void OnDisable()
+    {
+        InventoryItemDragDrop.OnItemChanged -= SwitchOnOff;
     }
 
     private void LoadData()
@@ -146,5 +155,12 @@ public class LoadCharacterInfo : MonoBehaviour
                 inputToLoad.text = PlayerData.psychology.ToString();
                 break;
         }
+    }
+
+    private void SwitchOnOff()
+    {
+        var root = transform.root;
+        root.gameObject.SetActive(false);
+        root.gameObject.SetActive(true);
     }
 }
