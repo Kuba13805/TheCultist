@@ -11,9 +11,9 @@ public class BaseItem : ScriptableObject
     public int itemId;
     [TextAreaAttribute(15, 20)]
     public string itemDesc;
-    [SerializeField] private bool oneTimeItem;
+    [SerializeField] public bool oneTimeItem;
     public int value;
-    [SerializeField] private bool questItem;
+    [SerializeField] public bool questItem;
     public Sprite icon;
 
     public ItemTypes itemType;

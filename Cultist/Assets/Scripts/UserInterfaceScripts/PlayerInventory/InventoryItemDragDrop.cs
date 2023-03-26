@@ -83,7 +83,7 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Right && isInPlayerInventory && transform.GetComponentInParent<InventorySlot>())
+        if (eventData.button == PointerEventData.InputButton.Right && isInPlayerInventory && transform.GetComponentInParent<InventorySlot>() && !item.questItem)
         {
             button.gameObject.SetActive(true);
             return;
