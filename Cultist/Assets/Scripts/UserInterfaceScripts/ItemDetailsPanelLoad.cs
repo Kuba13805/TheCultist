@@ -33,16 +33,52 @@ public class ItemDetailsPanelLoad : MonoBehaviour
     {
         string textToReturn = "";
         string points = effect.pointsAffecting.ToString();
-        switch (effect.typeOfInfluence)
+        if (effect.timeEffect)
         {
-            case ItemEffect.typesOfInfluenceOnStat.IncreaseStat:
-                points = $"<color=green>{points}</color>";
-                textToReturn =  effect.statToEffect + $" is <color=green>increased</color> by " + points + ".\n";
-                break;
-            case ItemEffect.typesOfInfluenceOnStat.DecreaseStat:
-                points = $"<color=red>{points}</color>";
-                textToReturn =  effect.statToEffect + $" is <color=red>decreased</color> by " + points + ".\n";
-                break;
+            string time;
+            switch (effect.typeOfInfluence)
+            {
+                case ItemEffect.typesOfInfluenceOnStat.IncreaseStat:
+                    points = $"<color=green>{points}</color>";
+                    if (effect.effectTime > 60f)
+                    {
+                        time = $"<color=yellow>{effect.effectTime/60f}</color>";
+                        textToReturn =  effect.statToEffect + $" is <color=green>increased</color> by " + points + " for " + time + " minutes.\n";
+                    }
+                    else
+                    {
+                        time = $"<color=yellow>{effect.effectTime}</color>";
+                        textToReturn =  effect.statToEffect + $" is <color=green>increased</color> by " + points + " for " + time + " seconds.\n";
+                    }
+                    break;
+                case ItemEffect.typesOfInfluenceOnStat.DecreaseStat:
+                    points = $"<color=red>{points}</color>";
+                    if (effect.effectTime > 60f)
+                    {
+                        time = $"<color=yellow>{effect.effectTime/60f}</color>";
+                        textToReturn =  effect.statToEffect + $" is <color=green>decreased</color> by " + points + " for " + time + " minutes.\n";
+                    }
+                    else
+                    {
+                        time = $"<color=yellow>{effect.effectTime}</color>";
+                        textToReturn =  effect.statToEffect + $" is <color=green>decreased</color> by " + points + " for " + time + " seconds.\n";
+                    }
+                    break;
+            }
+        }
+        else
+        {
+            switch (effect.typeOfInfluence)
+            {
+                case ItemEffect.typesOfInfluenceOnStat.IncreaseStat:
+                    points = $"<color=green>{points}</color>";
+                    textToReturn =  effect.statToEffect + $" is <color=green>increased</color> by " + points + ".\n";
+                    break;
+                case ItemEffect.typesOfInfluenceOnStat.DecreaseStat:
+                    points = $"<color=red>{points}</color>";
+                    textToReturn =  effect.statToEffect + $" is <color=red>decreased</color> by " + points + ".\n";
+                    break;
+            }
         }
         
         return textToReturn;

@@ -11,9 +11,9 @@ public class ItemEffect : ScriptableObject
     public bool isEffectActive;
     [SerializeField] private string effectName;
     [SerializeField] private int effectId;
-    [SerializeField] private bool timeEffect;
+    public bool timeEffect;
     [EnableIf("timeEffect")]
-    [SerializeField] private float effectTime;
+    public float effectTime;
     public int pointsAffecting;
     public charStatsToEffect statToEffect;
     public typesOfInfluenceOnStat typeOfInfluence;
