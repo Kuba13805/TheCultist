@@ -12,7 +12,7 @@ public class ItemDetailsPanelLoad : MonoBehaviour
     public void LoadItemDetails(BaseItem item)
     {
         transform.Find("ItemDesc").GetComponent<TextMeshProUGUI>().text = item.itemDesc;
-        
+
         var itemDisplay = transform.Find("ItemDisplay");
         itemDisplay.Find("ItemName").GetComponent<TextMeshProUGUI>().text = item.itemName;
         itemDisplay.Find("ItemIcon").GetComponent<Image>().sprite = item.icon;
@@ -32,15 +32,19 @@ public class ItemDetailsPanelLoad : MonoBehaviour
     private string DetermineText(ItemEffect effect)
     {
         string textToReturn = "";
+        string points = effect.pointsAffecting.ToString();
         switch (effect.typeOfInfluence)
         {
             case ItemEffect.typesOfInfluenceOnStat.IncreaseStat:
-                textToReturn =  effect.statToEffect + " is increased by " + effect.pointsAffecting + ".\n";
+                points = $"<color=green>{points}</color>";
+                textToReturn =  effect.statToEffect + $" is <color=green>increased</color> by " + points + ".\n";
                 break;
             case ItemEffect.typesOfInfluenceOnStat.DecreaseStat:
-                textToReturn =  effect.statToEffect + " is decreased by " + effect.pointsAffecting + ".\n";
+                points = $"<color=red>{points}</color>";
+                textToReturn =  effect.statToEffect + $" is <color=red>decreased</color> by " + points + ".\n";
                 break;
         }
+        
         return textToReturn;
     }
 }
