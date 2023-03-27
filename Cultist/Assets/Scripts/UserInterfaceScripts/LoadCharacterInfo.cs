@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using PlayerScripts;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -112,7 +113,7 @@ public class LoadCharacterInfo : MonoBehaviour
         switch (info)
         {
             case charBasicInfo.Name:
-                inputToLoad.text = PlayerData.name + " '" + PlayerData.nickname + "'";
+                inputToLoad.text = PlayerData.charName + " '" + PlayerData.nickname + "'";
                 break;
             case charBasicInfo.Health:
                 inputToLoad.text = PlayerData.health.ToString();

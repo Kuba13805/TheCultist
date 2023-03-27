@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: StrengthBuff
   m_EditorClassIdentifier: 
   isEffectActive: 0
-  effectName: 
-  effectId: 0
+  effectName: StrengthBuff
+  effectId: 1
   timeEffect: 0
   effectTime: 0
-  pointsAffecting: 0
-  statToEffect: 0
+  pointsAffecting: 2
+  statToEffect: 10
   typeOfInfluence: 0

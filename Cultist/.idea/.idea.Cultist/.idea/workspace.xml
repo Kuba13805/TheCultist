@@ -14,6 +14,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/InventoryManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GameState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.sequences@1.0.4/Editor/AssetDatabase/SequencesAssetDatabase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -96,7 +97,9 @@
       <workItem from="1679564184000" duration="28702000" />
       <workItem from="1679667805922" duration="1457000" />
       <workItem from="1679743403416" duration="26515000" />
-      <workItem from="1679824888949" duration="15652000" />
+      <workItem from="1679824888949" duration="18118000" />
+      <workItem from="1679856456446" duration="5331000" />
+      <workItem from="1679912535864" duration="3468000" />
     </task>
     <servers />
   </component>

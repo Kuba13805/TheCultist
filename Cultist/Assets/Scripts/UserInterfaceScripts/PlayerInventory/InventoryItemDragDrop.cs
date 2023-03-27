@@ -5,9 +5,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerExitHandler
+public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerExitHandler, IPointerEnterHandler
 {
     public bool isInPlayerInventory;
     public BaseItem item;
@@ -16,6 +17,8 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public Transform parentBeforeDrag;
     public bool effectsActive;
+    public bool detailsPanelActive;
+    private GameObject detailsPanelInstance;
 
     public delegate void onItemChanged();
 
@@ -50,7 +53,6 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         GetComponentInChildren<LoadItemIcon>().LoadIcon();
         GetComponentInChildren<TextMeshProUGUI>().text = newItem.itemName;
     }
-    
     public void OnBeginDrag(PointerEventData eventData)
     {
         var transform1 = transform;
@@ -78,6 +80,19 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
             GameManager.Instance.PlayerData.characterEquipment.Add(item);
             OnItemEquipped?.Invoke();
             OnItemChanged?.Invoke();
+        }
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        var detailsPanelPrefab = Resources.Load<GameObject>("ItemDetailsPanel");
+        if (!detailsPanelActive)
+        {
+            var uiPosition = Input.mousePosition;
+            uiPosition.x = uiPosition.x + 120;
+            uiPosition.y = uiPosition.y - 80;
+            detailsPanelInstance = Instantiate(detailsPanelPrefab, uiPosition, Quaternion.identity, transform.root);
+            detailsPanelActive = true;
+            detailsPanelInstance.GetComponent<ItemDetailsPanelLoad>().LoadItemDetails(item);
         }
     }
 
@@ -111,12 +126,23 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         {
             button.gameObject.SetActive(false);
         }
+
+        if (detailsPanelActive)
+        {
+            detailsPanelActive = false;
+            Destroy(detailsPanelInstance.gameObject);
+        }
     }
     public void DestroyItem()
     {
         if (isInPlayerInventory)
         {
             GameManager.Instance.PlayerData.playerInventoryItems.Remove(item);
+        }
+
+        if (detailsPanelActive)
+        {
+            Destroy(detailsPanelInstance.gameObject);
         }
         Destroy(gameObject);
         OnItemChanged?.Invoke();

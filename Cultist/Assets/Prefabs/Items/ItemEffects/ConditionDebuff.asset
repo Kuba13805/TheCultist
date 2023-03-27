@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ConditionDebuff
   m_EditorClassIdentifier: 
   isEffectActive: 0
-  effectName: 
+  effectName: ConditionDebuff
   effectId: 0
   timeEffect: 0
   effectTime: 0
-  pointsAffecting: 0
-  statToEffect: 0
-  typeOfInfluence: 0
+  pointsAffecting: 6
+  statToEffect: 14
+  typeOfInfluence: 1

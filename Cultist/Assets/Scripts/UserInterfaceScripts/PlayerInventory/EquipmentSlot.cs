@@ -58,6 +58,7 @@ public class EquipmentSlot : InventorySlot
     }
     public void SpawnEquippedItem()
     {
+        if (GameManager.Instance.PlayerData == null) return;
         foreach (var item in GameManager.Instance.PlayerData.characterEquipment)
         {
             if (item.armorPart.ToString() == armorPartToEquipt.ToString())

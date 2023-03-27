@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using PlayerScripts;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewItemEffect", menuName = "ScriptableObjects/ItemEffects/Create New Item Effect", order = 1)]
