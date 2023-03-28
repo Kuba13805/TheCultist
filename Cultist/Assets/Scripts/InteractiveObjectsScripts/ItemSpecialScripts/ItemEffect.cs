@@ -9,7 +9,7 @@ using UnityEngine;
 public class ItemEffect : ScriptableObject
 {
     public bool isEffectActive;
-    [SerializeField] private string effectName;
+    public string effectName;
     [SerializeField] private int effectId;
     public bool timeEffect;
     [EnableIf("timeEffect")]

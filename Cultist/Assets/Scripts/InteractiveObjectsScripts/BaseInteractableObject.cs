@@ -7,8 +7,8 @@ public class BaseInteractableObject : MonoBehaviour, IInteractable
 {
     public string objectName;
     [SerializeField] public int objectId;
-    public InteractorScript interactor;
-    public GameObject player;
+    [HideInInspector] public InteractorScript interactor;
+    [HideInInspector] public GameObject player;
 
     public virtual void Interact()
     {
