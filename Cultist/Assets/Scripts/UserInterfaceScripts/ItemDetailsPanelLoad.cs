@@ -29,16 +29,16 @@ public class ItemDetailsPanelLoad : MonoBehaviour
         {
             return textToReturn = "This item has no special effects.";
         }
+
+        textToReturn = "";
         foreach (var t in multipleEffectsList)
         {
-            textToReturn = $"<b><size=14>{t.effectName}</size></b> \n";
+            textToReturn += $"<b><size=14>{t.effectName}</size></b> \n";
             foreach (var effect in t.listOfAdditionalEffects)
             {
                 textToReturn += DetermineText(effect);
             }
         }
-        
-        //textToReturn = effectsList.Count == 0 ? "This item has no special effects." : effectsList.Aggregate(textToReturn, (current, effect) => current + DetermineText(effect));
         return textToReturn;
     }
 

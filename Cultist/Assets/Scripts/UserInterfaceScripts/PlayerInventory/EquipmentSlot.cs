@@ -100,6 +100,7 @@ public class EquipmentSlot : InventorySlot
                 CalculateStatValue(effect);
             }
         }
+        GetComponentInChildren<InventoryItemDragDrop>().effectsActive = false;
     }
 
     void CalculateStatValue(ItemEffect itemEffect)
