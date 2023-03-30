@@ -10,13 +10,17 @@ public class ItemEffect : ScriptableObject
 {
     public bool isEffectActive;
     public string effectName;
-    [SerializeField] private int effectId;
+    public int effectId;
     public bool timeEffect;
     [EnableIf("timeEffect")]
     public float effectTime;
     public int pointsAffecting;
+    
     public charStatsToEffect statToEffect;
     public typesOfInfluenceOnStat typeOfInfluence;
+    [EnableIf("NotEnabled")][ShowIf("timeEffect")]
+    public float startedTime;
+
     public enum charStatsToEffect
     {
         Perceptivity,

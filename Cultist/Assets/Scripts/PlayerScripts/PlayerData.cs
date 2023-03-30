@@ -9,8 +9,12 @@ namespace PlayerScripts
     {
         public string charName;
         public string nickname;
-        public float health;
-    
+
+        [SerializeField] private float Health;
+
+
+        public float health => Health;
+
         [Foldout("Attributes")]
         public int dexterity;
         [Foldout("Attributes")]
@@ -22,25 +26,25 @@ namespace PlayerScripts
         [Foldout("Attributes")]
         public int wisdom;
 
-        [Foldout("Skills")]
+        [Foldout("Skills")][EnableIf("Disable")]
         public int perceptivity;
-        [Foldout("Skills")]
+        [Foldout("Skills")][EnableIf("Disable")]
         public int occultism;
-        [Foldout("Skills")]
+        [Foldout("Skills")][EnableIf("Disable")]
         public int medicine;
-        [Foldout("Skills")]
+        [Foldout("Skills")][EnableIf("Disable")]
         public int electrics;
-        [Foldout("Skills")]
+        [Foldout("Skills")][EnableIf("Disable")]
         public int history;
-        [Foldout("Skills")]
+        [Foldout("Skills")][EnableIf("Disable")]
         public int persuasion;
-        [Foldout("Skills")]
+        [Foldout("Skills")][EnableIf("Disable")]
         public int intimidation;
-        [Foldout("Skills")]
+        [Foldout("Skills")][EnableIf("Disable")]
         public int locksmithing;
-        [Foldout("Skills")]
+        [Foldout("Skills")][EnableIf("Disable")]
         public int mechanics;
-        [Foldout("Skills")]
+        [Foldout("Skills")][EnableIf("Disable")]
         public int psychology;
 
         public string lastLocation;
@@ -48,5 +52,6 @@ namespace PlayerScripts
         public List<BaseItem> playerInventoryItems;
 
         public List<BaseItem> characterEquipment;
+        
     }
 }

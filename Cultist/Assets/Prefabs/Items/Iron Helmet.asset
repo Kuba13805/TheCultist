@@ -22,4 +22,4 @@ MonoBehaviour:
   itemType: 0
   armorPart: 0
   effectsOnItem:
-  - {fileID: 11400000, guid: 91bea1a6fd6f56a409c00d04389ee714, type: 2}
+  - {fileID: 11400000, guid: 64a99e12ef543f842aeea93d739e6b0c, type: 2}

@@ -12,7 +12,7 @@ public class EquipmentSlot : InventorySlot
 
     private BaseItem itemEquipped;
 
-    private List<ItemEffect> itemEffectsList;
+    private List<ItemMultipleEffects> itemEffectsList;
     public enum partsOfArmorToEquipt
     {
         Head,
@@ -81,8 +81,11 @@ public class EquipmentSlot : InventorySlot
         if (itemEffectsList == null || GetComponentInChildren<InventoryItemDragDrop>().effectsActive) return;
         foreach (var t in itemEffectsList)
         {
-            t.isEffectActive = true;
-            CalculateStatValue(t);
+            foreach (var effect in t.listOfAdditionalEffects)
+            {
+                effect.isEffectActive = true;
+                CalculateStatValue(effect);
+            }
         }
         GetComponentInChildren<InventoryItemDragDrop>().effectsActive = true;
     }
@@ -91,8 +94,11 @@ public class EquipmentSlot : InventorySlot
         if (itemEffectsList == null || GetComponentInChildren<InventoryItemDragDrop>().effectsActive == false) return;
         foreach (var t in itemEffectsList)
         {
-            t.isEffectActive = false;
-            CalculateStatValue(t);
+            foreach (var effect in t.listOfAdditionalEffects)
+            {
+                effect.isEffectActive = false;
+                CalculateStatValue(effect);
+            }
         }
     }
 

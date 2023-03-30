@@ -22,10 +22,23 @@ public class ItemDetailsPanelLoad : MonoBehaviour
         transform.Find("ItemEffectsDisplay").GetComponentInChildren<TextMeshProUGUI>().text = CreateTextForItemEffects(item.effectsOnItem);
     }
 
-    private string CreateTextForItemEffects(List<ItemEffect> effectsList)
+    private string CreateTextForItemEffects(List<ItemMultipleEffects> multipleEffectsList)
     {
         var textToReturn = "";
-        textToReturn = effectsList.Count == 0 ? "This item has no special effects." : effectsList.Aggregate(textToReturn, (current, effect) => current + DetermineText(effect));
+        if (multipleEffectsList.Count == 0)
+        {
+            return textToReturn = "This item has no special effects.";
+        }
+        foreach (var t in multipleEffectsList)
+        {
+            textToReturn = $"<b><size=14>{t.effectName}</size></b> \n";
+            foreach (var effect in t.listOfAdditionalEffects)
+            {
+                textToReturn += DetermineText(effect);
+            }
+        }
+        
+        //textToReturn = effectsList.Count == 0 ? "This item has no special effects." : effectsList.Aggregate(textToReturn, (current, effect) => current + DetermineText(effect));
         return textToReturn;
     }
 
@@ -33,7 +46,6 @@ public class ItemDetailsPanelLoad : MonoBehaviour
     {
         string textToReturn = "";
         string points = effect.pointsAffecting.ToString();
-        string effectName = $"<b><size=14>{effect.effectName}</size></b>";
         if (effect.timeEffect)
         {
             string time;
@@ -44,12 +56,12 @@ public class ItemDetailsPanelLoad : MonoBehaviour
                     if (effect.effectTime > 60f)
                     {
                         time = $"<color=yellow>{effect.effectTime/60f}</color>";
-                        textToReturn =  effectName + "\n" + effect.statToEffect + $" is <color=green>increased</color> by " + points + " for " + time + " minutes.\n";
+                        textToReturn =  effect.statToEffect + $" is <color=green>increased</color> by " + points + " for " + time + " minutes.\n";
                     }
                     else
                     {
                         time = $"<color=yellow>{effect.effectTime}</color>";
-                        textToReturn =  effectName + "\n" + effect.statToEffect + $" is <color=green>increased</color> by " + points + " for " + time + " seconds.\n";
+                        textToReturn =  effect.statToEffect + $" is <color=green>increased</color> by " + points + " for " + time + " seconds.\n";
                     }
                     break;
                 case ItemEffect.typesOfInfluenceOnStat.DecreaseStat:
@@ -57,12 +69,12 @@ public class ItemDetailsPanelLoad : MonoBehaviour
                     if (effect.effectTime > 60f)
                     {
                         time = $"<color=yellow>{effect.effectTime/60f}</color>";
-                        textToReturn =  effectName + "\n" + effect.statToEffect + $" is <color=green>decreased</color> by " + points + " for " + time + " minutes.\n";
+                        textToReturn =  effect.statToEffect + $" is <color=green>decreased</color> by " + points + " for " + time + " minutes.\n";
                     }
                     else
                     {
                         time = $"<color=yellow>{effect.effectTime}</color>";
-                        textToReturn =  effectName + "\n" + effect.statToEffect + $" is <color=green>decreased</color> by " + points + " for " + time + " seconds.\n";
+                        textToReturn =  effect.statToEffect + $" is <color=green>decreased</color> by " + points + " for " + time + " seconds.\n";
                     }
                     break;
             }
@@ -73,15 +85,14 @@ public class ItemDetailsPanelLoad : MonoBehaviour
             {
                 case ItemEffect.typesOfInfluenceOnStat.IncreaseStat:
                     points = $"<color=green>{points}</color>";
-                    textToReturn =  effectName + "\n" + effect.statToEffect + $" is <color=green>increased</color> by " + points + ".\n";
+                    textToReturn =  effect.statToEffect + $" is <color=green>increased</color> by " + points + ".\n";
                     break;
                 case ItemEffect.typesOfInfluenceOnStat.DecreaseStat:
                     points = $"<color=red>{points}</color>";
-                    textToReturn =  effectName + "\n" + effect.statToEffect + $" is <color=red>decreased</color> by " + points + ".\n";
+                    textToReturn =  effect.statToEffect + $" is <color=red>decreased</color> by " + points + ".\n";
                     break;
             }
         }
-        
         return textToReturn;
     }
 }

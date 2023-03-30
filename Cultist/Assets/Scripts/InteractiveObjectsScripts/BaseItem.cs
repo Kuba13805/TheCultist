@@ -35,5 +35,5 @@ public class BaseItem : ScriptableObject
     }
 
     [ShowIf("itemType", ItemTypes.Armor)] public ArmorParts armorPart;
-    public List<ItemEffect> effectsOnItem;
+    public List<ItemMultipleEffects> effectsOnItem;
 }
