@@ -28,7 +28,7 @@ public class CollectableObject : BaseInteractableObject
     {
         IsActive = false;
         ShowPanel();
-        PauseGame();
+        GameManager.Instance.PauseGame();
     }
 
     private void ShowPanel()
@@ -42,7 +42,6 @@ public class CollectableObject : BaseInteractableObject
             }
             Canvas canvas = FindObjectOfType<Canvas>();
             panelInstance = Instantiate(panelToDisplay, canvas.transform, false);
-            Instantiate(panelInstance);
             LoadText("CollectableDesc");
             LoadText("CollectableTitle");
             IsActive = true;
@@ -105,10 +104,5 @@ public class CollectableObject : BaseInteractableObject
         {
             panelToDisplay = Resources.Load<GameObject>("CollectableLeafletPanel");
         }
-    }
-    
-    void PauseGame()
-    {
-        Time.timeScale = 0;
     }
 }

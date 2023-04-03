@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening.Plugins.Options;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Zenject;
 
 public class CameraController : MonoBehaviour
 {
+    public Transform cameraTransform;
     public Canvas_ShowHidePanel panel;
-    public static CameraController instance;
 
     private GameObject player;
     
-    public Transform cameraTransform;
     public float movementSpeed;
 
     public float movementTime;
@@ -30,24 +29,21 @@ public class CameraController : MonoBehaviour
     public Vector3 rotateStartPosition;
 
     public Vector3 rotateCurrentPosition;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         
-        instance = this;
         newPosition = transform.position;
         newRotation = transform.rotation;
         newZoom = cameraTransform.localPosition;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         UpdateZoomLimits();
         if (panel.isActive == false)
         {
-            //FollowPlayer();
             HandleMouseInput();
             HandleKeyboardInput();
         }

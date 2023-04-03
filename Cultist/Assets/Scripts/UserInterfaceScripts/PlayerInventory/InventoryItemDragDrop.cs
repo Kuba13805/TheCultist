@@ -146,8 +146,8 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         }
         Destroy(gameObject);
         OnItemChanged?.Invoke();
-        OnItemEquipped -= SetEffectsActive;
-        OnItemStriped -= SetEffectsInactive;
+        OnItemEquipped -= () => SetEffectsActive();
+        OnItemStriped -= () => SetEffectsInactive();
     }
 
     private void SetEffectsActive()

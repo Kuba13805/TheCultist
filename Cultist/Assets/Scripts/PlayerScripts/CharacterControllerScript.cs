@@ -117,7 +117,6 @@ public class CharacterControllerScript : MonoBehaviour
                 {
                     Interact(interactionToPerform);
                 }
-                //transform.LookAt(gameObjectToInteract.transform);
             }
             else
             {
@@ -126,7 +125,6 @@ public class CharacterControllerScript : MonoBehaviour
                 {
                     Interact(interactionToPerform);
                 }
-                //transform.LookAt(gameObjectToInteract.transform);
             }
         }
     }
@@ -191,8 +189,6 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void SpawnFlagAtDestination(Vector3 hitPosition)
     {
-        
-        Vector3 spawnPoint;
         if (flag != null)
         {
             Destroy(flag);
@@ -201,7 +197,7 @@ public class CharacterControllerScript : MonoBehaviour
         if (!hasSpawnedFlag && Time.timeScale != 0)
         {
             float objectHeight = markedDestinationFlag.GetComponent<Renderer>().bounds.size.y / 2f;
-            spawnPoint = new Vector3(hitPosition.x, hitPosition.y + objectHeight, hitPosition.z);
+            var spawnPoint = new Vector3(hitPosition.x, hitPosition.y + objectHeight, hitPosition.z);
             flag = Instantiate(markedDestinationFlag, spawnPoint, Quaternion.identity);
             hasSpawnedFlag = true;
         }

@@ -6,24 +6,44 @@
             "id": "0cd5fdef-9cbb-402d-9b4c-5d911f5bf3c5",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "MoveToPosition",
                     "type": "Button",
-                    "id": "7ae290f2-e063-48f9-9157-035f5bd166f4",
+                    "id": "b355509d-8840-4d03-b411-c3d50b21842d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "11be9bb7-5b11-430c-b391-cd8acade0c83",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "6be542d1-e92a-417a-a805-fccda12adafe",
+                    "id": "6c68a7b8-3145-4339-a5ff-341232709e7c",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Move",
+                    "groups": "Keyboard&Mouse",
+                    "action": "MoveToPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8baa1759-d4e7-4c47-9f2f-7664d59f71ef",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "OpenInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -551,12 +571,12 @@
             "actions": [
                 {
                     "name": "CameraMovement",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "df422258-4ea0-4b08-96c5-51516e2ca5a6",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "CameraRotation",
@@ -577,7 +597,113 @@
                     "initialStateCheck": true
                 }
             ],
-            "bindings": []
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "73d2fb3d-e683-4080-8e87-beba205d4b42",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraMovement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "86d2b7e5-ae4e-47e2-b31c-d41288c8c393",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "3f19d670-1b8c-4f8d-b37e-13079d687d50",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "c888e296-300c-4fda-81eb-49d2c0013aef",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "61aa2b47-c39b-45e6-be13-6d3525baead4",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a33c361d-08cc-44a3-b7e3-9b828f5c46e6",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07140d53-3f31-4430-86f8-b5e127aee057",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraZoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PlayerInventory",
+            "id": "ec446b03-3348-4246-9042-d711a115a3a7",
+            "actions": [
+                {
+                    "name": "CloseInventory",
+                    "type": "Button",
+                    "id": "07914347-090e-4de4-a501-6dcedec75c7d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d7cf03e4-856d-498d-8ba3-68c04f135381",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CloseInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
