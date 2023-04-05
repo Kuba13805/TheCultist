@@ -18,7 +18,7 @@ public class CharacterControllerScript : MonoBehaviour
     
     public bool isIdle;
     public bool isRunning;
-    
+
     private NavMeshAgent PlayerNavMeshAgent;
     
     private const float DoubleClickTime = .2f;
@@ -50,36 +50,39 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void MovePlayerToPosition()
     {
-        if (Time.timeScale != 0)
+        if (!Mouse.current.leftButton.wasPressedThisFrame) return;
+        
+        Ray myRay = PlayerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        
+        if (!Physics.Raycast(myRay, out var myRaycastHit)) return;
+        
+        if (myRaycastHit.transform.CompareTag("Floor"))
         {
-            RaycastHit myRaycastHit;
-            Ray myRay = PlayerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-            
-            if (Mouse.current.leftButton.wasPressedThisFrame && Physics.Raycast(myRay, out myRaycastHit))
+            SpawnFlagAtDestination(myRaycastHit.point);
+            if (Vector3.Distance(myRaycastHit.point, transform.position) >= 5f)
             {
-                Debug.Log("Moving");
-                if (myRaycastHit.transform.CompareTag("Floor"))
-                {
-                    SpawnFlagAtDestination(myRaycastHit.point);
-                    ChangeMovement(isRunning ? runningSpeed : normalSpeed, myRaycastHit.point);
-                }
-                else
-                {
-                    MoveToInteract(myRaycastHit);
-                }
+                isRunning = true;
+                playerAnimator.SetBool("IsRunning", isRunning);
+                ChangeMovement(runningSpeed, myRaycastHit.point);
+            }
+            else
+            {
+                isRunning = false;
+                playerAnimator.SetBool("IsRunning", isRunning);
+                ChangeMovement(normalSpeed, myRaycastHit.point);
             }
         }
+        else
+        {
+            MoveToInteract(myRaycastHit);
+        }
     }
-
-    public void MovePlayerToPosition(Vector3 newPlayerPosition)
-    {
-        ChangeMovement(normalSpeed, newPlayerPosition);
-    }
-
+    
     private void Interact(BaseInteractableObject interactionToPerform)
     {
         if (PlayerNavMeshAgent.remainingDistance == 0 && (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) < 1.0))
         {
+            PlayerNavMeshAgent.transform.LookAt(this.interactionToPerform.transform);
             interactionToPerform.Interact();
         }
     }
@@ -101,10 +104,21 @@ public class CharacterControllerScript : MonoBehaviour
         }
 
         if (!interactorFound) return;
-        if (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) > 1.0)
+        if (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) > 1.0f)
         {
             SpawnFlagAtDestination(newPosition);
-            ChangeMovement(isRunning ? runningSpeed : normalSpeed, newPosition);
+            if (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) >= 5f)
+            {
+                isRunning = true;
+                playerAnimator.SetBool("IsRunning", isRunning);
+                ChangeMovement(runningSpeed, newPosition);
+            }
+            else
+            {
+                isRunning = false;
+                playerAnimator.SetBool("IsRunning", isRunning);
+                ChangeMovement(normalSpeed, newPosition);
+            }
         }
         else
         {
@@ -113,40 +127,17 @@ public class CharacterControllerScript : MonoBehaviour
     }
     private void IsMoving()
     {
-        IsIdle();
-        IsRunning();
-    }
-
-    private void IsIdle()
-    {
         if (PlayerNavMeshAgent.remainingDistance <= PlayerNavMeshAgent.stoppingDistance)
         {
             isIdle = true;
+            isRunning = false;
         }
         else
         {
             isIdle = false;
         }
-        
-        playerAnimator.SetBool("IsIdle", isIdle);
-    }
-    
-    private void IsRunning()
-    {
-        if (isIdle == false && (doubledClicked || PlayerNavMeshAgent.remainingDistance >= 10f))
-        {
-            if (PlayerNavMeshAgent.remainingDistance >= 10f)
-            {
-                doubledClicked = true;
-            }
-            isRunning = true;
-        }
-        else
-        {
-            isRunning = false;
-        }
-        
         playerAnimator.SetBool("IsRunning", isRunning);
+        playerAnimator.SetBool("IsIdle", isIdle);
     }
 
     private void ChangeMovement(float speed, Vector3 position)
@@ -159,7 +150,7 @@ public class CharacterControllerScript : MonoBehaviour
     private void CheckForDoubleClick()
     {
         
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.isPressed)
         {
             doubledClicked = false;
             float timeSinceLastClick = Time.time - lastClickTime;
