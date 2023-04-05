@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,9 +13,7 @@ public class CharacterControllerScript : MonoBehaviour
     public GameObject markedDestinationFlag;
     private bool hasSpawnedFlag = false;
     GameObject flag;
-    
-    public Canvas_ShowHidePanel panel;
-    
+
     private Animator playerAnimator;
     
     public bool isIdle;
@@ -47,7 +46,6 @@ public class CharacterControllerScript : MonoBehaviour
         DestroyFlagWhenDestinationReached();
         CheckForDoubleClick();
         IsMoving();
-        MovePlayerToPosition();
     }
 
     private void MovePlayerToPosition()
@@ -55,32 +53,27 @@ public class CharacterControllerScript : MonoBehaviour
         if (Time.timeScale != 0)
         {
             RaycastHit myRaycastHit;
-            Ray myRay = PlayerCamera.ScreenPointToRay(Input.mousePosition);
+            Ray myRay = PlayerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             
-            if (Input.GetMouseButton(0))
+            if (Mouse.current.leftButton.wasPressedThisFrame && Physics.Raycast(myRay, out myRaycastHit))
             {
-
-                if (Physics.Raycast(myRay, out myRaycastHit))
+                Debug.Log("Moving");
+                if (myRaycastHit.transform.CompareTag("Floor"))
                 {
-                    if (myRaycastHit.transform.CompareTag("Floor"))
-                    {
-                        SpawnFlagAtDestination(myRaycastHit.point);
-                        if (isRunning)
-                        {
-                            ChangeMovement(runningSpeed, myRaycastHit.point);
-                        }
-                        else
-                        {
-                            ChangeMovement(normalSpeed, myRaycastHit.point);
-                        }
-                    }
-                    else
-                    {
-                        MoveToInteract(myRaycastHit);
-                    }
+                    SpawnFlagAtDestination(myRaycastHit.point);
+                    ChangeMovement(isRunning ? runningSpeed : normalSpeed, myRaycastHit.point);
+                }
+                else
+                {
+                    MoveToInteract(myRaycastHit);
                 }
             }
         }
+    }
+
+    public void MovePlayerToPosition(Vector3 newPlayerPosition)
+    {
+        ChangeMovement(normalSpeed, newPlayerPosition);
     }
 
     private void Interact(BaseInteractableObject interactionToPerform)
@@ -107,25 +100,15 @@ public class CharacterControllerScript : MonoBehaviour
             interactorFound = false;
         }
 
-        if (interactorFound)
+        if (!interactorFound) return;
+        if (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) > 1.0)
         {
             SpawnFlagAtDestination(newPosition);
-            if (isRunning)
-            {
-                ChangeMovement(runningSpeed, newPosition);
-                if (isIdle)
-                {
-                    Interact(interactionToPerform);
-                }
-            }
-            else
-            {
-                ChangeMovement(normalSpeed, newPosition);
-                if (isIdle)
-                {
-                    Interact(interactionToPerform);
-                }
-            }
+            ChangeMovement(isRunning ? runningSpeed : normalSpeed, newPosition);
+        }
+        else
+        {
+            Interact(interactionToPerform);
         }
     }
     private void IsMoving()
@@ -175,7 +158,8 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void CheckForDoubleClick()
     {
-        if (Input.GetMouseButtonDown(0))
+        
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             doubledClicked = false;
             float timeSinceLastClick = Time.time - lastClickTime;

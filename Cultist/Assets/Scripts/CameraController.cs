@@ -42,11 +42,8 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         UpdateZoomLimits();
-        if (panel.isActive == false)
-        {
-            HandleMouseInput();
-            HandleKeyboardInput();
-        }
+        HandleMouseInput();
+        HandleKeyboardInput();
     }
 
     private void HandleMouseInput()

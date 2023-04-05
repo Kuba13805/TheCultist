@@ -7,6 +7,9 @@ TagManager:
   - NPC
   - Floor
   - TravelPoint
+  - asteroid
+  - ship
+  - DestinationMark
   layers:
   - Default
   - TransparentFX

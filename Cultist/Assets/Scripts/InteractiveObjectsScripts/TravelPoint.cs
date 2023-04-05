@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class TravelPoint : BaseInteractableObject
@@ -18,7 +19,7 @@ public class TravelPoint : BaseInteractableObject
    public bool isLocal;
    [SerializeField] private objectType ObjectType;
    [EnableIf("isLocal")]
-   public string destinantionSceneName;
+   public string destinantionName;
 
    [Foldout("Conditions")] public string pointIdFromWhichPlayerComes;
    [Foldout("Conditions")] public string sceneNameFromWhichPlayerComes;
@@ -41,10 +42,23 @@ public class TravelPoint : BaseInteractableObject
    }
    private void LoadLocalScene()
    {
-      if (destinantionSceneName != null)
+      if (destinantionName != null)
       {
-         Debug.Log("Scene changed to: " + destinantionSceneName);
-         SceneManager.LoadScene(destinantionSceneName, LoadSceneMode.Single);
+         Debug.Log("Player moved to: " + destinantionName);
+         try
+         {
+            NavMeshAgent playerNavMeshAgent = player.GetComponent<NavMeshAgent>();
+            
+            playerNavMeshAgent.Warp(GameObject.Find(destinantionName + "TravelPoint")
+               .GetComponent<TravelPoint>().interactor.interactorPosition);
+            playerNavMeshAgent.transform.Rotate(0f,180f, 0f);
+            
+         }
+         catch (Exception exception)
+         {
+            Debug.Log(exception + "Cannot find directed travel point");
+            throw exception;
+         }
       }
    }
 
@@ -52,27 +66,5 @@ public class TravelPoint : BaseInteractableObject
    {
       Debug.Log("Scene changed to: Global Scene ");
       SceneManager.LoadScene("GlobalScene", LoadSceneMode.Single);
-   }
-
-   private void CheckWhichPointToUse()
-   {
-      string[] array = new string[2];
-      array = player.GetComponent<PlayerScript>().PlayerData.lastLocation.Split(' ');
-      string receivedId = array[0];
-      string receivedSceneName = array[1];
-      MovePlayerToLoadedPoint(receivedId, receivedSceneName);
-   }
-
-   private void MovePlayerToLoadedPoint(string receivedId, string receivedSceneName)
-   {
-      if (receivedId == pointIdFromWhichPlayerComes && receivedSceneName == sceneNameFromWhichPlayerComes)
-      {
-         player.transform.position = interactor.interactorPosition;
-      }
-   }
-
-   private void Awake()
-   {
-      //CheckWhichPointToUse();
    }
 }
