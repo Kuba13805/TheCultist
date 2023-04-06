@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
@@ -30,7 +31,7 @@ public class TravelPoint : BaseInteractableObject
    }
    private void DeterminLoad()
    {
-      player.GetComponent<PlayerScript>().PlayerData.lastLocation = objectId + " " + SceneManager.GetActiveScene().name;
+      GameManager.Instance.PlayerData.lastLocation = objectId + " " + SceneManager.GetActiveScene().name;
       if (isLocal)
       {
          LoadLocalScene();

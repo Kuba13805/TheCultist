@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.Mathematics;
-using Unity.VisualScripting;
+using Managers;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -34,6 +30,14 @@ public class CharacterControllerScript : MonoBehaviour
     
     Vector3 newPosition;
 
+
+
+    private void Awake()
+    {
+        InputManager.Instance.ChangeActionMapToPlayer();
+        InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed += MovePlayerToPosition;
+    }
+
     private void Start()
     {
         playerAnimator = GetComponentInChildren<Animator>();
@@ -41,17 +45,20 @@ public class CharacterControllerScript : MonoBehaviour
         normalSpeed = PlayerNavMeshAgent.speed;
     }
 
+    private void OnDestroy()
+    {
+        InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed -= MovePlayerToPosition;
+    }
+
     void Update()
     {
         DestroyFlagWhenDestinationReached();
-        CheckForDoubleClick();
         IsMoving();
     }
 
-    private void MovePlayerToPosition()
+    private void MovePlayerToPosition(InputAction.CallbackContext context)
     {
-        if (!Mouse.current.leftButton.wasPressedThisFrame) return;
-        
+
         Ray myRay = PlayerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         
         if (!Physics.Raycast(myRay, out var myRaycastHit)) return;
@@ -145,21 +152,6 @@ public class CharacterControllerScript : MonoBehaviour
         PlayerNavMeshAgent.speed = speed;
         PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
         PlayerNavMeshAgent.SetDestination(position);
-    }
-
-    private void CheckForDoubleClick()
-    {
-        
-        if (Mouse.current.leftButton.isPressed)
-        {
-            doubledClicked = false;
-            float timeSinceLastClick = Time.time - lastClickTime;
-            if (timeSinceLastClick <= DoubleClickTime)
-            {
-                doubledClicked = true;
-            }
-            lastClickTime = Time.time;
-        }
     }
 
     private void SpawnFlagAtDestination(Vector3 hitPosition)

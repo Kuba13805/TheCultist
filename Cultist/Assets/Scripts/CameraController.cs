@@ -7,7 +7,6 @@ using Zenject;
 public class CameraController : MonoBehaviour
 {
     public Transform cameraTransform;
-    public Canvas_ShowHidePanel panel;
 
     private GameObject player;
     

@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 public class ItemDetailsPanelLoad : MonoBehaviour
 {
+    private void OnDisable()
+    {
+        Destroy(gameObject);
+    }
 
     public void LoadItemDetails(BaseItem item)
     {

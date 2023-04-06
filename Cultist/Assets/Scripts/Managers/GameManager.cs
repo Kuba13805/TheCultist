@@ -1,60 +1,60 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using PlayerScripts;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace Managers
 {
-    public PlayerData PlayerData;
-    public InventoryManager InventoryManager;
-    public static GameManager Instance { get; private set; }
+    public class GameManager : MonoBehaviour
+    {
+        public PlayerData PlayerData;
+        public static GameManager Instance { get; private set; }
     
 
-    public GameState State;
+        public GameState State;
 
-    private void Awake()
-    {
-        Instance = this;
-        DontDestroyOnLoad(Instance);
-    }
-
-    public void UpdateGameState(GameState newState)
-    {
-        State = newState;
-
-        switch (newState)
+        private void Awake()
         {
-            case GameState.FreeMovement:
-                break;
-            case GameState.Dialogue:
-                break;
-            case GameState.Narrative:
-                break;
-            case GameState.MenuOpened:
-                break;;
-            default:
-                throw new ArgumentException("Wrong gamestate");
+            Instance = this;
+            DontDestroyOnLoad(Instance);
         }
+
+        public void UpdateGameState(GameState newState)
+        {
+            State = newState;
+
+            switch (newState)
+            {
+                case GameState.FreeMovement:
+                    break;
+                case GameState.Dialogue:
+                    break;
+                case GameState.Narrative:
+                    break;
+                case GameState.MenuOpened:
+                    break;;
+                default:
+                    throw new ArgumentException("Wrong gamestate");
+            }
         
         
-    }
+        }
 
-    public enum GameState
-    {
-        FreeMovement,
-        Dialogue,
-        Narrative,
-        MenuOpened
-    }
+        public enum GameState
+        {
+            FreeMovement,
+            Dialogue,
+            Narrative,
+            MenuOpened
+        }
 
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
-    }
+        public void PauseGame()
+        {
+            Time.timeScale = 0;
+        }
 
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
+        public void ResumeGame()
+        {
+            Time.timeScale = 1;
+        }
     }
 }
