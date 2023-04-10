@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7572823925692217842}
   - component: {fileID: 4980933162620680201}
   m_Layer: 5
-  m_Name: CollectableLeafletPanel
+  m_Name: CollectableNotePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

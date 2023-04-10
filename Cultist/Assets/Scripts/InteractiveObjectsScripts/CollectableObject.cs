@@ -14,7 +14,7 @@ public class CollectableObject : BaseInteractableObject
         Newspaper,
         Book,
         Scroll,
-        Leaflet
+        Note
     };
 
     public string title;
@@ -101,9 +101,9 @@ public class CollectableObject : BaseInteractableObject
         {
             panelToDisplay = Resources.Load<GameObject>("CollectableScrollPanel");
         }
-        if (type == CollectableObjectType.Leaflet)
+        if (type == CollectableObjectType.Note)
         {
-            panelToDisplay = Resources.Load<GameObject>("CollectableLeafletPanel");
+            panelToDisplay = Resources.Load<GameObject>("CollectableNotePanel");
         }
     }
 }
