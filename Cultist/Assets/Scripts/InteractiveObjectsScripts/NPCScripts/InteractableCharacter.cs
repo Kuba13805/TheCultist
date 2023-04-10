@@ -6,21 +6,12 @@ using Zenject;
 
 public class InteractableCharacter : BaseInteractableObject
 {
-
-    public CharacterClass characterClass;
-
-    [SerializeField] private bool questCharacter;
-    public bool intimidationResistance;
-    public bool persuasionResistance;
-
-    [SerializeField] private int difficultyToReadIntension;
+    public string characterName;
     
+    public CharacterClass characterClass;
 
     public void Start()
     {
-        if (difficultyToReadIntension == 0)
-        {
-            difficultyToReadIntension = characterClass.difficultyToReadIntension;
-        }
+        characterName ??= characterClass.className;
     }
 }

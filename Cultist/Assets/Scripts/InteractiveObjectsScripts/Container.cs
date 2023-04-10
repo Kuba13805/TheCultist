@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +29,7 @@ public class Container : BaseInteractableObject
     {
         InventoryItemDragDrop.OnItemAddedFromContainer += RemoveItemFromContainerList;
         ShowContainerLoadout();
-        PauseGame();
+        GameManager.Instance.PauseGame();
     }
 
     private void ShowContainerLoadout()
@@ -105,9 +106,5 @@ public class Container : BaseInteractableObject
     void RemoveItemFromContainerList(BaseItem item)
     {
         itemsInContainer.Remove(item);
-    }
-    void PauseGame()
-    {
-        Time.timeScale = 0;
     }
 }

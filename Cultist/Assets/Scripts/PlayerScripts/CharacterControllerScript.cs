@@ -58,7 +58,11 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void MovePlayerToPosition(InputAction.CallbackContext context)
     {
-
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+        
         Ray myRay = PlayerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         
         if (!Physics.Raycast(myRay, out var myRaycastHit)) return;
