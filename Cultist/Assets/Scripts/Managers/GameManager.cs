@@ -14,8 +14,14 @@ namespace Managers
 
         private void Awake()
         {
-            Instance = this;
-            DontDestroyOnLoad(Instance);
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void UpdateGameState(GameState newState)

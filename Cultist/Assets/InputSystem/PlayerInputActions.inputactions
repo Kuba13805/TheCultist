@@ -99,6 +99,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "DoubleClick",
+                    "type": "Button",
+                    "id": "72b44b41-86df-48cf-bd1f-7321b8466191",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ScrollWheel",
                     "type": "PassThrough",
                     "id": "91da439b-a6e9-4aed-9bee-5b9a4889bd94",
@@ -580,6 +589,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "CloseUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fbacb3e8-b2ab-45ac-8bc5-7765ce0ff44a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "DoubleClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

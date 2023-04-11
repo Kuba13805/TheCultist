@@ -38,6 +38,11 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
 
     public static event onItemStriped OnItemStriped;
 
+    private void Awake()
+    {
+        InputManager.Instance.PlayerInputActions.UI.DoubleClick.performed += UseItem;
+    }
+
     private void Start()
     {
         OnItemEquipped += SetEffectsActive;
@@ -47,6 +52,11 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         {
             effectsActive = true;
         }
+    }
+
+    private void OnDestroy()
+    {
+        InputManager.Instance.PlayerInputActions.UI.DoubleClick.performed -= UseItem;
     }
 
     public void InitialiseItem(BaseItem newItem)
@@ -86,15 +96,13 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         var detailsPanelPrefab = Resources.Load<GameObject>("ItemDetailsPanel");
-        if (!detailsPanelActive)
-        {
-            var uiPosition = Input.mousePosition;
-            uiPosition.x = uiPosition.x + 120;
-            uiPosition.y = uiPosition.y - 80;
-            detailsPanelInstance = Instantiate(detailsPanelPrefab, uiPosition, Quaternion.identity, transform.root);
-            detailsPanelActive = true;
-            detailsPanelInstance.GetComponent<ItemDetailsPanelLoad>().LoadItemDetails(item);
-        }
+        if (detailsPanelActive) return;
+        var uiPosition = Input.mousePosition;
+        uiPosition.x = uiPosition.x + 120;
+        uiPosition.y = uiPosition.y - 80;
+        detailsPanelInstance = Instantiate(detailsPanelPrefab, uiPosition, Quaternion.identity, transform.root);
+        detailsPanelActive = true;
+        detailsPanelInstance.GetComponent<ItemDetailsPanelLoad>().LoadItemDetails(item);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -147,8 +155,8 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         }
         Destroy(gameObject);
         OnItemChanged?.Invoke();
-        OnItemEquipped -= () => SetEffectsActive();
-        OnItemStriped -= () => SetEffectsInactive();
+        OnItemEquipped -= SetEffectsActive;
+        OnItemStriped -= SetEffectsInactive;
     }
 
     private void SetEffectsActive()
@@ -159,5 +167,12 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     private void SetEffectsInactive()
     {
         effectsActive = false;
+    }
+
+    private void UseItem(InputAction.CallbackContext context)
+    {
+        if (!item.oneTimeItem) return;
+        Debug.Log("Item has been used");
+        DestroyItem();
     }
 }
