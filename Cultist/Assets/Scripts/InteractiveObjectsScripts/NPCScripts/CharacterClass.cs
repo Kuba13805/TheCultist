@@ -13,6 +13,12 @@ public class CharacterClass : ScriptableObject
     public bool canBePersuaded;
 
     [SerializeField] private List<BaseItem> itemsToSteal;
-    
-    
+
+    private int dexterity;
+    private int strength;
+    private int power;
+    private int condition;
+    private int wisdom;
+
+    private int health;
 }

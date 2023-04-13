@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using PlayerScripts;
+using UnityEngine.InputSystem;
 
 namespace Managers
 {
@@ -20,15 +21,20 @@ namespace Managers
                 Destroy(gameObject);
             }
             PlayerInputActions = new PlayerInputActions();
+            
+            PlayerInputActions.Player.Enable();
+
+            PlayerInputActions.Player.OpenInventory.performed += ChangeActionMapToUI;
+            PlayerInputActions.UI.CloseUI.performed += ChangeActionMapToPlayer;
         }
 
-        public void ChangeActionMapToPlayer()
+        private void ChangeActionMapToPlayer(InputAction.CallbackContext context)
         {
             PlayerInputActions.Disable();
             PlayerInputActions.Player.Enable();
         }
 
-        public void ChangeActionMapToUI()
+        private void ChangeActionMapToUI(InputAction.CallbackContext context)
         {
             PlayerInputActions.Disable();
             PlayerInputActions.UI.Enable();

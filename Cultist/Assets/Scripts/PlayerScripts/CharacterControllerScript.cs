@@ -34,7 +34,6 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void Awake()
     {
-        InputManager.Instance.ChangeActionMapToPlayer();
         InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed += MovePlayerToPosition;
     }
 
