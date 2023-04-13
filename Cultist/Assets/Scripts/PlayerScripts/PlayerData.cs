@@ -35,5 +35,14 @@ namespace PlayerScripts
 
         public List<BaseItem> characterEquipment;
 
+        private void IncreaseStats()
+        {
+            
+        }
+
+        private void DecreaseStats()
+        {
+            
+        }
     }
 }

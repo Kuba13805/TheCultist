@@ -41,8 +41,6 @@ namespace Managers
                 default:
                     throw new ArgumentException("Wrong gamestate");
             }
-        
-        
         }
 
         public enum GameState

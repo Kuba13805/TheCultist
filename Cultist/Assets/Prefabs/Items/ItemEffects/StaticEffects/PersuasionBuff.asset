@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f08b39dc720063e4298851e502c0ace5, type: 3}
-  m_Name: VoiceOfLucius
+  m_Name: PersuasionBuff
   m_EditorClassIdentifier: 
   isEffectActive: 0
-  effectName: Voice of Lucius
+  effectName: PersuasionBuff
   effectId: 4
   timeEffect: 0
   effectTime: 0
   pointsAffecting: 2
   statToEffect: 5
   typeOfInfluence: 0
+  startedTime: 0
