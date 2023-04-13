@@ -12,6 +12,7 @@ public class CharacterClass : ScriptableObject
     public bool canBeIntimidated;
     public bool canBePersuaded;
 
+    public Sprite classPortrait;
     [SerializeField] private List<BaseItem> itemsToSteal;
 
     private int dexterity;

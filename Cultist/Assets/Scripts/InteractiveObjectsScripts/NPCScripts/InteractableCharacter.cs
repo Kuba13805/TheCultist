@@ -7,15 +7,13 @@ using Zenject;
 
 public class InteractableCharacter : BaseInteractableObject
 {
-    public string characterName;
-    
     public CharacterClass characterClass;
 
     private GameObject dialogueCanvas;
     public override void Start()
     {
         base.Start();
-        characterName ??= characterClass.className;
+        objectName ??= characterClass.className;
 
         try
         {

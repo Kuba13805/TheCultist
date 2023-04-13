@@ -12,13 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909f6fce6c741ec40868418b56a309ad, type: 3}
   m_Name: GreenHand
   m_EditorClassIdentifier: 
-  isEffectActive: 0
-  effectName: 
-  effectId: 0
-  timeEffect: 0
-  effectTime: 0
-  pointsAffecting: 0
-  statToEffect: 0
-  typeOfInfluence: 0
-  startedTime: 0
-  listOfAdditionalEffects: []
+  effectName: Green Hand
+  effectId: 1
+  listOfAdditionalEffects:
+  - {fileID: 11400000, guid: e2adf4cfda498cc42b7684250225c294, type: 2}

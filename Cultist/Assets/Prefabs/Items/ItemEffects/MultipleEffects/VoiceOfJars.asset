@@ -12,14 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909f6fce6c741ec40868418b56a309ad, type: 3}
   m_Name: VoiceOfJars
   m_EditorClassIdentifier: 
-  isEffectActive: 0
   effectName: Voice Of Jars
-  effectId: 0
-  timeEffect: 0
-  effectTime: 0
-  pointsAffecting: 0
-  statToEffect: 0
-  typeOfInfluence: 0
+  effectId: 4
   listOfAdditionalEffects:
   - {fileID: 11400000, guid: dc81bc4b2f9fed04fb9e6ade16a4e2ae, type: 2}
   - {fileID: 11400000, guid: 60b764882cf13db449ec790c1b2167c0, type: 2}

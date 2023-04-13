@@ -12,14 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909f6fce6c741ec40868418b56a309ad, type: 3}
   m_Name: OldWisdom
   m_EditorClassIdentifier: 
-  isEffectActive: 0
   effectName: Old Wisdom
-  effectId: 0
-  timeEffect: 1
-  effectTime: 0
-  pointsAffecting: 0
-  statToEffect: 0
-  typeOfInfluence: 0
-  startedTime: 0
+  effectId: 2
   listOfAdditionalEffects:
   - {fileID: 11400000, guid: e1ab530fcc6b3484ca9d6e0924ad3b6f, type: 2}

@@ -94,6 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ecb253f12ab6c49a8543d3b35c8818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PortraitNpc: {fileID: 5321709204216066538}
+  DialogueNpc: {fileID: 5321709203934893898}
+  PlayerChoices: {fileID: 5321709204160831621}
 --- !u!114 &6100981392683482373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +197,7 @@ GameObject:
   - component: {fileID: 5321709203934893901}
   - component: {fileID: 5321709203934893900}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DialogueContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,7 +332,7 @@ GameObject:
   - component: {fileID: 5321709204160831736}
   - component: {fileID: 5321709204160831623}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Player_Choices
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
