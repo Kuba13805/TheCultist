@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class DisplayPlayerInventory : MonoBehaviour
 {
-    public GameObject inventoryItemPrefab;
-    public GameObject emptySlotPrefab;
+    [SerializeField] private GameObject inventoryItemPrefab;
+    [SerializeField] private GameObject emptySlotPrefab;
 
     private void OnEnable()
     {

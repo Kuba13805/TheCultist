@@ -15,7 +15,7 @@ public class BaseInteractableObject : MonoBehaviour, IInteractable
     {
 
     }
-    private void Start()
+    public virtual void Start()
     {
         interactor = GetComponentInChildren<InteractorScript>();
         player = GameObject.FindWithTag("Player");

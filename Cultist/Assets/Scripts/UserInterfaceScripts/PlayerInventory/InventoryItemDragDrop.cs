@@ -24,8 +24,7 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     public delegate void onItemChanged();
 
     public static event onItemChanged OnItemChanged;
-    
-    
+
     public delegate void onItemAddedFromContainer(BaseItem item);
 
     public static event onItemAddedFromContainer OnItemAddedFromContainer;
@@ -154,7 +153,9 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
             Destroy(detailsPanelInstance.gameObject);
         }
         Destroy(gameObject);
+        
         OnItemChanged?.Invoke();
+        
         OnItemEquipped -= SetEffectsActive;
         OnItemStriped -= SetEffectsInactive;
     }

@@ -45,6 +45,8 @@ public class ItemEffect : ScriptableObject
         IncreaseStat,
         DecreaseStat
     }
+    
+    
 
     private int CalculateStatValue(int playerDataStat)
     {
