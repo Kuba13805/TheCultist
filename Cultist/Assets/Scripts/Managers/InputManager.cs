@@ -24,19 +24,46 @@ namespace Managers
             
             PlayerInputActions.Player.Enable();
 
-            PlayerInputActions.Player.OpenInventory.performed += ChangeActionMapToUI;
-            PlayerInputActions.UI.CloseUI.performed += ChangeActionMapToPlayer;
+            PlayerInputActions.Player.OpenInventory.performed += ChangeActionMapToUIOnKey;
+            
+            PlayerInputActions.UI.CloseUI.performed += ChangeActionMapToPlayerOnKey;
+            
+            CollectableObject.OnCollectableShown += ChangeActionMapToUI;
+            
+            CollectableObject.OnCollectableClosed += ChangeActionMapToPlayer;
         }
 
-        private void ChangeActionMapToPlayer(InputAction.CallbackContext context)
+        private void OnDestroy()
+        {
+            PlayerInputActions.Player.OpenInventory.performed -= ChangeActionMapToUIOnKey;
+            
+            PlayerInputActions.UI.CloseUI.performed -= ChangeActionMapToPlayerOnKey;
+            
+            CollectableObject.OnCollectableShown -= ChangeActionMapToUI;
+            
+            CollectableObject.OnCollectableClosed -= ChangeActionMapToPlayer;
+        }
+
+        private void ChangeActionMapToPlayerOnKey(InputAction.CallbackContext context)
+        {
+            ChangeActionMapToPlayer();
+        }
+
+        private void ChangeActionMapToUIOnKey(InputAction.CallbackContext context)
+        {
+            ChangeActionMapToUI();
+        }
+
+        private void ChangeActionMapToPlayer()
         {
             PlayerInputActions.Disable();
+            
             PlayerInputActions.Player.Enable();
         }
-
-        private void ChangeActionMapToUI(InputAction.CallbackContext context)
+        private void ChangeActionMapToUI()
         {
             PlayerInputActions.Disable();
+            
             PlayerInputActions.UI.Enable();
         }
     }

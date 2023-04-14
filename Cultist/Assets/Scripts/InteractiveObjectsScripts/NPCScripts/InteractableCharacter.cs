@@ -36,7 +36,7 @@ public class InteractableCharacter : BaseInteractableObject
         Instantiate(panelToDisplay, dialogueCanvas.transform);
     }
 
-    private GameObject LoadPanelFromResources()
+    private static GameObject LoadPanelFromResources()
     {
         GameObject loadedPanel = Resources.Load("DialoguePanel").GameObject();
         return loadedPanel;

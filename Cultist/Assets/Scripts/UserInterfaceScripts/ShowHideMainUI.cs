@@ -12,8 +12,17 @@ public class ShowHideMainUI : MonoBehaviour
         listOfUiElements = GetComponentsInChildren<Transform>();
         
         DialoguePanelScript.OnDialogueShown += DialoguePanelScriptOnOnDialogueShown;
+        
         DialoguePanelScript.OnDialogueClosed += DialoguePanelScriptOnOnDialogueClosed;
     }
+
+    private void OnDestroy()
+    {
+        DialoguePanelScript.OnDialogueShown -= DialoguePanelScriptOnOnDialogueShown;
+        
+        DialoguePanelScript.OnDialogueClosed -= DialoguePanelScriptOnOnDialogueClosed;
+    }
+
     private void DialoguePanelScriptOnOnDialogueShown()
     {
         foreach (var uiElement in listOfUiElements)

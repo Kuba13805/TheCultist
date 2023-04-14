@@ -18,35 +18,47 @@ public class CollectableObject : BaseInteractableObject
     };
 
     public string title;
+    
     [TextAreaAttribute(15, 20)]
     public string text;
+    
     [SerializeField] private CollectableObjectType type;
+    
     private GameObject panelToDisplay;
+    
     private GameObject panelInstance;
+
+    public static event Action OnCollectableShown;
+    
+    public static event Action OnCollectableClosed;
 
     public bool IsActive;
     public override void Interact()
     {
         IsActive = false;
+        
         ShowPanel();
+        
         GameManager.Instance.PauseGame();
     }
 
     private void ShowPanel()
     {
         DeterminePanelToShow();
-        if (Time.timeScale != 0)
+        if (Time.timeScale == 0) return;
+        
+        if (IsActive)
         {
-            if (IsActive)
-            {
-                Destroy(panelInstance.gameObject);
-            }
-            Canvas canvas = FindObjectOfType<Canvas>();
-            panelInstance = Instantiate(panelToDisplay, canvas.transform, false);
-            LoadText("CollectableDesc");
-            LoadText("CollectableTitle");
-            IsActive = true;
+            Destroy(panelInstance.gameObject);
         }
+        
+        Canvas canvas = FindObjectOfType<Canvas>();
+        panelInstance = Instantiate(panelToDisplay, canvas.transform, false);
+        
+        LoadText("CollectableDesc");
+        LoadText("CollectableTitle");
+        
+        IsActive = true;
     }
 
     private void LoadText(string elementToFind)
@@ -56,31 +68,25 @@ public class CollectableObject : BaseInteractableObject
             case CollectableObjectType.Book:
             {
                 GameObject textToDisplay = panelInstance.transform.Find(elementToFind).gameObject;
-                if (elementToFind == "CollectableDesc")
+                textToDisplay.GetComponent<TextMeshProUGUI>().text = elementToFind switch
                 {
-                    textToDisplay.GetComponent<TextMeshProUGUI>().text = text;
-                }
-
-                if (elementToFind == "CollectableTitle")
-                {
-                    textToDisplay.GetComponent<TextMeshProUGUI>().text = title;
-                }
+                    "CollectableDesc" => text,
+                    "CollectableTitle" => title,
+                    _ => textToDisplay.GetComponent<TextMeshProUGUI>().text
+                };
 
                 break;
             }
             default:
             {
                 GameObject textToDisplay = GameObject.Find(elementToFind);
-            
-                if (elementToFind == "CollectableDesc")
-                {
-                    textToDisplay.GetComponent<TextMeshProUGUI>().text = text;
-                }
 
-                if (elementToFind == "CollectableTitle")
+                textToDisplay.GetComponent<TextMeshProUGUI>().text = elementToFind switch
                 {
-                    textToDisplay.GetComponent<TextMeshProUGUI>().text = title;
-                }
+                    "CollectableDesc" => text,
+                    "CollectableTitle" => title,
+                    _ => textToDisplay.GetComponent<TextMeshProUGUI>().text
+                };
 
                 break;
             }
@@ -89,21 +95,13 @@ public class CollectableObject : BaseInteractableObject
 
     private void DeterminePanelToShow()
     {
-        if (type == CollectableObjectType.Newspaper)
+        panelToDisplay = type switch
         {
-            panelToDisplay = Resources.Load<GameObject>("CollectableNewspaperPanel");
-        }
-        if (type == CollectableObjectType.Book)
-        {
-            panelToDisplay = Resources.Load<GameObject>("CollectableBookPanel");
-        }
-        if (type == CollectableObjectType.Scroll)
-        {
-            panelToDisplay = Resources.Load<GameObject>("CollectableScrollPanel");
-        }
-        if (type == CollectableObjectType.Note)
-        {
-            panelToDisplay = Resources.Load<GameObject>("CollectableNotePanel");
-        }
+            CollectableObjectType.Newspaper => Resources.Load<GameObject>("CollectableNewspaperPanel"),
+            CollectableObjectType.Book => Resources.Load<GameObject>("CollectableBookPanel"),
+            CollectableObjectType.Scroll => Resources.Load<GameObject>("CollectableScrollPanel"),
+            CollectableObjectType.Note => Resources.Load<GameObject>("CollectableNotePanel"),
+            _ => panelToDisplay
+        };
     }
 }

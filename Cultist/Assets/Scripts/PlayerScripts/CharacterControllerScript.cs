@@ -49,12 +49,19 @@ public class CharacterControllerScript : MonoBehaviour
         InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed -= MovePlayerToPosition;
     }
 
-    void Update()
+    private void Update()
     {
         DestroyFlagWhenDestinationReached();
         IsMoving();
     }
-
+    private void Interact(BaseInteractableObject interactionToPerformOnObject)
+    {
+        if (PlayerNavMeshAgent.remainingDistance != 0 || (!(Vector3.Distance(PlayerNavMeshAgent.transform.position,
+                interactionToPerformOnObject.interactor.interactorPosition) < 1.0))) return;
+        
+        PlayerNavMeshAgent.transform.LookAt(this.interactionToPerform.transform);
+        interactionToPerformOnObject.Interact();
+    }
     private void MovePlayerToPosition(InputAction.CallbackContext context)
     {
         if (Time.timeScale == 0)
@@ -65,9 +72,10 @@ public class CharacterControllerScript : MonoBehaviour
         Ray myRay = PlayerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         
         if (!Physics.Raycast(myRay, out var myRaycastHit)) return;
-        
+
         if (myRaycastHit.transform.CompareTag("Floor"))
         {
+            if (CheckForPath(myRaycastHit.point) == false) return;
             SpawnFlagAtDestination(myRaycastHit.point);
             if (Vector3.Distance(myRaycastHit.point, transform.position) >= 5f)
             {
@@ -85,15 +93,6 @@ public class CharacterControllerScript : MonoBehaviour
         else
         {
             MoveToInteract(myRaycastHit);
-        }
-    }
-    
-    private void Interact(BaseInteractableObject interactionToPerform)
-    {
-        if (PlayerNavMeshAgent.remainingDistance == 0 && (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) < 1.0))
-        {
-            PlayerNavMeshAgent.transform.LookAt(this.interactionToPerform.transform);
-            interactionToPerform.Interact();
         }
     }
     private void MoveToInteract(RaycastHit myRaycastHit)
@@ -116,6 +115,7 @@ public class CharacterControllerScript : MonoBehaviour
         if (!interactorFound) return;
         if (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) > 1.0f)
         {
+            if (CheckForPath(newPosition) == false) return;
             SpawnFlagAtDestination(newPosition);
             if (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) >= 5f)
             {
@@ -164,23 +164,34 @@ public class CharacterControllerScript : MonoBehaviour
             Destroy(flag);
             hasSpawnedFlag = false;
         }
-        if (!hasSpawnedFlag && Time.timeScale != 0)
-        {
-            float objectHeight = markedDestinationFlag.GetComponent<Renderer>().bounds.size.y / 2f;
-            var spawnPoint = new Vector3(hitPosition.x, hitPosition.y + objectHeight, hitPosition.z);
-            flag = Instantiate(markedDestinationFlag, spawnPoint, Quaternion.identity);
-            hasSpawnedFlag = true;
-        }
+
+        if (hasSpawnedFlag || Time.timeScale == 0) return;
         
+        float objectHeight = markedDestinationFlag.GetComponent<Renderer>().bounds.size.y / 2f;
+        
+        var spawnPoint = new Vector3(hitPosition.x, hitPosition.y + objectHeight, hitPosition.z);
+        
+        flag = Instantiate(markedDestinationFlag, spawnPoint, Quaternion.identity);
+        
+        hasSpawnedFlag = true;
+
     }
 
     private void DestroyFlagWhenDestinationReached()
     {
-        if (hasSpawnedFlag && PlayerNavMeshAgent.remainingDistance == 0)
-        {
-            Destroy(flag);
-            hasSpawnedFlag = false;
-        }
+        if (!hasSpawnedFlag || PlayerNavMeshAgent.remainingDistance != 0) return;
+        
+        Destroy(flag);
+        hasSpawnedFlag = false;
+    }
+
+    private bool CheckForPath(Vector3 pointToCalculatePath)
+    {
+        NavMeshPath path = new NavMeshPath();
+
+        PlayerNavMeshAgent.CalculatePath(pointToCalculatePath, path);
+
+        return path.status == NavMeshPathStatus.PathComplete;
     }
 }
 
