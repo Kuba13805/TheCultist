@@ -59,7 +59,7 @@ public class CharacterControllerScript : MonoBehaviour
         if (PlayerNavMeshAgent.remainingDistance != 0 || (!(Vector3.Distance(PlayerNavMeshAgent.transform.position,
                 interactionToPerformOnObject.interactor.interactorPosition) < 1.0))) return;
         
-        PlayerNavMeshAgent.transform.LookAt(this.interactionToPerform.transform);
+        PlayerNavMeshAgent.transform.LookAt(interactionToPerform.transform);
         interactionToPerformOnObject.Interact();
     }
     private void MovePlayerToPosition(InputAction.CallbackContext context)
@@ -76,25 +76,18 @@ public class CharacterControllerScript : MonoBehaviour
         if (myRaycastHit.transform.CompareTag("Floor"))
         {
             if (CheckForPath(myRaycastHit.point) == false) return;
+            
             SpawnFlagAtDestination(myRaycastHit.point);
-            if (Vector3.Distance(myRaycastHit.point, transform.position) >= 5f)
-            {
-                isRunning = true;
-                playerAnimator.SetBool("IsRunning", isRunning);
-                ChangeMovement(runningSpeed, myRaycastHit.point);
-            }
-            else
-            {
-                isRunning = false;
-                playerAnimator.SetBool("IsRunning", isRunning);
-                ChangeMovement(normalSpeed, myRaycastHit.point);
-            }
+            
+            DetermineMovement(myRaycastHit.point, transform.position);
         }
         else
         {
             MoveToInteract(myRaycastHit);
         }
     }
+
+
     private void MoveToInteract(RaycastHit myRaycastHit)
     {
         GameObject gameObjectToInteract = myRaycastHit.transform.gameObject;
@@ -113,26 +106,48 @@ public class CharacterControllerScript : MonoBehaviour
         }
 
         if (!interactorFound) return;
-        if (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) > 1.0f)
+        
+        if (Vector3.Distance(PlayerNavMeshAgent.transform.position, newPosition) > 1.0f)
         {
             if (CheckForPath(newPosition) == false) return;
+            
             SpawnFlagAtDestination(newPosition);
-            if (Vector3.Distance(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition) >= 5f)
-            {
-                isRunning = true;
-                playerAnimator.SetBool("IsRunning", isRunning);
-                ChangeMovement(runningSpeed, newPosition);
-            }
-            else
-            {
-                isRunning = false;
-                playerAnimator.SetBool("IsRunning", isRunning);
-                ChangeMovement(normalSpeed, newPosition);
-            }
+            
+            DetermineMovement(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition, newPosition);
         }
         else
         {
             Interact(interactionToPerform);
+        }
+    }
+    private void DetermineMovement(Vector3 startPoint, Vector3 endPoint)
+    {
+        if (Vector3.Distance(startPoint,endPoint) >= 5f)
+        {
+            isRunning = true;
+            playerAnimator.SetBool("IsRunning", isRunning);
+            ChangeMovement(runningSpeed, startPoint);
+        }
+        else
+        {
+            isRunning = false;
+            playerAnimator.SetBool("IsRunning", isRunning);
+            ChangeMovement(normalSpeed, startPoint);
+        }
+    }
+    private void DetermineMovement(Vector3 startPoint, Vector3 endPoint, Vector3 positionToMove)
+    {
+        if (Vector3.Distance(startPoint,endPoint) >= 5f)
+        {
+            isRunning = true;
+            playerAnimator.SetBool("IsRunning", isRunning);
+            ChangeMovement(runningSpeed, positionToMove);
+        }
+        else
+        {
+            isRunning = false;
+            playerAnimator.SetBool("IsRunning", isRunning);
+            ChangeMovement(normalSpeed, positionToMove);
         }
     }
     private void IsMoving()
