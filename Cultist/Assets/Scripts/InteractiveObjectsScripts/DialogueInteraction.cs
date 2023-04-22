@@ -16,6 +16,9 @@ public class DialogueInteraction : MonoBehaviour
     private Story inkStory;
 
     private TextMeshProUGUI npcTextBox;
+    private TextMeshProUGUI playerChoiceTextBox;
+
+    private string charName;
 
     #region Events
 
@@ -43,20 +46,24 @@ public class DialogueInteraction : MonoBehaviour
 
     private void StartDialogue()
     {
-        npcTextBox.text = inkStory.Continue();
+        charName = GetComponent<InteractableCharacter>().objectName;
+        npcTextBox.text = $"<color=yellow>{charName}</color>: " + inkStory.Continue();
     }
     private void NextDialogue(InputAction.CallbackContext context)
     {
-        if (inkStory.canContinue)
+        if (inkStory.canContinue && inkStory.currentChoices.Count <= 0)
         {
-            npcTextBox.text = inkStory.Continue();
+            npcTextBox.text = $"<color=yellow>{charName}</color>: " + inkStory.Continue();
+        }
+
+        if (inkStory.currentChoices.Count <= 0) return;
+        playerChoiceTextBox.text = "";
+        foreach (var choice in inkStory.currentChoices)
+        {
+            playerChoiceTextBox.text += (choice.index + 1 ) + ". "+ choice.text + "\n";
         }
     }
 
-    private TextMeshProUGUI FindNpcTextBox()
-    {
-        return dialoguePanel.transform.Find("NPCText").GetComponentInChildren<TextMeshProUGUI>();
-    }
     #region DisplayDialoguePanel
     public void InteractWithObject()
     {
@@ -64,6 +71,7 @@ public class DialogueInteraction : MonoBehaviour
         OnDialogueShown?.Invoke();
         
         npcTextBox = FindNpcTextBox();
+        playerChoiceTextBox = FindPlayerChoiceTexBox();
         
         StartDialogue();
     }
@@ -77,6 +85,18 @@ public class DialogueInteraction : MonoBehaviour
     {
         var loadedPanel = Resources.Load("DialoguePanel") as GameObject;
         return loadedPanel;
+    }
+    #endregion
+
+    #region FindPanelElements
+    private TextMeshProUGUI FindNpcTextBox()
+    {
+        return dialoguePanel.transform.Find("NPCText").GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    private TextMeshProUGUI FindPlayerChoiceTexBox()
+    {
+        return dialoguePanel.transform.Find("PlayerChoices").GetComponentInChildren<TextMeshProUGUI>();
     }
     #endregion
 
