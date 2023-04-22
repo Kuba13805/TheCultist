@@ -24,6 +24,7 @@ namespace Managers
             
             PlayerInputActions.Player.Enable();
 
+            #region Events
             PlayerInputActions.Player.OpenInventory.performed += ChangeActionMapToUIOnKey;
             
             PlayerInputActions.UI.CloseUI.performed += ChangeActionMapToPlayerOnKey;
@@ -31,10 +32,15 @@ namespace Managers
             CollectableObject.OnCollectableShown += ChangeActionMapToUI;
             
             CollectableObject.OnCollectableClosed += ChangeActionMapToPlayer;
+
+            DialogueInteraction.OnDialogueShown += ChangeActionMapToUI;
+
+            #endregion
         }
 
         private void OnDestroy()
         {
+            #region Events
             PlayerInputActions.Player.OpenInventory.performed -= ChangeActionMapToUIOnKey;
             
             PlayerInputActions.UI.CloseUI.performed -= ChangeActionMapToPlayerOnKey;
@@ -42,8 +48,12 @@ namespace Managers
             CollectableObject.OnCollectableShown -= ChangeActionMapToUI;
             
             CollectableObject.OnCollectableClosed -= ChangeActionMapToPlayer;
+
+            DialogueInteraction.OnDialogueShown -= ChangeActionMapToUI;
+            #endregion
         }
 
+        #region HandleActionMap
         private void ChangeActionMapToPlayerOnKey(InputAction.CallbackContext context)
         {
             ChangeActionMapToPlayer();
@@ -66,5 +76,6 @@ namespace Managers
             
             PlayerInputActions.UI.Enable();
         }
+        #endregion
     }
 }

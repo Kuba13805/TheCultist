@@ -44,6 +44,60 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraFocusOnPlayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb927dc7-403e-41b3-8e47-f696e73c0e50"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerAction1"",
+                    ""type"": ""Button"",
+                    ""id"": ""88389a2b-45a6-4a11-9e1d-e2e1f876f727"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerAction2"",
+                    ""type"": ""Button"",
+                    ""id"": ""c2ab92ba-c083-4386-a6b0-e7f6f8b8937d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerAction3"",
+                    ""type"": ""Button"",
+                    ""id"": ""121dcb30-42b9-4faa-9272-49fe868a87ea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerAction4"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e54174b-b41e-4dde-979c-2198f50adfdb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerAction5"",
+                    ""type"": ""Button"",
+                    ""id"": ""03024f04-f9a0-461f-92e1-afcca21a7fb1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -66,6 +120,72 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca8dba72-a2a0-402e-8dd0-0581640750e1"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraFocusOnPlayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e3c5f6c-f7b6-4ae9-b618-be32ee5ae1d5"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PlayerAction1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6dfadd7-c0dd-442d-8d4d-a5b5f4e923cc"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PlayerAction2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ea68882-8a59-4eca-b03a-2eae6f371b3f"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PlayerAction3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""962c316c-52c9-4ec5-b5d4-61be36ca076c"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PlayerAction4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""039b6a76-1002-41d3-8eea-95a7f327326c"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PlayerAction5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -181,6 +301,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkipConversation"",
+                    ""type"": ""Button"",
+                    ""id"": ""109f57f2-1ec1-4d29-98fc-e806d63c1ddc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -624,6 +753,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""DoubleClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ef63041-5570-4175-bbdb-3d256b6f87b3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SkipConversation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -695,6 +835,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MoveCharacter = m_Player.FindAction("MoveCharacter", throwIfNotFound: true);
         m_Player_OpenInventory = m_Player.FindAction("OpenInventory", throwIfNotFound: true);
+        m_Player_CameraFocusOnPlayer = m_Player.FindAction("CameraFocusOnPlayer", throwIfNotFound: true);
+        m_Player_PlayerAction1 = m_Player.FindAction("PlayerAction1", throwIfNotFound: true);
+        m_Player_PlayerAction2 = m_Player.FindAction("PlayerAction2", throwIfNotFound: true);
+        m_Player_PlayerAction3 = m_Player.FindAction("PlayerAction3", throwIfNotFound: true);
+        m_Player_PlayerAction4 = m_Player.FindAction("PlayerAction4", throwIfNotFound: true);
+        m_Player_PlayerAction5 = m_Player.FindAction("PlayerAction5", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -709,6 +855,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_CloseUI = m_UI.FindAction("CloseUI", throwIfNotFound: true);
+        m_UI_SkipConversation = m_UI.FindAction("SkipConversation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -770,12 +917,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_MoveCharacter;
     private readonly InputAction m_Player_OpenInventory;
+    private readonly InputAction m_Player_CameraFocusOnPlayer;
+    private readonly InputAction m_Player_PlayerAction1;
+    private readonly InputAction m_Player_PlayerAction2;
+    private readonly InputAction m_Player_PlayerAction3;
+    private readonly InputAction m_Player_PlayerAction4;
+    private readonly InputAction m_Player_PlayerAction5;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveCharacter => m_Wrapper.m_Player_MoveCharacter;
         public InputAction @OpenInventory => m_Wrapper.m_Player_OpenInventory;
+        public InputAction @CameraFocusOnPlayer => m_Wrapper.m_Player_CameraFocusOnPlayer;
+        public InputAction @PlayerAction1 => m_Wrapper.m_Player_PlayerAction1;
+        public InputAction @PlayerAction2 => m_Wrapper.m_Player_PlayerAction2;
+        public InputAction @PlayerAction3 => m_Wrapper.m_Player_PlayerAction3;
+        public InputAction @PlayerAction4 => m_Wrapper.m_Player_PlayerAction4;
+        public InputAction @PlayerAction5 => m_Wrapper.m_Player_PlayerAction5;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -791,6 +950,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @OpenInventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
+                @CameraFocusOnPlayer.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraFocusOnPlayer;
+                @CameraFocusOnPlayer.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraFocusOnPlayer;
+                @CameraFocusOnPlayer.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraFocusOnPlayer;
+                @PlayerAction1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction1;
+                @PlayerAction1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction1;
+                @PlayerAction1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction1;
+                @PlayerAction2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction2;
+                @PlayerAction2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction2;
+                @PlayerAction2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction2;
+                @PlayerAction3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction3;
+                @PlayerAction3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction3;
+                @PlayerAction3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction3;
+                @PlayerAction4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction4;
+                @PlayerAction4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction4;
+                @PlayerAction4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction4;
+                @PlayerAction5.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction5;
+                @PlayerAction5.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction5;
+                @PlayerAction5.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction5;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -801,6 +978,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @OpenInventory.started += instance.OnOpenInventory;
                 @OpenInventory.performed += instance.OnOpenInventory;
                 @OpenInventory.canceled += instance.OnOpenInventory;
+                @CameraFocusOnPlayer.started += instance.OnCameraFocusOnPlayer;
+                @CameraFocusOnPlayer.performed += instance.OnCameraFocusOnPlayer;
+                @CameraFocusOnPlayer.canceled += instance.OnCameraFocusOnPlayer;
+                @PlayerAction1.started += instance.OnPlayerAction1;
+                @PlayerAction1.performed += instance.OnPlayerAction1;
+                @PlayerAction1.canceled += instance.OnPlayerAction1;
+                @PlayerAction2.started += instance.OnPlayerAction2;
+                @PlayerAction2.performed += instance.OnPlayerAction2;
+                @PlayerAction2.canceled += instance.OnPlayerAction2;
+                @PlayerAction3.started += instance.OnPlayerAction3;
+                @PlayerAction3.performed += instance.OnPlayerAction3;
+                @PlayerAction3.canceled += instance.OnPlayerAction3;
+                @PlayerAction4.started += instance.OnPlayerAction4;
+                @PlayerAction4.performed += instance.OnPlayerAction4;
+                @PlayerAction4.canceled += instance.OnPlayerAction4;
+                @PlayerAction5.started += instance.OnPlayerAction5;
+                @PlayerAction5.performed += instance.OnPlayerAction5;
+                @PlayerAction5.canceled += instance.OnPlayerAction5;
             }
         }
     }
@@ -821,6 +1016,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_CloseUI;
+    private readonly InputAction m_UI_SkipConversation;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -837,6 +1033,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @CloseUI => m_Wrapper.m_UI_CloseUI;
+        public InputAction @SkipConversation => m_Wrapper.m_UI_SkipConversation;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -882,6 +1079,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @CloseUI.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseUI;
                 @CloseUI.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseUI;
                 @CloseUI.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseUI;
+                @SkipConversation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSkipConversation;
+                @SkipConversation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSkipConversation;
+                @SkipConversation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSkipConversation;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -922,6 +1122,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @CloseUI.started += instance.OnCloseUI;
                 @CloseUI.performed += instance.OnCloseUI;
                 @CloseUI.canceled += instance.OnCloseUI;
+                @SkipConversation.started += instance.OnSkipConversation;
+                @SkipConversation.performed += instance.OnSkipConversation;
+                @SkipConversation.canceled += instance.OnSkipConversation;
             }
         }
     }
@@ -975,6 +1178,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         void OnMoveCharacter(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
+        void OnCameraFocusOnPlayer(InputAction.CallbackContext context);
+        void OnPlayerAction1(InputAction.CallbackContext context);
+        void OnPlayerAction2(InputAction.CallbackContext context);
+        void OnPlayerAction3(InputAction.CallbackContext context);
+        void OnPlayerAction4(InputAction.CallbackContext context);
+        void OnPlayerAction5(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -990,5 +1199,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnCloseUI(InputAction.CallbackContext context);
+        void OnSkipConversation(InputAction.CallbackContext context);
     }
 }

@@ -8,7 +8,6 @@ using Zenject;
 public class InteractableCharacter : BaseInteractableObject
 {
     public CharacterClass characterClass;
-    
     public override void Start()
     {
         base.Start();
