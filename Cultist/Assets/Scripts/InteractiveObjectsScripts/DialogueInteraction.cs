@@ -10,13 +10,13 @@ using UnityEngine.InputSystem;
 public class DialogueInteraction : MonoBehaviour
 {
     private GameObject dialoguePanel;
-    private GameObject dialogueCanvas;
-    
+    private static GameObject dialogueCanvas;
+
     [SerializeField] private TextAsset inkAsset;
     private Story inkStory;
 
     private TextMeshProUGUI npcTextBox;
-    private TextMeshProUGUI playerChoiceTextBox;
+    private static GameObject playerChoicesContainer;
 
     private string charName;
 
@@ -24,14 +24,13 @@ public class DialogueInteraction : MonoBehaviour
 
     public static event Action OnDialogueShown;
     
+    public static event Action OnDialogueClosed;
 
     #endregion
 
     private void Start()
     {
         InputManager.Instance.PlayerInputActions.UI.SkipConversation.performed += NextDialogue;
-        
-        inkStory = new Story(inkAsset.text);
 
         try
         {
@@ -46,45 +45,64 @@ public class DialogueInteraction : MonoBehaviour
 
     private void StartDialogue()
     {
+        inkStory = new Story(inkAsset.text);
+        
         charName = GetComponent<InteractableCharacter>().objectName;
         npcTextBox.text = $"<color=yellow>{charName}</color>: " + inkStory.Continue();
     }
     private void NextDialogue(InputAction.CallbackContext context)
     {
-        if (inkStory.canContinue && inkStory.currentChoices.Count <= 0)
+        if (inkStory.canContinue)
         {
             npcTextBox.text = $"<color=yellow>{charName}</color>: " + inkStory.Continue();
         }
 
-        if (inkStory.currentChoices.Count <= 0) return;
-        playerChoiceTextBox.text = "";
+        if (inkStory.currentChoices.Count <= 0 || playerChoicesContainer.transform.childCount != 0) return;
         foreach (var choice in inkStory.currentChoices)
         {
-            playerChoiceTextBox.text += (choice.index + 1 ) + ". "+ choice.text + "\n";
+            var dialogueOption = DisplayDialogueOption();
+            
+            LoadDialogueOptionContent(dialogueOption, choice.index, choice.text);
         }
+    }
+
+    private void EndDialogue()
+    {
+        OnDialogueClosed?.Invoke();
+    }
+
+    private void LoadDialogueOptionContent(GameObject dialogueOptionButton, int optionIndex, string optionText)
+    {
+        optionIndex += 1;
+        dialogueOptionButton.GetComponentInChildren<TextMeshProUGUI>().text = optionIndex + ". " + optionText;
     }
 
     #region DisplayDialoguePanel
     public void InteractWithObject()
     {
-        DisplayDialoguePanel();
+        dialoguePanel = DisplayDialoguePanel();
         OnDialogueShown?.Invoke();
         
         npcTextBox = FindNpcTextBox();
-        playerChoiceTextBox = FindPlayerChoiceTexBox();
-        
+        playerChoicesContainer = FindPlayerChoiceContent();
+
         StartDialogue();
     }
-    private void DisplayDialoguePanel()
+    private static GameObject DisplayDialoguePanel()
     {
-        var panelToDisplay = LoadPanelFromResources();
-        dialoguePanel = Instantiate(panelToDisplay, dialogueCanvas.transform);
-        
+        var panelToDisplay = LoadPrefab("DialoguePanel");
+        return Instantiate(panelToDisplay, dialogueCanvas.transform);
     }
-    private static GameObject LoadPanelFromResources()
+
+    private static GameObject DisplayDialogueOption()
     {
-        var loadedPanel = Resources.Load("DialoguePanel") as GameObject;
-        return loadedPanel;
+        var buttonToLoad = LoadPrefab("DialogueOptionButton");
+        return Instantiate(buttonToLoad, playerChoicesContainer.transform);
+    }
+    private static GameObject LoadPrefab(string nameOfPrefabToLoad)
+    {
+        var loadedPrefab = Resources.Load(nameOfPrefabToLoad) as GameObject;
+        return loadedPrefab;
     }
     #endregion
 
@@ -94,9 +112,9 @@ public class DialogueInteraction : MonoBehaviour
         return dialoguePanel.transform.Find("NPCText").GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    private TextMeshProUGUI FindPlayerChoiceTexBox()
+    private GameObject FindPlayerChoiceContent()
     {
-        return dialoguePanel.transform.Find("PlayerChoices").GetComponentInChildren<TextMeshProUGUI>();
+        return dialoguePanel.transform.Find("PlayerChoices").Find("Viewport").Find("PlayerChoicesContent").gameObject;
     }
     #endregion
 

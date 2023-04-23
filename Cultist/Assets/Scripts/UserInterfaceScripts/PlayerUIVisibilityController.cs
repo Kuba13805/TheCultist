@@ -5,7 +5,7 @@ using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerUIController : MonoBehaviour
+public class PlayerUIVisibilityController : MonoBehaviour
 {
     [SerializeField] private GameObject UI;
     private void Start()

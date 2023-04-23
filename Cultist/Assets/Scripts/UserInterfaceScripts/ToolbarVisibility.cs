@@ -4,23 +4,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShowHideMainUI : MonoBehaviour
+public class ToolbarVisibility : MonoBehaviour
 {
     private Transform[] listOfUiElements;
     private void Start()
     {
         listOfUiElements = GetComponentsInChildren<Transform>();
         
-        DialoguePanelScript.OnDialogueShown += DialoguePanelScriptOnOnDialogueShown;
-        
-        DialoguePanelScript.OnDialogueClosed += DialoguePanelScriptOnOnDialogueClosed;
+        DialogueInteraction.OnDialogueShown += DialoguePanelScriptOnOnDialogueShown;
+
+        DialogueInteraction.OnDialogueClosed += DialoguePanelScriptOnOnDialogueClosed;
     }
 
     private void OnDestroy()
     {
-        DialoguePanelScript.OnDialogueShown -= DialoguePanelScriptOnOnDialogueShown;
+        DialogueInteraction.OnDialogueShown -= DialoguePanelScriptOnOnDialogueShown;
         
-        DialoguePanelScript.OnDialogueClosed -= DialoguePanelScriptOnOnDialogueClosed;
+        DialogueInteraction.OnDialogueClosed -= DialoguePanelScriptOnOnDialogueClosed;
     }
 
     private void DialoguePanelScriptOnOnDialogueShown()
