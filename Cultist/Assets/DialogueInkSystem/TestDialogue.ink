@@ -5,8 +5,8 @@ He looks nervous. Surely something has happened.
     * ["Mind your tongue, slave!"] -> be_cruel
     * ["Where is your master, Godfrey?"] -> where_is_the_master
     * ["Is everything alright?"] -> be_nice
-    * [Leave him]
--> END
+    * [Leave him] -> END
+
 
 === be_cruel ===
 "You won't tell me what to do!"
