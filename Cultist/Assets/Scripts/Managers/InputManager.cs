@@ -35,6 +35,8 @@ namespace Managers
 
             DialogueController.OnDialogueShown += ChangeActionMapToUI;
 
+            DialogueController.OnDialogueClosed += ChangeActionMapToPlayer;
+
             #endregion
         }
 
@@ -50,6 +52,8 @@ namespace Managers
             CollectableObject.OnCollectableClosed -= ChangeActionMapToPlayer;
 
             DialogueController.OnDialogueShown -= ChangeActionMapToUI;
+            
+            DialogueController.OnDialogueClosed -= ChangeActionMapToPlayer;
             #endregion
         }
 

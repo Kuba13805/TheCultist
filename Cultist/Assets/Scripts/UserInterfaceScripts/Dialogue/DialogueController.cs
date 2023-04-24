@@ -30,6 +30,7 @@ public class DialogueController : MonoBehaviour
     #endregion
     private void OnDestroy()
     {
+        
         OnDialogueClosed?.Invoke();
         
         InputManager.Instance.PlayerInputActions.UI.SkipConversation.performed -= NextDialogue;
@@ -65,6 +66,7 @@ public class DialogueController : MonoBehaviour
         StartDialogue();
     }
 
+    #region ControllStory
     private void StartDialogue()
     {
         npcTextBox.text = $"<color=yellow>{charName}</color>: " + inkStory.Continue();
@@ -77,6 +79,10 @@ public class DialogueController : MonoBehaviour
         }
         
         if (inkStory.currentChoices.Count == 0 || playerChoicesContainer.transform.childCount != 0) return;
+        if (_listOfChoices != null)
+        {
+            _listOfChoices.RemoveRange(0, _listOfChoices.Count - 1);
+        }
         _listOfChoices = inkStory.currentChoices;
         DisplayChoices(inkStory, _listOfChoices);
     }
@@ -94,7 +100,7 @@ public class DialogueController : MonoBehaviour
 
     private void EndDialogue()
     {
-        
+        Destroy(dialoguePanel.gameObject);
     }
 
     private static void ClearChoices(IEnumerable<DialogueSendChoice> buttonArray)
@@ -104,6 +110,7 @@ public class DialogueController : MonoBehaviour
             Destroy(option.gameObject);
         }
     }
+    #endregion
 
     #region DisplayDialoguePanel
     private static void LoadDialogueOptionContent(GameObject dialogueOptionButton, int optionIndex, string optionText)
@@ -136,6 +143,8 @@ public class DialogueController : MonoBehaviour
             
             LoadDialogueOptionContent(dialogueOption, choice.index, choice.text);
             dialogueOption.GetComponent<DialogueSendChoice>().choice = choice;
+            
+            Debug.Log(choice.index);
         }
     }
     #endregion
