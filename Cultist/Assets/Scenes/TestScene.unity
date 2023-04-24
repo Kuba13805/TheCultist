@@ -5865,7 +5865,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkAsset: {fileID: 4900000, guid: fc7a2b4ce04966c42a9075ba72ea455e, type: 3}
-  playerChoicesContainer: {fileID: 0}
 --- !u!1 &789201480
 GameObject:
   m_ObjectHideFlags: 0

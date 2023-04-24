@@ -11,16 +11,16 @@ public class ToolbarVisibility : MonoBehaviour
     {
         listOfUiElements = GetComponentsInChildren<Transform>();
         
-        DialogueInteraction.OnDialogueShown += DialoguePanelScriptOnOnDialogueShown;
+        DialogueController.OnDialogueShown += DialoguePanelScriptOnOnDialogueShown;
 
-        DialogueInteraction.OnDialogueClosed += DialoguePanelScriptOnOnDialogueClosed;
+        DialogueController.OnDialogueClosed += DialoguePanelScriptOnOnDialogueClosed;
     }
 
     private void OnDestroy()
     {
-        DialogueInteraction.OnDialogueShown -= DialoguePanelScriptOnOnDialogueShown;
+        DialogueController.OnDialogueShown -= DialoguePanelScriptOnOnDialogueShown;
         
-        DialogueInteraction.OnDialogueClosed -= DialoguePanelScriptOnOnDialogueClosed;
+        DialogueController.OnDialogueClosed -= DialoguePanelScriptOnOnDialogueClosed;
     }
 
     private void DialoguePanelScriptOnOnDialogueShown()

@@ -33,7 +33,7 @@ namespace Managers
             
             CollectableObject.OnCollectableClosed += ChangeActionMapToPlayer;
 
-            DialogueInteraction.OnDialogueShown += ChangeActionMapToUI;
+            DialogueController.OnDialogueShown += ChangeActionMapToUI;
 
             #endregion
         }
@@ -49,7 +49,7 @@ namespace Managers
             
             CollectableObject.OnCollectableClosed -= ChangeActionMapToPlayer;
 
-            DialogueInteraction.OnDialogueShown -= ChangeActionMapToUI;
+            DialogueController.OnDialogueShown -= ChangeActionMapToUI;
             #endregion
         }
 
