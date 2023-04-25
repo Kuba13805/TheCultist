@@ -6,6 +6,7 @@ using Ink.Runtime;
 using Managers;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour
 {
@@ -69,7 +70,9 @@ public class DialogueController : MonoBehaviour
     #region ControllStory
     private void StartDialogue()
     {
-        npcTextBox.text = $"<color=yellow>{charName}</color>: " + inkStory.Continue();
+        npcTextBox.text = $"<color=yellow>{charName}:</color> " + inkStory.Continue();
+        
+        DisplayInfoToClick();
     }
     private void NextDialogue(InputAction.CallbackContext context)
     {
@@ -77,14 +80,21 @@ public class DialogueController : MonoBehaviour
         {
             ContinueStory();
         }
+
+        if (!inkStory.canContinue && inkStory.currentChoices.Count == 0)
+        {
+            EndDialogue();
+        }
         
         if (inkStory.currentChoices.Count == 0 || playerChoicesContainer.transform.childCount != 0) return;
+        
         if (_listOfChoices != null)
         {
             _listOfChoices.RemoveRange(0, _listOfChoices.Count - 1);
         }
+        ClearInfoToClick();
         _listOfChoices = inkStory.currentChoices;
-        DisplayChoices(inkStory, _listOfChoices);
+        DisplayChoices(_listOfChoices);
     }
 
     private void ContinueStory()
@@ -96,6 +106,7 @@ public class DialogueController : MonoBehaviour
         inkStory.ChooseChoiceIndex(_listOfChoices.IndexOf(choice));
         ClearChoices(playerChoicesContainer.transform.GetComponentsInChildren<DialogueSendChoice>());
         ContinueStory();
+        DisplayInfoToClick();
     }
 
     private void EndDialogue()
@@ -134,8 +145,7 @@ public class DialogueController : MonoBehaviour
         var loadedPrefab = Resources.Load(nameOfPrefabToLoad) as GameObject;
         return loadedPrefab;
     }
-
-    private static void DisplayChoices(Story story, List<Choice> list)
+    private static void DisplayChoices(List<Choice> list)
     {
         foreach (var choice in list)
         {
@@ -143,9 +153,25 @@ public class DialogueController : MonoBehaviour
             
             LoadDialogueOptionContent(dialogueOption, choice.index, choice.text);
             dialogueOption.GetComponent<DialogueSendChoice>().choice = choice;
-            
-            Debug.Log(choice.index);
         }
+    }
+
+    private void DisplayInfoToClick()
+    {
+        var container = FindPlayerChoicesGlobalContainer();
+        var buttonToClick = InputManager.Instance.PlayerInputActions.UI.SkipConversation.bindings[0].path;
+
+        var array =buttonToClick.Split('/');
+        
+        var nameOfButtonToClick = buttonToClick.Contains("<Keyboard>/") ? array[^1] : buttonToClick;
+
+        container.GetComponentInChildren<TextMeshProUGUI>().text = $"Click {nameOfButtonToClick} to continue.";
+    }
+
+    private void ClearInfoToClick()
+    {
+        var container = FindPlayerChoicesGlobalContainer();
+        container.GetComponentInChildren<TextMeshProUGUI>().text = "";
     }
     #endregion
     
@@ -154,10 +180,14 @@ public class DialogueController : MonoBehaviour
     {
         return dialoguePanel.transform.Find("NPCText").GetComponentInChildren<TextMeshProUGUI>();
     }
-
     private GameObject FindPlayerChoiceContent()
     {
         return dialoguePanel.transform.Find("PlayerChoices").Find("Viewport").Find("PlayerChoicesContent").gameObject;
+    }
+
+    private GameObject FindPlayerChoicesGlobalContainer()
+    {
+        return dialoguePanel.transform.Find("PlayerChoices").gameObject;
     }
     #endregion
 }
