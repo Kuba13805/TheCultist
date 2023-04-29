@@ -13,11 +13,13 @@ public class DialogueSendChoice : MonoBehaviour, IPointerEnterHandler, IPointerE
     private Button _button;
     [SerializeField] private Color normalTextColor;
     [SerializeField] private Color highlightedTextColor;
+    public int index;
 
     public static event Action<Choice> OnChoiceSubmitted;
     
     private void Start()
     {
+        index = choice.index;
         _button = GetComponent<Button>();
         GetComponentInChildren<TextMeshProUGUI>().color = normalTextColor;
         

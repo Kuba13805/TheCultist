@@ -86,8 +86,8 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         if (parentBeforeDrag.GetComponent<InventorySlot>() && parentAfterDrag.GetComponent<EquipmentSlot>())
         {
             isInPlayerInventory = false;
-            GameManager.Instance.PlayerData.playerInventoryItems.Remove(item);
-            GameManager.Instance.PlayerData.characterEquipment.Add(item);
+            GameManager.Instance.playerData.playerInventoryItems.Remove(item);
+            GameManager.Instance.playerData.characterEquipment.Add(item);
             OnItemEquipped?.Invoke();
             OnItemChanged?.Invoke();
         }
@@ -114,14 +114,14 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
 
         if (eventData.button == PointerEventData.InputButton.Left && !isInPlayerInventory && !transform.GetComponentInParent<EquipmentSlot>())
         {
-            GameManager.Instance.PlayerData.playerInventoryItems.Add(item);
+            GameManager.Instance.playerData.playerInventoryItems.Add(item);
             OnItemAddedFromContainer?.Invoke(item);
             DestroyItem();
         }
         else if (eventData.button == PointerEventData.InputButton.Left && transform.GetComponentInParent<EquipmentSlot>())
         {
-            GameManager.Instance.PlayerData.playerInventoryItems.Add(item);
-            GameManager.Instance.PlayerData.characterEquipment.Remove(item);
+            GameManager.Instance.playerData.playerInventoryItems.Add(item);
+            GameManager.Instance.playerData.characterEquipment.Remove(item);
             DestroyItem();
             OnItemStriped?.Invoke();
             OnItemChanged?.Invoke();
@@ -145,7 +145,7 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     {
         if (isInPlayerInventory)
         {
-            GameManager.Instance.PlayerData.playerInventoryItems.Remove(item);
+            GameManager.Instance.playerData.playerInventoryItems.Remove(item);
         }
 
         if (detailsPanelActive)

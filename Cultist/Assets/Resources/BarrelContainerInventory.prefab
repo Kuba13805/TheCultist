@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2723967627864390208}
   - component: {fileID: 4362906252712545918}
   - component: {fileID: 618263953369460931}
+  - component: {fileID: -201703117299823284}
   m_Layer: 5
   m_Name: BarrelContainerInventory
   m_TagString: Untagged
@@ -89,6 +90,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e262be99e74286c45b7c7babd431a2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-201703117299823284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485152049742882069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0202f789da6cf8419f544094f64113f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5211101907096142908

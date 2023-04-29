@@ -17,26 +17,22 @@ public class Container : BaseInteractableObject
     public GameObject emptySlotPrefab;
 
     [SerializeField] private ContainerType type;
-    private InventorySlot[] containerSlots;
     public List<BaseItem> itemsInContainer;
     
     private int containerSlotsNumber;
     private GameObject containerUIToLoad;
     private GameObject panelInstance;
     public bool isActive;
-    public int emptySlotsLeft;
     public override void Interact()
     {
         InventoryItemDragDrop.OnItemAddedFromContainer += RemoveItemFromContainerList;
         ShowContainerLoadout();
-        GameManager.Instance.PauseGame();
     }
 
     private void ShowContainerLoadout()
     {
         DeterminePanelToShow();
         
-        containerSlots = containerUIToLoad.GetComponentInChildren<GridLayoutGroup>().GetComponentsInChildren<InventorySlot>();
         if (Time.timeScale != 0)
         {
             if (isActive)
@@ -54,16 +50,18 @@ public class Container : BaseInteractableObject
 
     private void FillLoadout(BaseItem[] items)
     {
-        for (int i = 0; i < items.Length; i++)
+        foreach (var t in items)
         {
-            SpawnNewItem(items[i]);
+            SpawnNewItem(t);
         }
+
         for (int i = 0; i < containerSlotsNumber - items.Length; i++)
         {
             SpawnNewEmptySlot();
         }
     }
-    void SpawnNewItem(BaseItem item)
+
+    private void SpawnNewItem(BaseItem item)
     {
         GameObject slotPrefabToSpawn = SpawnNewEmptySlot();
         GameObject itemPrefabSpawn = Instantiate(inventoryItemPrefab, slotPrefabToSpawn.transform, false);
@@ -72,11 +70,10 @@ public class Container : BaseInteractableObject
         
     }
 
-    GameObject SpawnNewEmptySlot()
+    private GameObject SpawnNewEmptySlot()
     {
         GameObject content = panelInstance.GetComponentInChildren<GridLayoutGroup>().gameObject;
         GameObject slotPrefabToSpawn = Instantiate(emptySlotPrefab, content.transform, false);
-        emptySlotsLeft++;
         return slotPrefabToSpawn;
     }
     private void DeterminePanelToShow()
@@ -103,7 +100,8 @@ public class Container : BaseInteractableObject
             }
         }
     }
-    void RemoveItemFromContainerList(BaseItem item)
+
+    private void RemoveItemFromContainerList(BaseItem item)
     {
         itemsInContainer.Remove(item);
     }

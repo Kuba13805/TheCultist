@@ -25,7 +25,7 @@ public class DisplayPlayerInventory : MonoBehaviour
 
     public void DisplayInventory()
     {
-        foreach (var item in GameManager.Instance.PlayerData.playerInventoryItems)
+        foreach (var item in GameManager.Instance.playerData.playerInventoryItems)
         {
             SpawnNewItem(item);
         }

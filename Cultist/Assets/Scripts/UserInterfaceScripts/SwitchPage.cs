@@ -13,19 +13,15 @@ public class SwitchPage : MonoBehaviour
     public void NextPage()
     {
         numberOfPages = GetComponent<TextMeshProUGUI>().textInfo.pageCount;
-        if (currentPage < numberOfPages - 1)
-        {
-            currentPage++;
-            GetComponent<TextMeshProUGUI>().pageToDisplay++;
-        }
+        if (currentPage >= numberOfPages - 1) return;
+        currentPage++;
+        GetComponent<TextMeshProUGUI>().pageToDisplay++;
     }
 
     public void PreviousPage()
     {
-        if (currentPage > 0)
-        {
-            currentPage--;
-            GetComponent<TextMeshProUGUI>().pageToDisplay--;
-        }
+        if (currentPage <= 0) return;
+        currentPage--;
+        GetComponent<TextMeshProUGUI>().pageToDisplay--;
     }
 }

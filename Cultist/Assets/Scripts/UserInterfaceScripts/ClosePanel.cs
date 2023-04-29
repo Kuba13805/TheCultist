@@ -7,10 +7,6 @@ public class ClosePanel : MonoBehaviour
 {
     public void CloseMenu()
     {
-        if (Time.timeScale == 0)
-        {
-            GameManager.Instance.ResumeGame();
-        }
         Destroy(gameObject);
     }
 }

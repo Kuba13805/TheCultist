@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 7572823925692217843}
   - component: {fileID: 7572823925692217842}
   - component: {fileID: 4980933162620680201}
+  - component: {fileID: 2728995681588385849}
   m_Layer: 5
   m_Name: CollectableNotePanel
   m_TagString: Untagged
@@ -225,6 +226,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e262be99e74286c45b7c7babd431a2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2728995681588385849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572823925692217840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbd46832f127f3448ec173616918d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7572823925876626132

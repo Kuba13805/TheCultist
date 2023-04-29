@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8399699006810407545}
   - component: {fileID: 7913083485964006983}
   - component: {fileID: 6347666205646576757}
+  - component: {fileID: 4936736976114803784}
   m_Layer: 5
   m_Name: BasketContainerInventory
   m_TagString: Untagged
@@ -89,6 +90,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e262be99e74286c45b7c7babd431a2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4936736976114803784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026178219615313196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0202f789da6cf8419f544094f64113f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5398400344863226106

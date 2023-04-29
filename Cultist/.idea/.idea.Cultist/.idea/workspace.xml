@@ -12,8 +12,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/InputSystem/PlayerInputActions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/DialogueInteraction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Events/CallContainerEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/ItemSpecialScripts/ItemMultipleEffects.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/NPCScripts/DialogueInteraction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GameState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -143,7 +144,12 @@
       <workItem from="1682160852278" duration="7575000" />
       <workItem from="1682260061382" duration="8270000" />
       <workItem from="1682331420417" duration="20067000" />
-      <workItem from="1682425110125" duration="4141000" />
+      <workItem from="1682425110125" duration="15575000" />
+      <workItem from="1682527427192" duration="3995000" />
+      <workItem from="1682585762608" duration="16967000" />
+      <workItem from="1682673206559" duration="13333000" />
+      <workItem from="1682701376876" duration="4240000" />
+      <workItem from="1682760394671" duration="12363000" />
     </task>
     <servers />
   </component>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PlayerScripts
 {
@@ -18,7 +19,7 @@ namespace PlayerScripts
         [Foldout("CalculatedAttributes")] public int condition;
         [Foldout("CalculatedAttributes")] public int wisdom;
 
-        [Foldout("CalculatedSkills")] public int perceptivity;
+        [Foldout("CalculatedSkills")] public int perception;
         [Foldout("CalculatedSkills")] public int occultism;
         [Foldout("CalculatedSkills")] public int medicine;
         [Foldout("CalculatedSkills")] public int electrics;

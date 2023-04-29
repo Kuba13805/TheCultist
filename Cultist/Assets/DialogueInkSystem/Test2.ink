@@ -1,4 +1,6 @@
+-> test
+=== test ===
 Hi, how are you?
-    * Good
-    * Bad
+    + Good -> test
+    + Bad -> test
 -> END

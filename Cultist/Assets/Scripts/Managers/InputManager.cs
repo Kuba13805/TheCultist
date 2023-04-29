@@ -29,13 +29,17 @@ namespace Managers
             
             PlayerInputActions.UI.CloseUI.performed += ChangeActionMapToPlayerOnKey;
             
-            CollectableObject.OnCollectableShown += ChangeActionMapToUI;
+            CallCollectableEvents.OnCollectableShown += ChangeActionMapToUI;
             
-            CollectableObject.OnCollectableClosed += ChangeActionMapToPlayer;
+            CallCollectableEvents.OnCollectableClosed += ChangeActionMapToPlayer;
 
             DialogueController.OnDialogueShown += ChangeActionMapToUI;
 
             DialogueController.OnDialogueClosed += ChangeActionMapToPlayer;
+
+            CallContainerEvents.OnContainerOpen += ChangeActionMapToUI;
+
+            CallContainerEvents.OnContainerClosed += ChangeActionMapToPlayer;
 
             #endregion
         }
@@ -47,13 +51,17 @@ namespace Managers
             
             PlayerInputActions.UI.CloseUI.performed -= ChangeActionMapToPlayerOnKey;
             
-            CollectableObject.OnCollectableShown -= ChangeActionMapToUI;
+            CallCollectableEvents.OnCollectableShown -= ChangeActionMapToUI;
             
-            CollectableObject.OnCollectableClosed -= ChangeActionMapToPlayer;
+            CallCollectableEvents.OnCollectableClosed -= ChangeActionMapToPlayer;
 
             DialogueController.OnDialogueShown -= ChangeActionMapToUI;
             
             DialogueController.OnDialogueClosed -= ChangeActionMapToPlayer;
+            
+            CallContainerEvents.OnContainerOpen -= ChangeActionMapToUI;
+
+            CallContainerEvents.OnContainerClosed -= ChangeActionMapToPlayer;
             #endregion
         }
 

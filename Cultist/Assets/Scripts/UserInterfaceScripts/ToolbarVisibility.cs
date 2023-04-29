@@ -11,26 +11,42 @@ public class ToolbarVisibility : MonoBehaviour
     {
         listOfUiElements = GetComponentsInChildren<Transform>();
         
-        DialogueController.OnDialogueShown += DialoguePanelScriptOnOnDialogueShown;
+        DialogueController.OnDialogueShown += HideToolbar;
 
-        DialogueController.OnDialogueClosed += DialoguePanelScriptOnOnDialogueClosed;
+        DialogueController.OnDialogueClosed += ShowToolbar;
+
+        CallContainerEvents.OnContainerOpen += HideToolbar;
+        
+        CallContainerEvents.OnContainerClosed += ShowToolbar;
+        
+        CallCollectableEvents.OnCollectableShown += HideToolbar;
+        
+        CallCollectableEvents.OnCollectableClosed += ShowToolbar;
     }
 
     private void OnDestroy()
     {
-        DialogueController.OnDialogueShown -= DialoguePanelScriptOnOnDialogueShown;
+        DialogueController.OnDialogueShown -= HideToolbar;
         
-        DialogueController.OnDialogueClosed -= DialoguePanelScriptOnOnDialogueClosed;
+        DialogueController.OnDialogueClosed -= ShowToolbar;
+        
+        CallContainerEvents.OnContainerOpen -= HideToolbar;
+        
+        CallContainerEvents.OnContainerClosed -= ShowToolbar;
+        
+        CallCollectableEvents.OnCollectableShown -= HideToolbar;
+        
+        CallCollectableEvents.OnCollectableClosed -= ShowToolbar;
     }
 
-    private void DialoguePanelScriptOnOnDialogueShown()
+    private void HideToolbar()
     {
         foreach (var uiElement in listOfUiElements)
         {
             uiElement.gameObject.SetActive(false);
         }
     }
-    private void DialoguePanelScriptOnOnDialogueClosed()
+    private void ShowToolbar()
     {
         foreach (var uiElement in listOfUiElements)
         {

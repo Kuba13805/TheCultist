@@ -992,6 +992,7 @@ GameObject:
   - component: {fileID: 2870035060594286412}
   - component: {fileID: 2870035060594286413}
   - component: {fileID: 2870035060594286449}
+  - component: {fileID: -3950238454906386309}
   m_Layer: 5
   m_Name: CollectableBookPanel
   m_TagString: Untagged
@@ -1072,5 +1073,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e262be99e74286c45b7c7babd431a2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3950238454906386309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2870035060709461109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbd46832f127f3448ec173616918d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

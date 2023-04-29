@@ -1,34 +1,54 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ink.Runtime;
 using Managers;
 using TMPro;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
+using Choice = Ink.Runtime.Choice;
+using Story = Ink.Runtime.Story;
 
 public class DialogueController : MonoBehaviour
 {
-    private GameObject dialoguePanel;
-    private static GameObject dialogueCanvas;
-    
-    private TextAsset inkAsset;
-    private Story inkStory;
-    private List<Choice> _listOfChoices;
+    private DialogueInteraction _originConversationPoint;
 
-    private TextMeshProUGUI npcTextBox;
-    private static GameObject playerChoicesContainer;
+    private GameObject _dialoguePanel;
+
+    private TextAsset _inkAsset;
+    private Story _inkStory;
+    private List<Choice> _listOfChoices;
+    private List<string> _listOfCurrentTags;
+
+    private TextMeshProUGUI _npcTextBox;
+    private static GameObject _playerChoicesContainer;
     
-    private string charName;
-    
+    private string _charName;
+
     #region Events
 
     public static event Action OnDialogueShown;
     
     public static event Action OnDialogueClosed;
 
+    public static event Action<int, string> OnTestCheck;
+
     #endregion
+
+    private void Awake()
+    {
+        InputManager.Instance.PlayerInputActions.UI.SkipConversation.performed += NextDialogue;
+        
+        DialogueSendChoice.OnChoiceSubmitted += SubmitChoice;
+        
+        GameManager.OnPlayerTestCheck += ReturnTestResult;
+        
+        DialogueInteraction.OnDialogueCall += Initialize;
+    }
+
+    private void Start()
+    {
+        OnDialogueShown?.Invoke();
+    }
+
     private void OnDestroy()
     {
         
@@ -37,89 +57,110 @@ public class DialogueController : MonoBehaviour
         InputManager.Instance.PlayerInputActions.UI.SkipConversation.performed -= NextDialogue;
         
         DialogueSendChoice.OnChoiceSubmitted -= SubmitChoice;
+        
+        GameManager.OnPlayerTestCheck -= ReturnTestResult;
+        
+        DialogueInteraction.OnDialogueCall -= Initialize;
     }
 
-    public void Initialize(TextAsset newInkAsset, string objectName)
+    private void Initialize(string objectName, DialogueInteraction dialogueInteraction)
     {
-        DialogueSendChoice.OnChoiceSubmitted += SubmitChoice;
-        InputManager.Instance.PlayerInputActions.UI.SkipConversation.performed += NextDialogue;
-        
-        try
-        {
-            dialogueCanvas = GameObject.Find("DialogueCanvas");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e + "Canvas cannot be found");
-            throw;
-        }
-        
-        dialoguePanel = DisplayDialoguePanel();
-        OnDialogueShown?.Invoke();
+        _charName = objectName;
 
-        inkAsset = newInkAsset;
-        inkStory = new Story(inkAsset.text);
-        charName = objectName;
+        _dialoguePanel = gameObject;
         
-        npcTextBox = FindNpcTextBox();
-        playerChoicesContainer = FindPlayerChoiceContent();
-        
+        InitializeStory(dialogueInteraction);
+
+        _npcTextBox = FindNpcTextBox();
+        _playerChoicesContainer = FindPlayerChoiceContent();
+
         StartDialogue();
     }
 
     #region ControllStory
+    private void InitializeStory(DialogueInteraction dialogueInteraction)
+    {
+        _inkAsset = dialogueInteraction.dialogueAsset;
+        _inkStory = new Story(_inkAsset.text);
+        HandleInkError();
+        
+        _originConversationPoint = dialogueInteraction;
+        
+        if (_originConversationPoint.oneTimeConversation) return;
+
+        if (!string.IsNullOrEmpty(_originConversationPoint.dialogueSaved))
+        {
+            LoadStoryState(_originConversationPoint.dialogueSaved);
+            Debug.Log("Loaded");
+        }
+        else
+        {
+            SaveStoryState();
+            Debug.Log("Saved");
+        }
+    }
+
     private void StartDialogue()
     {
-        npcTextBox.text = $"<color=yellow>{charName}:</color> " + inkStory.Continue();
-        
+        ContinueStory();
         DisplayInfoToClick();
     }
     private void NextDialogue(InputAction.CallbackContext context)
     {
-        if (inkStory.canContinue && inkStory.currentChoices.Count == 0)
+        if (_inkStory.canContinue && _inkStory.currentChoices.Count == 0)
         {
             ContinueStory();
+            if (_npcTextBox.text == "")
+            {
+                ContinueStory();
+            }
         }
-
-        if (!inkStory.canContinue && inkStory.currentChoices.Count == 0)
+        if (!_inkStory.canContinue && _inkStory.currentChoices.Count == 0)
         {
             EndDialogue();
         }
-        
-        if (inkStory.currentChoices.Count == 0 || playerChoicesContainer.transform.childCount != 0) return;
-        
-        if (_listOfChoices != null)
-        {
-            _listOfChoices.RemoveRange(0, _listOfChoices.Count - 1);
-        }
+        if (_inkStory.currentChoices.Count == 0 || _playerChoicesContainer.transform.childCount != 0) return;
+
+        _listOfChoices?.RemoveRange(0, _listOfChoices.Count);
         ClearInfoToClick();
-        _listOfChoices = inkStory.currentChoices;
+        _listOfChoices = _inkStory.currentChoices;
         DisplayChoices(_listOfChoices);
     }
 
     private void ContinueStory()
     {
-        npcTextBox.text = $"<color=yellow>{charName}</color>: " + inkStory.Continue();
+        if (_inkStory.canContinue)
+        {
+            _npcTextBox.text = $"<color=yellow>{_charName}:</color> " + _inkStory.Continue();
+        }
     }
     private void SubmitChoice(Choice choice)
     {
-        inkStory.ChooseChoiceIndex(_listOfChoices.IndexOf(choice));
-        ClearChoices(playerChoicesContainer.transform.GetComponentsInChildren<DialogueSendChoice>());
-        ContinueStory();
+        TestPlayerWithChoice(choice);
+        
+        _inkStory.ChooseChoiceIndex(_listOfChoices.IndexOf(choice));
+        ClearChoices(_playerChoicesContainer.transform.GetComponentsInChildren<DialogueSendChoice>());
+        if (_inkStory.canContinue)
+        {
+            ContinueStory();
+        }
         DisplayInfoToClick();
     }
 
     private void EndDialogue()
     {
-        Destroy(dialoguePanel.gameObject);
+        SaveStoryState();
+        Destroy(_dialoguePanel.gameObject);
     }
 
-    private static void ClearChoices(IEnumerable<DialogueSendChoice> buttonArray)
+    private void LoadStoryState(string storyStateToLoad)
     {
-        foreach (var option in buttonArray)
-        {
-            Destroy(option.gameObject);
-        }
+        _inkStory.state.LoadJson(storyStateToLoad);
+    }
+
+    private void SaveStoryState()
+    {
+        _originConversationPoint.dialogueSaved = _inkStory.state.ToJson();
     }
     #endregion
 
@@ -129,16 +170,11 @@ public class DialogueController : MonoBehaviour
         optionIndex += 1;
         dialogueOptionButton.GetComponentInChildren<TextMeshProUGUI>().text = optionIndex + ". " + optionText;
     }
-    private static GameObject DisplayDialoguePanel()
-    {
-        var panelToDisplay = LoadPrefab("DialoguePanel");
-        return Instantiate(panelToDisplay, dialogueCanvas.transform);
-    }
 
     private static GameObject DisplayDialogueOption()
     {
         var buttonToLoad = LoadPrefab("DialogueOptionButton");
-        return Instantiate(buttonToLoad, playerChoicesContainer.transform);
+        return Instantiate(buttonToLoad, _playerChoicesContainer.transform);
     }
     private static GameObject LoadPrefab(string nameOfPrefabToLoad)
     {
@@ -150,12 +186,19 @@ public class DialogueController : MonoBehaviour
         foreach (var choice in list)
         {
             var dialogueOption = DisplayDialogueOption();
-            
+                    
             LoadDialogueOptionContent(dialogueOption, choice.index, choice.text);
             dialogueOption.GetComponent<DialogueSendChoice>().choice = choice;
+
         }
     }
-
+    private static void ClearChoices(IEnumerable<DialogueSendChoice> buttonArray)
+    {
+        foreach (var option in buttonArray)
+        {
+            Destroy(option.gameObject);
+        }
+    }
     private void DisplayInfoToClick()
     {
         var container = FindPlayerChoicesGlobalContainer();
@@ -165,29 +208,68 @@ public class DialogueController : MonoBehaviour
         
         var nameOfButtonToClick = buttonToClick.Contains("<Keyboard>/") ? array[^1] : buttonToClick;
 
-        container.GetComponentInChildren<TextMeshProUGUI>().text = $"Click {nameOfButtonToClick} to continue.";
+        if (container != null)
+        {
+            container.GetComponentInChildren<TextMeshProUGUI>().text = $"Click {nameOfButtonToClick} to continue.";
+        }
     }
 
     private void ClearInfoToClick()
     {
         var container = FindPlayerChoicesGlobalContainer();
-        container.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        if (container != null)
+        {
+            container.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        }
+    }
+    #endregion
+
+    #region DialogueLogic
+    private string CheckForTags(Choice choice)
+    {
+        _listOfCurrentTags = choice.tags;
+        return _listOfCurrentTags == null ? "No tags" : _listOfCurrentTags[0];
+    }
+
+    private void TestPlayerWithChoice(Choice choice)
+    {
+        var testTag = CheckForTags(choice);
+        if (testTag == "No tags") return;
+        
+        var array = testTag.Split(":");
+        
+        OnTestCheck?.Invoke(int.Parse(array[1]), array[0]);
+    }
+
+    private void ReturnTestResult(bool result)
+    {
+        _inkStory.variablesState["test_passed"] = result;
+    }
+    private void HandleInkError()
+    {
+        _inkStory.onError += (msg, type) =>
+        {
+            if (type == Ink.ErrorType.Warning)
+                Debug.LogWarning(msg);
+            else
+                Debug.LogError(msg);
+        };
     }
     #endregion
     
     #region FindPanelElements
     private TextMeshProUGUI FindNpcTextBox()
     {
-        return dialoguePanel.transform.Find("NPCText").GetComponentInChildren<TextMeshProUGUI>();
+        return _dialoguePanel.transform.Find("NPCText").GetComponentInChildren<TextMeshProUGUI>();
     }
     private GameObject FindPlayerChoiceContent()
     {
-        return dialoguePanel.transform.Find("PlayerChoices").Find("Viewport").Find("PlayerChoicesContent").gameObject;
+        return _dialoguePanel.transform.Find("PlayerChoices").Find("Viewport").Find("PlayerChoicesContent").gameObject;
     }
 
     private GameObject FindPlayerChoicesGlobalContainer()
     {
-        return dialoguePanel.transform.Find("PlayerChoices").gameObject;
+        return _dialoguePanel.transform.Find("PlayerChoices").gameObject;
     }
     #endregion
 }

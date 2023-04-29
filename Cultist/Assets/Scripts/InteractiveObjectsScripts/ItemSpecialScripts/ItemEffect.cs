@@ -77,7 +77,7 @@ public class ItemEffect : ScriptableObject
         switch (statToEffect)
         {
             case charStatsToEffect.Perceptivity:
-                playerStats.perceptivity = CalculateStatValue(playerStats.perceptivity);
+                playerStats.perception = CalculateStatValue(playerStats.perception);
                 break;
             case charStatsToEffect.Occultism:
                 playerStats.occultism = CalculateStatValue(playerStats.occultism);

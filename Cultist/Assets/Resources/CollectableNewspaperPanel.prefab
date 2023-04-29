@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 5323872347573128411}
   - component: {fileID: 5323872347573128410}
   - component: {fileID: 5323872347573128422}
+  - component: {fileID: 5174568802001976255}
   m_Layer: 5
   m_Name: CollectableNewspaperPanel
   m_TagString: Untagged
@@ -633,6 +634,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e262be99e74286c45b7c7babd431a2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5174568802001976255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5323872347457691618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbd46832f127f3448ec173616918d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5323872347573128416

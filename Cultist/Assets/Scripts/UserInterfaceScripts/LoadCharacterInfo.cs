@@ -42,7 +42,7 @@ public class LoadCharacterInfo : MonoBehaviour
     }
     public enum charSkills
     {
-        Perceptivity,
+        Perception,
         Occultism,
         Medicine,
         Electrics,
@@ -59,7 +59,7 @@ public class LoadCharacterInfo : MonoBehaviour
         InventoryItemDragDrop.OnItemChanged += SwitchOnOff;
         
         inputToLoad = GetComponent<TextMeshProUGUI>();
-        PlayerData = GameManager.Instance.PlayerData;
+        PlayerData = GameManager.Instance.playerData;
         LoadData();
         
     }
@@ -75,13 +75,11 @@ public class LoadCharacterInfo : MonoBehaviour
         {
             LoadCharAttribute(attributeToLoad);
         }
-
-        if (LoadBasic)
+        else if (LoadBasic)
         {
             LoadCharBasicInfo(basicInfoToLoad);
         }
-
-        if (LoadSkill)
+        else if (LoadSkill)
         {
             LoadCharSkill(skillToLoad);
         }
@@ -89,74 +87,43 @@ public class LoadCharacterInfo : MonoBehaviour
 
     private void LoadCharAttribute(charAttributes attribute)
     {
-        switch (attribute)
+        inputToLoad.text = attribute switch
         {
-            case charAttributes.Strength:
-                inputToLoad.text = PlayerData.strength.ToString();
-                break;
-            case charAttributes.Dexterity:
-                inputToLoad.text = PlayerData.dexterity.ToString();
-                break;
-            case charAttributes.Condition:
-                inputToLoad.text = PlayerData.condition.ToString();
-                break;
-            case charAttributes.Wisdom:
-                inputToLoad.text = PlayerData.wisdom.ToString();
-                break;
-            case charAttributes.Power:
-                inputToLoad.text = PlayerData.power.ToString();
-                break;
-        }
+            charAttributes.Strength => PlayerData.strength.ToString(),
+            charAttributes.Dexterity => PlayerData.dexterity.ToString(),
+            charAttributes.Condition => PlayerData.condition.ToString(),
+            charAttributes.Wisdom => PlayerData.wisdom.ToString(),
+            charAttributes.Power => PlayerData.power.ToString(),
+            _ => inputToLoad.text
+        };
     }
 
     private void LoadCharBasicInfo(charBasicInfo info)
     {
-        switch (info)
+        inputToLoad.text = info switch
         {
-            case charBasicInfo.Name:
-                inputToLoad.text = PlayerData.charName + " '" + PlayerData.nickname + "'";
-                break;
-            case charBasicInfo.Health:
-                inputToLoad.text = PlayerData.health.ToString();
-                break;
-        }
+            charBasicInfo.Name => PlayerData.charName + " '" + PlayerData.nickname + "'",
+            charBasicInfo.Health => PlayerData.health.ToString(),
+            _ => inputToLoad.text
+        };
     }
 
     private void LoadCharSkill(charSkills skill)
     {
-        switch (skill)
+        inputToLoad.text = skill switch
         {
-            case charSkills.Electrics:
-                inputToLoad.text = PlayerData.electrics.ToString();
-                break;
-            case charSkills.History:
-                inputToLoad.text = PlayerData.history.ToString();
-                break;
-            case charSkills.Intimidation:
-                inputToLoad.text = PlayerData.intimidation.ToString();
-                break;
-            case charSkills.Locksmithing:
-                inputToLoad.text = PlayerData.locksmithing.ToString();
-                break;
-            case charSkills.Mechanics:
-                inputToLoad.text = PlayerData.mechanics.ToString();
-                break;
-            case charSkills.Medicine:
-                inputToLoad.text = PlayerData.medicine.ToString();
-                break;
-            case charSkills.Occultism:
-                inputToLoad.text = PlayerData.occultism.ToString();
-                break;
-            case charSkills.Perceptivity:
-                inputToLoad.text = PlayerData.perceptivity.ToString();
-                break;
-            case charSkills.Persuasion:
-                inputToLoad.text = PlayerData.persuasion.ToString();
-                break;
-            case charSkills.Psychology:
-                inputToLoad.text = PlayerData.psychology.ToString();
-                break;
-        }
+            charSkills.Electrics => PlayerData.electrics.ToString(),
+            charSkills.History => PlayerData.history.ToString(),
+            charSkills.Intimidation => PlayerData.intimidation.ToString(),
+            charSkills.Locksmithing => PlayerData.locksmithing.ToString(),
+            charSkills.Mechanics => PlayerData.mechanics.ToString(),
+            charSkills.Medicine => PlayerData.medicine.ToString(),
+            charSkills.Occultism => PlayerData.occultism.ToString(),
+            charSkills.Perception => PlayerData.perception.ToString(),
+            charSkills.Persuasion => PlayerData.persuasion.ToString(),
+            charSkills.Psychology => PlayerData.psychology.ToString(),
+            _ => inputToLoad.text
+        };
     }
 
     private void SwitchOnOff()

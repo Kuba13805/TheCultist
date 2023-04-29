@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: 
   nickname: Big J
-  Health: 0
+  health: 0
   dexterity: 6
   strength: 2
   power: 6
   condition: 17
   wisdom: 8
-  perceptivity: 10
+  perception: 2
   occultism: 4
   medicine: 7
   electrics: 2
   history: 2
-  persuasion: 8
+  persuasion: 2
   intimidation: 7
   locksmithing: 1
   mechanics: 2

@@ -59,8 +59,8 @@ public class EquipmentSlot : InventorySlot
     }
     public void SpawnEquippedItem()
     {
-        if (GameManager.Instance.PlayerData == null) return;
-        foreach (var item in GameManager.Instance.PlayerData.characterEquipment)
+        if (GameManager.Instance.playerData == null) return;
+        foreach (var item in GameManager.Instance.playerData.characterEquipment)
         {
             if (item.armorPart.ToString() == armorPartToEquipt.ToString())
             {
@@ -106,6 +106,6 @@ public class EquipmentSlot : InventorySlot
 
     void CalculateStatValue(ItemEffect itemEffect)
     {
-        itemEffect.AffectStat(GameManager.Instance.PlayerData);
+        itemEffect.AffectStat(GameManager.Instance.playerData);
     }
 }
