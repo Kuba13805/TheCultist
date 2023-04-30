@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 public class CharacterControllerScript : MonoBehaviour
 {
-    public GameObject markedDestinationFlag;
+    private GameObject markedDestinationFlag;
     private bool _hasSpawnedFlag = false;
     private ParticleSystem _flag;
     [SerializeField] private ParticleSystem clickEffect;
@@ -179,6 +179,7 @@ public class CharacterControllerScript : MonoBehaviour
         if (_flag != null)
         {
             Destroy(_flag);
+            Destroy(markedDestinationFlag);
             _hasSpawnedFlag = false;
         }
 
@@ -189,7 +190,7 @@ public class CharacterControllerScript : MonoBehaviour
         var spawnPoint = new Vector3(hitPosition.x, hitPosition.y + objectHeight, hitPosition.z);
         
         _flag = Instantiate(clickEffect, spawnPoint, Quaternion.identity);
-        
+        markedDestinationFlag = _flag.gameObject;
         _hasSpawnedFlag = true;
 
     }
@@ -199,6 +200,7 @@ public class CharacterControllerScript : MonoBehaviour
         if (!_hasSpawnedFlag || _playerNavMeshAgent.remainingDistance != 0) return;
         
         Destroy(_flag);
+        Destroy(markedDestinationFlag);
         _hasSpawnedFlag = false;
     }
 
