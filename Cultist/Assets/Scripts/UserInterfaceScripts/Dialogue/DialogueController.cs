@@ -19,8 +19,12 @@ public class DialogueController : MonoBehaviour
     private List<Choice> _listOfChoices;
     private List<string> _listOfCurrentTags;
 
-    private TextMeshProUGUI _npcTextBox;
     private static GameObject _playerChoicesContainer;
+    private GameObject _playerPortraitBox;
+    private Sprite _playerPortraitSprite;
+    
+    
+    private TextMeshProUGUI _npcTextBox;
     private GameObject _npcPortraitBox;
     private Sprite _npcPortraitSprite;
     
@@ -80,10 +84,15 @@ public class DialogueController : MonoBehaviour
 
     private void InitializeStoryUIBoxes(string objectName, Component dialogueInteraction)
     {
-        _npcTextBox = FindNpcTextBox();
         _playerChoicesContainer = FindPlayerChoiceContent();
-        _npcPortraitBox = FindNpcPortrait();
+        _playerPortraitBox = FindUiElement("PlayerPortrait");
+        _playerPortraitSprite = GameManager.Instance.playerData.playerPortrait;
+
+        _playerPortraitBox.GetComponentInChildren<Image>().sprite = _playerPortraitSprite;
+        
         _charName = objectName;
+        _npcTextBox = FindNpcTextBox();
+        _npcPortraitBox = FindUiElement("NPCPortrait");
         _npcPortraitSprite = dialogueInteraction.GetComponent<InteractableCharacter>().characterPortrait;
 
         if (_npcPortraitSprite == null)
@@ -220,7 +229,7 @@ public class DialogueController : MonoBehaviour
     }
     private void DisplayInfoToClick()
     {
-        var container = FindPlayerChoicesGlobalContainer();
+        var container = FindUiElement("PlayerChoices");
         var buttonToClick = InputManager.Instance.PlayerInputActions.UI.SkipConversation.bindings[0].path;
 
         var array =buttonToClick.Split('/');
@@ -235,7 +244,7 @@ public class DialogueController : MonoBehaviour
 
     private void ClearInfoToClick()
     {
-        var container = FindPlayerChoicesGlobalContainer();
+        var container = FindUiElement("PlayerChoices");
         if (container != null)
         {
             container.GetComponentInChildren<TextMeshProUGUI>().text = "";
@@ -285,15 +294,9 @@ public class DialogueController : MonoBehaviour
     {
         return _dialoguePanel.transform.Find("PlayerChoices").Find("Viewport").Find("PlayerChoicesContent").gameObject;
     }
-
-    private GameObject FindPlayerChoicesGlobalContainer()
+    private GameObject FindUiElement(string elementToFind)
     {
-        return _dialoguePanel.transform.Find("PlayerChoices").gameObject;
-    }
-
-    private GameObject FindNpcPortrait()
-    {
-        return _dialoguePanel.transform.Find("NPCPortrait").gameObject;
+        return _dialoguePanel.transform.Find(elementToFind).gameObject;
     }
     #endregion
 }

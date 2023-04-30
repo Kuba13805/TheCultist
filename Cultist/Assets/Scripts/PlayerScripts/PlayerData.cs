@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace PlayerScripts
 {
@@ -12,6 +10,7 @@ namespace PlayerScripts
         public string charName;
         public string nickname;
         public int health;
+        public Sprite playerPortrait;
 
         [Foldout("CalculatedAttributes")] public int dexterity;
         [Foldout("CalculatedAttributes")] public int strength;
