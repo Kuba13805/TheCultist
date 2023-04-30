@@ -3,32 +3,34 @@ using Managers;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class CharacterControllerScript : MonoBehaviour
 {
     public GameObject markedDestinationFlag;
-    private bool hasSpawnedFlag = false;
-    GameObject flag;
+    private bool _hasSpawnedFlag = false;
+    private ParticleSystem _flag;
+    [SerializeField] private ParticleSystem clickEffect;
 
-    private Animator playerAnimator;
+    private Animator _playerAnimator;
     
     public bool isIdle;
     public bool isRunning;
 
-    private NavMeshAgent PlayerNavMeshAgent;
+    private NavMeshAgent _playerNavMeshAgent;
     
     private const float DoubleClickTime = .2f;
-    private float lastClickTime;
-    private bool doubledClicked;
+    private float _lastClickTime;
+    private bool _doubledClicked;
     
     public float runningSpeed;
-    private float normalSpeed;
+    private float _normalSpeed;
 
-    public Camera PlayerCamera;
+    [FormerlySerializedAs("PlayerCamera")] public Camera playerCamera;
 
-    private BaseInteractableObject interactionToPerform;
-    
-    Vector3 newPosition;
+    private BaseInteractableObject _interactionToPerform;
+
+    private Vector3 _newPosition;
 
 
 
@@ -39,9 +41,9 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void Start()
     {
-        playerAnimator = GetComponentInChildren<Animator>();
-        PlayerNavMeshAgent = GetComponent<NavMeshAgent>();
-        normalSpeed = PlayerNavMeshAgent.speed;
+        _playerAnimator = GetComponentInChildren<Animator>();
+        _playerNavMeshAgent = GetComponent<NavMeshAgent>();
+        _normalSpeed = _playerNavMeshAgent.speed;
     }
 
     private void OnDestroy()
@@ -56,10 +58,10 @@ public class CharacterControllerScript : MonoBehaviour
     }
     private void Interact(BaseInteractableObject interactionToPerformOnObject)
     {
-        if (PlayerNavMeshAgent.remainingDistance != 0 || (!(Vector3.Distance(PlayerNavMeshAgent.transform.position,
+        if (_playerNavMeshAgent.remainingDistance != 0 || (!(Vector3.Distance(_playerNavMeshAgent.transform.position,
                 interactionToPerformOnObject.interactor.interactorPosition) < 1.0))) return;
         
-        PlayerNavMeshAgent.transform.LookAt(interactionToPerform.transform);
+        _playerNavMeshAgent.transform.LookAt(_interactionToPerform.transform);
         interactionToPerformOnObject.Interact();
     }
     private void MovePlayerToPosition(InputAction.CallbackContext context)
@@ -69,7 +71,7 @@ public class CharacterControllerScript : MonoBehaviour
             return;
         }
         
-        Ray myRay = PlayerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        var myRay = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         
         if (!Physics.Raycast(myRay, out var myRaycastHit)) return;
 
@@ -90,14 +92,14 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void MoveToInteract(RaycastHit myRaycastHit)
     {
-        GameObject gameObjectToInteract = myRaycastHit.transform.gameObject;
-        newPosition = transform.position;
+        var gameObjectToInteract = myRaycastHit.transform.gameObject;
+        _newPosition = transform.position;
         bool interactorFound;
         
         try
         {
-            newPosition = gameObjectToInteract.GetComponentInChildren<InteractorScript>().interactorPosition;
-            interactionToPerform = gameObjectToInteract.GetComponent<BaseInteractableObject>();
+            _newPosition = gameObjectToInteract.GetComponentInChildren<InteractorScript>().interactorPosition;
+            _interactionToPerform = gameObjectToInteract.GetComponent<BaseInteractableObject>();
             interactorFound = true;
         }
         catch (Exception e)
@@ -107,17 +109,17 @@ public class CharacterControllerScript : MonoBehaviour
 
         if (!interactorFound) return;
         
-        if (Vector3.Distance(PlayerNavMeshAgent.transform.position, newPosition) > 1.0f)
+        if (Vector3.Distance(_playerNavMeshAgent.transform.position, _newPosition) > 1.0f)
         {
-            if (CheckForPath(newPosition) == false) return;
+            if (CheckForPath(_newPosition) == false) return;
             
-            SpawnFlagAtDestination(newPosition);
+            SpawnFlagAtDestination(_newPosition);
             
-            DetermineMovement(PlayerNavMeshAgent.transform.position, interactionToPerform.interactor.interactorPosition, newPosition);
+            DetermineMovement(_playerNavMeshAgent.transform.position, _interactionToPerform.interactor.interactorPosition, _newPosition);
         }
         else
         {
-            Interact(interactionToPerform);
+            Interact(_interactionToPerform);
         }
     }
     private void DetermineMovement(Vector3 startPoint, Vector3 endPoint)
@@ -125,14 +127,14 @@ public class CharacterControllerScript : MonoBehaviour
         if (Vector3.Distance(startPoint,endPoint) >= 5f)
         {
             isRunning = true;
-            playerAnimator.SetBool("IsRunning", isRunning);
+            _playerAnimator.SetBool("IsRunning", isRunning);
             ChangeMovement(runningSpeed, startPoint);
         }
         else
         {
             isRunning = false;
-            playerAnimator.SetBool("IsRunning", isRunning);
-            ChangeMovement(normalSpeed, startPoint);
+            _playerAnimator.SetBool("IsRunning", isRunning);
+            ChangeMovement(_normalSpeed, startPoint);
         }
     }
     private void DetermineMovement(Vector3 startPoint, Vector3 endPoint, Vector3 positionToMove)
@@ -140,19 +142,19 @@ public class CharacterControllerScript : MonoBehaviour
         if (Vector3.Distance(startPoint,endPoint) >= 5f)
         {
             isRunning = true;
-            playerAnimator.SetBool("IsRunning", isRunning);
+            _playerAnimator.SetBool("IsRunning", isRunning);
             ChangeMovement(runningSpeed, positionToMove);
         }
         else
         {
             isRunning = false;
-            playerAnimator.SetBool("IsRunning", isRunning);
-            ChangeMovement(normalSpeed, positionToMove);
+            _playerAnimator.SetBool("IsRunning", isRunning);
+            ChangeMovement(_normalSpeed, positionToMove);
         }
     }
     private void IsMoving()
     {
-        if (PlayerNavMeshAgent.remainingDistance <= PlayerNavMeshAgent.stoppingDistance)
+        if (_playerNavMeshAgent.remainingDistance <= _playerNavMeshAgent.stoppingDistance)
         {
             isIdle = true;
             isRunning = false;
@@ -161,50 +163,50 @@ public class CharacterControllerScript : MonoBehaviour
         {
             isIdle = false;
         }
-        playerAnimator.SetBool("IsRunning", isRunning);
-        playerAnimator.SetBool("IsIdle", isIdle);
+        _playerAnimator.SetBool("IsRunning", isRunning);
+        _playerAnimator.SetBool("IsIdle", isIdle);
     }
 
     private void ChangeMovement(float speed, Vector3 position)
     {
-        PlayerNavMeshAgent.speed = speed;
-        PlayerNavMeshAgent.SetPath(PlayerNavMeshAgent.path);
-        PlayerNavMeshAgent.SetDestination(position);
+        _playerNavMeshAgent.speed = speed;
+        _playerNavMeshAgent.SetPath(_playerNavMeshAgent.path);
+        _playerNavMeshAgent.SetDestination(position);
     }
 
     private void SpawnFlagAtDestination(Vector3 hitPosition)
     {
-        if (flag != null)
+        if (_flag != null)
         {
-            Destroy(flag);
-            hasSpawnedFlag = false;
+            Destroy(_flag);
+            _hasSpawnedFlag = false;
         }
 
-        if (hasSpawnedFlag || Time.timeScale == 0) return;
-        
-        float objectHeight = markedDestinationFlag.GetComponent<Renderer>().bounds.size.y / 2f;
+        if (_hasSpawnedFlag || Time.timeScale == 0) return;
+
+        const float objectHeight = 0.1f;
         
         var spawnPoint = new Vector3(hitPosition.x, hitPosition.y + objectHeight, hitPosition.z);
         
-        flag = Instantiate(markedDestinationFlag, spawnPoint, Quaternion.identity);
+        _flag = Instantiate(clickEffect, spawnPoint, Quaternion.identity);
         
-        hasSpawnedFlag = true;
+        _hasSpawnedFlag = true;
 
     }
 
     private void DestroyFlagWhenDestinationReached()
     {
-        if (!hasSpawnedFlag || PlayerNavMeshAgent.remainingDistance != 0) return;
+        if (!_hasSpawnedFlag || _playerNavMeshAgent.remainingDistance != 0) return;
         
-        Destroy(flag);
-        hasSpawnedFlag = false;
+        Destroy(_flag);
+        _hasSpawnedFlag = false;
     }
 
     private bool CheckForPath(Vector3 pointToCalculatePath)
     {
-        NavMeshPath path = new NavMeshPath();
+        var path = new NavMeshPath();
 
-        PlayerNavMeshAgent.CalculatePath(pointToCalculatePath, path);
+        _playerNavMeshAgent.CalculatePath(pointToCalculatePath, path);
 
         return path.status == NavMeshPathStatus.PathComplete;
     }

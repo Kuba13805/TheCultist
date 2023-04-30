@@ -16663,7 +16663,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2849005813259786071, guid: 4faf5cf872141f6419c2bec9cd06832f,
         type: 3}
+      propertyPath: clickEffect
+      value: 
+      objectReference: {fileID: 2387645682707230164, guid: 4152f67dfe01d624cbefac3d7d8c3118,
+        type: 3}
+    - target: {fileID: 2849005813259786071, guid: 4faf5cf872141f6419c2bec9cd06832f,
+        type: 3}
       propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 924131768}
+    - target: {fileID: 2849005813259786071, guid: 4faf5cf872141f6419c2bec9cd06832f,
+        type: 3}
+      propertyPath: playerCamera
       value: 
       objectReference: {fileID: 924131768}
     - target: {fileID: 2849005813259786089, guid: 4faf5cf872141f6419c2bec9cd06832f,

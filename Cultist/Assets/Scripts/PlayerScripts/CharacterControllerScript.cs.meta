@@ -3,7 +3,11 @@ guid: 5cd230c449867014580c209e0b76617e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - markedDestinationFlag: {instanceID: 0}
+  - clickEffect: {fileID: 2387645682707230164, guid: 4152f67dfe01d624cbefac3d7d8c3118,
+      type: 3}
+  - playerCamera: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
