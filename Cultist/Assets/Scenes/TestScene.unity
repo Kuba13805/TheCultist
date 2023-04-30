@@ -5850,6 +5850,7 @@ MonoBehaviour:
   interactor: {fileID: 0}
   player: {fileID: 0}
   characterClass: {fileID: 11400000, guid: 32bd0cd35adbcc34e920a338ceda7b8c, type: 2}
+  characterPortrait: {fileID: 21300000, guid: 87f771a47e1d76d4b88b1c5700a6e89e, type: 3}
 --- !u!136 &769354110
 CapsuleCollider:
   m_ObjectHideFlags: 0

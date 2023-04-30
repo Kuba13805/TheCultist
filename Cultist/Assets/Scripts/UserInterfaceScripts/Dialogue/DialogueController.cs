@@ -4,6 +4,7 @@ using UnityEngine;
 using Managers;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Choice = Ink.Runtime.Choice;
 using Story = Ink.Runtime.Story;
 
@@ -20,6 +21,8 @@ public class DialogueController : MonoBehaviour
 
     private TextMeshProUGUI _npcTextBox;
     private static GameObject _playerChoicesContainer;
+    private GameObject _npcPortraitBox;
+    private Sprite _npcPortraitSprite;
     
     private string _charName;
 
@@ -65,16 +68,32 @@ public class DialogueController : MonoBehaviour
 
     private void Initialize(string objectName, DialogueInteraction dialogueInteraction)
     {
-        _charName = objectName;
 
         _dialoguePanel = gameObject;
         
+        InitializeStoryUIBoxes(objectName, dialogueInteraction);
+        
         InitializeStory(dialogueInteraction);
 
+        StartDialogue();
+    }
+
+    private void InitializeStoryUIBoxes(string objectName, Component dialogueInteraction)
+    {
         _npcTextBox = FindNpcTextBox();
         _playerChoicesContainer = FindPlayerChoiceContent();
+        _npcPortraitBox = FindNpcPortrait();
+        _charName = objectName;
+        _npcPortraitSprite = dialogueInteraction.GetComponent<InteractableCharacter>().characterPortrait;
 
-        StartDialogue();
+        if (_npcPortraitSprite == null)
+        {
+            _npcPortraitBox.SetActive(false);
+        }
+        else
+        {
+            _npcPortraitBox.GetComponentInChildren<Image>().sprite = _npcPortraitSprite;
+        }
     }
 
     #region ControllStory
@@ -270,6 +289,11 @@ public class DialogueController : MonoBehaviour
     private GameObject FindPlayerChoicesGlobalContainer()
     {
         return _dialoguePanel.transform.Find("PlayerChoices").gameObject;
+    }
+
+    private GameObject FindNpcPortrait()
+    {
+        return _dialoguePanel.transform.Find("NPCPortrait").gameObject;
     }
     #endregion
 }
