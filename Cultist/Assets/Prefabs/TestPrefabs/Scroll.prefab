@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6336656743024749600}
   - component: {fileID: 6336656743024749631}
   - component: {fileID: 6336656743024749630}
+  - component: {fileID: 1583042835704562117}
   m_Layer: 0
   m_Name: Scroll
   m_TagString: Untagged
@@ -115,9 +116,22 @@ MonoBehaviour:
   objectId: 0
   interactor: {fileID: 0}
   player: {fileID: 0}
+  title: 
   text: This is test Scroll
   type: 2
-  IsActive: 0
+  isActive: 0
+--- !u!114 &1583042835704562117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336656743024749629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c03387b3710b5d46904c99ba8c8618d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6336656744125765613
 GameObject:
   m_ObjectHideFlags: 0

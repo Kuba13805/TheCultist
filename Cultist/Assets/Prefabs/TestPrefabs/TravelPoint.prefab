@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 3749418295683856537}
   - component: {fileID: 3749418295683856536}
   - component: {fileID: 3749418295683856541}
+  - component: {fileID: 2809659234009758218}
   m_Layer: 0
   m_Name: TravelPoint
   m_TagString: Untagged
@@ -241,12 +242,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5f7d35804f2514fa8afb7ceba1f5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: 
+  objectName: TravelPoint
   objectId: 0
   interactor: {fileID: 0}
   player: {fileID: 0}
   isLocal: 1
   ObjectType: 0
-  destinantionSceneName: TestLocalScene
-  sceneTest:
-    m_Handle: 0
+  destinantionName: 
+  pointIdFromWhichPlayerComes: 
+  sceneNameFromWhichPlayerComes: 
+--- !u!114 &2809659234009758218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749418295683856538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c03387b3710b5d46904c99ba8c8618d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

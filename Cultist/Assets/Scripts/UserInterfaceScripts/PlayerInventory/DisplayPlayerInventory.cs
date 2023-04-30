@@ -23,7 +23,7 @@ public class DisplayPlayerInventory : MonoBehaviour
         ClearInventoryAfterReload();
     }
 
-    public void DisplayInventory()
+    private void DisplayInventory()
     {
         foreach (var item in GameManager.Instance.playerData.playerInventoryItems)
         {
@@ -31,20 +31,21 @@ public class DisplayPlayerInventory : MonoBehaviour
         }
     }
 
-    void SpawnNewItem(BaseItem item)
+    private void SpawnNewItem(BaseItem item)
     {
         GameObject slotPrefabToSpawn = SpawnNewEmptySlot();
         GameObject itemPrefabSpawn = Instantiate(inventoryItemPrefab, slotPrefabToSpawn.transform, false);
         itemPrefabSpawn.GetComponent<InventoryItemDragDrop>().item = item;
         itemPrefabSpawn.GetComponent<InventoryItemDragDrop>().isInPlayerInventory = true;
     }
-    GameObject SpawnNewEmptySlot()
+
+    private GameObject SpawnNewEmptySlot()
     {
         GameObject slotPrefabToSpawn = Instantiate(emptySlotPrefab, transform, false);
         return slotPrefabToSpawn;
     }
 
-    void ClearInventoryAfterReload()
+    private void ClearInventoryAfterReload()
     {
         foreach (Transform child in transform) 
         {
@@ -54,8 +55,7 @@ public class DisplayPlayerInventory : MonoBehaviour
 
     public void ReloadInventory()
     {
-        var root = transform.root;
-        root.gameObject.SetActive(false);
-        root.gameObject.SetActive(true);
+        ClearInventoryAfterReload();
+        DisplayInventory();
     }
 }

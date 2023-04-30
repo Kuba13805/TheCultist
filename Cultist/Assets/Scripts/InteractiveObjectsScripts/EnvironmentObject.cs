@@ -11,9 +11,9 @@ public class EnvironmentObject : BaseInteractableObject
 
     public float displayTime;
 
-    private GameObject panelToDisplay;
-    private GameObject panelInstance;
-    [SerializeField]private bool hasCommentBeenDisplayed;
+    private GameObject _panelToDisplay;
+    private GameObject _panelInstance;
+    private bool _hasCommentBeenDisplayed;
 
     public override void Interact()
     {
@@ -23,22 +23,22 @@ public class EnvironmentObject : BaseInteractableObject
     
     private void DisplayCommentWindow(string textToDisplay)
     {
-        if (hasCommentBeenDisplayed)
+        if (_hasCommentBeenDisplayed)
         {
-            panelInstance.GetComponent<DisplayCommentOnObject>().DestroyComment(0f);
+            _panelInstance.GetComponent<DisplayCommentOnObject>().DestroyComment(0f);
         }
         var uiPosition = transform.position;
         uiPosition.y += 2;
-        panelToDisplay = Resources.Load<GameObject>("CommentsOnObjectsCanvas");
-        panelInstance = Instantiate(panelToDisplay, uiPosition, Quaternion.identity);
+        _panelToDisplay = Resources.Load<GameObject>("CommentsOnObjectsCanvas");
+        _panelInstance = Instantiate(_panelToDisplay, uiPosition, Quaternion.identity);
 
-        panelInstance.GetComponent<DisplayCommentOnObject>().LoadCommentOnObject(textToDisplay);
-        hasCommentBeenDisplayed = true;
+        _panelInstance.GetComponent<DisplayCommentOnObject>().LoadCommentOnObject(textToDisplay);
+        _hasCommentBeenDisplayed = true;
     }
 
     private void DestroyComment()
     {
-        panelInstance.GetComponent<DisplayCommentOnObject>().DestroyComment(displayTime);
-        hasCommentBeenDisplayed = false;
+        _panelInstance.GetComponent<DisplayCommentOnObject>().DestroyComment(displayTime);
+        _hasCommentBeenDisplayed = false;
     }
 }

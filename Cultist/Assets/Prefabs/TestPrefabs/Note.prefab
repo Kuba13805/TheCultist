@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 4303270990013116326}
   - component: {fileID: 4303270990013116345}
   - component: {fileID: 4303270990013116344}
+  - component: {fileID: 2375598329710300048}
   m_Layer: 0
   m_Name: Note
   m_TagString: Untagged
@@ -241,10 +242,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0082dcd2e848e043b4237c239d6540d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: Leaflet
+  objectName: Note
   objectId: 0
   interactor: {fileID: 0}
   player: {fileID: 0}
+  title: 
   text: This is test leaflet
   type: 3
-  IsActive: 0
+  isActive: 0
+--- !u!114 &2375598329710300048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4303270990013116347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c03387b3710b5d46904c99ba8c8618d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

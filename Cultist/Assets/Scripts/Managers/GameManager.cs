@@ -10,7 +10,8 @@ namespace Managers
         #region Events
 
         public static event Action<bool> OnPlayerTestCheck;
-        
+
+        public static event Action<GameState> OnGameStateChanged;
 
         #endregion
         [FormerlySerializedAs("PlayerData")] public PlayerData playerData;
@@ -42,21 +43,28 @@ namespace Managers
             CallCollectableEvents.OnCollectableShown += PauseGame;
         
             CallCollectableEvents.OnCollectableClosed += ResumeGame;
+
+            DialogueController.OnDialogueShown += ChangeGameStateToDialogue;
+            
         }
 
-        public void UpdateGameState(GameState newState)
+        private void UpdateGameState(GameState newState)
         {
             state = newState;
 
             switch (newState)
             {
                 case GameState.FreeMovement:
+                    OnGameStateChanged?.Invoke(GameState.FreeMovement);
                     break;
                 case GameState.Dialogue:
+                    OnGameStateChanged?.Invoke(GameState.Dialogue);
                     break;
                 case GameState.Narrative:
+                    OnGameStateChanged?.Invoke(GameState.Narrative);
                     break;
                 case GameState.MenuOpened:
+                    OnGameStateChanged?.Invoke(GameState.MenuOpened);
                     break;
                 default:
                     throw new ArgumentException("Wrong gamestate");
@@ -130,6 +138,29 @@ namespace Managers
         private static void ResumeGame()
         {
             Time.timeScale = 1;
+        }
+        #endregion
+
+        #region ChangeGameStateOptions
+
+        private void ChangeGameStateToDialogue()
+        {
+            UpdateGameState(GameState.Dialogue);
+        }
+
+        private void ChangeGameStateToNarrative()
+        {
+            UpdateGameState(GameState.Narrative);
+        }
+
+        private void ChangeGameStateToMenu()
+        {
+            UpdateGameState(GameState.MenuOpened);
+        }
+
+        private void ChangeGameStateToFreeMovement()
+        {
+            UpdateGameState(GameState.FreeMovement);
         }
         #endregion
     }

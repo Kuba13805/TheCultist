@@ -125,6 +125,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DisplayInteractablesInfo"",
+                    ""type"": ""Button"",
+                    ""id"": ""8e05800c-7d32-46fe-9b8b-091deace5061"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -290,6 +299,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ZoomCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c1e22ae-e0c0-4f45-8336-2d3d3ddb0d01"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""DisplayInteractablesInfo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -948,6 +968,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_ZoomCamera = m_Player.FindAction("ZoomCamera", throwIfNotFound: true);
         m_Player_RotateCamera = m_Player.FindAction("RotateCamera", throwIfNotFound: true);
         m_Player_MoveCamera = m_Player.FindAction("MoveCamera", throwIfNotFound: true);
+        m_Player_DisplayInteractablesInfo = m_Player.FindAction("DisplayInteractablesInfo", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1033,6 +1054,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ZoomCamera;
     private readonly InputAction m_Player_RotateCamera;
     private readonly InputAction m_Player_MoveCamera;
+    private readonly InputAction m_Player_DisplayInteractablesInfo;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1048,6 +1070,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @ZoomCamera => m_Wrapper.m_Player_ZoomCamera;
         public InputAction @RotateCamera => m_Wrapper.m_Player_RotateCamera;
         public InputAction @MoveCamera => m_Wrapper.m_Player_MoveCamera;
+        public InputAction @DisplayInteractablesInfo => m_Wrapper.m_Player_DisplayInteractablesInfo;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1090,6 +1113,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @MoveCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
                 @MoveCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
                 @MoveCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
+                @DisplayInteractablesInfo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDisplayInteractablesInfo;
+                @DisplayInteractablesInfo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDisplayInteractablesInfo;
+                @DisplayInteractablesInfo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDisplayInteractablesInfo;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1127,6 +1153,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @MoveCamera.started += instance.OnMoveCamera;
                 @MoveCamera.performed += instance.OnMoveCamera;
                 @MoveCamera.canceled += instance.OnMoveCamera;
+                @DisplayInteractablesInfo.started += instance.OnDisplayInteractablesInfo;
+                @DisplayInteractablesInfo.performed += instance.OnDisplayInteractablesInfo;
+                @DisplayInteractablesInfo.canceled += instance.OnDisplayInteractablesInfo;
             }
         }
     }
@@ -1318,6 +1347,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnZoomCamera(InputAction.CallbackContext context);
         void OnRotateCamera(InputAction.CallbackContext context);
         void OnMoveCamera(InputAction.CallbackContext context);
+        void OnDisplayInteractablesInfo(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

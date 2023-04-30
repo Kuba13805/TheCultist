@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3135727686567820088}
   - component: {fileID: 3135727686567820089}
   - component: {fileID: 3135727686567820090}
+  - component: {fileID: 2268806598438604326}
   m_Layer: 0
   m_Name: Book
   m_TagString: Untagged
@@ -111,13 +112,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0082dcd2e848e043b4237c239d6540d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: Newspaper
+  objectName: Book
   objectId: 0
   interactor: {fileID: 0}
   player: {fileID: 0}
+  title: 
   text: This is test book
   type: 1
-  IsActive: 0
+  isActive: 0
+--- !u!114 &2268806598438604326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135727686567820091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c03387b3710b5d46904c99ba8c8618d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3135727687484045620
 GameObject:
   m_ObjectHideFlags: 0

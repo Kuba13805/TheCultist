@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 3854064284843462704}
   - component: {fileID: 3854064284843462705}
   - component: {fileID: 3854064284843462703}
+  - component: {fileID: 5549261257515713545}
   m_Layer: 0
   m_Name: EnvironmentObject
   m_TagString: Untagged
@@ -158,13 +159,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebdf970779b06d4b95fb3f79bf8f6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: TestEnvironmentObject
+  objectName: EnvironmentObject
   objectId: 1
   interactor: {fileID: 0}
   player: {fileID: 0}
   info: '"This ancient temple is older than I thougth"'
   displayTime: 5
-  hasCommentBeenDisplayed: 0
+--- !u!114 &5549261257515713545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3854064284843462707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c03387b3710b5d46904c99ba8c8618d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3854064286415012861
 GameObject:
   m_ObjectHideFlags: 0
