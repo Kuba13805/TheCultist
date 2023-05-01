@@ -9,6 +9,13 @@ using UnityEngine.SceneManagement;
 
 public class TravelPoint : BaseInteractableObject
 {
+   #region Events
+
+   public static event Action OnPlayerTravel;
+
+   public static event Action OnPlayerTravelDone;
+
+   #endregion
 
    private enum objectType
    {
@@ -38,34 +45,43 @@ public class TravelPoint : BaseInteractableObject
       }
       else
       {
-         LoadGlobalScene();
+         StartCoroutine(WaitFor(LoadGlobalScene));
       }
    }
    private void LoadLocalScene()
    {
-      if (destinantionName != null)
-      {
-         Debug.Log("Player moved to: " + destinantionName);
-         try
-         {
-            NavMeshAgent playerNavMeshAgent = player.GetComponent<NavMeshAgent>();
-            
-            playerNavMeshAgent.Warp(GameObject.Find(destinantionName + "TravelPoint")
-               .GetComponent<TravelPoint>().interactor.interactorPosition);
-            playerNavMeshAgent.transform.Rotate(0f,180f, 0f);
-            
-         }
-         catch (Exception exception)
-         {
-            Debug.Log(exception + "Cannot find directed travel point");
-            throw exception;
-         }
-      }
+      OnPlayerTravel?.Invoke();
+
+      StartCoroutine(WaitFor(HandleLocalTransition));
    }
 
-   private void LoadGlobalScene()
+   private static IEnumerator WaitFor(Action method)
    {
-      Debug.Log("Scene changed to: Global Scene ");
-      SceneManager.LoadScene("GlobalScene", LoadSceneMode.Single);
+      yield return new WaitForSeconds(1.5f);
+
+      method();
+   }
+   private void HandleLocalTransition()
+   {
+      if (destinantionName == null) return;
+      try
+      {
+         var playerNavMeshAgent = player.GetComponent<NavMeshAgent>();
+
+         playerNavMeshAgent.Warp(GameObject.Find(destinantionName + "TravelPoint")
+            .GetComponent<TravelPoint>().interactor.interactorPosition);
+         playerNavMeshAgent.transform.Rotate(0f, 180f, 0f);
+      }
+      catch (Exception exception)
+      {
+         Debug.Log(exception + "Cannot find directed travel point");
+         throw;
+      }
+      OnPlayerTravelDone?.Invoke();
+   }
+
+   private static void LoadGlobalScene()
+   {
+      // SceneManager.LoadScene("GlobalScene", LoadSceneMode.Additive);
    }
 }

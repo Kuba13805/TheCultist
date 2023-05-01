@@ -29,12 +29,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""MoveCharacter"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""45a98cfc-ea20-4ad5-87ad-85bc6627df0c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""OpenInventory"",
@@ -43,15 +43,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CameraFocusOnPlayer"",
-                    ""type"": ""Button"",
-                    ""id"": ""bb927dc7-403e-41b3-8e47-f696e73c0e50"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -100,33 +91,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ZoomCamera"",
-                    ""type"": ""Value"",
-                    ""id"": ""657d762b-f9f8-4a3d-95f2-4182bd965812"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""RotateCamera"",
-                    ""type"": ""Value"",
-                    ""id"": ""529e688f-790a-4d64-a69d-16c02bc9662e"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""MoveCamera"",
-                    ""type"": ""Value"",
-                    ""id"": ""7cf551b6-4a59-4134-904f-31f833891d62"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""DisplayInteractablesInfo"",
                     ""type"": ""Button"",
                     ""id"": ""8e05800c-7d32-46fe-9b8b-091deace5061"",
@@ -156,17 +120,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""OpenInventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ca8dba72-a2a0-402e-8dd0-0581640750e1"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""CameraFocusOnPlayer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -222,83 +175,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""PlayerAction5"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""WASD"",
-                    ""id"": ""f87c139c-5e19-477f-b61d-406c3b954731"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCamera"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""e6d8ed66-c5c6-4480-9fd5-6ab6958fea72"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""4d9b1366-6be8-4b96-9726-e85517743aee"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""c8c23a68-9627-4be7-8757-e44ee3bb3f7a"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""c15a6b84-f928-4e2b-824a-a098b6db222a"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d7508cc5-2f4b-4093-90d5-4563b7d7f8b0"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RotateCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8abe55a0-ef53-45b2-bc1d-35d5cddf3682"",
-                    ""path"": ""<Mouse>/scroll"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ZoomCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -890,6 +766,154 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Camera"",
+            ""id"": ""a12cb08b-58bb-48cf-86b3-4653eeaf7e1a"",
+            ""actions"": [
+                {
+                    ""name"": ""ZoomCamera"",
+                    ""type"": ""Value"",
+                    ""id"": ""bf02cf0d-c088-49dc-86d4-ee7f84c69a2f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""373a2215-1b47-4a76-bf78-05f6c3cb02bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraFocusOnPlayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""9add2e05-bbbe-409f-b37d-a592fbb991ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveUp"",
+                    ""type"": ""Value"",
+                    ""id"": ""7d6db2b7-e67d-408d-9dad-037c544167ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MoveDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e0d4b21-0578-4719-849a-85bd99f34816"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c8435ad-e3c7-4a99-895f-88b9200184ca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""70775648-3b72-4d59-bd94-e1f92a8962c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d83cfc63-c8b2-4424-a914-aeaf2ca1714c"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b199fa94-5a82-41d1-a642-450f41987b62"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b09ea996-407c-4e1d-a28b-179f81062b1c"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraFocusOnPlayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1056bf2c-2130-4b93-a076-b49d5809300b"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""122f1fc2-3a54-4964-84bf-e7dad6f72bc8"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a85d7432-2341-4ef6-890b-f3036d18637e"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67b3af5c-d4af-44ea-8c37-0e3d678db63b"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -959,15 +983,11 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MoveCharacter = m_Player.FindAction("MoveCharacter", throwIfNotFound: true);
         m_Player_OpenInventory = m_Player.FindAction("OpenInventory", throwIfNotFound: true);
-        m_Player_CameraFocusOnPlayer = m_Player.FindAction("CameraFocusOnPlayer", throwIfNotFound: true);
         m_Player_PlayerAction1 = m_Player.FindAction("PlayerAction1", throwIfNotFound: true);
         m_Player_PlayerAction2 = m_Player.FindAction("PlayerAction2", throwIfNotFound: true);
         m_Player_PlayerAction3 = m_Player.FindAction("PlayerAction3", throwIfNotFound: true);
         m_Player_PlayerAction4 = m_Player.FindAction("PlayerAction4", throwIfNotFound: true);
         m_Player_PlayerAction5 = m_Player.FindAction("PlayerAction5", throwIfNotFound: true);
-        m_Player_ZoomCamera = m_Player.FindAction("ZoomCamera", throwIfNotFound: true);
-        m_Player_RotateCamera = m_Player.FindAction("RotateCamera", throwIfNotFound: true);
-        m_Player_MoveCamera = m_Player.FindAction("MoveCamera", throwIfNotFound: true);
         m_Player_DisplayInteractablesInfo = m_Player.FindAction("DisplayInteractablesInfo", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -984,6 +1004,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_CloseUI = m_UI.FindAction("CloseUI", throwIfNotFound: true);
         m_UI_SkipConversation = m_UI.FindAction("SkipConversation", throwIfNotFound: true);
+        // Camera
+        m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+        m_Camera_ZoomCamera = m_Camera.FindAction("ZoomCamera", throwIfNotFound: true);
+        m_Camera_RotateCamera = m_Camera.FindAction("RotateCamera", throwIfNotFound: true);
+        m_Camera_CameraFocusOnPlayer = m_Camera.FindAction("CameraFocusOnPlayer", throwIfNotFound: true);
+        m_Camera_MoveUp = m_Camera.FindAction("MoveUp", throwIfNotFound: true);
+        m_Camera_MoveDown = m_Camera.FindAction("MoveDown", throwIfNotFound: true);
+        m_Camera_MoveLeft = m_Camera.FindAction("MoveLeft", throwIfNotFound: true);
+        m_Camera_MoveRight = m_Camera.FindAction("MoveRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1045,15 +1074,11 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_MoveCharacter;
     private readonly InputAction m_Player_OpenInventory;
-    private readonly InputAction m_Player_CameraFocusOnPlayer;
     private readonly InputAction m_Player_PlayerAction1;
     private readonly InputAction m_Player_PlayerAction2;
     private readonly InputAction m_Player_PlayerAction3;
     private readonly InputAction m_Player_PlayerAction4;
     private readonly InputAction m_Player_PlayerAction5;
-    private readonly InputAction m_Player_ZoomCamera;
-    private readonly InputAction m_Player_RotateCamera;
-    private readonly InputAction m_Player_MoveCamera;
     private readonly InputAction m_Player_DisplayInteractablesInfo;
     public struct PlayerActions
     {
@@ -1061,15 +1086,11 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveCharacter => m_Wrapper.m_Player_MoveCharacter;
         public InputAction @OpenInventory => m_Wrapper.m_Player_OpenInventory;
-        public InputAction @CameraFocusOnPlayer => m_Wrapper.m_Player_CameraFocusOnPlayer;
         public InputAction @PlayerAction1 => m_Wrapper.m_Player_PlayerAction1;
         public InputAction @PlayerAction2 => m_Wrapper.m_Player_PlayerAction2;
         public InputAction @PlayerAction3 => m_Wrapper.m_Player_PlayerAction3;
         public InputAction @PlayerAction4 => m_Wrapper.m_Player_PlayerAction4;
         public InputAction @PlayerAction5 => m_Wrapper.m_Player_PlayerAction5;
-        public InputAction @ZoomCamera => m_Wrapper.m_Player_ZoomCamera;
-        public InputAction @RotateCamera => m_Wrapper.m_Player_RotateCamera;
-        public InputAction @MoveCamera => m_Wrapper.m_Player_MoveCamera;
         public InputAction @DisplayInteractablesInfo => m_Wrapper.m_Player_DisplayInteractablesInfo;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1086,9 +1107,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @OpenInventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
-                @CameraFocusOnPlayer.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraFocusOnPlayer;
-                @CameraFocusOnPlayer.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraFocusOnPlayer;
-                @CameraFocusOnPlayer.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraFocusOnPlayer;
                 @PlayerAction1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction1;
                 @PlayerAction1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction1;
                 @PlayerAction1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction1;
@@ -1104,15 +1122,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @PlayerAction5.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction5;
                 @PlayerAction5.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction5;
                 @PlayerAction5.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerAction5;
-                @ZoomCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoomCamera;
-                @ZoomCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoomCamera;
-                @ZoomCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoomCamera;
-                @RotateCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateCamera;
-                @RotateCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateCamera;
-                @RotateCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateCamera;
-                @MoveCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
-                @MoveCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
-                @MoveCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
                 @DisplayInteractablesInfo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDisplayInteractablesInfo;
                 @DisplayInteractablesInfo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDisplayInteractablesInfo;
                 @DisplayInteractablesInfo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDisplayInteractablesInfo;
@@ -1126,9 +1135,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @OpenInventory.started += instance.OnOpenInventory;
                 @OpenInventory.performed += instance.OnOpenInventory;
                 @OpenInventory.canceled += instance.OnOpenInventory;
-                @CameraFocusOnPlayer.started += instance.OnCameraFocusOnPlayer;
-                @CameraFocusOnPlayer.performed += instance.OnCameraFocusOnPlayer;
-                @CameraFocusOnPlayer.canceled += instance.OnCameraFocusOnPlayer;
                 @PlayerAction1.started += instance.OnPlayerAction1;
                 @PlayerAction1.performed += instance.OnPlayerAction1;
                 @PlayerAction1.canceled += instance.OnPlayerAction1;
@@ -1144,15 +1150,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @PlayerAction5.started += instance.OnPlayerAction5;
                 @PlayerAction5.performed += instance.OnPlayerAction5;
                 @PlayerAction5.canceled += instance.OnPlayerAction5;
-                @ZoomCamera.started += instance.OnZoomCamera;
-                @ZoomCamera.performed += instance.OnZoomCamera;
-                @ZoomCamera.canceled += instance.OnZoomCamera;
-                @RotateCamera.started += instance.OnRotateCamera;
-                @RotateCamera.performed += instance.OnRotateCamera;
-                @RotateCamera.canceled += instance.OnRotateCamera;
-                @MoveCamera.started += instance.OnMoveCamera;
-                @MoveCamera.performed += instance.OnMoveCamera;
-                @MoveCamera.canceled += instance.OnMoveCamera;
                 @DisplayInteractablesInfo.started += instance.OnDisplayInteractablesInfo;
                 @DisplayInteractablesInfo.performed += instance.OnDisplayInteractablesInfo;
                 @DisplayInteractablesInfo.canceled += instance.OnDisplayInteractablesInfo;
@@ -1289,6 +1286,87 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Camera
+    private readonly InputActionMap m_Camera;
+    private ICameraActions m_CameraActionsCallbackInterface;
+    private readonly InputAction m_Camera_ZoomCamera;
+    private readonly InputAction m_Camera_RotateCamera;
+    private readonly InputAction m_Camera_CameraFocusOnPlayer;
+    private readonly InputAction m_Camera_MoveUp;
+    private readonly InputAction m_Camera_MoveDown;
+    private readonly InputAction m_Camera_MoveLeft;
+    private readonly InputAction m_Camera_MoveRight;
+    public struct CameraActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public CameraActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ZoomCamera => m_Wrapper.m_Camera_ZoomCamera;
+        public InputAction @RotateCamera => m_Wrapper.m_Camera_RotateCamera;
+        public InputAction @CameraFocusOnPlayer => m_Wrapper.m_Camera_CameraFocusOnPlayer;
+        public InputAction @MoveUp => m_Wrapper.m_Camera_MoveUp;
+        public InputAction @MoveDown => m_Wrapper.m_Camera_MoveDown;
+        public InputAction @MoveLeft => m_Wrapper.m_Camera_MoveLeft;
+        public InputAction @MoveRight => m_Wrapper.m_Camera_MoveRight;
+        public InputActionMap Get() { return m_Wrapper.m_Camera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+        public void SetCallbacks(ICameraActions instance)
+        {
+            if (m_Wrapper.m_CameraActionsCallbackInterface != null)
+            {
+                @ZoomCamera.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoomCamera;
+                @ZoomCamera.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoomCamera;
+                @ZoomCamera.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoomCamera;
+                @RotateCamera.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCamera;
+                @RotateCamera.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCamera;
+                @RotateCamera.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCamera;
+                @CameraFocusOnPlayer.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraFocusOnPlayer;
+                @CameraFocusOnPlayer.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraFocusOnPlayer;
+                @CameraFocusOnPlayer.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraFocusOnPlayer;
+                @MoveUp.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveUp;
+                @MoveUp.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveUp;
+                @MoveUp.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveUp;
+                @MoveDown.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveDown;
+                @MoveDown.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveDown;
+                @MoveDown.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveDown;
+                @MoveLeft.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveLeft;
+                @MoveLeft.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveLeft;
+                @MoveLeft.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveLeft;
+                @MoveRight.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveRight;
+                @MoveRight.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveRight;
+                @MoveRight.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnMoveRight;
+            }
+            m_Wrapper.m_CameraActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ZoomCamera.started += instance.OnZoomCamera;
+                @ZoomCamera.performed += instance.OnZoomCamera;
+                @ZoomCamera.canceled += instance.OnZoomCamera;
+                @RotateCamera.started += instance.OnRotateCamera;
+                @RotateCamera.performed += instance.OnRotateCamera;
+                @RotateCamera.canceled += instance.OnRotateCamera;
+                @CameraFocusOnPlayer.started += instance.OnCameraFocusOnPlayer;
+                @CameraFocusOnPlayer.performed += instance.OnCameraFocusOnPlayer;
+                @CameraFocusOnPlayer.canceled += instance.OnCameraFocusOnPlayer;
+                @MoveUp.started += instance.OnMoveUp;
+                @MoveUp.performed += instance.OnMoveUp;
+                @MoveUp.canceled += instance.OnMoveUp;
+                @MoveDown.started += instance.OnMoveDown;
+                @MoveDown.performed += instance.OnMoveDown;
+                @MoveDown.canceled += instance.OnMoveDown;
+                @MoveLeft.started += instance.OnMoveLeft;
+                @MoveLeft.performed += instance.OnMoveLeft;
+                @MoveLeft.canceled += instance.OnMoveLeft;
+                @MoveRight.started += instance.OnMoveRight;
+                @MoveRight.performed += instance.OnMoveRight;
+                @MoveRight.canceled += instance.OnMoveRight;
+            }
+        }
+    }
+    public CameraActions @Camera => new CameraActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1338,15 +1416,11 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         void OnMoveCharacter(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
-        void OnCameraFocusOnPlayer(InputAction.CallbackContext context);
         void OnPlayerAction1(InputAction.CallbackContext context);
         void OnPlayerAction2(InputAction.CallbackContext context);
         void OnPlayerAction3(InputAction.CallbackContext context);
         void OnPlayerAction4(InputAction.CallbackContext context);
         void OnPlayerAction5(InputAction.CallbackContext context);
-        void OnZoomCamera(InputAction.CallbackContext context);
-        void OnRotateCamera(InputAction.CallbackContext context);
-        void OnMoveCamera(InputAction.CallbackContext context);
         void OnDisplayInteractablesInfo(InputAction.CallbackContext context);
     }
     public interface IUIActions
@@ -1364,5 +1438,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnCloseUI(InputAction.CallbackContext context);
         void OnSkipConversation(InputAction.CallbackContext context);
+    }
+    public interface ICameraActions
+    {
+        void OnZoomCamera(InputAction.CallbackContext context);
+        void OnRotateCamera(InputAction.CallbackContext context);
+        void OnCameraFocusOnPlayer(InputAction.CallbackContext context);
+        void OnMoveUp(InputAction.CallbackContext context);
+        void OnMoveDown(InputAction.CallbackContext context);
+        void OnMoveLeft(InputAction.CallbackContext context);
+        void OnMoveRight(InputAction.CallbackContext context);
     }
 }

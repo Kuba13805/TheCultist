@@ -22,7 +22,9 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueSendChoice.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/DisplayCommentOnObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/FadeScreen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/InteractableInfoScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerTest/DisplayDiceRollResult.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Actions/InputActionAsset.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.sequences@1.0.4/Editor/AssetDatabase/SequencesAssetDatabase.cs" root0="SKIP_HIGHLIGHTING" />
@@ -153,7 +155,8 @@
       <workItem from="1682673206559" duration="13333000" />
       <workItem from="1682701376876" duration="4240000" />
       <workItem from="1682760394671" duration="15186000" />
-      <workItem from="1682852804291" duration="14397000" />
+      <workItem from="1682852804291" duration="14828000" />
+      <workItem from="1682943422408" duration="26312000" />
     </task>
     <servers />
   </component>

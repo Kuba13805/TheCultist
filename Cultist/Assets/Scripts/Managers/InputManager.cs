@@ -21,8 +21,8 @@ namespace Managers
                 Destroy(gameObject);
             }
             PlayerInputActions = new PlayerInputActions();
-            
-            PlayerInputActions.Player.Enable();
+
+            ChangeActionMapToPlayer();
 
             #region Events
             PlayerInputActions.Player.OpenInventory.performed += ChangeActionMapToUIOnKey;
@@ -81,12 +81,29 @@ namespace Managers
             PlayerInputActions.Disable();
             
             PlayerInputActions.Player.Enable();
+            
+            SwitchCameraActionMap(true);
+            
         }
         private void ChangeActionMapToUI()
         {
             PlayerInputActions.Disable();
             
             PlayerInputActions.UI.Enable();
+            
+            SwitchCameraActionMap(false);
+        }
+
+        private void SwitchCameraActionMap(bool mode)
+        {
+            if (mode)
+            {
+                PlayerInputActions.Camera.Enable();
+            }
+            else
+            {
+                PlayerInputActions.Camera.Disable();
+            }
         }
         #endregion
     }

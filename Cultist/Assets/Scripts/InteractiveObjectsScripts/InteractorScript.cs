@@ -6,7 +6,8 @@ public class InteractorScript : MonoBehaviour
 {
     public Vector3 interactorPosition;
     public Quaternion interactorRotation;
-    void Start()
+
+    private void Start()
     {
         interactorRotation = transform.rotation;
         interactorPosition = transform.position;

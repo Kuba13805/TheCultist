@@ -125,7 +125,7 @@ namespace Managers
 
             var testPlayer = new TestPlayer();
 
-            var testResult = testPlayer.TestAbility(basePlayerNumber, baseTestDifficulty);
+            var testResult = TestPlayer.TestAbility(basePlayerNumber, baseTestDifficulty);
             
             OnPlayerTestCheck?.Invoke(testResult);
         }

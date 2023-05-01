@@ -6,39 +6,46 @@ using Zenject;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform cameraTransform;
+    [SerializeField] private Transform cameraTransform;
+    private PlayerInputActions _cameraActions;
 
-    private GameObject player;
+    private GameObject _player;
     
-    public float movementSpeed;
+    [SerializeField] private float movementSpeed;
 
-    public float movementTime;
-    public float rotationAmount;
-    public Vector3 zoomAmount;
-    public float mouseRotationSpeed;
+    [SerializeField] private float movementTime;
+    [SerializeField] private float rotationAmount;
+    [SerializeField] private Vector3 zoomAmount;
+    [SerializeField] private float mouseRotationSpeed;
     
-    private float minZoom, maxZoom;
+    private float _minZoom, _maxZoom;
 
-    public Vector3 newPosition;
+    private Vector3 _newPosition;
 
-    public Quaternion newRotation;
+    private Quaternion _newRotation;
 
-    public Vector3 newZoom;
+    private Vector3 _newZoom;
 
-    public Vector3 rotateStartPosition;
+    private Vector3 _rotateStartPosition;
 
-    public Vector3 rotateCurrentPosition;
+    private Vector3 _rotateCurrentPosition;
 
-    void Start()
+    private void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        _player = GameObject.FindWithTag("Player");
         
-        newPosition = transform.position;
-        newRotation = transform.rotation;
-        newZoom = cameraTransform.localPosition;
+        _newPosition = transform.position;
+        _newRotation = transform.rotation;
+        _newZoom = cameraTransform.localPosition;
+
+        _cameraActions = new PlayerInputActions();
+        _cameraActions.Camera.Enable();
+
+        _cameraActions.Camera.CameraFocusOnPlayer.performed += FocusCamera;
+        TravelPoint.OnPlayerTravelDone += MoveCameraToTravelPoint;
     }
-    
-    void Update()
+
+    private void Update()
     {
         UpdateZoomLimits();
         HandleMouseInput();
@@ -55,34 +62,34 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            rotateStartPosition = Input.mousePosition;
+            _rotateStartPosition = Input.mousePosition;
         }
 
         if (Input.GetMouseButton(1))
         {
-            rotateCurrentPosition = Input.mousePosition;
+            _rotateCurrentPosition = Input.mousePosition;
 
-            Vector3 difference = rotateStartPosition - rotateCurrentPosition;
+            Vector3 difference = _rotateStartPosition - _rotateCurrentPosition;
 
-            rotateStartPosition = rotateCurrentPosition;
+            _rotateStartPosition = _rotateCurrentPosition;
             
-            newRotation *= quaternion.Euler(Vector3.up * (-difference.x / mouseRotationSpeed));
+            _newRotation *= quaternion.Euler(Vector3.up * (-difference.x / mouseRotationSpeed));
         }
     }
 
     private void HandleMouseZoom()
     {
-        if (Input.mouseScrollDelta.y > 0 || cameraTransform.localPosition.y <= minZoom)
+        if (Input.mouseScrollDelta.y > 0 || cameraTransform.localPosition.y <= _minZoom)
         {
-            newZoom -= zoomAmount;
+            _newZoom -= zoomAmount;
             
         }
-        if (Input.mouseScrollDelta.y < 0 || cameraTransform.localPosition.y >= maxZoom)
+        if (Input.mouseScrollDelta.y < 0 || cameraTransform.localPosition.y >= _maxZoom)
         {
-            newZoom += zoomAmount;
+            _newZoom += zoomAmount;
         }
 
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, _newZoom, Time.deltaTime * movementTime);
     }
     private void HandleKeyboardInput()
     {
@@ -91,42 +98,64 @@ public class CameraController : MonoBehaviour
     }
     private void HandleKeyboardMovement()
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
-            newPosition += (transform.forward * movementSpeed);
+            _newPosition += (transform.forward * movementSpeed);
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            newPosition += (transform.forward * -movementSpeed);
+            _newPosition += (transform.forward * -movementSpeed);
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            newPosition += (transform.right * movementSpeed);
+            _newPosition += (transform.right * movementSpeed);
         }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            newPosition += (transform.right * -movementSpeed);
+            _newPosition += (transform.right * -movementSpeed);
         }
         
-        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
+        transform.position = Vector3.Lerp(transform.position, _newPosition, Time.deltaTime * movementTime);
     }
 
     private void HandleKeyboardRotation()
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            newRotation *= Quaternion.Euler((Vector3.up) * rotationAmount);
+            _newRotation *= Quaternion.Euler((Vector3.up) * rotationAmount);
         }
         if (Input.GetKey(KeyCode.E))
         {
-            newRotation *= Quaternion.Euler((Vector3.up) * -rotationAmount);
+            _newRotation *= Quaternion.Euler((Vector3.up) * -rotationAmount);
         }
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _newRotation, Time.deltaTime * movementTime);
     }
 
     private void UpdateZoomLimits()
     {
-        minZoom = player.transform.position.y - 10f;
-        maxZoom = player.transform.position.y + 10f;
+        var position = _player.transform.position;
+        
+        _minZoom = position.y - 10f;
+        _maxZoom = position.y + 10f;
+    }
+    
+    private void FocusCamera(InputAction.CallbackContext obj)
+    {
+        MoveCameraToPoint();
+    }
+
+    private void MoveCameraToTravelPoint()
+    {
+        MoveCameraToPoint();
+    }
+    private void MoveCameraToPoint()
+    {
+        var transformPosition = transform.position;
+        
+        transformPosition = _player.transform.position;
+
+        _newPosition = transformPosition;
+        _newZoom.y = _maxZoom + Mathf.Abs(_minZoom) / 2;
+        _newZoom.z = -(_maxZoom + Mathf.Abs(_minZoom) / 2);
     }
 }
