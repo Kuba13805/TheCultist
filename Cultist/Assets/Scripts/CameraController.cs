@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform cameraTransform;
     private PlayerInputActions _cameraActions;
+    private InputAction _movement;
 
     private GameObject _player;
     
@@ -17,8 +18,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float rotationAmount;
     [SerializeField] private Vector3 zoomAmount;
     [SerializeField] private float mouseRotationSpeed;
-    
-    private float _minZoom, _maxZoom;
+
+    [SerializeField] private float minZoom;
+    [SerializeField] private float maxZoom;
 
     private Vector3 _newPosition;
 
@@ -39,6 +41,7 @@ public class CameraController : MonoBehaviour
         _newZoom = cameraTransform.localPosition;
 
         _cameraActions = new PlayerInputActions();
+        _movement = _cameraActions.Camera.MoveCamera;
         _cameraActions.Camera.Enable();
 
         _cameraActions.Camera.CameraFocusOnPlayer.performed += FocusCamera;
@@ -47,9 +50,9 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        UpdateZoomLimits();
         HandleMouseInput();
         HandleKeyboardInput();
+        FollowPlayerPositionY();
     }
 
     private void HandleMouseInput()
@@ -79,12 +82,12 @@ public class CameraController : MonoBehaviour
 
     private void HandleMouseZoom()
     {
-        if (Input.mouseScrollDelta.y > 0 || cameraTransform.localPosition.y <= _minZoom)
+        if (Input.mouseScrollDelta.y > 0 || cameraTransform.localPosition.y <= minZoom)
         {
             _newZoom -= zoomAmount;
             
         }
-        if (Input.mouseScrollDelta.y < 0 || cameraTransform.localPosition.y >= _maxZoom)
+        if (Input.mouseScrollDelta.y < 0 || cameraTransform.localPosition.y >= maxZoom)
         {
             _newZoom += zoomAmount;
         }
@@ -98,24 +101,31 @@ public class CameraController : MonoBehaviour
     }
     private void HandleKeyboardMovement()
     {
-        if (Input.GetKey(KeyCode.W))
+        var inputValue = _movement.ReadValue<Vector2>().x * GetCameraRight() +
+                         _movement.ReadValue<Vector2>().y * GetCameraForward();
+        
+        inputValue = inputValue.normalized;
+        inputValue *= 0.25f;
+
+        if (inputValue.sqrMagnitude > 0.05f)
         {
-            _newPosition += (transform.forward * movementSpeed);
-        }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            _newPosition += (transform.forward * -movementSpeed);
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            _newPosition += (transform.right * movementSpeed);
-        }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            _newPosition += (transform.right * -movementSpeed);
+            _newPosition += inputValue;
         }
         
         transform.position = Vector3.Lerp(transform.position, _newPosition, Time.deltaTime * movementTime);
+    }
+    private Vector3 GetCameraRight()
+    {
+        var right = cameraTransform.right;
+        right.y = 0;
+        return right;
+    }
+    
+    private Vector3 GetCameraForward()
+    {
+        var forward = cameraTransform.forward;
+        forward.y = 0;
+        return forward;
     }
 
     private void HandleKeyboardRotation()
@@ -131,14 +141,6 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, _newRotation, Time.deltaTime * movementTime);
     }
 
-    private void UpdateZoomLimits()
-    {
-        var position = _player.transform.position;
-        
-        _minZoom = position.y - 10f;
-        _maxZoom = position.y + 10f;
-    }
-    
     private void FocusCamera(InputAction.CallbackContext obj)
     {
         MoveCameraToPoint();
@@ -155,7 +157,15 @@ public class CameraController : MonoBehaviour
         transformPosition = _player.transform.position;
 
         _newPosition = transformPosition;
-        _newZoom.y = _maxZoom + Mathf.Abs(_minZoom) / 2;
-        _newZoom.z = -(_maxZoom + Mathf.Abs(_minZoom) / 2);
+    }
+
+    private void FollowPlayerPositionY()
+    {
+        // var transformPosition = transform.position;
+        //
+        // transformPosition.y = _player.transform.position.y;
+        // transformPosition.y -= 0.03f;
+        //
+        // _newPosition.y = transformPosition.y;
     }
 }

@@ -61,6 +61,7 @@ public class FadeScreen : MonoBehaviour
 
     private void Clear()
     {
+        StartCoroutine(Wait(2f));
         _currentAlpha -= _fadeSpeed * Time.deltaTime;
 
         _currentAlpha = Mathf.Clamp01(_currentAlpha);
@@ -73,5 +74,10 @@ public class FadeScreen : MonoBehaviour
         {
             CancelInvoke(nameof(Clear));
         }
+    }
+
+    private static IEnumerator Wait(float time)
+    {
+        yield return new WaitForSeconds(time);
     }
 }
