@@ -20,7 +20,7 @@ MonoBehaviour:
   strength: 2
   power: 6
   condition: 17
-  wisdom: 8
+  wisdom: 14
   perception: 2
   occultism: 4
   medicine: 7
@@ -32,10 +32,5 @@ MonoBehaviour:
   mechanics: 2
   psychology: 4
   lastLocation: 1 TestScene
-  playerInventoryItems:
-  - {fileID: 11400000, guid: ec9d6fe786f7a7048a4863a44e98a1cd, type: 2}
-  - {fileID: 11400000, guid: c0a5d50aa2a3c034586250b04bda3284, type: 2}
-  - {fileID: 11400000, guid: e3870aa5cd4b9684b81ad6378f0dfb88, type: 2}
-  - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
-  - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+  playerInventoryItems: []
   characterEquipment: []

@@ -16,14 +16,14 @@ public class ItemEffect : ScriptableObject
     public float effectTime;
     public int pointsAffecting;
     
-    public charStatsToEffect statToEffect;
-    public typesOfInfluenceOnStat typeOfInfluence;
+    public CharStatsToEffect statToEffect;
+    public TypesOfInfluenceOnStat typeOfInfluence;
     [EnableIf("NotEnabled")][ShowIf("timeEffect")]
     public float startedTime;
 
-    public enum charStatsToEffect
+    public enum CharStatsToEffect
     {
-        Perceptivity,
+        Perception,
         Occultism,
         Medicine,
         Electrics,
@@ -40,87 +40,9 @@ public class ItemEffect : ScriptableObject
         Condition
     }
 
-    public enum typesOfInfluenceOnStat
+    public enum TypesOfInfluenceOnStat
     {
         IncreaseStat,
         DecreaseStat
-    }
-    
-    
-
-    private int CalculateStatValue(int playerDataStat)
-    {
-        var updatedStat = playerDataStat;
-        if (isEffectActive)
-        {
-            updatedStat = typeOfInfluence switch
-            {
-                typesOfInfluenceOnStat.IncreaseStat => playerDataStat + pointsAffecting,
-                typesOfInfluenceOnStat.DecreaseStat => playerDataStat - pointsAffecting,
-                _ => 0
-            };
-        }
-        else if (isEffectActive != true)
-        {
-            updatedStat = typeOfInfluence switch
-            {
-                typesOfInfluenceOnStat.IncreaseStat => playerDataStat - pointsAffecting,
-                typesOfInfluenceOnStat.DecreaseStat => playerDataStat + pointsAffecting,
-                _ => 0
-            };
-        }
-        return updatedStat;
-    }
-
-    public void AffectStat(PlayerData playerStats)
-    {
-        switch (statToEffect)
-        {
-            case charStatsToEffect.Perceptivity:
-                playerStats.perception = CalculateStatValue(playerStats.perception);
-                break;
-            case charStatsToEffect.Occultism:
-                playerStats.occultism = CalculateStatValue(playerStats.occultism);
-                break;
-            case charStatsToEffect.Medicine:
-                playerStats.medicine = CalculateStatValue(playerStats.medicine);
-                break;
-            case charStatsToEffect.Electrics:
-                playerStats.electrics = CalculateStatValue(playerStats.electrics);
-                break;
-            case charStatsToEffect.History:
-                playerStats.history = CalculateStatValue(playerStats.history);
-                break;
-            case charStatsToEffect.Persuasion:
-                playerStats.persuasion = CalculateStatValue(playerStats.persuasion);
-                break;
-            case charStatsToEffect.Intimidation:
-                playerStats.intimidation = CalculateStatValue(playerStats.intimidation);
-                break;
-            case charStatsToEffect.Locksmithing:
-                playerStats.locksmithing = CalculateStatValue(playerStats.locksmithing);
-                break;
-            case charStatsToEffect.Mechanics:
-                playerStats.mechanics = CalculateStatValue(playerStats.mechanics);
-                break;
-            case charStatsToEffect.Psychology:
-                playerStats.psychology = CalculateStatValue(playerStats.psychology);
-                break;
-            case charStatsToEffect.Strength:
-                playerStats.strength = CalculateStatValue(playerStats.strength);
-                break;
-            case charStatsToEffect.Dexterity:
-                playerStats.dexterity = CalculateStatValue(playerStats.dexterity);
-                break;
-            case charStatsToEffect.Power:
-                playerStats.power = CalculateStatValue(playerStats.power);
-                break;
-            case charStatsToEffect.Wisdom:
-                playerStats.wisdom = CalculateStatValue(playerStats.wisdom);
-                break;
-            case charStatsToEffect.Condition:
-                playerStats.condition = CalculateStatValue(playerStats.condition);
-                break;
-        }
     }
 }

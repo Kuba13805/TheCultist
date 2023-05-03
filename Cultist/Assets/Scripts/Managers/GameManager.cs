@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using NaughtyAttributes;
 using PlayerScripts;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = System.Random;
 
 namespace Managers
 {
@@ -14,12 +18,14 @@ namespace Managers
         public static event Action<GameState> OnGameStateChanged;
 
         #endregion
-        [FormerlySerializedAs("PlayerData")] public PlayerData playerData;
+        
+        [BoxGroup("General")][FormerlySerializedAs("PlayerData")] public PlayerData playerData;
+        [BoxGroup("General")][FormerlySerializedAs("State")] public GameState state;
+        
         public static GameManager Instance { get; private set; }
-    
 
-        [FormerlySerializedAs("State")] public GameState state;
-
+        [BoxGroup("InventoryHandle")][SerializeField] private int maxInventoryItemId;
+        
         private void Awake()
         {
             if (Instance == null)
@@ -34,7 +40,6 @@ namespace Managers
 
         private void Start()
         {
-            DialogueController.OnTestCheck += TestPlayerAbilities;
             
             CallContainerEvents.OnContainerOpen += PauseGame;
         
@@ -43,9 +48,24 @@ namespace Managers
             CallCollectableEvents.OnCollectableShown += PauseGame;
         
             CallCollectableEvents.OnCollectableClosed += ResumeGame;
+            
+            
+            DialogueController.OnTestCheck += TestPlayerAbilities;
 
             DialogueController.OnDialogueShown += ChangeGameStateToDialogue;
             
+            
+            InventoryItemDragDrop.OnItemAddedToInventory += AddItemToInventory;
+        
+            InventoryItemDragDrop.OnItemRemovedFromInventory += RemoveItemFromInventory;
+        
+            InventoryItemDragDrop.OnItemEquipped += AddItemToCharacterEquipment;
+            
+            InventoryItemDragDrop.OnItemEquipped += ActivateItemEffects;
+        
+            InventoryItemDragDrop.OnItemStriped += RemoveItemFromCharacterEquipment;
+
+            InventoryItemDragDrop.OnItemStriped += DeactivateItemEffects;
         }
 
         private void UpdateGameState(GameState newState)
@@ -162,6 +182,154 @@ namespace Managers
         {
             UpdateGameState(GameState.FreeMovement);
         }
+        #endregion
+
+        #region HandlePlayerInventory
+
+        private void AddItemToInventory(BaseItem item)
+        {
+            AddItemToList(playerData.playerInventoryItems, item);
+        }
+
+        private void RemoveItemFromInventory(BaseItem item)
+        {
+            RemoveItemFromList(playerData.playerInventoryItems, item);
+        }
+
+        private void AddItemToCharacterEquipment(BaseItem item)
+        {
+            AddItemToList(playerData.characterEquipment, item);
+            RemoveItemFromList(playerData.playerInventoryItems, item);
+        }
+
+        private void RemoveItemFromCharacterEquipment(BaseItem item)
+        {
+            AddItemToList(playerData.playerInventoryItems, item);
+            RemoveItemFromList(playerData.characterEquipment, item);
+        }
+
+        private static void AddItemToList(ICollection<BaseItem> listOfItems, BaseItem itemToAdd)
+        {
+            listOfItems.Add(itemToAdd);
+        }
+
+        private static void RemoveItemFromList(IList<BaseItem> listOfItems, BaseItem itemToRemove)
+        {
+            for (var i = 0; i < listOfItems.Count; i++)
+            {
+                if (listOfItems[i] != itemToRemove) continue;
+                listOfItems.Remove(listOfItems[i]);
+                break;
+            }
+        }
+        #endregion
+
+        #region HandlePlayerStats
+
+        private void ActivateItemEffects(BaseItem item)
+        {
+            foreach (var multipleEffect in item.effectsOnItem)
+            {
+                foreach (var effect in multipleEffect.listOfAdditionalEffects)
+                {
+                    AffectStat(effect, playerData, true);
+                }
+            }
+        }
+
+        private void DeactivateItemEffects(BaseItem item)
+        {
+            foreach (var multipleEffect in item.effectsOnItem)
+            {
+                foreach (var effect in multipleEffect.listOfAdditionalEffects)
+                {
+                    AffectStat(effect, playerData, false);
+                }
+            }
+        }
+
+        private static void AffectStat(ItemEffect itemEffect, PlayerData playerDataSet, bool isEffectActive)
+        {
+            switch (itemEffect.statToEffect)
+            {
+                case ItemEffect.CharStatsToEffect.Perception:
+                    playerDataSet.perception = CalculateStatValue(playerDataSet.perception, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Occultism:
+                    playerDataSet.occultism = CalculateStatValue(playerDataSet.occultism, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Medicine:
+                    playerDataSet.medicine = CalculateStatValue(playerDataSet.medicine, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Electrics:
+                    playerDataSet.electrics = CalculateStatValue(playerDataSet.electrics, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.History:
+                    playerDataSet.history = CalculateStatValue(playerDataSet.history, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Persuasion:
+                    playerDataSet.persuasion = CalculateStatValue(playerDataSet.persuasion, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Intimidation:
+                    playerDataSet.intimidation = CalculateStatValue(playerDataSet.intimidation, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Locksmithing:
+                    playerDataSet.locksmithing = CalculateStatValue(playerDataSet.locksmithing, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Mechanics:
+                    playerDataSet.mechanics = CalculateStatValue(playerDataSet.mechanics, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Psychology:
+                    playerDataSet.psychology = CalculateStatValue(playerDataSet.psychology, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Strength:
+                    playerDataSet.strength = CalculateStatValue(playerDataSet.strength, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Dexterity:
+                    playerDataSet.dexterity = CalculateStatValue(playerDataSet.dexterity, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Power:
+                    playerDataSet.power = CalculateStatValue(playerDataSet.power, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Wisdom:
+                    playerDataSet.wisdom = CalculateStatValue(playerDataSet.wisdom, itemEffect, isEffectActive);
+                    break;
+                case ItemEffect.CharStatsToEffect.Condition:
+                    playerDataSet.condition = CalculateStatValue(playerDataSet.condition, itemEffect, isEffectActive);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private static int CalculateStatValue(int playerDataStat, ItemEffect effect, bool isEffectActive)
+        {
+            var updatedStat = playerDataStat;
+            if (isEffectActive)
+            {
+                if (effect.typeOfInfluence == ItemEffect.TypesOfInfluenceOnStat.IncreaseStat)
+                {
+                    updatedStat += effect.pointsAffecting;
+                }
+                else
+                {
+                    updatedStat -= effect.pointsAffecting;
+                }
+            }
+            else
+            {
+                if (effect.typeOfInfluence == ItemEffect.TypesOfInfluenceOnStat.IncreaseStat)
+                {
+                    updatedStat -= effect.pointsAffecting;
+                }
+                else
+                {
+                    updatedStat += effect.pointsAffecting;
+                }
+            }
+            return updatedStat;
+        }
+
         #endregion
     }
 }

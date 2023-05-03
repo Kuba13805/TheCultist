@@ -56,7 +56,13 @@ public class LoadCharacterInfo : MonoBehaviour
 
     private void OnEnable()
     {
-        InventoryItemDragDrop.OnItemChanged += SwitchOnOff;
+        InventoryItemDragDrop.OnItemAddedToInventory += SwitchOnOff;
+        
+        InventoryItemDragDrop.OnItemRemovedFromInventory += SwitchOnOff;
+        
+        InventoryItemDragDrop.OnItemEquipped += SwitchOnOff;
+        
+        InventoryItemDragDrop.OnItemStriped += SwitchOnOff;
         
         inputToLoad = GetComponent<TextMeshProUGUI>();
         PlayerData = GameManager.Instance.playerData;
@@ -66,7 +72,13 @@ public class LoadCharacterInfo : MonoBehaviour
 
     private void OnDisable()
     {
-        InventoryItemDragDrop.OnItemChanged -= SwitchOnOff;
+        InventoryItemDragDrop.OnItemAddedToInventory -= SwitchOnOff;
+        
+        InventoryItemDragDrop.OnItemRemovedFromInventory -= SwitchOnOff;
+        
+        InventoryItemDragDrop.OnItemEquipped -= SwitchOnOff;
+        
+        InventoryItemDragDrop.OnItemStriped -= SwitchOnOff;
     }
 
     private void LoadData()
@@ -126,7 +138,7 @@ public class LoadCharacterInfo : MonoBehaviour
         };
     }
 
-    private void SwitchOnOff()
+    private void SwitchOnOff(BaseItem item)
     {
         var root = transform.root;
         root.gameObject.SetActive(false);

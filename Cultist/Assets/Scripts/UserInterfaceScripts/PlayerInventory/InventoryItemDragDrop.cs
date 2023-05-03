@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerExitHandler, IPointerEnterHandler
@@ -15,50 +16,38 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     public BaseItem item;
     public Button button;
     public Image image;
+    
     [HideInInspector] public Transform parentAfterDrag;
-    [HideInInspector] public Transform parentBeforeDrag;
+    private Transform _parentBeforeDrag;
+    
     public bool effectsActive;
     public bool detailsPanelActive;
-    private GameObject detailsPanelInstance;
-
-    public delegate void onItemChanged();
-
-    public static event onItemChanged OnItemChanged;
-
-    public delegate void onItemAddedFromContainer(BaseItem item);
-
-    public static event onItemAddedFromContainer OnItemAddedFromContainer;
     
-    public delegate void onItemEquipped();
+    private GameObject _detailsPanelInstance;
 
-    public static event onItemEquipped OnItemEquipped;
+    #region Events
+
+    public static event Action<BaseItem> OnItemAddedToInventory;
     
-    public delegate void onItemStriped();
+    public static event Action<BaseItem> OnItemRemovedFromInventory;
 
-    public static event onItemStriped OnItemStriped;
+    public static event Action<BaseItem> OnItemEquipped;
 
-    private void Awake()
-    {
-        InputManager.Instance.PlayerInputActions.UI.DoubleClick.performed += UseItem;
-    }
+    public static event Action<BaseItem> OnItemStriped;
+    
 
+    #endregion
     private void Start()
     {
-        OnItemEquipped += SetEffectsActive;
-        OnItemStriped += SetEffectsInactive;
+
         InitialiseItem(item);
+        
         if (!isInPlayerInventory && GetComponentInParent<EquipmentSlot>())
         {
             effectsActive = true;
         }
     }
-
-    private void OnDestroy()
-    {
-        InputManager.Instance.PlayerInputActions.UI.DoubleClick.performed -= UseItem;
-    }
-
-    public void InitialiseItem(BaseItem newItem)
+    private void InitialiseItem(BaseItem newItem)
     {
         GetComponentInChildren<LoadItemIcon>().LoadIcon();
         GetComponentInChildren<TextMeshProUGUI>().text = newItem.itemName;
@@ -67,7 +56,7 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     {
         var transform1 = transform;
         var parent = transform1.parent;
-        parentBeforeDrag = parent;
+        _parentBeforeDrag = parent;
         image.raycastTarget = false;
         parentAfterDrag = parent;
         transform.SetParent(transform1.root);
@@ -84,47 +73,45 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
         
-        if (!parentBeforeDrag.GetComponent<InventorySlot>() || !parentAfterDrag.GetComponent<EquipmentSlot>()) return;
+        if (!_parentBeforeDrag.GetComponent<InventorySlot>() || !parentAfterDrag.GetComponent<EquipmentSlot>()) return;
         
         isInPlayerInventory = false;
+        effectsActive = true;
         
-        GameManager.Instance.playerData.playerInventoryItems.Remove(item);
-        GameManager.Instance.playerData.characterEquipment.Add(item);
-        
-        OnItemEquipped?.Invoke();
-        OnItemChanged?.Invoke();
+        OnItemEquipped?.Invoke(item);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
+        InputManager.Instance.PlayerInputActions.UI.DoubleClick.performed += UseItem;
+
         DisplayItemDetailsPanel();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Right && isInPlayerInventory && transform.GetComponentInParent<InventorySlot>() && !item.questItem)
+        switch (eventData.button)
         {
-            button.gameObject.SetActive(true);
-            return;
-        }
-
-        if (eventData.button == PointerEventData.InputButton.Left && !isInPlayerInventory && !transform.GetComponentInParent<EquipmentSlot>())
-        {
-            GameManager.Instance.playerData.playerInventoryItems.Add(item);
-            OnItemAddedFromContainer?.Invoke(item);
-            DestroyItem();
-        }
-        else if (eventData.button == PointerEventData.InputButton.Left && transform.GetComponentInParent<EquipmentSlot>())
-        {
-            GameManager.Instance.playerData.playerInventoryItems.Add(item);
-            GameManager.Instance.playerData.characterEquipment.Remove(item);
-            DestroyItem();
-            OnItemStriped?.Invoke();
-            OnItemChanged?.Invoke();
+            case PointerEventData.InputButton.Right when isInPlayerInventory && transform.GetComponentInParent<InventorySlot>() && !item.questItem:
+                button.gameObject.SetActive(true);
+                break;
+            
+            case PointerEventData.InputButton.Left when !isInPlayerInventory && !transform.GetComponentInParent<EquipmentSlot>():
+                OnItemAddedToInventory?.Invoke(item);
+                DestroyItem();
+                break;
+            
+            case PointerEventData.InputButton.Left when transform.GetComponentInParent<EquipmentSlot>():
+                effectsActive = false;
+                OnItemStriped?.Invoke(item);
+                DestroyItem();
+                break;
         }
     }
  
     public void OnPointerExit(PointerEventData eventData)
     {
+        InputManager.Instance.PlayerInputActions.UI.DoubleClick.performed -= UseItem;
+        
         if (button.enabled)
         {
             button.gameObject.SetActive(false);
@@ -133,35 +120,21 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         if (!detailsPanelActive) return;
         
         detailsPanelActive = false;
-        Destroy(detailsPanelInstance.gameObject);
+        Destroy(_detailsPanelInstance.gameObject);
     }
     public void DestroyItem()
     {
         if (isInPlayerInventory)
         {
-            GameManager.Instance.playerData.playerInventoryItems.Remove(item);
+            OnItemRemovedFromInventory?.Invoke(item);
         }
-
+        
         if (detailsPanelActive)
         {
-            Destroy(detailsPanelInstance.gameObject);
+            Destroy(_detailsPanelInstance.gameObject);
         }
+
         Destroy(gameObject);
-        
-        OnItemChanged?.Invoke();
-        
-        OnItemEquipped -= SetEffectsActive;
-        OnItemStriped -= SetEffectsInactive;
-    }
-
-    private void SetEffectsActive()
-    {
-        effectsActive = true;
-    }
-
-    private void SetEffectsInactive()
-    {
-        effectsActive = false;
     }
     private void DisplayItemDetailsPanel()
     {
@@ -172,14 +145,19 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         uiPosition.x += 120;
         uiPosition.y -= 80;
 
-        detailsPanelInstance = Instantiate(detailsPanelPrefab, uiPosition, Quaternion.identity, transform.root);
+        _detailsPanelInstance = Instantiate(detailsPanelPrefab, uiPosition, Quaternion.identity, transform.root);
         detailsPanelActive = true;
-        detailsPanelInstance.GetComponent<ItemDetailsPanelLoad>().LoadItemDetails(item);
+        _detailsPanelInstance.GetComponent<ItemDetailsPanelLoad>().LoadItemDetails(item);
     }
     private void UseItem(InputAction.CallbackContext context)
     {
-        if (!item.oneTimeItem) return;
+        if (!item.oneTimeItem || !isInPlayerInventory) return;
         Debug.Log("Item has been used");
         DestroyItem();
+    }
+
+    private void OnDestroy()
+    {
+        InputManager.Instance.PlayerInputActions.UI.DoubleClick.performed -= UseItem;
     }
 }

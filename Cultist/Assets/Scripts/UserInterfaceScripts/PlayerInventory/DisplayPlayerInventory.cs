@@ -1,11 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Managers;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class DisplayPlayerInventory : MonoBehaviour
 {
@@ -14,12 +8,26 @@ public class DisplayPlayerInventory : MonoBehaviour
 
     private void OnEnable()
     {
-        InventoryItemDragDrop.OnItemChanged += ReloadInventory;
+        InventoryItemDragDrop.OnItemAddedToInventory += ReloadInventory;
+        
+        InventoryItemDragDrop.OnItemRemovedFromInventory += ReloadInventory;
+        
+        InventoryItemDragDrop.OnItemEquipped += ReloadInventory;
+        
+        InventoryItemDragDrop.OnItemStriped += ReloadInventory;
+        
         DisplayInventory();
     }
     private void OnDisable()
     {
-        InventoryItemDragDrop.OnItemChanged -= ReloadInventory;
+        InventoryItemDragDrop.OnItemAddedToInventory -= ReloadInventory;
+        
+        InventoryItemDragDrop.OnItemRemovedFromInventory -= ReloadInventory;
+        
+        InventoryItemDragDrop.OnItemEquipped -= ReloadInventory;
+        
+        InventoryItemDragDrop.OnItemStriped -= ReloadInventory;
+        
         ClearInventoryAfterReload();
     }
 
@@ -33,15 +41,17 @@ public class DisplayPlayerInventory : MonoBehaviour
 
     private void SpawnNewItem(BaseItem item)
     {
-        GameObject slotPrefabToSpawn = SpawnNewEmptySlot();
-        GameObject itemPrefabSpawn = Instantiate(inventoryItemPrefab, slotPrefabToSpawn.transform, false);
+        var slotPrefabToSpawn = SpawnNewEmptySlot();
+        
+        var itemPrefabSpawn = Instantiate(inventoryItemPrefab, slotPrefabToSpawn.transform, false);
+        
         itemPrefabSpawn.GetComponent<InventoryItemDragDrop>().item = item;
         itemPrefabSpawn.GetComponent<InventoryItemDragDrop>().isInPlayerInventory = true;
     }
 
     private GameObject SpawnNewEmptySlot()
     {
-        GameObject slotPrefabToSpawn = Instantiate(emptySlotPrefab, transform, false);
+        var slotPrefabToSpawn = Instantiate(emptySlotPrefab, transform, false);
         return slotPrefabToSpawn;
     }
 
@@ -53,9 +63,10 @@ public class DisplayPlayerInventory : MonoBehaviour
         }
     }
 
-    public void ReloadInventory()
+    private void ReloadInventory(BaseItem item)
     {
         ClearInventoryAfterReload();
+        
         DisplayInventory();
     }
 }

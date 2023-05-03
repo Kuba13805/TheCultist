@@ -25,7 +25,7 @@ public class Container : BaseInteractableObject
     public bool isActive;
     public override void Interact()
     {
-        InventoryItemDragDrop.OnItemAddedFromContainer += RemoveItemFromContainerList;
+        InventoryItemDragDrop.OnItemAddedToInventory += RemoveItemFromContainerList;
         ShowContainerLoadout();
     }
 
@@ -40,8 +40,11 @@ public class Container : BaseInteractableObject
                 Destroy(panelInstance.gameObject);
             }
         }
+        
         Canvas canvas = FindObjectOfType<Canvas>();
+        
         panelInstance = Instantiate(containerUIToLoad, canvas.transform, false);
+        
         isActive = true;
 
         FillLoadout(itemsInContainer.ToArray());
@@ -63,8 +66,9 @@ public class Container : BaseInteractableObject
 
     private void SpawnNewItem(BaseItem item)
     {
-        GameObject slotPrefabToSpawn = SpawnNewEmptySlot();
-        GameObject itemPrefabSpawn = Instantiate(inventoryItemPrefab, slotPrefabToSpawn.transform, false);
+        var slotPrefabToSpawn = SpawnNewEmptySlot();
+        
+        var itemPrefabSpawn = Instantiate(inventoryItemPrefab, slotPrefabToSpawn.transform, false);
 
         itemPrefabSpawn.GetComponent<InventoryItemDragDrop>().item = item;
         
@@ -72,8 +76,10 @@ public class Container : BaseInteractableObject
 
     private GameObject SpawnNewEmptySlot()
     {
-        GameObject content = panelInstance.GetComponentInChildren<GridLayoutGroup>().gameObject;
-        GameObject slotPrefabToSpawn = Instantiate(emptySlotPrefab, content.transform, false);
+        var content = panelInstance.GetComponentInChildren<GridLayoutGroup>().gameObject;
+        
+        var slotPrefabToSpawn = Instantiate(emptySlotPrefab, content.transform, false);
+        
         return slotPrefabToSpawn;
     }
     private void DeterminePanelToShow()
