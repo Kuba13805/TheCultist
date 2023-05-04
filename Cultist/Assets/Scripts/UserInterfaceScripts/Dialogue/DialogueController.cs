@@ -115,10 +115,11 @@ public class DialogueController : MonoBehaviour
         _originConversationPoint = dialogueInteraction;
         
         if (_originConversationPoint.oneTimeConversation) return;
-
+        
         if (!string.IsNullOrEmpty(_originConversationPoint.dialogueSaved))
         {
             LoadStoryState(_originConversationPoint.dialogueSaved);
+            _inkStory.ChoosePathString("start_conversation");
             Debug.Log("Loaded");
         }
         else
@@ -138,12 +139,8 @@ public class DialogueController : MonoBehaviour
         if (_inkStory.canContinue && _inkStory.currentChoices.Count == 0)
         {
             ContinueStory();
-            if (_npcTextBox.text == "")
-            {
-                ContinueStory();
-            }
         }
-        if (!_inkStory.canContinue && _inkStory.currentChoices.Count == 0)
+        if (!_inkStory.canContinue && _inkStory.currentChoices.Count == 0 || _npcTextBox.text == "")
         {
             EndDialogue();
         }
@@ -162,15 +159,20 @@ public class DialogueController : MonoBehaviour
             _npcTextBox.text = $"<color=yellow>{_charName}:</color> " + _inkStory.Continue();
         }
     }
+
     private void SubmitChoice(Choice choice)
     {
-        TestPlayerWithChoice(choice);
-        
+        var wasPlayerTested = TestPlayerWithChoice(choice);
+
         _inkStory.ChooseChoiceIndex(_listOfChoices.IndexOf(choice));
         ClearChoices(_playerChoicesContainer.transform.GetComponentsInChildren<DialogueSendChoice>());
         if (_inkStory.canContinue)
         {
             ContinueStory();
+            if (wasPlayerTested && _inkStory.canContinue)
+            {
+                ContinueStory();
+            }
         }
         DisplayInfoToClick();
     }
@@ -209,13 +211,15 @@ public class DialogueController : MonoBehaviour
         var loadedPrefab = Resources.Load(nameOfPrefabToLoad) as GameObject;
         return loadedPrefab;
     }
-    private static void DisplayChoices(List<Choice> list)
+    private void DisplayChoices(List<Choice> list)
     {
         foreach (var choice in list)
         {
             var dialogueOption = DisplayDialogueOption();
-                    
-            LoadDialogueOptionContent(dialogueOption, choice.index, choice.text);
+
+            var testToPassInfo = AddTestInfoToChoice(choice);
+            
+            LoadDialogueOptionContent(dialogueOption, choice.index, testToPassInfo + choice.text);
             dialogueOption.GetComponent<DialogueSendChoice>().choice = choice;
 
         }
@@ -253,20 +257,38 @@ public class DialogueController : MonoBehaviour
     #endregion
 
     #region DialogueLogic
-    private string CheckForTags(Choice choice)
+    private string CheckForTagsAtChoice(Choice choice)
     {
         _listOfCurrentTags = choice.tags;
+        
         return _listOfCurrentTags == null ? "No tags" : _listOfCurrentTags[0];
     }
 
-    private void TestPlayerWithChoice(Choice choice)
+    private bool TestPlayerWithChoice(Choice choice)
     {
-        var testTag = CheckForTags(choice);
-        if (testTag == "No tags") return;
+        var testTag = CheckForTagsAtChoice(choice);
+        if (testTag == "No tags") return false;
         
         var array = testTag.Split(":");
         
         OnTestCheck?.Invoke(int.Parse(array[1]), array[0]);
+
+        return true;
+    }
+
+    private string AddTestInfoToChoice(Choice choice)
+    {
+        var testTag = CheckForTagsAtChoice(choice);
+        var array = testTag.Split(":");
+
+        var stringToReturn = "[" + array[0] + "] ";
+
+        if (array[0] == "No tags")
+        {
+            stringToReturn = "";
+        }
+
+        return stringToReturn;
     }
 
     private void ReturnTestResult(bool result)

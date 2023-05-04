@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class DisplayDiceRollResult : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI resultTextBox;
+    [SerializeField] private TextMeshProUGUI diceResultTextBox;
     [SerializeField] private Image diceImage;
     [SerializeField] private GameObject dicePanel;
+    [SerializeField] private TextMeshProUGUI textResultTextBox;
 
     [SerializeField] private float tweenDuration;
     [SerializeField] private Vector3 scaleTween;
@@ -25,17 +26,23 @@ public class DisplayDiceRollResult : MonoBehaviour
     private void OnDisable()
     {
         TestPlayer.OnDiceRoll -= DisplayTestResult;
+        
+        GameManager.OnPlayerTestCheck -= CheckIfTestWasPassed;
     }
 
     private void DisplayTestResult(int result)
     {
         dicePanel.SetActive(true);
-        resultTextBox.text = result.ToString();
+        diceResultTextBox.text = result.ToString();
         StartCoroutine(WaitToDeactivate());
     }
     private void CheckIfTestWasPassed(bool test)
     {
-        resultTextBox.color = test ? Color.green : Color.red;
+        diceResultTextBox.color = test ? Color.green : Color.red;
+        
+        textResultTextBox.color = test ? Color.green : Color.red;
+
+        textResultTextBox.text = test ? "Test passed!" : "Test failed!";
     }
 
     private IEnumerator WaitToDeactivate()

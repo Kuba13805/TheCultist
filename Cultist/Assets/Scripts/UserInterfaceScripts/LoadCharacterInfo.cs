@@ -1,32 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Managers;
 using NaughtyAttributes;
 using PlayerScripts;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LoadCharacterInfo : MonoBehaviour
 {
-    private TextMeshProUGUI inputToLoad;
-    private PlayerData PlayerData;
-    [DisableIf(EConditionOperator.Or, "LoadBasic", "LoadSkill")] 
-    public bool LoadAttribute;
-    [DisableIf(EConditionOperator.Or, "LoadAttribute", "LoadSkill")] 
-    public bool LoadBasic;
-    [DisableIf(EConditionOperator.Or, "LoadBasic", "LoadAttribute")] 
-    public bool LoadSkill;
-    [EnableIf("LoadAttribute")] [ShowIf("LoadAttribute")]
-    public charAttributes attributeToLoad;
+    private TextMeshProUGUI _inputToLoad;
+    private PlayerData _playerData;
+    [DisableIf(EConditionOperator.Or, "loadBasic", "loadSkill")] 
+    public bool loadAttribute;
+    [DisableIf(EConditionOperator.Or, "loadAttribute", "loadSkill")] 
+    public bool loadBasic;
+    [DisableIf(EConditionOperator.Or, "loadBasic", "loadAttribute")] 
+    public bool loadSkill;
+    [EnableIf("loadAttribute")] [ShowIf("loadAttribute")]
+    public CharAttributes attributeToLoad;
     
-    [EnableIf("LoadBasic")] [ShowIf("LoadBasic")]
-    public charBasicInfo basicInfoToLoad;
+    [EnableIf("loadBasic")] [ShowIf("loadBasic")]
+    public CharBasicInfo basicInfoToLoad;
     
-    [EnableIf("LoadSkill")] [ShowIf("LoadSkill")]
-    public charSkills skillToLoad;
-    public enum charAttributes
+    [EnableIf("loadSkill")] [ShowIf("loadSkill")]
+    public CharSkills skillToLoad;
+    public enum CharAttributes
     {
         Strength,
         Dexterity,
@@ -35,12 +31,12 @@ public class LoadCharacterInfo : MonoBehaviour
         Condition
     }
 
-    public enum charBasicInfo
+    public enum CharBasicInfo
     {
         Name,
         Health
     }
-    public enum charSkills
+    public enum CharSkills
     {
         Perception,
         Occultism,
@@ -64,8 +60,8 @@ public class LoadCharacterInfo : MonoBehaviour
         
         InventoryItemDragDrop.OnItemStriped += SwitchOnOff;
         
-        inputToLoad = GetComponent<TextMeshProUGUI>();
-        PlayerData = GameManager.Instance.playerData;
+        _inputToLoad = GetComponent<TextMeshProUGUI>();
+        _playerData = GameManager.Instance.playerData;
         LoadData();
         
     }
@@ -83,58 +79,65 @@ public class LoadCharacterInfo : MonoBehaviour
 
     private void LoadData()
     {
-        if (LoadAttribute)
+        if (loadAttribute)
         {
             LoadCharAttribute(attributeToLoad);
         }
-        else if (LoadBasic)
+        else if (loadBasic)
         {
             LoadCharBasicInfo(basicInfoToLoad);
         }
-        else if (LoadSkill)
+        else if (loadSkill)
         {
             LoadCharSkill(skillToLoad);
         }
     }
 
-    private void LoadCharAttribute(charAttributes attribute)
+    private void LoadCharAttribute(CharAttributes attribute)
     {
-        inputToLoad.text = attribute switch
+        _inputToLoad.text = attribute switch
         {
-            charAttributes.Strength => PlayerData.strength.ToString(),
-            charAttributes.Dexterity => PlayerData.dexterity.ToString(),
-            charAttributes.Condition => PlayerData.condition.ToString(),
-            charAttributes.Wisdom => PlayerData.wisdom.ToString(),
-            charAttributes.Power => PlayerData.power.ToString(),
-            _ => inputToLoad.text
+            CharAttributes.Strength => _playerData.strength.ToString(),
+            CharAttributes.Dexterity => _playerData.dexterity.ToString(),
+            CharAttributes.Condition => _playerData.condition.ToString(),
+            CharAttributes.Wisdom => _playerData.wisdom.ToString(),
+            CharAttributes.Power => _playerData.power.ToString(),
+            _ => _inputToLoad.text
         };
     }
 
-    private void LoadCharBasicInfo(charBasicInfo info)
+    private void LoadCharBasicInfo(CharBasicInfo info)
     {
-        inputToLoad.text = info switch
+        var charNickname = "";
+
+        if (_playerData.nickname != "")
         {
-            charBasicInfo.Name => PlayerData.charName + " '" + PlayerData.nickname + "'",
-            charBasicInfo.Health => PlayerData.health.ToString(),
-            _ => inputToLoad.text
+            charNickname = " '" + _playerData.nickname + "'";
+        }
+        
+        _inputToLoad.text = info switch
+        {
+            CharBasicInfo.Name => _playerData.charName + charNickname,
+            CharBasicInfo.Health => _playerData.health.ToString(),
+            _ => _inputToLoad.text
         };
     }
 
-    private void LoadCharSkill(charSkills skill)
+    private void LoadCharSkill(CharSkills skill)
     {
-        inputToLoad.text = skill switch
+        _inputToLoad.text = skill switch
         {
-            charSkills.Electrics => PlayerData.electrics.ToString(),
-            charSkills.History => PlayerData.history.ToString(),
-            charSkills.Intimidation => PlayerData.intimidation.ToString(),
-            charSkills.Locksmithing => PlayerData.locksmithing.ToString(),
-            charSkills.Mechanics => PlayerData.mechanics.ToString(),
-            charSkills.Medicine => PlayerData.medicine.ToString(),
-            charSkills.Occultism => PlayerData.occultism.ToString(),
-            charSkills.Perception => PlayerData.perception.ToString(),
-            charSkills.Persuasion => PlayerData.persuasion.ToString(),
-            charSkills.Psychology => PlayerData.psychology.ToString(),
-            _ => inputToLoad.text
+            CharSkills.Electrics => _playerData.electrics.ToString(),
+            CharSkills.History => _playerData.history.ToString(),
+            CharSkills.Intimidation => _playerData.intimidation.ToString(),
+            CharSkills.Locksmithing => _playerData.locksmithing.ToString(),
+            CharSkills.Mechanics => _playerData.mechanics.ToString(),
+            CharSkills.Medicine => _playerData.medicine.ToString(),
+            CharSkills.Occultism => _playerData.occultism.ToString(),
+            CharSkills.Perception => _playerData.perception.ToString(),
+            CharSkills.Persuasion => _playerData.persuasion.ToString(),
+            CharSkills.Psychology => _playerData.psychology.ToString(),
+            _ => _inputToLoad.text
         };
     }
 

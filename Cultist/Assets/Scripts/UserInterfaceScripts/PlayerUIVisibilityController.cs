@@ -4,31 +4,32 @@ using System.Collections.Generic;
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerUIVisibilityController : MonoBehaviour
 {
-    [SerializeField] private GameObject UI;
+    [FormerlySerializedAs("UI")] [SerializeField] private GameObject ui;
     private void Start()
     {
-        InputManager.Instance.PlayerInputActions.Player.OpenInventory.performed += OpenInventoryOnperformed;
+        InputManager.Instance.PlayerInputActions.Player.OpenInventory.performed += OpenInventoryOnPerformed;
         
-        InputManager.Instance.PlayerInputActions.UI.CloseUI.performed += CloseUIOnperformed;
+        InputManager.Instance.PlayerInputActions.UI.CloseUI.performed += CloseUIOnPerformed;
     }
 
 
     private void OnDestroy()
     {
-        InputManager.Instance.PlayerInputActions.Player.OpenInventory.performed -= OpenInventoryOnperformed;
+        InputManager.Instance.PlayerInputActions.Player.OpenInventory.performed -= OpenInventoryOnPerformed;
         
-        InputManager.Instance.PlayerInputActions.UI.CloseUI.performed -= CloseUIOnperformed;
+        InputManager.Instance.PlayerInputActions.UI.CloseUI.performed -= CloseUIOnPerformed;
     }
 
-    private void OpenInventoryOnperformed(InputAction.CallbackContext context)
+    private void OpenInventoryOnPerformed(InputAction.CallbackContext context)
     {
-        UI.SetActive(true);
+        ui.SetActive(true);
     }
-    private void CloseUIOnperformed(InputAction.CallbackContext obj)
+    private void CloseUIOnPerformed(InputAction.CallbackContext obj)
     {
-        UI.SetActive(false);
+        ui.SetActive(false);
     }
 }
