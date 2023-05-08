@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Ink.Parsed;
 using UnityEngine;
 using Managers;
+using Questlines;
+using Questlines.SingleQuests;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -11,13 +15,22 @@ using Story = Ink.Runtime.Story;
 public class DialogueController : MonoBehaviour
 {
     private DialogueInteraction _originConversationPoint;
-
-    private GameObject _dialoguePanel;
+    
+    #region InkVariables
 
     private TextAsset _inkAsset;
     private Story _inkStory;
     private List<Choice> _listOfChoices;
     private List<string> _listOfCurrentTags;
+
+    private List<Quest> _listOfQuests;
+
+    private List<QuestVariables> _listOfQuestVariables;
+    
+    #endregion
+    
+    #region GuiVariables
+    private GameObject _dialoguePanel;
 
     private static GameObject _playerChoicesContainer;
     private GameObject _playerPortraitBox;
@@ -29,6 +42,10 @@ public class DialogueController : MonoBehaviour
     private Sprite _npcPortraitSprite;
     
     private string _charName;
+    
+
+    #endregion
+
 
     #region Events
 
@@ -37,6 +54,10 @@ public class DialogueController : MonoBehaviour
     public static event Action OnDialogueClosed;
 
     public static event Action<int, string> OnTestCheck;
+
+    public static event Action<List<string>> OnCallVariables;
+
+    public static event Action<List<QuestVariables>> OnSetNewVariables; 
 
     #endregion
 
@@ -49,6 +70,8 @@ public class DialogueController : MonoBehaviour
         GameManager.OnPlayerTestCheck += ReturnTestResult;
         
         DialogueInteraction.OnDialogueCall += Initialize;
+
+        QuestLog.OnQuestVariablesReturn += LoadQuestVariablesToDialogue;
     }
 
     private void Start()
@@ -68,6 +91,8 @@ public class DialogueController : MonoBehaviour
         GameManager.OnPlayerTestCheck -= ReturnTestResult;
         
         DialogueInteraction.OnDialogueCall -= Initialize;
+        
+        QuestLog.OnQuestVariablesReturn -= LoadQuestVariablesToDialogue;
     }
 
     private void Initialize(string objectName, DialogueInteraction dialogueInteraction)
@@ -78,6 +103,13 @@ public class DialogueController : MonoBehaviour
         InitializeStoryUIBoxes(objectName, dialogueInteraction);
         
         InitializeStory(dialogueInteraction);
+        
+        CallForVariable();
+
+        // if (!_originConversationPoint.oneTimeConversation)
+        // {
+        //     HandleLoadAndSaveAtStart();
+        // }
 
         StartDialogue();
     }
@@ -113,20 +145,6 @@ public class DialogueController : MonoBehaviour
         HandleInkError();
         
         _originConversationPoint = dialogueInteraction;
-        
-        if (_originConversationPoint.oneTimeConversation) return;
-        
-        if (!string.IsNullOrEmpty(_originConversationPoint.dialogueSaved))
-        {
-            LoadStoryState(_originConversationPoint.dialogueSaved);
-            _inkStory.ChoosePathString("start_conversation");
-            Debug.Log("Loaded");
-        }
-        else
-        {
-            SaveStoryState();
-            Debug.Log("Saved");
-        }
     }
 
     private void StartDialogue()
@@ -179,6 +197,7 @@ public class DialogueController : MonoBehaviour
 
     private void EndDialogue()
     {
+        SendNewVariablesToDialogueLog();
         SaveStoryState();
         Destroy(_dialoguePanel.gameObject);
     }
@@ -191,6 +210,21 @@ public class DialogueController : MonoBehaviour
     private void SaveStoryState()
     {
         _originConversationPoint.dialogueSaved = _inkStory.state.ToJson();
+    }
+    
+    private void HandleLoadAndSaveAtStart()
+    {
+        if (!string.IsNullOrEmpty(_originConversationPoint.dialogueSaved))
+        {
+            LoadStoryState(_originConversationPoint.dialogueSaved);
+            _inkStory.ChoosePathString("start_conversation");
+            Debug.Log("Loaded");
+        }
+        else
+        {
+            SaveStoryState();
+            Debug.Log("Saved");
+        }
     }
     #endregion
 
@@ -305,8 +339,111 @@ public class DialogueController : MonoBehaviour
                 Debug.LogError(msg);
         };
     }
-    #endregion
     
+
+    private void LoadQuestsAndVariables(List<Quest> listOfQuests)
+    {
+        _listOfQuests = listOfQuests;
+
+        _listOfQuestVariables = new List<QuestVariables>();
+
+        foreach (var quest in _listOfQuests)
+        {
+            foreach (var variable in quest.questVariables)
+            {
+                _listOfQuestVariables.Add(variable);
+                Debug.Log(variable);
+            }
+        }
+
+        LoadVariablesToStory();
+    }
+
+    private void LoadVariablesToStory()
+    {
+        foreach (var variable in _listOfQuestVariables)
+        {
+            if (!_inkStory.variablesState.GlobalVariableExistsWithName(variable.variableName)) continue;
+            
+            var variableContent = variable.conditionPassed;
+
+            _inkStory.variablesState[variable.variableName] = variableContent;
+            
+            Debug.Log("Variable with name: " + variable.variableName + " has been passed to story!");
+        }
+        
+        SaveStoryState();
+        LoadStoryState(_originConversationPoint.dialogueSaved);
+    }
+
+    #endregion
+
+    #region HandleQuestsInDialogue
+
+    #region GetVariablesFromDialogueLog
+    private void CallForVariable()
+    {
+        var listOfVariables = LoadNeededVariablesFromDialogue();
+        
+        OnCallVariables?.Invoke(listOfVariables);
+    }
+
+    private List<string> LoadNeededVariablesFromDialogue()
+    {
+        var listOfNeededVariables = new List<string>();
+        
+        foreach (var inkVariable in _inkStory.variablesState)
+        {
+            listOfNeededVariables.Add(inkVariable);
+        }
+
+        return listOfNeededVariables;
+    }
+    private void LoadQuestVariablesToDialogue(List<QuestVariables> listOfReturnQuestVariables)
+    {
+        _listOfQuestVariables = new List<QuestVariables>();
+        
+        _listOfQuestVariables = listOfReturnQuestVariables;
+        
+        foreach (var variable in _listOfQuestVariables)
+        {
+            var variableContent = variable.conditionPassed;
+
+            _inkStory.variablesState[variable.variableName] = variableContent;
+            
+            Debug.Log("Variable with name: " + variable.variableName + " has been passed to story!");
+        }
+        SaveStoryState();
+        LoadStoryState(_originConversationPoint.dialogueSaved);
+    }
+    #endregion
+
+    #region SetNewVariables
+
+    private void SendNewVariablesToDialogueLog()
+    {
+        var questVariablesList = new List<QuestVariables>();
+        
+        var listOfVariables = LoadNeededVariablesFromDialogue();
+
+        foreach (var variable in listOfVariables)
+        {
+            var newVariableToSet = new QuestVariables
+            {
+                variableName = variable,
+                conditionPassed = (bool)_inkStory.variablesState[variable]
+            };
+
+            questVariablesList.Add(newVariableToSet);
+        }
+        
+        OnSetNewVariables?.Invoke(questVariablesList);
+    }
+    
+
+    #endregion
+
+    #endregion
     #region FindPanelElements
     private TextMeshProUGUI FindNpcTextBox()
     {

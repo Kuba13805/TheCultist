@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using Questlines.SingleQuests;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DialogueInteraction : MonoBehaviour
 {

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "NewItem", menuName = "ScriptableObjects/Item/Create New Item")]
 public class BaseItem : ScriptableObject
 {
+    
+
     public string itemName;
     public int itemId;
     [TextAreaAttribute(15, 20)]

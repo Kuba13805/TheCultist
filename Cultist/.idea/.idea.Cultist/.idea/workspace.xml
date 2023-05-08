@@ -18,6 +18,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/ItemSpecialScripts/ItemMultipleEffects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/NPCScripts/DialogueInteraction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/Questline.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GameState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueSendChoice.cs" root0="FORCE_HIGHLIGHTING" />
@@ -159,7 +160,11 @@
       <workItem from="1682943422408" duration="26569000" />
       <workItem from="1683018794771" duration="23389000" />
       <workItem from="1683119516964" duration="16275000" />
-      <workItem from="1683192753901" duration="10623000" />
+      <workItem from="1683192753901" duration="11219000" />
+      <workItem from="1683383307747" duration="9943000" />
+      <workItem from="1683398804653" duration="3561000" />
+      <workItem from="1683456749461" duration="10762000" />
+      <workItem from="1683540025245" duration="18959000" />
     </task>
     <servers />
   </component>

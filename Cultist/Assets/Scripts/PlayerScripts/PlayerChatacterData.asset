@@ -16,6 +16,7 @@ MonoBehaviour:
   nickname: 
   health: 10
   playerPortrait: {fileID: 21300000, guid: 7f5b00bd12772014e9b4c2af9f6b999a, type: 3}
+  currentQuestLog: {fileID: 11400000, guid: 4def25c20359dba499853b50585be94c, type: 2}
   dexterity: 6
   strength: 2
   power: 6

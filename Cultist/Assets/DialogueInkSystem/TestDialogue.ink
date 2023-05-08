@@ -1,3 +1,5 @@
+VAR knows_where_is_master = false
+VAR knows_about_the_sky = false
 VAR test_passed = false
 -> start_conversation
 === start_conversation ===
@@ -6,6 +8,7 @@ He stops writing as soon as you approach him.
     * ["Mind your tongue, slave!"] -> be_cruel 
     + ["Where is  your master, Godfrey?"] -> where_is_the_master
     + ["Is everything alright?"] -> be_nice
+    + {knows_where_is_master} [Go to see his master] -> END
 
 
 === be_cruel ===
@@ -36,12 +39,14 @@ His hands begin to tremble as his voice cracks with each word.
     - not test_passed: #ignore 
         "How can I stay calm? Are you blind or what?"
         Godfrey looks up at the dark sky. You can see the fear in his eyes and the desire to hide as deep as possible. 
-        -> be_cruel
+            + {knows_about_the_sky} [Tell him about the sky] -> the_sky
+            + ["Mind your tongue, slave!"] -> be_cruel
     - test_passed: #ignore
         Godfrey calms down a bit. His hands stop shaking and his voice stops cracking. You can see the shame in his eyes from the earlier outburst.
         "I am sorry and... I... You. You are here because of master Trembly, am I right?
             * ["Just tell me where he is."] -> where_is_the_master
             * ["Yes, Godfrey. We need his help."]
+                ~ knows_where_is_master = true
                 "He is in the temple. Something important has happened. Maybe they found a way to make the sky healthy again? I hope so."
                 ** ["Take a break. We've all been tired lately."]
                     "Yes. I will sit for a moment and watch the clouds.
@@ -51,12 +56,18 @@ His hands begin to tremble as his voice cracks with each word.
                     
 }
 
+=== the_sky ===
+"I knew that these demons would return one day!"
+"Go to master Trembly and tell him about the sky"
+    * ["Where is your master?"] -> where_is_the_master
 === where_is_the_master ===
+~ knows_where_is_master = true
 "He is inside the temple. Ask for him there."
     *["Thank you, Godfrey"]
         He starts writing again, while you leave him alone. -> END
     
 
 === godfrey_memories ===
+~ knows_where_is_master = true
 *[Search for his master]
     You see master Trembly in the great halls of local temple. Now you know where you can find him. -> END
