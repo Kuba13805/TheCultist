@@ -806,6 +806,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateCameraOnClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""a14a895a-3e27-4420-86e7-942f7e0081ea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -896,6 +905,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""MoveCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ade9f633-224a-471e-9dbd-07ecbcdcb134"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCameraOnClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -994,6 +1014,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Camera_ZoomCamera = m_Camera.FindAction("ZoomCamera", throwIfNotFound: true);
         m_Camera_RotateCamera = m_Camera.FindAction("RotateCamera", throwIfNotFound: true);
         m_Camera_CameraFocusOnPlayer = m_Camera.FindAction("CameraFocusOnPlayer", throwIfNotFound: true);
+        m_Camera_RotateCameraOnClick = m_Camera.FindAction("RotateCameraOnClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1275,6 +1296,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Camera_ZoomCamera;
     private readonly InputAction m_Camera_RotateCamera;
     private readonly InputAction m_Camera_CameraFocusOnPlayer;
+    private readonly InputAction m_Camera_RotateCameraOnClick;
     public struct CameraActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1283,6 +1305,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @ZoomCamera => m_Wrapper.m_Camera_ZoomCamera;
         public InputAction @RotateCamera => m_Wrapper.m_Camera_RotateCamera;
         public InputAction @CameraFocusOnPlayer => m_Wrapper.m_Camera_CameraFocusOnPlayer;
+        public InputAction @RotateCameraOnClick => m_Wrapper.m_Camera_RotateCameraOnClick;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1304,6 +1327,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @CameraFocusOnPlayer.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraFocusOnPlayer;
                 @CameraFocusOnPlayer.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraFocusOnPlayer;
                 @CameraFocusOnPlayer.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnCameraFocusOnPlayer;
+                @RotateCameraOnClick.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCameraOnClick;
+                @RotateCameraOnClick.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCameraOnClick;
+                @RotateCameraOnClick.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCameraOnClick;
             }
             m_Wrapper.m_CameraActionsCallbackInterface = instance;
             if (instance != null)
@@ -1320,6 +1346,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @CameraFocusOnPlayer.started += instance.OnCameraFocusOnPlayer;
                 @CameraFocusOnPlayer.performed += instance.OnCameraFocusOnPlayer;
                 @CameraFocusOnPlayer.canceled += instance.OnCameraFocusOnPlayer;
+                @RotateCameraOnClick.started += instance.OnRotateCameraOnClick;
+                @RotateCameraOnClick.performed += instance.OnRotateCameraOnClick;
+                @RotateCameraOnClick.canceled += instance.OnRotateCameraOnClick;
             }
         }
     }
@@ -1402,5 +1431,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnZoomCamera(InputAction.CallbackContext context);
         void OnRotateCamera(InputAction.CallbackContext context);
         void OnCameraFocusOnPlayer(InputAction.CallbackContext context);
+        void OnRotateCameraOnClick(InputAction.CallbackContext context);
     }
 }

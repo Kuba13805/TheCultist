@@ -47,7 +47,7 @@ His hands begin to tremble as his voice cracks with each word.
             * ["Just tell me where he is."] -> where_is_the_master
             * ["Yes, Godfrey. We need his help."]
                 ~ knows_where_is_master = true
-                "He is in the temple. Something important has happened. Maybe they found a way to make the sky healthy again? I hope so."
+                "He is in the temple. Something important has happened. Maybe they found a way to make the sky healthy again? I hope so." #questComplete:1
                 ** ["Take a break. We've all been tired lately."]
                     "Yes. I will sit for a moment and watch the clouds.
                         -> END
@@ -62,7 +62,7 @@ His hands begin to tremble as his voice cracks with each word.
     * ["Where is your master?"] -> where_is_the_master
 === where_is_the_master ===
 ~ knows_where_is_master = true
-"He is inside the temple. Ask for him there."
+"He is inside the temple. Ask for him there." #questComplete:1
     *["Thank you, Godfrey"]
         He starts writing again, while you leave him alone. -> END
     
@@ -70,4 +70,5 @@ His hands begin to tremble as his voice cracks with each word.
 === godfrey_memories ===
 ~ knows_where_is_master = true
 *[Search for his master]
-    You see master Trembly in the great halls of local temple. Now you know where you can find him. -> END
+    You see master Trembly in the great halls of local temple. Now you know where you can find him. #questComplete:1
+    -> END

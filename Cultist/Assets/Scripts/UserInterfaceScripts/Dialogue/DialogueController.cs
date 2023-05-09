@@ -23,8 +23,6 @@ public class DialogueController : MonoBehaviour
     private List<Choice> _listOfChoices;
     private List<string> _listOfCurrentTags;
 
-    private List<Quest> _listOfQuests;
-
     private List<QuestVariables> _listOfQuestVariables;
     
     #endregion
@@ -57,7 +55,11 @@ public class DialogueController : MonoBehaviour
 
     public static event Action<List<string>> OnCallVariables;
 
-    public static event Action<List<QuestVariables>> OnSetNewVariables; 
+    public static event Action<List<QuestVariables>> OnSetNewVariables;
+
+    public static event Action<int> OnQuestStart;
+
+    public static event Action<int> OnQuestComplete; 
 
     #endregion
 
@@ -105,11 +107,6 @@ public class DialogueController : MonoBehaviour
         InitializeStory(dialogueInteraction);
         
         CallForVariable();
-
-        // if (!_originConversationPoint.oneTimeConversation)
-        // {
-        //     HandleLoadAndSaveAtStart();
-        // }
 
         StartDialogue();
     }
@@ -172,10 +169,19 @@ public class DialogueController : MonoBehaviour
 
     private void ContinueStory()
     {
-        if (_inkStory.canContinue)
-        {
-            _npcTextBox.text = $"<color=yellow>{_charName}:</color> " + _inkStory.Continue();
-        }
+        if (!_inkStory.canContinue) return;
+        
+        _npcTextBox.text = $"<color=yellow>{_charName}:</color> " + _inkStory.Continue();
+        HandleQuestManagement();
+        // if (_inkStory.currentTags != null)
+        // {
+        //     foreach (var VARIABLE in _inkStory.currentTags)
+        //     {
+        //         var strings = VARIABLE.Split(':');
+        //         
+        //         Debug.Log(strings[0]);
+        //     }
+        // }
     }
 
     private void SubmitChoice(Choice choice)
@@ -210,21 +216,6 @@ public class DialogueController : MonoBehaviour
     private void SaveStoryState()
     {
         _originConversationPoint.dialogueSaved = _inkStory.state.ToJson();
-    }
-    
-    private void HandleLoadAndSaveAtStart()
-    {
-        if (!string.IsNullOrEmpty(_originConversationPoint.dialogueSaved))
-        {
-            LoadStoryState(_originConversationPoint.dialogueSaved);
-            _inkStory.ChoosePathString("start_conversation");
-            Debug.Log("Loaded");
-        }
-        else
-        {
-            SaveStoryState();
-            Debug.Log("Saved");
-        }
     }
     #endregion
 
@@ -291,6 +282,38 @@ public class DialogueController : MonoBehaviour
     #endregion
 
     #region DialogueLogic
+
+    private void HandleQuestManagement()
+    {
+        var currentTags = CheckForQuestTags(_inkStory.currentTags);
+        
+        foreach (var tagContent in currentTags.Select(questTag => questTag.Split(":")))
+        {
+            switch (tagContent[0])
+            {
+                case "questStart":
+                    Debug.Log("Quest started: " + tagContent[1]);
+                    OnQuestStart?.Invoke(int.Parse(tagContent[1]));
+                    break;
+                case "questComplete":
+                    Debug.Log("Quest completed: " + tagContent[1]);
+                    OnQuestComplete?.Invoke(int.Parse(tagContent[1]));
+                    break;
+            }
+        }
+    }
+
+    private List<string> CheckForQuestTags(List<string> currentTagsAtContinue)
+    {
+        List<string> list = new List<string>();
+        
+        foreach (var questTag in currentTagsAtContinue)
+        {
+            if (questTag.Contains("quest")) list.Add(questTag);
+        }
+
+        return list;
+    }
     private string CheckForTagsAtChoice(Choice choice)
     {
         _listOfCurrentTags = choice.tags;
@@ -339,43 +362,6 @@ public class DialogueController : MonoBehaviour
                 Debug.LogError(msg);
         };
     }
-    
-
-    private void LoadQuestsAndVariables(List<Quest> listOfQuests)
-    {
-        _listOfQuests = listOfQuests;
-
-        _listOfQuestVariables = new List<QuestVariables>();
-
-        foreach (var quest in _listOfQuests)
-        {
-            foreach (var variable in quest.questVariables)
-            {
-                _listOfQuestVariables.Add(variable);
-                Debug.Log(variable);
-            }
-        }
-
-        LoadVariablesToStory();
-    }
-
-    private void LoadVariablesToStory()
-    {
-        foreach (var variable in _listOfQuestVariables)
-        {
-            if (!_inkStory.variablesState.GlobalVariableExistsWithName(variable.variableName)) continue;
-            
-            var variableContent = variable.conditionPassed;
-
-            _inkStory.variablesState[variable.variableName] = variableContent;
-            
-            Debug.Log("Variable with name: " + variable.variableName + " has been passed to story!");
-        }
-        
-        SaveStoryState();
-        LoadStoryState(_originConversationPoint.dialogueSaved);
-    }
-
     #endregion
 
     #region HandleQuestsInDialogue

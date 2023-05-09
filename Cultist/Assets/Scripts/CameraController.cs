@@ -1,4 +1,5 @@
 using DG.Tweening.Plugins.Options;
+using Managers;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,14 +18,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float movementTime;
     [SerializeField] private float rotationAmount;
     [SerializeField] private Vector3 zoomAmount;
-    [SerializeField] private float mouseRotationSpeed;
 
     [SerializeField] private float minZoom;
     [SerializeField] private float maxZoom;
 
     private Vector3 _newPosition;
-
-    private Quaternion _newRotation;
 
     private Vector3 _newZoom;
 
@@ -35,23 +33,25 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindWithTag("Player");
-        
-        _newPosition = transform.position;
-        _newRotation = transform.rotation;
+
+        var transform1 = transform;
+        _newPosition = transform1.position;
         _newZoom = cameraTransform.localPosition;
 
-        _cameraActions = new PlayerInputActions();
+        _cameraActions = InputManager.Instance.PlayerInputActions;
         _movement = _cameraActions.Camera.MoveCamera;
-        _cameraActions.Camera.Enable();
 
         _cameraActions.Camera.CameraFocusOnPlayer.performed += FocusCamera;
+        
         TravelPoint.OnPlayerTravelDone += MoveCameraToTravelPoint;
     }
 
     private void Update()
     {
         HandleMouseInput();
+        
         HandleKeyboardInput();
+        
         FollowPlayerPositionY();
     }
 
@@ -63,41 +63,33 @@ public class CameraController : MonoBehaviour
 
     private void HandleMouseRotation()
     {
-        if (Input.GetMouseButtonDown(1))
+        var inputValue = _cameraActions.Camera.RotateCamera.ReadValue<Vector2>().x;
+
+        if (_cameraActions.Camera.RotateCameraOnClick.IsPressed())
         {
-            _rotateStartPosition = Input.mousePosition;
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            _rotateCurrentPosition = Input.mousePosition;
-
-            Vector3 difference = _rotateStartPosition - _rotateCurrentPosition;
-
-            _rotateStartPosition = _rotateCurrentPosition;
-            
-            _newRotation *= quaternion.Euler(Vector3.up * (-difference.x / mouseRotationSpeed));
+            transform.rotation = Quaternion.Euler(0f, inputValue * rotationAmount + transform.rotation.eulerAngles.y, 0f);
         }
     }
 
     private void HandleMouseZoom()
     {
-        if (Input.mouseScrollDelta.y > 0 || cameraTransform.localPosition.y <= minZoom)
+        var inputValue = _cameraActions.Camera.ZoomCamera.ReadValue<Vector2>().y;
+        inputValue *= 0.25f;
+        
+        if (inputValue > 0 || cameraTransform.localPosition.y <= minZoom)
         {
             _newZoom -= zoomAmount;
-            
+
         }
-        if (Input.mouseScrollDelta.y < 0 || cameraTransform.localPosition.y >= maxZoom)
+        if (inputValue < 0 || cameraTransform.localPosition.y >= maxZoom)
         {
             _newZoom += zoomAmount;
         }
-
         cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, _newZoom, Time.deltaTime * movementTime);
     }
     private void HandleKeyboardInput()
     {
         HandleKeyboardMovement();
-        HandleKeyboardRotation();
     }
     private void HandleKeyboardMovement()
     {
@@ -105,9 +97,9 @@ public class CameraController : MonoBehaviour
                          _movement.ReadValue<Vector2>().y * GetCameraForward();
         
         inputValue = inputValue.normalized;
-        inputValue *= 0.25f;
+        inputValue *= movementSpeed;
 
-        if (inputValue.sqrMagnitude > 0.05f)
+        if (inputValue.sqrMagnitude > 0.03f)
         {
             _newPosition += inputValue;
         }
@@ -126,19 +118,6 @@ public class CameraController : MonoBehaviour
         var forward = cameraTransform.forward;
         forward.y = 0;
         return forward;
-    }
-
-    private void HandleKeyboardRotation()
-    {
-        if (Input.GetKey(KeyCode.Q))
-        {
-            _newRotation *= Quaternion.Euler((Vector3.up) * rotationAmount);
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            _newRotation *= Quaternion.Euler((Vector3.up) * -rotationAmount);
-        }
-        transform.rotation = Quaternion.Lerp(transform.rotation, _newRotation, Time.deltaTime * movementTime);
     }
 
     private void FocusCamera(InputAction.CallbackContext obj)

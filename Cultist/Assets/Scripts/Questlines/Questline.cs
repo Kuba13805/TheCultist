@@ -22,14 +22,14 @@ public class Questline : ScriptableObject
 
    private void OnEnable()
    {
-      Quest.QuestCompleted += CheckForRemainingQuests;
+      Quest.OnQuestCompleted += CheckForRemainingOnQuests;
 
       _remainingQuests = questlineSteps.Count;
    }
 
    private void OnDisable()
    {
-      Quest.QuestCompleted -= CheckForRemainingQuests;
+      Quest.OnQuestCompleted -= CheckForRemainingOnQuests;
       
    }
    
@@ -38,7 +38,7 @@ public class Questline : ScriptableObject
       OnQuestlineCompleted?.Invoke(this);
    }
 
-   private void CheckForRemainingQuests(Quest completedQuest)
+   private void CheckForRemainingOnQuests(Quest completedQuest)
    {
       var questIsInQuestline = false;
       

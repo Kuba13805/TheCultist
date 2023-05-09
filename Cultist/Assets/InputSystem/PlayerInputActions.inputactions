@@ -784,6 +784,15 @@
                     "processors": "",
                     "interactions": "Press(behavior=1)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RotateCameraOnClick",
+                    "type": "Button",
+                    "id": "a14a895a-3e27-4420-86e7-942f7e0081ea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -874,6 +883,17 @@
                     "action": "MoveCamera",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ade9f633-224a-471e-9dbd-07ecbcdcb134",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateCameraOnClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
