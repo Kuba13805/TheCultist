@@ -45,18 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143e25605690a344489c8ec97528346e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 0}
   cameraTransform: {fileID: 1207840942364307178}
-  movementSpeed: 0.05
+  movementSpeed: 0.25
   movementTime: 8
-  rotationAmount: 0.05
-  zoomAmount: {x: 0, y: -0.5, z: 0.5}
-  mouseRotationSpeed: 150
-  newPosition: {x: 0, y: 0, z: 0}
-  newRotation: {x: 0, y: 0, z: 0, w: 0}
-  newZoom: {x: 0, y: 0, z: 0}
-  rotateStartPosition: {x: 0, y: 0, z: 0}
-  rotateCurrentPosition: {x: 0, y: 0, z: 0}
+  rotationAmount: 0.15
+  zoomAmount: {x: 0, y: -0.35, z: 0.35}
+  minZoom: 2
+  maxZoom: 16
 --- !u!1 &1207840942364307179
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +77,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207840942364307179}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

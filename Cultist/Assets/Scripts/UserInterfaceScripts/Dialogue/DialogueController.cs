@@ -57,9 +57,9 @@ public class DialogueController : MonoBehaviour
 
     public static event Action<List<QuestVariables>> OnSetNewVariables;
 
-    public static event Action<int> OnQuestStart;
+    public static event Action<QuestId> OnQuestStart;
 
-    public static event Action<int> OnQuestComplete; 
+    public static event Action<QuestId> OnQuestComplete; 
 
     #endregion
 
@@ -286,18 +286,21 @@ public class DialogueController : MonoBehaviour
     private void HandleQuestManagement()
     {
         var currentTags = CheckForQuestTags(_inkStory.currentTags);
+        var questIdToReturn = new QuestId();
         
-        foreach (var tagContent in currentTags.Select(questTag => questTag.Split(":")))
+        foreach (var tagContent in currentTags.Select(questTag => questTag.Split(':', '_')))
         {
+            questIdToReturn.idPrefix = tagContent[1];
+            questIdToReturn.questNumber = int.Parse(tagContent[2]);
             switch (tagContent[0])
             {
                 case "questStart":
-                    Debug.Log("Quest started: " + tagContent[1]);
-                    OnQuestStart?.Invoke(int.Parse(tagContent[1]));
+                    Debug.Log("Quest started: " + questIdToReturn);
+                    OnQuestStart?.Invoke(questIdToReturn);
                     break;
                 case "questComplete":
-                    Debug.Log("Quest completed: " + tagContent[1]);
-                    OnQuestComplete?.Invoke(int.Parse(tagContent[1]));
+                    Debug.Log("Quest completed: " + questIdToReturn);
+                    OnQuestComplete?.Invoke(questIdToReturn);
                     break;
             }
         }

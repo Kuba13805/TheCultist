@@ -11,7 +11,7 @@ public class Quest : ScriptableObject
 {
     
     public string questName;
-    [SerializeField] private int questId;
+    [SerializeField] private QuestId questId;
 
     [TextArea(15, 20)]
     public string questDesc;
@@ -36,6 +36,8 @@ public class Quest : ScriptableObject
 
     private void OnEnable()
     {
+        if (questVariables == null) return;
+
         foreach (var questVariable in questVariables)
         {
             var trim = questVariable.variableName.Trim();
@@ -47,17 +49,26 @@ public class Quest : ScriptableObject
         DialogueController.OnQuestComplete += MarkQuestAsCompleted;
     }
 
-    private void MarkQuestAsCompleted(int questIdFromEvent)
+    private void MarkQuestAsCompleted(QuestId questIdFromEvent)
     {
-        if (questIdFromEvent != questId)
+        if (questIdFromEvent.ToString() != questId.ToString())
         {
+            Debug.Log(questIdFromEvent + ":" + questId);
             return;
         }
         if (questCompleted)
         {
             return;
         }
-        
+
+        if (prerequisiteQuests != null)
+        {
+            if (questSteps.Any(requiredQuest => !requiredQuest.questCompleted))
+            {
+                return;
+            }
+        }
+
         questCompleted = true;
         
         StopListeningToQuestEvents();
@@ -65,7 +76,7 @@ public class Quest : ScriptableObject
         OnQuestCompleted?.Invoke(this);
     }
 
-    private void StartQuest(int questIdFromEvent)
+    private void StartQuest(QuestId questIdFromEvent)
     {
         if (questIdFromEvent != questId)
         {

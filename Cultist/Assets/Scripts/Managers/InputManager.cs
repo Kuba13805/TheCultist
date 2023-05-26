@@ -23,7 +23,7 @@ namespace Managers
             PlayerInputActions = new PlayerInputActions();
 
             ChangeActionMapToPlayer();
-            PlayerInputActions.Camera.Enable();
+            //PlayerInputActions.Camera.Enable();
 
             #region Events
             PlayerInputActions.Player.OpenInventory.performed += ChangeActionMapToUIOnKey;

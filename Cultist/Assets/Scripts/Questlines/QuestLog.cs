@@ -13,8 +13,6 @@ namespace Questlines
 
         [SerializeField] private List<Questline> completedQuestlines;
 
-        public List<QuestVariables> testList;
-
         #region Events
 
         public static event Action<List<QuestVariables>> OnQuestVariablesReturn;

@@ -10,9 +10,11 @@ public class Questline : ScriptableObject
    public string questlineName;
    public List<Quest> questlineSteps;
 
+   public bool questlineVisible;
+
    private bool _questlineCompleted;
 
-   private int _remainingQuests;
+   [SerializeField] private int _remainingQuests;
 
    #region Events
 
@@ -23,8 +25,6 @@ public class Questline : ScriptableObject
    private void OnEnable()
    {
       Quest.OnQuestCompleted += CheckForRemainingOnQuests;
-
-      _remainingQuests = questlineSteps.Count;
    }
 
    private void OnDisable()
@@ -35,11 +35,13 @@ public class Questline : ScriptableObject
    
    private void MarkQuestlineAsCompleted()
    {
+      Debug.Log("Questline: " + questlineName + " has been completed!");
       OnQuestlineCompleted?.Invoke(this);
    }
 
    private void CheckForRemainingOnQuests(Quest completedQuest)
    {
+      _remainingQuests = questlineSteps.Count;
       var questIsInQuestline = false;
       
       foreach (var quest in questlineSteps.Where(quest => completedQuest == quest))

@@ -15,3 +15,5 @@ MonoBehaviour:
   questlineName: Test Questline
   questlineSteps:
   - {fileID: 11400000, guid: daa34e46d376c6b4f8fa1f1cd1626834, type: 2}
+  questlineVisible: 0
+  _remainingQuests: 0

@@ -165,7 +165,9 @@
       <workItem from="1683398804653" duration="3561000" />
       <workItem from="1683456749461" duration="10762000" />
       <workItem from="1683540025245" duration="18959000" />
-      <workItem from="1683631118024" duration="16108000" />
+      <workItem from="1683631118024" duration="16944000" />
+      <workItem from="1683899950190" duration="5000" />
+      <workItem from="1684239063039" duration="5501000" />
     </task>
     <servers />
   </component>
@@ -188,5 +190,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueController.cs</url>
+          <line>207</line>
+          <properties documentPath="D:\Game-Project\TheCultist\Cultist\Assets\Scripts\UserInterfaceScripts\Dialogue\DialogueController.cs" initialLine="207" containingFunctionPresentation="method 'EndDialogue'">
+            <startOffsets>
+              <option value="5872" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5907" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

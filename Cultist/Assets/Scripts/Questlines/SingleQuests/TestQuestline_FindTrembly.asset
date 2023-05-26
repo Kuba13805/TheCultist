@@ -12,13 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df05591fa7e2474c834c0e706d8f65f6, type: 3}
   m_Name: TestQuestline_FindTrembly
   m_EditorClassIdentifier: 
-  questName: Search for master
+  questName: Find Trembly
+  questId:
+    idPrefix: testQuestline
+    questNumber: 1
   questDesc: Find master Trembley to inform him about your research.
-  _questCompleted: 0
+  questStarted: 1
+  questCompleted: 1
+  questSteps: []
   questVariables:
-  - variableName: knows_where_is_master
-    conditionDesc: You found out where master Trembley is.
-    conditionPassed: 0
-  - variableName: knows_about_the_sky
+  - variableName: find_trembly_started
     conditionDesc: 
     conditionPassed: 1
+  - variableName: knows_where_is_master
+    conditionDesc: You found out where master Trembley is.
+    conditionPassed: 1
+  - variableName: knows_about_the_sky
+    conditionDesc: 
+    conditionPassed: 0
+  prerequisiteQuests: []
