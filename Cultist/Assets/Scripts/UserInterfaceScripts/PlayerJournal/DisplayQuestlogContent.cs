@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Questlines;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DisplayQuestlogContent : MonoBehaviour
 {
@@ -25,27 +27,31 @@ public class DisplayQuestlogContent : MonoBehaviour
     {
         ClearQuestLogContent();
         
-        LoadQuestlines(active, activeQuestlines);
-        LoadQuestlines(completed, completedQuestlines);
+        LoadQuestlines(active);
+        LoadQuestBreak();
+        LoadQuestlines(completed);
     }
 
-    private void LoadQuestlines(List<Questline> questlinesToLoad, Transform containerForQuestlines)
+    private void LoadQuestlines(List<Questline> questlinesToLoad)
     {
 
         foreach (var questline in questlinesToLoad)
         {
-            var quest = Instantiate(questlineDisplayPrefab, containerForQuestlines);
+            var quest = Instantiate(questlineDisplayPrefab, transform);
             quest.GetComponent<DisplayedQuestline>().questlineToDisplay = questline;
         }
     }
 
+    private void LoadQuestBreak()
+    {
+        var quest = Instantiate(questlineDisplayPrefab, transform);
+        quest.GetComponentInChildren<Button>().GetComponentInChildren<TextMeshProUGUI>().text = "";
+        quest.GetComponentInChildren<Button>().interactable = false;
+    }
+
     private void ClearQuestLogContent()
     {
-        foreach (var prompt in activeQuestlines.GetComponentsInChildren<DisplayedQuestline>())
-        {
-            Destroy(prompt.gameObject);
-        }
-        foreach (var prompt in completedQuestlines.GetComponentsInChildren<DisplayedQuestline>())
+        foreach (var prompt in transform.GetComponentsInChildren<DisplayedQuestline>())
         {
             Destroy(prompt.gameObject);
         }
