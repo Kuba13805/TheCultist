@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Questlines.SingleQuests;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "New Questline", menuName = "ScriptableObjects/Quests/Create new Questline", order = 1)]
 public class Questline : ScriptableObject
@@ -14,7 +15,7 @@ public class Questline : ScriptableObject
 
    private bool _questlineCompleted;
 
-   [SerializeField] private int _remainingQuests;
+   [SerializeField] private int remainingQuests;
 
    #region Events
 
@@ -41,7 +42,7 @@ public class Questline : ScriptableObject
 
    private void CheckForRemainingOnQuests(Quest completedQuest)
    {
-      _remainingQuests = questlineSteps.Count;
+      remainingQuests = questlineSteps.Count;
       var questIsInQuestline = false;
       
       foreach (var quest in questlineSteps.Where(quest => completedQuest == quest))
@@ -54,12 +55,12 @@ public class Questline : ScriptableObject
          return;
       }
       
-      if (_remainingQuests == 0)
+      if (remainingQuests == 0)
       {
          MarkQuestlineAsCompleted();
          return;
       }
       
-      _remainingQuests -= 1;
+      remainingQuests -= 1;
    }
 }

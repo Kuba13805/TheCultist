@@ -65,5 +65,15 @@ namespace Questlines
                 }
             }
         }
+
+        public List<Questline> ReturnActiveQuestlines()
+        {
+            return activeQuestslines;
+        }
+
+        public List<Questline> ReturnCompletedQuestlines()
+        {
+            return completedQuestlines;
+        }
     }
 }

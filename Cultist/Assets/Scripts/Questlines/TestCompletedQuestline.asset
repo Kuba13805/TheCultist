@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ed6421321f46d1b9a7d2eec9bea4d8, type: 3}
-  m_Name: PlayerQuestLog
+  m_Script: {fileID: 11500000, guid: 2773b4c7513afcb40b58856403f81b34, type: 3}
+  m_Name: TestCompletedQuestline
   m_EditorClassIdentifier: 
-  activeQuestslines:
-  - {fileID: 11400000, guid: 5325e2588950d814db720e7a658ec76e, type: 2}
-  completedQuestlines:
-  - {fileID: 11400000, guid: 63509b68f0a5ffe41a5c7d5e3e024b28, type: 2}
+  questlineName: Growing Darkness
+  questlineSteps: []
+  questlineVisible: 0
+  remainingQuests: 0
