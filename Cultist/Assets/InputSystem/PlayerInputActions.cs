@@ -98,6 +98,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenJournal"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f45f7b7-14dc-4fa9-9d24-66963f8b81d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -186,6 +195,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""DisplayInteractablesInfo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""345628c9-1b5f-431a-9502-de1d7649d3fe"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""OpenJournal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -993,6 +1013,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_PlayerAction4 = m_Player.FindAction("PlayerAction4", throwIfNotFound: true);
         m_Player_PlayerAction5 = m_Player.FindAction("PlayerAction5", throwIfNotFound: true);
         m_Player_DisplayInteractablesInfo = m_Player.FindAction("DisplayInteractablesInfo", throwIfNotFound: true);
+        m_Player_OpenJournal = m_Player.FindAction("OpenJournal", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1082,6 +1103,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PlayerAction4;
     private readonly InputAction m_Player_PlayerAction5;
     private readonly InputAction m_Player_DisplayInteractablesInfo;
+    private readonly InputAction m_Player_OpenJournal;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1094,6 +1116,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @PlayerAction4 => m_Wrapper.m_Player_PlayerAction4;
         public InputAction @PlayerAction5 => m_Wrapper.m_Player_PlayerAction5;
         public InputAction @DisplayInteractablesInfo => m_Wrapper.m_Player_DisplayInteractablesInfo;
+        public InputAction @OpenJournal => m_Wrapper.m_Player_OpenJournal;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1127,6 +1150,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @DisplayInteractablesInfo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDisplayInteractablesInfo;
                 @DisplayInteractablesInfo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDisplayInteractablesInfo;
                 @DisplayInteractablesInfo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDisplayInteractablesInfo;
+                @OpenJournal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenJournal;
+                @OpenJournal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenJournal;
+                @OpenJournal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenJournal;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1155,6 +1181,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @DisplayInteractablesInfo.started += instance.OnDisplayInteractablesInfo;
                 @DisplayInteractablesInfo.performed += instance.OnDisplayInteractablesInfo;
                 @DisplayInteractablesInfo.canceled += instance.OnDisplayInteractablesInfo;
+                @OpenJournal.started += instance.OnOpenJournal;
+                @OpenJournal.performed += instance.OnOpenJournal;
+                @OpenJournal.canceled += instance.OnOpenJournal;
             }
         }
     }
@@ -1408,6 +1437,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnPlayerAction4(InputAction.CallbackContext context);
         void OnPlayerAction5(InputAction.CallbackContext context);
         void OnDisplayInteractablesInfo(InputAction.CallbackContext context);
+        void OnOpenJournal(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

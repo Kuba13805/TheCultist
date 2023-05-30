@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenJournal",
+                    "type": "Button",
+                    "id": "0f45f7b7-14dc-4fa9-9d24-66963f8b81d8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -164,6 +173,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "DisplayInteractablesInfo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "345628c9-1b5f-431a-9502-de1d7649d3fe",
+                    "path": "<Keyboard>/j",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "OpenJournal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

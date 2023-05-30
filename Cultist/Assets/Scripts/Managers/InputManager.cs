@@ -26,10 +26,11 @@ namespace Managers
             //PlayerInputActions.Camera.Enable();
 
             #region Events
-            PlayerInputActions.Player.OpenInventory.performed += ChangeActionMapToUIOnKey;
-            
-            PlayerInputActions.UI.CloseUI.performed += ChangeActionMapToPlayerOnKey;
-            
+
+            CallMenuEvents.OnMenuShown += ChangeActionMapToUI;
+
+            CallMenuEvents.OnMenuClosed += ChangeActionMapToPlayer;
+
             CallCollectableEvents.OnCollectableShown += ChangeActionMapToUI;
             
             CallCollectableEvents.OnCollectableClosed += ChangeActionMapToPlayer;
@@ -48,9 +49,9 @@ namespace Managers
         private void OnDestroy()
         {
             #region Events
-            PlayerInputActions.Player.OpenInventory.performed -= ChangeActionMapToUIOnKey;
-            
-            PlayerInputActions.UI.CloseUI.performed -= ChangeActionMapToPlayerOnKey;
+            CallMenuEvents.OnMenuShown -= ChangeActionMapToUI;
+
+            CallMenuEvents.OnMenuClosed -= ChangeActionMapToPlayer;
             
             CallCollectableEvents.OnCollectableShown -= ChangeActionMapToUI;
             
