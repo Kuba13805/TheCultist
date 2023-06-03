@@ -17,8 +17,9 @@ MonoBehaviour:
     idPrefix: testQuestline
     questNumber: 1
   questDesc: Find master Trembley to inform him about your research.
+  shortQuestDesc: Find Trembley at Alceron
   questStarted: 1
-  questCompleted: 1
+  questCompleted: 0
   questSteps: []
   questVariables:
   - variableName: find_trembly_started

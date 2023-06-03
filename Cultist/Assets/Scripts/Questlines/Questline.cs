@@ -13,7 +13,7 @@ public class Questline : ScriptableObject
 
    public bool questlineVisible;
 
-   private bool _questlineCompleted;
+   public bool questlineCompleted;
 
    [SerializeField] private int remainingQuests;
 

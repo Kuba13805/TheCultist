@@ -19,5 +19,10 @@ public class DisplayedQuestline : MonoBehaviour
         if (questlineToDisplay == null) return;
         
         GetComponentInChildren<Button>().GetComponentInChildren<TextMeshProUGUI>().text = questlineToDisplay.questlineName;
+
+        if (questlineToDisplay.questlineCompleted)
+        { 
+            GetComponentInChildren<Button>().GetComponentInChildren<TextMeshProUGUI>().color = Color.gray;
+        }
     }
 }

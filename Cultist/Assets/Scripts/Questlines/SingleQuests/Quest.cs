@@ -15,6 +15,9 @@ public class Quest : ScriptableObject
 
     [TextArea(15, 20)]
     public string questDesc;
+    
+    [TextArea(3, 8)]
+    public string shortQuestDesc;
 
     public bool questStarted;
     public bool questCompleted;
