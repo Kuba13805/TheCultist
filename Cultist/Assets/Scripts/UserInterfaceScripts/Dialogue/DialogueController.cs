@@ -288,7 +288,7 @@ public class DialogueController : MonoBehaviour
         var currentTags = CheckForQuestTags(_inkStory.currentTags);
         var questIdToReturn = new QuestId();
         
-        foreach (var tagContent in currentTags.Select(questTag => questTag.Split(':', '_')))
+        foreach (var tagContent in currentTags.Select(questTag => questTag.Split(':')))
         {
             questIdToReturn.idPrefix = tagContent[1];
             questIdToReturn.questNumber = int.Parse(tagContent[2]);

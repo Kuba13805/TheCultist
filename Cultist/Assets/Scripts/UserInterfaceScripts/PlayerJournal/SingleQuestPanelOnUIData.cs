@@ -1,3 +1,4 @@
+using Questlines.SingleQuests;
 using UnityEngine;
 
 public class SingleQuestPanelOnUIData : MonoBehaviour
@@ -6,12 +7,20 @@ public class SingleQuestPanelOnUIData : MonoBehaviour
 
     private void Start()
     {
+        Quest.OnQuestStarted += AddQuest;
+        
         Quest.OnQuestCompleted += ObserveCompletedQuests;
     }
-
+    
     private void OnDestroy()
     {
+        Quest.OnQuestStarted -= AddQuest;
+        
         Quest.OnQuestCompleted -= ObserveCompletedQuests;
+    }
+    private void AddQuest(Quest quest)
+    {
+        currentQuest = quest;
     }
 
     private void ObserveCompletedQuests(Quest quest)

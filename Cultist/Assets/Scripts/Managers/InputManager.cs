@@ -100,12 +100,10 @@ namespace Managers
         {
             if (mode != true)
             {
-                Debug.Log("Camera off");
                 PlayerInputActions.Camera.Disable();
             }
             else
             {
-                Debug.Log("Camera on");
                 PlayerInputActions.Camera.Enable();
             }
         }

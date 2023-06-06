@@ -51,7 +51,7 @@ public class DialogueInteraction : MonoBehaviour
         GameObject canvas;
         try
         {
-            canvas = GameObject.Find("DialogueCanvas");
+            canvas = GameObject.Find("PopupWindowsCanvas");
         }
         catch (Exception e)
         {

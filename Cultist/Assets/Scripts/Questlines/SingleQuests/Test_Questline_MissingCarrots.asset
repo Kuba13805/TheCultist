@@ -17,12 +17,13 @@ MonoBehaviour:
     idPrefix: testQuestline
     questNumber: 2
   questDesc: In these dark days our people are starving. I have to find a way to
-    feed them. Maybe finding some stolen carrots can help?
-  shortQuestDesc: 'Find two carrots for your people. '
-  questStarted: 1
+    feed them. Maybe finding some stolen carrots can help? Needed carrot 1/2.
+  shortQuestDesc: Find two carrots for your people.  Needed carrot 1/2.
+  questStarted: 0
   questCompleted: 0
   questSteps: []
   questVariables: []
   prerequisiteQuests: []
   itemToFind: {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
   quantityOfItemNeeded: 2
+  quantityOfItemInInventory: 1

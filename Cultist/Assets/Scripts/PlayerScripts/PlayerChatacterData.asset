@@ -16,7 +16,6 @@ MonoBehaviour:
   nickname: 
   health: 10
   playerPortrait: {fileID: 21300000, guid: 7f5b00bd12772014e9b4c2af9f6b999a, type: 3}
-  currentQuestLog: {fileID: 11400000, guid: 4def25c20359dba499853b50585be94c, type: 2}
   dexterity: 6
   strength: 2
   power: 6
@@ -33,5 +32,7 @@ MonoBehaviour:
   mechanics: 2
   psychology: 4
   lastLocation: 1 TestScene
-  playerInventoryItems: []
+  playerInventoryItems:
+  - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+  - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
   characterEquipment: []

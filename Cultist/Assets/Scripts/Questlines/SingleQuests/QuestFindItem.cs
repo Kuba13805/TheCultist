@@ -18,25 +18,20 @@ namespace Questlines.SingleQuests
 
         public static event Action<BaseItem> OnCheckForItemAtInventory;
 
-        public override void OnEnable()
-        {
-            base.OnEnable();
-            
-            InventoryItemDragDrop.OnItemAddedToInventory += CheckForItemInInventory;
-
-            InventoryItemDragDrop.OnItemRemovedFromInventory += CheckForRemovedItem;
-
-            GameManager.OnReturnQuantityOfItems += UpdateItemQuantity;
-        }
-
         protected override void StartQuest(QuestId questIdFromEvent)
         {
             base.StartQuest(questIdFromEvent);
             
+            GameManager.OnReturnQuantityOfItems += UpdateItemQuantity;
+            
+            InventoryItemDragDrop.OnItemAddedToInventory += CheckForItemInInventory;
+
+            InventoryItemDragDrop.OnItemRemovedFromInventory += CheckForRemovedItem;
+            
             savedDesc = questDesc;
             
             savedShortDesc = shortQuestDesc;
-            
+
             OnCheckForItemAtInventory?.Invoke(itemToFind);
             
             questDesc = UpdateQuestDesc(savedDesc);
@@ -81,7 +76,6 @@ namespace Questlines.SingleQuests
 
         private void UpdateItemQuantity(int quantity)
         {
-            Debug.Log(quantity);
             quantityOfItemInInventory = quantity;
         }
         protected override void StopListeningToQuestEvents()

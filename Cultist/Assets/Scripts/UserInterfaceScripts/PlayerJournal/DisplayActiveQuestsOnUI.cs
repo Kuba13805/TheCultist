@@ -42,7 +42,8 @@ public class DisplayActiveQuestsOnUI : MonoBehaviour
 
         questInstance.GetComponentsInChildren<TextMeshProUGUI>()[0].text = quest.questName;
         questInstance.GetComponentsInChildren<TextMeshProUGUI>()[1].text = quest.shortQuestDesc;
-        questInstance.GetComponentInParent<SingleQuestPanelOnUIData>().currentQuest = quest;
+
+        questInstance.GetComponentInChildren<SingleQuestPanelOnUIData>().currentQuest = quest;
     }
 
     private void ClearQuests()

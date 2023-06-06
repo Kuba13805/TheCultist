@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questlineName: Growing Darkness
   questlineSteps: []
-  questlineVisible: 0
+  questlineVisible: 1
   questlineCompleted: 1
   remainingQuests: 0

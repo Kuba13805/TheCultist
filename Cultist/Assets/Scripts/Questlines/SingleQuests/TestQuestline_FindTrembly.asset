@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questName: Find Trembly
   questId:
-    idPrefix: testQuestline
+    idPrefix: test
     questNumber: 1
   questDesc: Find master Trembley to inform him about your research.
   shortQuestDesc: Find Trembley at Alceron
-  questStarted: 1
+  questStarted: 0
   questCompleted: 0
   questSteps: []
   questVariables:

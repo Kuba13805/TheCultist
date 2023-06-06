@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Questlines.SingleQuests;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -20,6 +21,8 @@ public class DisplayQuestStatus : MonoBehaviour
         Quest.OnQuestStarted += DisplayStartingQuestName;
 
         Quest.OnQuestCompleted += DisplayCompletedQuestName;
+        
+       
 
         questNameTextBox.DOFade(0, 0);
 

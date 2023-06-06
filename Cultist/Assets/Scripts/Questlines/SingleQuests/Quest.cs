@@ -62,7 +62,6 @@ public class Quest : ScriptableObject
     {
         if (questIdFromEvent.ToString() != questId.ToString())
         {
-            Debug.Log(questIdFromEvent + ":" + questId);
             return;
         }
 
@@ -93,29 +92,31 @@ public class Quest : ScriptableObject
 
     protected virtual void StartQuest(QuestId questIdFromEvent)
     {
-        if (questIdFromEvent != questId)
+        if (questIdFromEvent.idPrefix != questId.idPrefix || questIdFromEvent.questNumber != questId.questNumber)
         {
+            Debug.Log(questIdFromEvent + " " + questId);
             return;
         }
-
+        
         if (questStarted)
         {
             return;
         }
-
-        if (prerequisiteQuests.Any(requiredQuest => !requiredQuest.questCompleted))
+        
+        if (prerequisiteQuests != null && prerequisiteQuests.Any(requiredQuest => !requiredQuest.questCompleted))
         {
             return;
         }
 
         questStarted = true;
 
-        if (questVariables != null)
+        if (questVariables.Count > 0)
         {
             questVariables[0].conditionPassed = true;
         }
 
         OnQuestStarted?.Invoke(this);
+        
     }
 
     protected virtual void StopListeningToQuestEvents()

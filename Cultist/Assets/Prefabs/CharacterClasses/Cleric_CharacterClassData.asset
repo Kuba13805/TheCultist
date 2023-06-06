@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f844e83a3ec32a45b804539dc2632c2, type: 3}
   m_Name: Cleric_CharacterClassData
   m_EditorClassIdentifier: 
-  className: Cleric
+  className: Rogue Cleric
   classId: 1
   difficultyToReadIntension: 2
+  canBeIntimidated: 0
+  canBePersuaded: 0
+  classPortrait: {fileID: 0}
+  itemsToSteal: []
