@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
 using PlayerScripts;
+using Questlines.SingleQuests;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = System.Random;
@@ -14,6 +15,8 @@ namespace Managers
         #region Events
 
         public static event Action<bool> OnPlayerTestCheck;
+
+        public static event Action<int> OnReturnQuantityOfItems;
 
         public static event Action<GameState> OnGameStateChanged;
 
@@ -66,6 +69,8 @@ namespace Managers
             InventoryItemDragDrop.OnItemStriped += RemoveItemFromCharacterEquipment;
 
             InventoryItemDragDrop.OnItemStriped += DeactivateItemEffects;
+
+            QuestFindItem.OnCheckForItemAtInventory += CheckForItemInInventory;
         }
 
         private void UpdateGameState(GameState newState)
@@ -221,6 +226,21 @@ namespace Managers
                 listOfItems.Remove(listOfItems[i]);
                 break;
             }
+        }
+
+        private void CheckForItemInInventory(BaseItem itemToFind)
+        {
+            var quantityOfItemsFound = 0;
+            
+            foreach (var item in playerData.playerInventoryItems)
+            {
+                if (item == itemToFind)
+                {
+                    quantityOfItemsFound += 1;
+                }
+            }
+            
+            OnReturnQuantityOfItems?.Invoke(quantityOfItemsFound);
         }
         #endregion
 

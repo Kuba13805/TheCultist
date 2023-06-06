@@ -34,9 +34,10 @@ public class DisplayQuestlogContent : MonoBehaviour
 
     private void LoadQuestlines(List<Questline> questlinesToLoad)
     {
-
         foreach (var questline in questlinesToLoad)
         {
+            if (!questline.questlineVisible) continue;
+            
             var quest = Instantiate(questlineDisplayPrefab, transform);
             quest.GetComponent<DisplayedQuestline>().questlineToDisplay = questline;
         }

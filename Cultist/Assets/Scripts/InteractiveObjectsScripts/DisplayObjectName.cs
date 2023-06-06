@@ -21,7 +21,7 @@ public class DisplayObjectName : MonoBehaviour
         
         InputManager.Instance.PlayerInputActions.Player.DisplayInteractablesInfo.canceled += DestroyObjectNamePanel;
         
-        _toolbarCanvas = GameObject.Find("InteractableInfoCanvas");
+        _toolbarCanvas = GameObject.Find("CommentsCanvas");
 
         _panelPrefab = LoadPanelPrefab();
     }

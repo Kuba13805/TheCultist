@@ -11,7 +11,7 @@ public class Quest : ScriptableObject
 {
     
     public string questName;
-    [SerializeField] private QuestId questId;
+    [SerializeField] protected QuestId questId;
 
     [TextArea(15, 20)]
     public string questDesc;
@@ -37,28 +37,35 @@ public class Quest : ScriptableObject
 
     #endregion
 
-    private void OnEnable()
+    public virtual void OnEnable()
     {
+        DialogueController.OnQuestStart += StartQuestFromDialogue;
+
+        DialogueController.OnQuestComplete += MarkQuestAsCompletedFromDialogue;
+        
         if (questVariables == null) return;
 
-        foreach (var questVariable in questVariables)
+            foreach (var questVariable in questVariables)
         {
             var trim = questVariable.variableName.Trim();
 
             questVariable.variableName = trim;
         }
-        DialogueController.OnQuestStart += StartQuest;
-
-        DialogueController.OnQuestComplete += MarkQuestAsCompleted;
     }
 
-    private void MarkQuestAsCompleted(QuestId questIdFromEvent)
+    private void MarkQuestAsCompletedFromDialogue(QuestId questIdFromEvent)
+    {
+        CompleteQuest(questIdFromEvent);
+    }
+
+    protected void CompleteQuest(QuestId questIdFromEvent)
     {
         if (questIdFromEvent.ToString() != questId.ToString())
         {
             Debug.Log(questIdFromEvent + ":" + questId);
             return;
         }
+
         if (questCompleted)
         {
             return;
@@ -73,18 +80,24 @@ public class Quest : ScriptableObject
         }
 
         questCompleted = true;
-        
+
         StopListeningToQuestEvents();
-            
+
         OnQuestCompleted?.Invoke(this);
     }
 
-    private void StartQuest(QuestId questIdFromEvent)
+    private void StartQuestFromDialogue(QuestId questIdFromEvent)
+    {
+        StartQuest(questIdFromEvent);
+    }
+
+    protected virtual void StartQuest(QuestId questIdFromEvent)
     {
         if (questIdFromEvent != questId)
         {
             return;
         }
+
         if (questStarted)
         {
             return;
@@ -97,15 +110,18 @@ public class Quest : ScriptableObject
 
         questStarted = true;
 
-        questVariables[0].conditionPassed = true;
-        
+        if (questVariables != null)
+        {
+            questVariables[0].conditionPassed = true;
+        }
+
         OnQuestStarted?.Invoke(this);
     }
 
-    private void StopListeningToQuestEvents()
+    protected virtual void StopListeningToQuestEvents()
     {
-        DialogueController.OnQuestStart -= StartQuest;
+        DialogueController.OnQuestStart -= StartQuestFromDialogue;
 
-        DialogueController.OnQuestComplete -= MarkQuestAsCompleted;
+        DialogueController.OnQuestComplete -= MarkQuestAsCompletedFromDialogue;
     }
 }

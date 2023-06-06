@@ -15,7 +15,7 @@ MonoBehaviour:
   questlineName: Test Questline
   questlineSteps:
   - {fileID: 11400000, guid: daa34e46d376c6b4f8fa1f1cd1626834, type: 2}
-  - {fileID: 11400000, guid: daa34e46d376c6b4f8fa1f1cd1626834, type: 2}
-  questlineVisible: 0
+  - {fileID: 11400000, guid: 41b360f47cbcde74b8b8c40bd644ae1e, type: 2}
+  questlineVisible: 1
   questlineCompleted: 0
   remainingQuests: 0

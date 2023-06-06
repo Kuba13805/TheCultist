@@ -35,6 +35,8 @@ public class DisplayQuestlineDetails : MonoBehaviour
         
         foreach (var quest in _questline.questlineSteps)
         {
+            if (!quest.questStarted) continue;
+            
             var step = Instantiate(questDetailsPrefab, containerForQuests);
 
             step.GetComponentsInChildren<TextMeshProUGUI>()[0].text = quest.questName;
