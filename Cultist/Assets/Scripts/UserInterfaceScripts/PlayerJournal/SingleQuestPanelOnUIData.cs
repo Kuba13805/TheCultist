@@ -1,4 +1,6 @@
+using System;
 using Questlines.SingleQuests;
+using TMPro;
 using UnityEngine;
 
 public class SingleQuestPanelOnUIData : MonoBehaviour
@@ -11,7 +13,7 @@ public class SingleQuestPanelOnUIData : MonoBehaviour
         
         Quest.OnQuestCompleted += ObserveCompletedQuests;
     }
-    
+
     private void OnDestroy()
     {
         Quest.OnQuestStarted -= AddQuest;

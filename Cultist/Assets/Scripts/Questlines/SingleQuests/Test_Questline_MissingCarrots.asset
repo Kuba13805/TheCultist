@@ -16,10 +16,11 @@ MonoBehaviour:
   questId:
     idPrefix: testQuestline
     questNumber: 2
-  questDesc: In these dark days our people are starving. I have to find a way to
-    feed them. Maybe finding some stolen carrots can help? Needed carrot 1/2.
-  shortQuestDesc: Find two carrots for your people.  Needed carrot 1/2.
-  questStarted: 0
+  questDesc: An old and crazy man that says he is a cleric of Lucius asked me to
+    find his stolen carrots. He claims that these carrots were blessed by Lucius
+    himself.
+  shortQuestDesc: Find blessed carrots in Alceron.
+  questStarted: 1
   questCompleted: 0
   questSteps: []
   questVariables: []

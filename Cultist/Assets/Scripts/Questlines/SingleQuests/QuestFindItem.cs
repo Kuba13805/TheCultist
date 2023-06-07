@@ -18,6 +18,8 @@ namespace Questlines.SingleQuests
 
         public static event Action<BaseItem> OnCheckForItemAtInventory;
 
+        public static event Action<Quest> OnQuestUpdateStatus;
+
         protected override void StartQuest(QuestId questIdFromEvent)
         {
             base.StartQuest(questIdFromEvent);
@@ -27,6 +29,12 @@ namespace Questlines.SingleQuests
             InventoryItemDragDrop.OnItemAddedToInventory += CheckForItemInInventory;
 
             InventoryItemDragDrop.OnItemRemovedFromInventory += CheckForRemovedItem;
+
+            // if (questDesc != savedDesc && savedDesc != null)
+            // {
+            //     Debug.Log("Desc changed!");
+            //     questDesc = savedDesc;
+            // }
             
             savedDesc = questDesc;
             
@@ -70,6 +78,8 @@ namespace Questlines.SingleQuests
 
         private string UpdateQuestDesc(string desc)
         {
+            OnQuestUpdateStatus?.Invoke(this);
+            
             return desc + " Needed " + itemToFind.itemName.ToLower() + " " + quantityOfItemInInventory + "/" +
                    quantityOfItemNeeded + ".";
         }
@@ -82,14 +92,17 @@ namespace Questlines.SingleQuests
         {
             base.StopListeningToQuestEvents();
             
-            InventoryItemDragDrop.OnItemAddedToInventory += CheckForItemInInventory;
+            GameManager.OnReturnQuantityOfItems -= UpdateItemQuantity;
+            
+            InventoryItemDragDrop.OnItemAddedToInventory -= CheckForItemInInventory;
 
-            InventoryItemDragDrop.OnItemRemovedFromInventory += CheckForRemovedItem;
+            InventoryItemDragDrop.OnItemRemovedFromInventory -= CheckForRemovedItem;
         }
 
         private void OnDisable()
         {
             questDesc = savedDesc;
+
             shortQuestDesc = savedShortDesc;
         }
     }

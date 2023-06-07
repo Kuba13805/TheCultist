@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Questlines.SingleQuests;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,33 +9,50 @@ using UnityEngine.UI;
 public class DisplayActiveQuestsOnUI : MonoBehaviour
 {
     [SerializeField] private GameObject questPrefab;
-    private void Start()
+
+    private Questline currentQuestline;
+    private void OnEnable()
     {
         DisplayedQuestline.OnQuestlineButtonClicked += UpdateDisplayedQuests;
 
         Quest.OnQuestStarted += AddNewQuestToDisplay;
+
+        QuestFindItem.OnQuestUpdateStatus += UpdateQuest;
+    }
+
+    private void UpdateQuest(Quest quest)
+    {
+        DisplayQuests(currentQuestline);
     }
 
     private void UpdateDisplayedQuests(Questline activeQuestline)
     {
+        currentQuestline = activeQuestline;
+        
         DisplayQuests(activeQuestline);
     }
 
     private void DisplayQuests(Questline activeQuestline)
     {
         ClearQuests();
+
+        if (currentQuestline == null) return;
         
         foreach (var quest in activeQuestline.questlineSteps)
         {
-            if (!quest.questStarted) continue;
+            if (!quest.questStarted || quest.questCompleted) continue;
 
             InstantiateSingleQuest(quest);
         }
+
     }
 
     private void AddNewQuestToDisplay(Quest quest)
     {
-        InstantiateSingleQuest(quest);
+        if (currentQuestline != null)
+        {
+            InstantiateSingleQuest(quest);
+        }
     }
     private void InstantiateSingleQuest(Quest quest)
     {
@@ -54,5 +72,12 @@ public class DisplayActiveQuestsOnUI : MonoBehaviour
         {
             Destroy(GetComponentsInChildren<SingleQuestPanelOnUIData>()[i].gameObject);
         }
+    }
+
+    private void OnDisable()
+    {
+        DisplayedQuestline.OnQuestlineButtonClicked -= UpdateDisplayedQuests;
+
+        Quest.OnQuestStarted -= AddNewQuestToDisplay;
     }
 }
