@@ -338,6 +338,7 @@ MonoBehaviour:
   oneTimeConversation: 0
   dialogueSaved: 
   dialogueAsset: {fileID: 0}
+  dialogueInteractions: []
 --- !u!1001 &16435019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31975,14 +31976,76 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
       propertyPath: dialogueAsset
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: oneTimeConversation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[0].oneTimeDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].oneTimeDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[0].dialogueInstance
       value: 
       objectReference: {fileID: 4900000, guid: 3d0fcbe0d2e073841b3e2736127285b0, type: 3}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
-      propertyPath: oneTimeConversation
+      propertyPath: dialogueInteractions.Array.data[1].dialogueInstance
+      value: 
+      objectReference: {fileID: 4900000, guid: 9e0f699b7c9fe9b4da0d3be55d561196, type: 3}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[0].RequiredQuests.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].RequiredQuests.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[0].RequiredQuests.Array.data[0].questStatus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].RequiredQuests.Array.data[0].questStatus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[0].RequiredQuests.Array.data[0].requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 41b360f47cbcde74b8b8c40bd644ae1e,
+        type: 2}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].RequiredQuests.Array.data[0].requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 41b360f47cbcde74b8b8c40bd644ae1e,
+        type: 2}
     - target: {fileID: 1705160903982946228, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
       propertyPath: objectName

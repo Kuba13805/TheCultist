@@ -27,4 +27,4 @@ MonoBehaviour:
   prerequisiteQuests: []
   itemToFind: {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
   quantityOfItemNeeded: 2
-  quantityOfItemInInventory: 2
+  quantityOfItemInInventory: 1

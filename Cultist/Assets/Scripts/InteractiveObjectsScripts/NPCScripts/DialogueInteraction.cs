@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Questlines.SingleQuests;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UserInterfaceScripts.Dialogue;
 
 public class DialogueInteraction : MonoBehaviour
 {
@@ -10,8 +10,13 @@ public class DialogueInteraction : MonoBehaviour
     private GameObject _dialogueWindowPrefab;
 
     public bool oneTimeConversation;
+    
+    [HideInInspector]
     public string dialogueSaved;
+    
     public TextAsset dialogueAsset;
+
+    public List<Dialogue> dialogueInteractions;
 
     #region Events
 
@@ -26,6 +31,8 @@ public class DialogueInteraction : MonoBehaviour
 
     public void InteractWithObject()
     { 
+        HandleDialogues();
+        
         Instantiate(_dialogueWindowPrefab, _dialogueCanvas.transform);
         
         OnDialogueCall?.Invoke(GetComponent<InteractableCharacter>().objectName, this);
@@ -33,6 +40,54 @@ public class DialogueInteraction : MonoBehaviour
         if (oneTimeConversation)
         {
             DeleteConversation();
+        }
+    }
+
+    private void HandleDialogues()
+    {
+        foreach (var dialogue in dialogueInteractions)
+        {
+            if (!dialogue.wasSeen && dialogue.oneTimeDialogue)
+            {
+                var allRequirementsPassed = true;
+
+                if (dialogue.RequiredQuests == null)
+                {
+                    dialogue.wasSeen = true;
+                    dialogueAsset = dialogue.dialogueInstance;
+                    return;
+                }
+                
+                foreach (var dialogueRequirement in dialogue.RequiredQuests)
+                {
+                    switch (dialogueRequirement.questStatus)
+                    {
+                        case QuestStatus.Completed when dialogueRequirement.requiredQuest.questCompleted:
+                            allRequirementsPassed = true;
+                            break;
+                        case QuestStatus.Started when dialogueRequirement.requiredQuest.questStarted:
+                            allRequirementsPassed = true;
+                            break;
+                        case QuestStatus.NotStarted when !dialogueRequirement.requiredQuest.questStarted:
+                            allRequirementsPassed = true;
+                            break;
+                        default:
+                            allRequirementsPassed = false;
+                            break;
+                    }
+                }
+
+                if (!allRequirementsPassed) continue;
+                
+                dialogue.wasSeen = true;
+                dialogueAsset = dialogue.dialogueInstance;
+                return;
+            }
+
+            if (dialogue.oneTimeDialogue) continue;
+            
+            dialogueAsset = dialogue.dialogueInstance;
+            return;
         }
     }
 
