@@ -14727,7 +14727,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33586
+  m_Name: pb_Mesh33598
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15371,7 +15371,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33820
+  m_Name: pb_Mesh33832
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -31992,7 +31992,7 @@ PrefabInstance:
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
       propertyPath: dialogueInteractions.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
@@ -32006,6 +32006,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].oneTimeDialogue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
       propertyPath: dialogueInteractions.Array.data[0].dialogueInstance
       value: 
       objectReference: {fileID: 4900000, guid: 3d0fcbe0d2e073841b3e2736127285b0, type: 3}
@@ -32016,6 +32021,11 @@ PrefabInstance:
       objectReference: {fileID: 4900000, guid: 9e0f699b7c9fe9b4da0d3be55d561196, type: 3}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].dialogueInstance
+      value: 
+      objectReference: {fileID: 4900000, guid: cc70f84bfe5383949928ff22ea82c3e9, type: 3}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
       propertyPath: dialogueInteractions.Array.data[0].RequiredQuests.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -32023,6 +32033,11 @@ PrefabInstance:
         type: 3}
       propertyPath: dialogueInteractions.Array.data[1].RequiredQuests.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].RequiredQuests.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
@@ -32036,6 +32051,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].RequiredQuests.Array.data[0].questStatus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
       propertyPath: dialogueInteractions.Array.data[0].RequiredQuests.Array.data[0].requiredQuest
       value: 
       objectReference: {fileID: 11400000, guid: 41b360f47cbcde74b8b8c40bd644ae1e,
@@ -32043,6 +32063,12 @@ PrefabInstance:
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
       propertyPath: dialogueInteractions.Array.data[1].RequiredQuests.Array.data[0].requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 41b360f47cbcde74b8b8c40bd644ae1e,
+        type: 2}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].RequiredQuests.Array.data[0].requiredQuest
       value: 
       objectReference: {fileID: 11400000, guid: 41b360f47cbcde74b8b8c40bd644ae1e,
         type: 2}
@@ -32727,7 +32753,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32798
+  m_Name: pb_Mesh32802
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -33744,7 +33770,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32366
+  m_Name: pb_Mesh32368
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -34591,7 +34617,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32424
+  m_Name: pb_Mesh32426
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -34915,7 +34941,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32628
+  m_Name: pb_Mesh32632
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37276,7 +37302,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32264
+  m_Name: pb_Mesh32268
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39116,7 +39142,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33042
+  m_Name: pb_Mesh33046
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

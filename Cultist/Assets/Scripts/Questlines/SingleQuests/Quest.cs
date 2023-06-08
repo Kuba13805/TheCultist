@@ -106,7 +106,6 @@ public class Quest : ScriptableObject
     {
         if (questIdFromEvent.idPrefix != questId.idPrefix || questIdFromEvent.questNumber != questId.questNumber)
         {
-            Debug.Log(questIdFromEvent + " " + questId);
             return;
         }
         

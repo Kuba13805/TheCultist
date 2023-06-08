@@ -295,11 +295,9 @@ public class DialogueController : MonoBehaviour
             switch (tagContent[0])
             {
                 case "questStart":
-                    Debug.Log("Quest started: " + questIdToReturn);
                     OnQuestStart?.Invoke(questIdToReturn);
                     break;
                 case "questComplete":
-                    Debug.Log("Quest completed: " + questIdToReturn);
                     OnQuestComplete?.Invoke(questIdToReturn);
                     break;
             }

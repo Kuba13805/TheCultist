@@ -18,8 +18,8 @@ MonoBehaviour:
     questNumber: 3
   questDesc: I found the blessed carrots. Now I have to return them to the old cleric.
   shortQuestDesc: Return the blessed carrots.
-  questStarted: 0
-  questCompleted: 0
+  questStarted: 1
+  questCompleted: 1
   questSteps: []
   questVariables: []
   prerequisiteQuests:
