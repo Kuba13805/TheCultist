@@ -29,12 +29,6 @@ namespace Questlines.SingleQuests
             InventoryItemDragDrop.OnItemAddedToInventory += CheckForItemInInventory;
 
             InventoryItemDragDrop.OnItemRemovedFromInventory += CheckForRemovedItem;
-
-            // if (questDesc != savedDesc && savedDesc != null)
-            // {
-            //     Debug.Log("Desc changed!");
-            //     questDesc = savedDesc;
-            // }
             
             savedDesc = questDesc;
             
@@ -45,6 +39,15 @@ namespace Questlines.SingleQuests
             questDesc = UpdateQuestDesc(savedDesc);
 
             shortQuestDesc = UpdateQuestDesc(savedShortDesc);
+        }
+
+        protected override void CompleteQuest(QuestId questIdFromEvent)
+        {
+            base.CompleteQuest(questIdFromEvent);
+
+            questDesc = savedDesc;
+
+            shortQuestDesc = savedShortDesc;
         }
 
         private void CheckForItemInInventory(BaseItem item)
@@ -97,13 +100,6 @@ namespace Questlines.SingleQuests
             InventoryItemDragDrop.OnItemAddedToInventory -= CheckForItemInInventory;
 
             InventoryItemDragDrop.OnItemRemovedFromInventory -= CheckForRemovedItem;
-        }
-
-        private void OnDisable()
-        {
-            questDesc = savedDesc;
-
-            shortQuestDesc = savedShortDesc;
         }
     }
 }

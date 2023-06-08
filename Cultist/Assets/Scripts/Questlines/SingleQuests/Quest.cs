@@ -42,6 +42,8 @@ public class Quest : ScriptableObject
         DialogueController.OnQuestStart += StartQuestFromDialogue;
 
         DialogueController.OnQuestComplete += MarkQuestAsCompletedFromDialogue;
+
+        OnQuestCompleted += OnPrerequisiteQuestComplete;
         
         if (questVariables == null) return;
 
@@ -53,12 +55,22 @@ public class Quest : ScriptableObject
         }
     }
 
+    private void OnPrerequisiteQuestComplete(Quest completedQuest)
+    {
+        foreach (var prerequisiteQuest in prerequisiteQuests)
+        {
+            if (completedQuest != prerequisiteQuest) continue;
+            
+            StartQuest(questId);
+        }
+    }
+
     private void MarkQuestAsCompletedFromDialogue(QuestId questIdFromEvent)
     {
         CompleteQuest(questIdFromEvent);
     }
 
-    protected void CompleteQuest(QuestId questIdFromEvent)
+    protected virtual void CompleteQuest(QuestId questIdFromEvent)
     {
         if (questIdFromEvent.ToString() != questId.ToString())
         {
@@ -116,7 +128,6 @@ public class Quest : ScriptableObject
         }
 
         OnQuestStarted?.Invoke(this);
-        
     }
 
     protected virtual void StopListeningToQuestEvents()

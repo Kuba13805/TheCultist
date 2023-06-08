@@ -16,15 +16,15 @@ MonoBehaviour:
   questId:
     idPrefix: testQuestline
     questNumber: 2
-  questDesc: An old and crazy man that says he is a cleric of Lucius asked me to
-    find his stolen carrots. He claims that these carrots were blessed by Lucius
-    himself.
-  shortQuestDesc: Find blessed carrots in Alceron.
-  questStarted: 1
+  questDesc: One of Lucius clerics asked me to find his stolen goods. He claims that
+    his carrots were onced blessed by Golden Father. I must find these carrots and
+    return them to their rightful owner.
+  shortQuestDesc: Find the blessed carrots.
+  questStarted: 0
   questCompleted: 0
   questSteps: []
   questVariables: []
   prerequisiteQuests: []
   itemToFind: {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
   quantityOfItemNeeded: 2
-  quantityOfItemInInventory: 1
+  quantityOfItemInInventory: 2

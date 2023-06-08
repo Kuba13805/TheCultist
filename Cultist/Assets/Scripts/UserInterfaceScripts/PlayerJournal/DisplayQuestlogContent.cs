@@ -36,7 +36,7 @@ public class DisplayQuestlogContent : MonoBehaviour
     {
         foreach (var questline in questlinesToLoad)
         {
-            if (!questline.questlineVisible) continue;
+            if (!questline.questlineVisible || !questline.questlineStarted) continue;
             
             var quest = Instantiate(questlineDisplayPrefab, transform);
             quest.GetComponent<DisplayedQuestline>().questlineToDisplay = questline;

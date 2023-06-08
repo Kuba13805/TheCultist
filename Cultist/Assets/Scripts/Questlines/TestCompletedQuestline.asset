@@ -15,5 +15,6 @@ MonoBehaviour:
   questlineName: Growing Darkness
   questlineSteps: []
   questlineVisible: 1
+  questlineStarted: 1
   questlineCompleted: 1
   remainingQuests: 0

@@ -13,6 +13,8 @@ public class Questline : ScriptableObject
 
    public bool questlineVisible;
 
+   public bool questlineStarted;
+
    public bool questlineCompleted;
 
    [SerializeField] private int remainingQuests;
@@ -25,19 +27,33 @@ public class Questline : ScriptableObject
 
    private void OnEnable()
    {
+      Quest.OnQuestStarted += StartQuestline;
+      
       Quest.OnQuestCompleted += CheckForRemainingOnQuests;
    }
 
-   private void OnDisable()
+   private void StartQuestline(Quest startedQuest)
    {
-      Quest.OnQuestCompleted -= CheckForRemainingOnQuests;
-      
+      foreach (var quest in questlineSteps)
+      {
+         if (quest == startedQuest && !questlineStarted)
+         {
+            questlineStarted = true;
+         }
+      }
    }
-   
+
    private void MarkQuestlineAsCompleted()
    {
       Debug.Log("Questline: " + questlineName + " has been completed!");
+
+      questlineCompleted = true;
+      
       OnQuestlineCompleted?.Invoke(this);
+      
+      Quest.OnQuestCompleted -= CheckForRemainingOnQuests;
+      
+      Quest.OnQuestStarted -= StartQuestline;
    }
 
    private void CheckForRemainingOnQuests(Quest completedQuest)
@@ -55,12 +71,11 @@ public class Questline : ScriptableObject
          return;
       }
       
+      remainingQuests -= 1;
+      
       if (remainingQuests == 0)
       {
          MarkQuestlineAsCompleted();
-         return;
       }
-      
-      remainingQuests -= 1;
    }
 }
