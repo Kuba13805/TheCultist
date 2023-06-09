@@ -11,7 +11,7 @@ public class Quest : ScriptableObject
 {
     
     public string questName;
-    [SerializeField] protected QuestId questId;
+    public QuestId questId;
 
     [TextArea(15, 20)]
     public string questDesc;

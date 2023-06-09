@@ -41,6 +41,11 @@ public class DisplayQuestlineDetails : MonoBehaviour
 
             step.GetComponentsInChildren<TextMeshProUGUI>()[0].text = quest.questName;
             step.GetComponentsInChildren<TextMeshProUGUI>()[1].text = quest.questDesc;
+
+            if (!quest.questCompleted) continue;
+            
+            step.GetComponentsInChildren<TextMeshProUGUI>()[0].color = Color.gray;
+            step.GetComponentsInChildren<TextMeshProUGUI>()[1].color = Color.gray;
         }
     }
 

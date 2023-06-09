@@ -34,6 +34,4 @@ MonoBehaviour:
   lastLocation: 1 TestScene
   playerInventoryItems:
   - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
-  - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
-  - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
   characterEquipment: []

@@ -34,6 +34,8 @@ public class Questline : ScriptableObject
 
    private void StartQuestline(Quest startedQuest)
    {
+      remainingQuests = questlineSteps.Count;
+      
       foreach (var quest in questlineSteps)
       {
          if (quest == startedQuest && !questlineStarted)
@@ -58,14 +60,16 @@ public class Questline : ScriptableObject
 
    private void CheckForRemainingOnQuests(Quest completedQuest)
    {
-      remainingQuests = questlineSteps.Count;
-      var questIsInQuestline = false;
+      var questIsInQuestline = true;
       
       foreach (var quest in questlineSteps.Where(quest => completedQuest == quest))
       {
-         questIsInQuestline = true;
+         if (quest.questId.idPrefix != completedQuest.questId.idPrefix && quest.questId.questNumber != completedQuest.questId.questNumber)
+         {
+            questIsInQuestline = false;
+         }
       }
-      
+      Debug.Log(questIsInQuestline);
       if (!questIsInQuestline)
       {
          return;
@@ -75,6 +79,7 @@ public class Questline : ScriptableObject
       
       if (remainingQuests == 0)
       {
+         Debug.Log("Mark complete!");
          MarkQuestlineAsCompleted();
       }
    }

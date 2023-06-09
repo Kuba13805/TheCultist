@@ -61,7 +61,7 @@ namespace Questlines.SingleQuests
 
             shortQuestDesc = UpdateQuestDesc(savedShortDesc);
             
-            if (quantityOfItemInInventory == quantityOfItemNeeded)
+            if (quantityOfItemInInventory >= quantityOfItemNeeded)
             {
                 CompleteQuest(questId);
             }
