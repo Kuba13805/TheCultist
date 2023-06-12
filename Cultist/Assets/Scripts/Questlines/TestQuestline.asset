@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2773b4c7513afcb40b58856403f81b34, type: 3}
   m_Name: TestQuestline
   m_EditorClassIdentifier: 
-  questlineName: Test Questline
+  questlineName: Problems in Alceron
   questlineSteps:
   - {fileID: 11400000, guid: 41b360f47cbcde74b8b8c40bd644ae1e, type: 2}
   - {fileID: 11400000, guid: 85e7e7937e235524d98c463781604edc, type: 2}
   questlineVisible: 1
   questlineStarted: 0
   questlineCompleted: 0
-  remainingQuests: 1
+  remainingQuests: 0

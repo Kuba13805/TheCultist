@@ -1,1 +1,0 @@
-The black stone seems to be old. None of those who live today, can say what it was used for. 

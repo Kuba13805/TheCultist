@@ -90,6 +90,15 @@ namespace Questlines.SingleQuests
         private void UpdateItemQuantity(int quantity)
         {
             quantityOfItemInInventory = quantity;
+            
+            questDesc = UpdateQuestDesc(savedDesc);
+
+            shortQuestDesc = UpdateQuestDesc(savedShortDesc);
+            
+            if (quantityOfItemInInventory >= quantityOfItemNeeded)
+            {
+                CompleteQuest(questId);
+            }
         }
         protected override void StopListeningToQuestEvents()
         {

@@ -16,22 +16,22 @@ MonoBehaviour:
   nickname: 
   health: 10
   playerPortrait: {fileID: 21300000, guid: 7f5b00bd12772014e9b4c2af9f6b999a, type: 3}
-  dexterity: 6
-  strength: 2
-  power: 6
-  condition: 17
-  wisdom: 14
+  dexterity: 0
+  strength: 6
+  power: 8
+  condition: 0
+  wisdom: 4
   perception: 2
-  occultism: 4
-  medicine: 7
-  electrics: 2
-  history: 2
+  occultism: 5
+  medicine: 2
+  electrics: 6
+  history: 0
   persuasion: 2
-  intimidation: 7
+  intimidation: 6
   locksmithing: 1
-  mechanics: 2
-  psychology: 4
-  lastLocation: 1 TestScene
-  playerInventoryItems:
+  mechanics: 6
+  psychology: 2
+  lastLocation: 1 WorldHub
+  playerInventoryItems: []
+  characterEquipment:
   - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
-  characterEquipment: []

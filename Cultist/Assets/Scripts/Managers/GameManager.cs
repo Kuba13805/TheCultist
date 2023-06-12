@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using NaughtyAttributes;
 using PlayerScripts;
 using Questlines.SingleQuests;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Random = System.Random;
 
 namespace Managers
 {
@@ -27,8 +25,6 @@ namespace Managers
         
         public static GameManager Instance { get; private set; }
 
-        [BoxGroup("InventoryHandle")][SerializeField] private int maxInventoryItemId;
-        
         private void Awake()
         {
             if (Instance == null)
@@ -69,6 +65,7 @@ namespace Managers
             InventoryItemDragDrop.OnItemStriped += RemoveItemFromCharacterEquipment;
 
             InventoryItemDragDrop.OnItemStriped += DeactivateItemEffects;
+            
 
             QuestFindItem.OnCheckForItemAtInventory += CheckForItemInInventory;
         }
@@ -239,7 +236,6 @@ namespace Managers
                     quantityOfItemsFound += 1;
                 }
             }
-            
             OnReturnQuantityOfItems?.Invoke(quantityOfItemsFound);
         }
         #endregion

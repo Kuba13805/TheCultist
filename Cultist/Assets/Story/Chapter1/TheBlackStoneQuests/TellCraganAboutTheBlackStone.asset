@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df05591fa7e2474c834c0e706d8f65f6, type: 3}
+  m_Name: TellCraganAboutTheBlackStone
+  m_EditorClassIdentifier: 
+  questName: Strange Stone
+  questId:
+    idPrefix: TheBlackStone
+    questNumber: 2
+  questDesc: I complied with Cragan's request. I don't know what I saw, but it was
+    certainly nothing good. I must inform the professor of my discovery.
+  shortQuestDesc: Return to Cragan
+  questStarted: 0
+  questCompleted: 0
+  questSteps: []
+  questVariables:
+  - variableName: has_touched_the_stone
+    conditionDesc: 
+    conditionPassed: 0
+  - variableName: had_a_vision
+    conditionDesc: 
+    conditionPassed: 0
+  - variableName: had_a_snow_fight
+    conditionDesc: 
+    conditionPassed: 0
+  - variableName: has_seen_the_golden_palace
+    conditionDesc: 
+    conditionPassed: 0
+  - variableName: became_a_god
+    conditionDesc: 
+    conditionPassed: 0
+  - variableName: became_a_cult_leader
+    conditionDesc: 
+    conditionPassed: 0
+  - variableName: has_escaped_the_tortures
+    conditionDesc: 
+    conditionPassed: 0
+  - variableName: snow_fight_lost
+    conditionDesc: 
+    conditionPassed: 1
+  - variableName: wanted_to_stop_the_vision
+    conditionDesc: 
+    conditionPassed: 0
+  prerequisiteQuests:
+  - {fileID: 11400000, guid: 406185c4329e2714cba0e95619cf53fc, type: 2}

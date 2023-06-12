@@ -47,8 +47,6 @@ public class Questline : ScriptableObject
 
    private void MarkQuestlineAsCompleted()
    {
-      Debug.Log("Questline: " + questlineName + " has been completed!");
-
       questlineCompleted = true;
       
       OnQuestlineCompleted?.Invoke(this);
@@ -69,7 +67,7 @@ public class Questline : ScriptableObject
             questIsInQuestline = false;
          }
       }
-      Debug.Log(questIsInQuestline);
+      
       if (!questIsInQuestline)
       {
          return;
@@ -79,7 +77,6 @@ public class Questline : ScriptableObject
       
       if (remainingQuests == 0)
       {
-         Debug.Log("Mark complete!");
          MarkQuestlineAsCompleted();
       }
    }

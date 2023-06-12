@@ -7,6 +7,8 @@ namespace Managers
 {
     public class InputManager : MonoBehaviour
     {
+        public  Texture2D interactableCursor;
+        
         public PlayerInputActions PlayerInputActions;
         public static InputManager Instance { get; private set; }
 

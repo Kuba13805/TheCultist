@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -19,5 +20,15 @@ public class BaseInteractableObject : MonoBehaviour, IInteractable
     {
         interactor = GetComponentInChildren<InteractorScript>();
         player = GameObject.FindWithTag("Player");
+    }
+
+    private void OnMouseEnter()
+    {
+        Cursor.SetCursor(InputManager.Instance.interactableCursor, Vector2.zero, CursorMode.Auto);
+    }
+
+    private void OnMouseExit()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 }
