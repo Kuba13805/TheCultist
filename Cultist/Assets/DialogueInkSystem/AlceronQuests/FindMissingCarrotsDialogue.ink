@@ -5,7 +5,6 @@ VAR test_passed = false
 "Hello there. Can I ask you, if you can help us? older man smiles while staring at you.
     *["Yes, I am always ready to help those in need."] -> agreeToHelpHim
     *["I have other important things to do, old man. I'm sorry."] -> refuseToHelpHim
-    +[Leave him] -> END
     
 ===agreeToHelpHim===
 "Thank you, good man. As you can see, we have many problems."

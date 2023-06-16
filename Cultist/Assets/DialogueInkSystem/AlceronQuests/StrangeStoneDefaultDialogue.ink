@@ -1,0 +1,1 @@
+Black stone standing in the middle of the square. Nothing else. Unless? -> END

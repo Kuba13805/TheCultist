@@ -31,19 +31,13 @@ public class CharacterControllerScript : MonoBehaviour
     private BaseInteractableObject _interactionToPerform;
 
     private Vector3 _newPosition;
-
-
-
-    private void Awake()
-    {
-        InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed += MovePlayerToPosition;
-    }
-
     private void Start()
     {
         _playerAnimator = GetComponentInChildren<Animator>();
         _playerNavMeshAgent = GetComponent<NavMeshAgent>();
         _normalSpeed = _playerNavMeshAgent.speed;
+        
+        InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed += MovePlayerToPosition;
     }
 
     private void OnDestroy()

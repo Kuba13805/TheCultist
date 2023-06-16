@@ -10,14 +10,24 @@ public class DisplayActiveQuestsOnUI : MonoBehaviour
 {
     [SerializeField] private GameObject questPrefab;
 
-    private Questline currentQuestline;
-    private void OnEnable()
+    [SerializeField] private Questline currentQuestline;
+
+    private void Awake()
     {
         DisplayedQuestline.OnQuestlineButtonClicked += UpdateDisplayedQuests;
 
         Quest.OnQuestStarted += AddNewQuestToDisplay;
 
         QuestFindItem.OnQuestUpdateStatus += UpdateQuest;
+        
+        Questline.OnQuestlineStart += DisplayQuestsFromNewQuestline;
+    }
+
+    private void DisplayQuestsFromNewQuestline(Questline questline)
+    {
+        currentQuestline = questline;
+        
+        DisplayQuests(currentQuestline);
     }
 
     private void UpdateQuest(Quest quest)
@@ -70,14 +80,19 @@ public class DisplayActiveQuestsOnUI : MonoBehaviour
 
         for (var i = 0; i < transform.childCount; i++)
         {
+            Debug.Log("Quest prompt deleted");
             Destroy(GetComponentsInChildren<SingleQuestPanelOnUIData>()[i].gameObject);
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         DisplayedQuestline.OnQuestlineButtonClicked -= UpdateDisplayedQuests;
 
         Quest.OnQuestStarted -= AddNewQuestToDisplay;
+        
+        QuestFindItem.OnQuestUpdateStatus -= UpdateQuest;
+        
+        Questline.OnQuestlineStart -= DisplayQuestsFromNewQuestline;
     }
 }

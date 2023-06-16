@@ -39,6 +39,7 @@ namespace Questlines
 
         private void AddOnQuestlineToCompleted(Questline questline)
         {
+            Debug.Log(questline.questlineName);
             completedQuestlines.Add(questline);
             activeQuestslines.Remove(questline);
         }

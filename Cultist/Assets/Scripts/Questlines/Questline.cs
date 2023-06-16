@@ -17,11 +17,11 @@ public class Questline : ScriptableObject
 
    public bool questlineCompleted;
 
-   [SerializeField] private int remainingQuests;
-
    #region Events
 
    public static event Action<Questline> OnQuestlineCompleted;
+
+   public static event Action<Questline> OnQuestlineStart; 
 
    #endregion
 
@@ -34,14 +34,15 @@ public class Questline : ScriptableObject
 
    private void StartQuestline(Quest startedQuest)
    {
-      remainingQuests = questlineSteps.Count;
-      
       foreach (var quest in questlineSteps)
       {
-         if (quest == startedQuest && !questlineStarted)
-         {
-            questlineStarted = true;
-         }
+         if (quest != startedQuest || questlineStarted) continue;
+         
+         questlineStarted = true;
+            
+         OnQuestlineStart?.Invoke(this);
+
+         return;
       }
    }
 
@@ -50,7 +51,7 @@ public class Questline : ScriptableObject
       questlineCompleted = true;
       
       OnQuestlineCompleted?.Invoke(this);
-      
+
       Quest.OnQuestCompleted -= CheckForRemainingOnQuests;
       
       Quest.OnQuestStarted -= StartQuestline;
@@ -58,24 +59,18 @@ public class Questline : ScriptableObject
 
    private void CheckForRemainingOnQuests(Quest completedQuest)
    {
-      var questIsInQuestline = true;
+      var allQuestsCompleted = true;
       
-      foreach (var quest in questlineSteps.Where(quest => completedQuest == quest))
+      foreach (var quest in questlineSteps)
       {
-         if (quest.questId.idPrefix != completedQuest.questId.idPrefix && quest.questId.questNumber != completedQuest.questId.questNumber)
-         {
-            questIsInQuestline = false;
-         }
+         if (quest.questCompleted) continue;
+         
+         allQuestsCompleted = false;
+            
+         break;
       }
-      
-      if (!questIsInQuestline)
-      {
-         return;
-      }
-      
-      remainingQuests -= 1;
-      
-      if (remainingQuests == 0)
+
+      if (allQuestsCompleted)
       {
          MarkQuestlineAsCompleted();
       }

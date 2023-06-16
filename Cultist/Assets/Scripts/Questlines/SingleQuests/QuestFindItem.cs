@@ -81,10 +81,10 @@ namespace Questlines.SingleQuests
 
         private string UpdateQuestDesc(string desc)
         {
-            OnQuestUpdateStatus?.Invoke(this);
+            var newDesc = desc + " Needed " + itemToFind.itemName.ToLower() + " " + quantityOfItemInInventory + "/" +
+                          quantityOfItemNeeded + ".";
             
-            return desc + " Needed " + itemToFind.itemName.ToLower() + " " + quantityOfItemInInventory + "/" +
-                   quantityOfItemNeeded + ".";
+            return newDesc;
         }
 
         private void UpdateItemQuantity(int quantity)
@@ -95,10 +95,13 @@ namespace Questlines.SingleQuests
 
             shortQuestDesc = UpdateQuestDesc(savedShortDesc);
             
+            OnQuestUpdateStatus?.Invoke(this);
+            
             if (quantityOfItemInInventory >= quantityOfItemNeeded)
             {
                 CompleteQuest(questId);
             }
+            
         }
         protected override void StopListeningToQuestEvents()
         {

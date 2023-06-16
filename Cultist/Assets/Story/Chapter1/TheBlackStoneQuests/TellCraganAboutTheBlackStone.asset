@@ -46,7 +46,7 @@ MonoBehaviour:
     conditionPassed: 0
   - variableName: snow_fight_lost
     conditionDesc: 
-    conditionPassed: 1
+    conditionPassed: 0
   - variableName: wanted_to_stop_the_vision
     conditionDesc: 
     conditionPassed: 0

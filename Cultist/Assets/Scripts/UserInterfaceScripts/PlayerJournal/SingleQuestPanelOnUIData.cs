@@ -12,6 +12,7 @@ public class SingleQuestPanelOnUIData : MonoBehaviour
         Quest.OnQuestStarted += AddQuest;
         
         Quest.OnQuestCompleted += ObserveCompletedQuests;
+        
     }
 
     private void OnDestroy()

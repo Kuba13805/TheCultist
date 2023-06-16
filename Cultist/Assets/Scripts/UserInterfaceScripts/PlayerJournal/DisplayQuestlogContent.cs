@@ -8,19 +8,30 @@ using UnityEngine.UI;
 
 public class DisplayQuestlogContent : MonoBehaviour
 {
-    [SerializeField] private Transform activeQuestlines;
-    
-    [SerializeField] private Transform completedQuestlines;
-
     [SerializeField] private GameObject questlineDisplayPrefab;
 
     public static event Action OnQuestLogRequest;
 
+    private void Awake()
+    {
+        Questline.OnQuestlineStart += SetNewDisplayedQuestlineOnUI;
+        
+        QuestManager.OnQuestLogPass += LoadQuestLogContent;
+    }
+
+
     private void OnEnable()
     {
-        QuestManager.OnQuestLogPass += LoadQuestLogContent;
-        
         OnQuestLogRequest?.Invoke();
+    }
+    private void SetNewDisplayedQuestlineOnUI(Questline questline)
+    {
+        OnQuestLogRequest?.Invoke();
+        
+        if (transform.childCount == 1)
+        {
+            transform.GetComponentInChildren<DisplayedQuestline>().InvokeQuestline();
+        }
     }
 
     private void LoadQuestLogContent(List<Questline> active, List<Questline> completed)
