@@ -107,6 +107,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowHideTips"",
+                    ""type"": ""Button"",
+                    ""id"": ""18e21a6a-73a7-419a-87fa-d4803e90ba15"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -206,6 +215,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""OpenJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d76c8c34-210d-4cd8-bb77-4a683d272963"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowHideTips"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1014,6 +1034,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_PlayerAction5 = m_Player.FindAction("PlayerAction5", throwIfNotFound: true);
         m_Player_DisplayInteractablesInfo = m_Player.FindAction("DisplayInteractablesInfo", throwIfNotFound: true);
         m_Player_OpenJournal = m_Player.FindAction("OpenJournal", throwIfNotFound: true);
+        m_Player_ShowHideTips = m_Player.FindAction("ShowHideTips", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1104,6 +1125,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PlayerAction5;
     private readonly InputAction m_Player_DisplayInteractablesInfo;
     private readonly InputAction m_Player_OpenJournal;
+    private readonly InputAction m_Player_ShowHideTips;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1117,6 +1139,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @PlayerAction5 => m_Wrapper.m_Player_PlayerAction5;
         public InputAction @DisplayInteractablesInfo => m_Wrapper.m_Player_DisplayInteractablesInfo;
         public InputAction @OpenJournal => m_Wrapper.m_Player_OpenJournal;
+        public InputAction @ShowHideTips => m_Wrapper.m_Player_ShowHideTips;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1153,6 +1176,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @OpenJournal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenJournal;
                 @OpenJournal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenJournal;
                 @OpenJournal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenJournal;
+                @ShowHideTips.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowHideTips;
+                @ShowHideTips.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowHideTips;
+                @ShowHideTips.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowHideTips;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1184,6 +1210,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @OpenJournal.started += instance.OnOpenJournal;
                 @OpenJournal.performed += instance.OnOpenJournal;
                 @OpenJournal.canceled += instance.OnOpenJournal;
+                @ShowHideTips.started += instance.OnShowHideTips;
+                @ShowHideTips.performed += instance.OnShowHideTips;
+                @ShowHideTips.canceled += instance.OnShowHideTips;
             }
         }
     }
@@ -1438,6 +1467,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnPlayerAction5(InputAction.CallbackContext context);
         void OnDisplayInteractablesInfo(InputAction.CallbackContext context);
         void OnOpenJournal(InputAction.CallbackContext context);
+        void OnShowHideTips(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
