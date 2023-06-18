@@ -111,7 +111,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""ShowHideTips"",
                     ""type"": ""Button"",
-                    ""id"": ""18e21a6a-73a7-419a-87fa-d4803e90ba15"",
+                    ""id"": ""e0fdbd27-19da-4a44-bf75-3b7bbbc57d94"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)"",
@@ -220,7 +220,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d76c8c34-210d-4cd8-bb77-4a683d272963"",
+                    ""id"": ""4c1ba2a6-3bfb-469d-8e9d-02e7078f9420"",
                     ""path"": ""<Keyboard>/f1"",
                     ""interactions"": """",
                     ""processors"": """",

@@ -9,14 +9,23 @@ public class TipsVisibility : MonoBehaviour
 {
     [SerializeField] private GameObject tipsUI;
 
+    private bool status;
+
     private void Start()
     {
         InputManager.Instance.PlayerInputActions.Player.ShowHideTips.performed += ShowHideTipsPanel;
     }
-
     private void ShowHideTipsPanel(InputAction.CallbackContext obj)
     {
-        tipsUI.SetActive(!tipsUI.activeSelf);
-        
+        if (status)
+        {
+            tipsUI.SetActive(false);
+            status = false;
+        }
+        else
+        {
+            tipsUI.SetActive(true);
+            status = true;
+        }
     }
 }
