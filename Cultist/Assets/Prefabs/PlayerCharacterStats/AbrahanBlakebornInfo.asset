@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397f540b789c0dd4f9e01a9311b2e7b0, type: 3}
+  m_Name: AbrahanBlakebornInfo
+  m_EditorClassIdentifier: 
+  charName: Abrahan Blakeborn
+  nickname: White Scar
+  health: 10
+  playerPortrait: {fileID: 21300000, guid: 7f5b00bd12772014e9b4c2af9f6b999a, type: 3}
+  charDesc: 'Were it not for the intercession of someone from above, he would probably
+    serve as an example of how anyone striking a bargain with dark forces ends up.
+    Abrahan, formerly a Belgram cultist, is now a retired and redeemed veteran of
+    the White Ash. His past has made him someone from whom the occult has no secrets.
+    Though he doesn''t look it, he''s adept at the new kind of magic used by the
+    city''s higher-ups - electricity. However, this does not mean that traditional
+    tools and methods are alien to him. With his eyesight, he chills the blood when
+    the situation calls for it, which has made him the perfect acquisition for his
+    former unit.
+
+
+    Main attributes: Strength, Power, Wisdom.
+
+
+    Main skills:
+    Occultism, Electrics, Mechanics, Intimidation.'
+  dexterity: 0
+  strength: 0
+  power: 0
+  condition: 0
+  wisdom: 0
+  perception: 0
+  occultism: 0
+  medicine: 0
+  electrics: 0
+  history: 0
+  persuasion: 0
+  intimidation: 0
+  locksmithing: 0
+  mechanics: 0
+  psychology: 0
+  lastLocation: 
+  playerInventoryItems: []
+  characterEquipment: []

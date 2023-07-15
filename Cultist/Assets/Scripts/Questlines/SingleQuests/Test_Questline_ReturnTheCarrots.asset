@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27f2ad2bf282cc4ea3054eac76f9553, type: 3}
   m_Name: Test_Questline_ReturnTheCarrots
   m_EditorClassIdentifier: 
-  questName: 
+  questName: Missing Carrots
   questId:
-    idPrefix: 
-    questNumber: 0
-  questDesc: 
-  shortQuestDesc: 
-  questStarted: 0
-  questCompleted: 0
+    idPrefix: testQuestline
+    questNumber: 3
+  questDesc: I found the blessed carrots. Now I have to return them to the old cleric.
+  shortQuestDesc: Return the blessed carrots.
+  questStarted: 1
+  questCompleted: 1
   questSteps: []
   questVariables: []
-  prerequisiteQuests: []
-  itemToReturn: {fileID: 0}
-  numberOfItemsToRemove: 0
+  prerequisiteQuests:
+  - {fileID: 11400000, guid: 41b360f47cbcde74b8b8c40bd644ae1e, type: 2}
+  itemToReturn: {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
+  numberOfItemsToRemove: 2

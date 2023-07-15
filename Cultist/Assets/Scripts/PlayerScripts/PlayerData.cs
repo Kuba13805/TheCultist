@@ -13,6 +13,9 @@ namespace PlayerScripts
         public int health;
         public Sprite playerPortrait;
 
+        [TextArea(15, 20)]
+        public string charDesc;
+
         [Foldout("CalculatedAttributes")] public int dexterity;
         [Foldout("CalculatedAttributes")] public int strength;
         [Foldout("CalculatedAttributes")] public int power;
