@@ -68,6 +68,9 @@ namespace Managers
             
 
             QuestFindItem.OnCheckForItemAtInventory += CheckForItemInInventory;
+            
+
+            QuestReturnItem.OnQuestItemRemove += RemoveQuestItem;
         }
 
         private void UpdateGameState(GameState newState)
@@ -237,6 +240,21 @@ namespace Managers
                 }
             }
             OnReturnQuantityOfItems?.Invoke(quantityOfItemsFound);
+        }
+        
+        private void RemoveQuestItem(BaseItem itemToRemove, int quantityOfItemToRemove)
+        {
+            for (var i = 0; i < quantityOfItemToRemove; i++)
+            {
+                for (var j = 0; j < playerData.playerInventoryItems.Count; j++)
+                {
+                    if (playerData.playerInventoryItems[j] != itemToRemove) continue;
+                    
+                    playerData.playerInventoryItems.Remove(playerData.playerInventoryItems[j]);
+                        
+                    break;
+                }
+            }
         }
         #endregion
 

@@ -20,6 +20,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/NPCScripts/DialogueInteraction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/Questline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/SingleQuests/QuestReturnItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GameState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueSendChoice.cs" root0="FORCE_HIGHLIGHTING" />
@@ -206,6 +207,7 @@
       <workItem from="1686822374144" duration="1106000" />
       <workItem from="1686916243856" duration="380000" />
       <workItem from="1687110329069" duration="1006000" />
+      <workItem from="1689429549398" duration="2363000" />
     </task>
     <servers />
   </component>
