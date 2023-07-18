@@ -13,9 +13,6 @@ namespace PlayerScripts
         public int health;
         public Sprite playerPortrait;
 
-        [TextArea(15, 20)]
-        public string charDesc;
-
         [Foldout("CalculatedAttributes")] public int dexterity;
         [Foldout("CalculatedAttributes")] public int strength;
         [Foldout("CalculatedAttributes")] public int power;
@@ -32,8 +29,6 @@ namespace PlayerScripts
         [Foldout("CalculatedSkills")] public int locksmithing;
         [Foldout("CalculatedSkills")] public int mechanics;
         [Foldout("CalculatedSkills")] public int psychology;
-
-        public string lastLocation;
 
         public List<BaseItem> playerInventoryItems;
 

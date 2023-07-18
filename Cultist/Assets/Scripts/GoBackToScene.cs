@@ -16,7 +16,7 @@ public class GoBackToScene : MonoBehaviour
 
     private void Start()
     {
-        receivedLocationInfo = PlayerData.lastLocation;
+        
     }
 
     private void Update()

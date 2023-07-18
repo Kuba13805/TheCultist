@@ -38,7 +38,6 @@ public class TravelPoint : BaseInteractableObject
    }
    private void DeterminLoad()
    {
-      GameManager.Instance.playerData.lastLocation = objectId + " " + SceneManager.GetActiveScene().name;
       if (isLocal)
       {
          LoadLocalScene();

@@ -16,22 +16,6 @@ MonoBehaviour:
   nickname: White Scar
   health: 10
   playerPortrait: {fileID: 21300000, guid: 7f5b00bd12772014e9b4c2af9f6b999a, type: 3}
-  charDesc: 'Were it not for the intercession of someone from above, he would probably
-    serve as an example of how anyone striking a bargain with dark forces ends up.
-    Abrahan, formerly a Belgram cultist, is now a retired and redeemed veteran of
-    the White Ash. His past has made him someone from whom the occult has no secrets.
-    Though he doesn''t look it, he''s adept at the new kind of magic used by the
-    city''s higher-ups - electricity. However, this does not mean that traditional
-    tools and methods are alien to him. With his eyesight, he chills the blood when
-    the situation calls for it, which has made him the perfect acquisition for his
-    former unit.
-
-
-    Main attributes: Strength, Power, Wisdom.
-
-
-    Main skills:
-    Occultism, Electrics, Mechanics, Intimidation.'
   dexterity: 0
   strength: 0
   power: 0
@@ -47,6 +31,5 @@ MonoBehaviour:
   locksmithing: 0
   mechanics: 0
   psychology: 0
-  lastLocation: 
   playerInventoryItems: []
   characterEquipment: []
