@@ -11,7 +11,7 @@ public class CharacterButtonScript : MonoBehaviour, IPointerEnterHandler, IPoint
 
     #region Events
 
-    public static event Action<PlayerData> OnPointerOverButton;
+    public static event Action<PlayableCharacter> OnPointerOverButton;
 
     #endregion
     private void Start()

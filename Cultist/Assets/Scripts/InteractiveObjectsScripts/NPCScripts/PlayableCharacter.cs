@@ -9,4 +9,7 @@ public class PlayableCharacter : PlayerData
 
     [TextArea(15, 20)]
     public string charDesc;
+    
+    [TextArea(3, 5)]
+    public string charQuote;
 }

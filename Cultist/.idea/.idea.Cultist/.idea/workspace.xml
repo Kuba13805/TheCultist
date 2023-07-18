@@ -19,10 +19,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/ItemSpecialScripts/ItemMultipleEffects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/NPCScripts/DialogueInteraction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerScripts/BaseStat.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerAbilities/Ability.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/Questline.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/SingleQuests/QuestReturnItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GameState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/CharacterButtonScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/LoadCharacterDetails.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/LoadCharactersToSelect.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueSendChoice.cs" root0="FORCE_HIGHLIGHTING" />
@@ -211,7 +214,7 @@
       <workItem from="1687110329069" duration="1006000" />
       <workItem from="1689429549398" duration="5594000" />
       <workItem from="1689596693798" duration="9418000" />
-      <workItem from="1689668813885" duration="1189000" />
+      <workItem from="1689668813885" duration="6287000" />
     </task>
     <servers />
   </component>

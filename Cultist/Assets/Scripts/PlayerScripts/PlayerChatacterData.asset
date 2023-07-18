@@ -31,6 +31,6 @@ MonoBehaviour:
   locksmithing: 1
   mechanics: 6
   psychology: 2
-  lastLocation: 2 SceneUI
   playerInventoryItems: []
   characterEquipment: []
+  playerAbilities: []

@@ -33,5 +33,7 @@ namespace PlayerScripts
         public List<BaseItem> playerInventoryItems;
 
         public List<BaseItem> characterEquipment;
+
+        public List<Ability> playerAbilities;
     }
 }
