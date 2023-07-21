@@ -16,21 +16,119 @@ MonoBehaviour:
   nickname: White Scar
   health: 10
   playerPortrait: {fileID: 21300000, guid: 7f5b00bd12772014e9b4c2af9f6b999a, type: 3}
-  dexterity: 0
-  strength: 3
-  power: 8
-  condition: -6
-  wisdom: 7
-  perception: 2
-  occultism: 5
-  medicine: 2
-  electrics: 6
-  history: 8
-  persuasion: 4
-  intimidation: 6
-  locksmithing: 1
-  mechanics: 6
-  psychology: 2
-  playerInventoryItems: []
+  dexterity:
+    statValue: 4
+    statIcon: {fileID: 0}
+    isDerived: 0
+  strength:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  power:
+    statValue: 1
+    statIcon: {fileID: 0}
+    isDerived: 0
+  condition:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  wisdom:
+    statValue: 5
+    statIcon: {fileID: 0}
+    isDerived: 0
+  perception:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  occultism:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  medicine:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  electrics:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  history:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  persuasion:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  intimidation:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  locksmithing:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  mechanics:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  acrobatics:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  forensics:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  acting:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  alchemy:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  astrology:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  thievery:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  rangedCombat:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  handToHandCombat:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  etiquette:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  animism:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  empathy:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  demonology:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  stealth:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  necromancy:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  playerInventoryItems:
+  - {fileID: 11400000, guid: c0a5d50aa2a3c034586250b04bda3284, type: 2}
   characterEquipment: []
   playerAbilities: []

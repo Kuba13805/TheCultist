@@ -6,29 +6,57 @@ using UnityEngine;
 namespace PlayerScripts
 {
     [CreateAssetMenu(fileName = "NewPlayerData", menuName = "ScriptableObjects/Create New Player Data", order = 1)]
-    public class PlayerData : ScriptableObject
+    public class PlayerData : BaseCharacter
     {
-        public string charName;
-        public string nickname;
-        public int health;
-        public Sprite playerPortrait;
+        #region Skills
 
-        [Foldout("CalculatedAttributes")] public int dexterity;
-        [Foldout("CalculatedAttributes")] public int strength;
-        [Foldout("CalculatedAttributes")] public int power;
-        [Foldout("CalculatedAttributes")] public int condition;
-        [Foldout("CalculatedAttributes")] public int wisdom;
+        [Foldout("Skills")] public Perception perception;
+        
+        [Foldout("Skills")] public Occultism occultism;
+        
+        [Foldout("Skills")] public Medicine medicine;
+        
+        [Foldout("Skills")] public Electrics electrics;
+        
+        [Foldout("Skills")] public History history;
+        
+        [Foldout("Skills")] public Persuasion persuasion;
+        
+        [Foldout("Skills")] public Intimidation intimidation;
+        
+        [Foldout("Skills")] public Locksmithing locksmithing;
+        
+        [Foldout("Skills")] public Mechanics mechanics;
+        
+        [Foldout("Skills")] public Acrobatics acrobatics;
+        
+        [Foldout("Skills")] public Forensics forensics;
+        
+        [Foldout("Skills")] public Acting acting;
+        
+        [Foldout("Skills")] public Alchemy alchemy;
 
-        [Foldout("CalculatedSkills")] public int perception;
-        [Foldout("CalculatedSkills")] public int occultism;
-        [Foldout("CalculatedSkills")] public int medicine;
-        [Foldout("CalculatedSkills")] public int electrics;
-        [Foldout("CalculatedSkills")] public int history;
-        [Foldout("CalculatedSkills")] public int persuasion;
-        [Foldout("CalculatedSkills")] public int intimidation;
-        [Foldout("CalculatedSkills")] public int locksmithing;
-        [Foldout("CalculatedSkills")] public int mechanics;
-        [Foldout("CalculatedSkills")] public int psychology;
+        [Foldout("Skills")] public Astrology astrology;
+
+        [Foldout("Skills")] public Thievery thievery;
+
+        [Foldout("Skills")] public RangedCombat rangedCombat;
+
+        [Foldout("Skills")] public HandToHandCombat handToHandCombat;
+
+        [Foldout("Skills")] public Etiquette etiquette;
+
+        [Foldout("Skills")] public Animism animism;
+
+        [Foldout("Skills")] public Empathy empathy;
+
+        [Foldout("Skills")] public Demonology demonology;
+
+        [Foldout("Skills")] public Stealth stealth;
+
+        [Foldout("Skills")] public Necromancy necromancy;
+
+        #endregion
 
         public List<BaseItem> playerInventoryItems;
 

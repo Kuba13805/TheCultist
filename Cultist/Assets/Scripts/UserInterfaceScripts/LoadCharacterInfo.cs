@@ -22,32 +22,11 @@ public class LoadCharacterInfo : MonoBehaviour
     
     [EnableIf("loadSkill")] [ShowIf("loadSkill")]
     public CharSkills skillToLoad;
-    public enum CharAttributes
-    {
-        Strength,
-        Dexterity,
-        Power,
-        Wisdom,
-        Condition
-    }
 
     public enum CharBasicInfo
     {
         Name,
         Health
-    }
-    public enum CharSkills
-    {
-        Perception,
-        Occultism,
-        Medicine,
-        Electrics,
-        History,
-        Persuasion,
-        Intimidation,
-        Locksmithing,
-        Mechanics,
-        Psychology
     }
 
     private void OnEnable()
@@ -97,11 +76,11 @@ public class LoadCharacterInfo : MonoBehaviour
     {
         _inputToLoad.text = attribute switch
         {
-            CharAttributes.Strength => _playerData.strength.ToString(),
-            CharAttributes.Dexterity => _playerData.dexterity.ToString(),
-            CharAttributes.Condition => _playerData.condition.ToString(),
-            CharAttributes.Wisdom => _playerData.wisdom.ToString(),
-            CharAttributes.Power => _playerData.power.ToString(),
+            CharAttributes.Strength => _playerData.strength.statValue.ToString(),
+            CharAttributes.Dexterity => _playerData.dexterity.statValue.ToString(),
+            CharAttributes.Condition => _playerData.condition.statValue.ToString(),
+            CharAttributes.Wisdom => _playerData.wisdom.statValue.ToString(),
+            CharAttributes.Power => _playerData.power.statValue.ToString(),
             _ => _inputToLoad.text
         };
     }
@@ -127,16 +106,29 @@ public class LoadCharacterInfo : MonoBehaviour
     {
         _inputToLoad.text = skill switch
         {
-            CharSkills.Electrics => _playerData.electrics.ToString(),
-            CharSkills.History => _playerData.history.ToString(),
-            CharSkills.Intimidation => _playerData.intimidation.ToString(),
-            CharSkills.Locksmithing => _playerData.locksmithing.ToString(),
-            CharSkills.Mechanics => _playerData.mechanics.ToString(),
-            CharSkills.Medicine => _playerData.medicine.ToString(),
-            CharSkills.Occultism => _playerData.occultism.ToString(),
-            CharSkills.Perception => _playerData.perception.ToString(),
-            CharSkills.Persuasion => _playerData.persuasion.ToString(),
-            CharSkills.Psychology => _playerData.psychology.ToString(),
+            CharSkills.Electrics => _playerData.electrics.statValue.ToString(),
+            CharSkills.History => _playerData.history.statValue.ToString(),
+            CharSkills.Intimidation => _playerData.intimidation.statValue.ToString(),
+            CharSkills.Locksmithing => _playerData.locksmithing.statValue.ToString(),
+            CharSkills.Mechanics => _playerData.mechanics.statValue.ToString(),
+            CharSkills.Medicine => _playerData.medicine.statValue.ToString(),
+            CharSkills.Occultism => _playerData.occultism.statValue.ToString(),
+            CharSkills.Perception => _playerData.perception.statValue.ToString(),
+            CharSkills.Persuasion => _playerData.persuasion.statValue.ToString(),
+            CharSkills.Acrobatics => _playerData.acrobatics.statValue.ToString(),
+            CharSkills.Forensics => _playerData.forensics.statValue.ToString(),
+            CharSkills.Acting => _playerData.acting.statValue.ToString(),
+            CharSkills.Alchemy => _playerData.alchemy.statValue.ToString(),
+            CharSkills.Astrology => _playerData.astrology.statValue.ToString(),
+            CharSkills.Thievery => _playerData.thievery.statValue.ToString(),
+            CharSkills.RangedCombat => _playerData.rangedCombat.statValue.ToString(),
+            CharSkills.HandToHandCombat => _playerData.handToHandCombat.statValue.ToString(),
+            CharSkills.Etiquette => _playerData.etiquette.statValue.ToString(),
+            CharSkills.Animism => _playerData.animism.statValue.ToString(),
+            CharSkills.Empathy => _playerData.empathy.statValue.ToString(),
+            CharSkills.Demonology => _playerData.demonology.statValue.ToString(),
+            CharSkills.Stealth => _playerData.stealth.statValue.ToString(),
+            CharSkills.Necromancy => _playerData.necromancy.statValue.ToString(),
             _ => _inputToLoad.text
         };
     }
@@ -147,4 +139,38 @@ public class LoadCharacterInfo : MonoBehaviour
         root.gameObject.SetActive(false);
         root.gameObject.SetActive(true);
     }
+}
+public enum CharAttributes
+{
+    Strength,
+    Dexterity,
+    Power,
+    Wisdom,
+    Condition
+}
+public enum CharSkills
+{
+    Perception,
+    Occultism,
+    Medicine,
+    Electrics,
+    History,
+    Persuasion,
+    Intimidation,
+    Locksmithing,
+    Mechanics,
+    Acrobatics,
+    Forensics,
+    Acting,
+    Alchemy,
+    Astrology,
+    Thievery,
+    RangedCombat,
+    HandToHandCombat,
+    Etiquette,
+    Animism,
+    Empathy,
+    Demonology,
+    Stealth,
+    Necromancy
 }

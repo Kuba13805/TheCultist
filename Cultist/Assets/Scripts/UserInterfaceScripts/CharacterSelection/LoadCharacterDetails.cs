@@ -18,6 +18,8 @@ public class LoadCharacterDetails : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characterDescBox;
 
     [SerializeField] private Image characterPortraitBox;
+
+    [SerializeField] private int statValueToBeat;
     
 
     [SerializeField] private Transform abilitiesBox;

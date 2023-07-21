@@ -15,8 +15,9 @@ MonoBehaviour:
   isEffectActive: 0
   effectName: Strength Time Buff
   effectId: 1
-  timeEffect: 1
+  timeEffect: 0
   effectTime: 180
-  pointsAffecting: 1
-  statToEffect: 10
+  pointsAffecting: 4
+  statToEffect: 0
   typeOfInfluence: 0
+  startedTime: 0
