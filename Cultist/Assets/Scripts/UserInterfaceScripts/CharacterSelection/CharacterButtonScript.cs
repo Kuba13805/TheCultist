@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CharacterButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CharacterButtonScript : MonoBehaviour
 {
     public PlayableCharacter characterInfo;
 
@@ -22,21 +22,26 @@ public class CharacterButtonScript : MonoBehaviour, IPointerEnterHandler, IPoint
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnButtonClick()
     {
         OnPointerOverButton?.Invoke(characterInfo);
         
-        TransformOnPointerEnter();
+        TransformOnClick();
+
+        OnPointerOverButton += ReturnToState;
     }
-    public void OnPointerExit(PointerEventData eventData)
+
+    private void ReturnToState(PlayableCharacter obj)
     {
-        TransformOnPointerExit();
+        TransformToNormal();
+        
+        OnPointerOverButton -= ReturnToState;
     }
-    private void TransformOnPointerEnter()
+    private void TransformOnClick()
     {
         transform.DOScale(1.15f, 0.35f);
     }
-    private void TransformOnPointerExit()
+    private void TransformToNormal()
     {
         transform.DOScale(1f, 0.35f);
     }

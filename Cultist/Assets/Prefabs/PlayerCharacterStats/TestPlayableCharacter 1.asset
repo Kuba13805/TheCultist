@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c082ac4b6ca2cd344a02801e5f311276, type: 3}
+  m_Name: TestPlayableCharacter 1
+  m_EditorClassIdentifier: 
+  charName: Wendel
+  nickname: 
+  health: 0
+  playerPortrait: {fileID: 21300000, guid: 8e3ffe2784c5c61439317954bd2d289f, type: 3}
+  dexterity:
+    statValue: 5
+    statIcon: {fileID: 0}
+    isDerived: 0
+  strength:
+    statValue: 5
+    statIcon: {fileID: 0}
+    isDerived: 0
+  power:
+    statValue: 5
+    statIcon: {fileID: 0}
+    isDerived: 0
+  condition:
+    statValue: 5
+    statIcon: {fileID: 0}
+    isDerived: 0
+  wisdom:
+    statValue: 5
+    statIcon: {fileID: 0}
+    isDerived: 0
+  perception:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  occultism:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  medicine:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  electrics:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  history:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  persuasion:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  intimidation:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  locksmithing:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  mechanics:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  acrobatics:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  forensics:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  acting:
+    statValue: -2
+    statIcon: {fileID: 0}
+    isDerived: 0
+  alchemy:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  astrology:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  thievery:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  rangedCombat:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  handToHandCombat:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  etiquette:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  animism:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  empathy:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  demonology:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  stealth:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  necromancy:
+    statValue: 0
+    statIcon: {fileID: 0}
+    isDerived: 0
+  playerInventoryItems:
+  - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
+  - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
+  characterEquipment: []
+  playerAbilities:
+  - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
+  - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
+  - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
+  - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
+  characterIcon: {fileID: 0}
+  charDesc: "Gdyby nie wstawiennictwo kogo\u015B z g\xF3ry, zapewne pos\u0142u\u017Cy\u0142by
+    za przyk\u0142ad tego, jak ko\u0144czy ka\u017Cdy dobijaj\u0105cy targu z mrocznymi
+    si\u0142ami. Abrahan, dawniej kultysta Belgrama, teraz emerytowany i odkupiony
+    weteran Bia\u0142ego Popio\u0142u. Jego przesz\u0142o\u015B\u0107 uczyni\u0142a
+    z niego kogo\u015B, przed kim okultyzm nie ma tajemnic. Cho\u0107 na takiego
+    nie wygl\u0105da, \u015Bwietnie radzi sobie z nowym rodzajem magii, wykorzystywanym
+    przez wy\u017Csze sfery miasta, jakim jest elektryka. Nie znaczy to jednak, \u017Ce
+    tradycyjne narz\u0119dzia i metody s\u0105 mu obce. Swym wzrokiem mrozi krew
+    w \u017Cy\u0142ach, gdy wymaga tego sytuacja, co uczyni\u0142o z niego idealny
+    nabytek dla jego by\u0142ej jednostki."
+  charQuote: '"Test quote"'

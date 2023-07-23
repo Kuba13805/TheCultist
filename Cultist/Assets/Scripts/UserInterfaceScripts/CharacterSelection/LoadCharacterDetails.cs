@@ -22,37 +22,69 @@ public class LoadCharacterDetails : MonoBehaviour
     [SerializeField] private int statValueToBeat;
     
 
-    [SerializeField] private Transform abilitiesBox;
+    [BoxGroup("AbilityDisplay")][SerializeField] private Transform abilitiesBox;
     
-    [SerializeField] private GameObject abilityPrefab;
-    
-    
-    [SerializeField] private Transform attributesBox;
-    
-    [SerializeField] private GameObject attributePrefab;
+    [BoxGroup("AbilityDisplay")][SerializeField] private GameObject abilityPrefab;
     
     
-    [SerializeField] private Transform goodAtSkillsBox;
+    [BoxGroup("AttributeDisplay")][SerializeField] private Transform attributesBox;
     
-    [SerializeField] private Transform badAtSkillsBox;
+    [BoxGroup("AttributeDisplay")][SerializeField] private GameObject attributePrefab;
     
-    [SerializeField] private GameObject skillPrefab;
+    
+    [BoxGroup("SkillDisplay")][SerializeField] private Transform goodAtSkillsBox;
+    
+    [BoxGroup("SkillDisplay")][SerializeField] private Transform badAtSkillsBox;
+    
+    [BoxGroup("SkillDisplay")][SerializeField] private GameObject skillPrefab;
     
 
-    [SerializeField] private Transform startInventory;
+    [BoxGroup("InventoryDisplay")][SerializeField] private Transform startInventory;
     
-    [SerializeField] private GameObject itemPrefab;
+    [BoxGroup("InventoryDisplay")][SerializeField] private GameObject itemPrefab;
     
     #endregion
 
     private void Start()
     {
+        HidePanel();
+        
         CharacterButtonScript.OnPointerOverButton += LoadCharacter;
     }
 
+    private void ShowPanel()
+    {
+        const bool condition = true;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            SwitchOffOn(transform.GetChild(i).gameObject, condition);
+        }
+    }
+    
+    private void HidePanel()
+    {
+        const bool condition = false;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            SwitchOffOn(transform.GetChild(i).gameObject, condition);
+        }
+    }
+    
+
+    private static void SwitchOffOn(GameObject uiElement, bool boolean)
+    {
+        uiElement.SetActive(boolean);
+    }
     private void LoadCharacter(PlayableCharacter character)
     {
+        ShowPanel();
+        
         LoadBasicCharacterInfo(character);
+        
+        LoadExtendedCharacterInfo(character);
+        
     }
 
     private void LoadBasicCharacterInfo(PlayableCharacter character)
@@ -68,12 +100,18 @@ public class LoadCharacterDetails : MonoBehaviour
 
     private void LoadExtendedCharacterInfo(PlayableCharacter character)
     {
+        DisplayCharacterAbilities(character);
         
+        DisplayCharacterAttributes(character);
+        
+        DisplayCharacterSkills(character);
+        
+        DisplayCharacterInventory(character);
     }
 
     private void DisplayCharacterAbilities(PlayableCharacter character)
     {
-        DeleteAllTransformChildren(abilitiesBox);
+        DeleteAllTransformChildren(abilitiesBox.gameObject);
 
         foreach (var ability in character.playerAbilities)
         {
@@ -85,31 +123,134 @@ public class LoadCharacterDetails : MonoBehaviour
 
     private void DisplayCharacterAttributes(PlayableCharacter character)
     {
-        DeleteAllTransformChildren(attributesBox);
+        DeleteAllTransformChildren(attributesBox.gameObject);
 
+        #region Attributes
+
+        DisplayMain(character.dexterity, attributePrefab, attributesBox, badAtSkillsBox);
         
+        DisplayMain(character.strength, attributePrefab, attributesBox, badAtSkillsBox);
+        
+        DisplayMain(character.power, attributePrefab, attributesBox, badAtSkillsBox);
+        
+        DisplayMain(character.condition, attributePrefab, attributesBox, badAtSkillsBox);
+        
+        DisplayMain(character.wisdom, attributePrefab, attributesBox, badAtSkillsBox);
+
+        #endregion
     }
 
-    private bool DetermineMain(int value, int valueToBeat)
-    {
-        return value >= valueToBeat;
-    }
 
     private void DisplayCharacterSkills(PlayableCharacter character)
     {
+        DeleteAllTransformChildren(goodAtSkillsBox.gameObject);
+        
+        DeleteAllTransformChildren(badAtSkillsBox.gameObject);
 
+        #region Skills
+        
+        DisplayMain(character.perception, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.occultism, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.medicine, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.electrics, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.history, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.persuasion, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.intimidation, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.locksmithing, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.mechanics, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+
+        DisplayMain(character.acrobatics, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.forensics, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.acting, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.alchemy, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.astrology, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.thievery, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.rangedCombat, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.handToHandCombat, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.etiquette, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.animism, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.empathy, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.demonology, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.stealth, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+        
+        DisplayMain(character.necromancy, skillPrefab, goodAtSkillsBox, badAtSkillsBox);
+
+        #endregion
+        
     }
 
     private void DisplayCharacterInventory(PlayableCharacter character)
     {
+        DeleteAllTransformChildren(startInventory.gameObject);
         
+        foreach (var item in character.characterEquipment)
+        {
+            var newItem = Instantiate(itemPrefab, startInventory);
+
+            newItem.GetComponentInChildren<Image>().sprite = item.icon;
+        }
+        
+        foreach (var item in character.playerInventoryItems)
+        {
+            var newItem = Instantiate(itemPrefab, startInventory);
+
+            newItem.GetComponentInChildren<Image>().sprite = item.icon;
+        }
     }
 
-    private static void DeleteAllTransformChildren(Component transformComponent)
+    private void DisplayMain(DerivedStat statToCheck, GameObject instancePrefab, Transform mainBox, Transform drawbackBox)
     {
-        foreach (var child in transformComponent.GetComponentsInChildren<Transform>())
+        if (DetermineMain(statToCheck.statValue))
         {
-            Destroy(child);
+            var newMain = Instantiate(instancePrefab, mainBox);
+
+            newMain.GetComponentInChildren<Image>().sprite = statToCheck.statIcon;
+        }
+        else if (DetermineDrawback(statToCheck.statValue))
+        {
+            var newMain = Instantiate(instancePrefab, drawbackBox);
+
+            newMain.GetComponentInChildren<Image>().sprite = statToCheck.statIcon;
+        }
+    }
+    
+    private bool DetermineMain(int value)
+    {
+        return value >= statValueToBeat;
+    }
+
+    private static bool DetermineDrawback(int value)
+    {
+        return value < 0;
+    }
+
+    private static void DeleteAllTransformChildren(GameObject transformComponent)
+    {
+        if (transformComponent.transform.childCount == 0) return;
+
+        for (int i = 0; i < transformComponent.transform.childCount; i++)
+        {
+            Destroy(transformComponent.transform.GetChild(i).gameObject);
         }
     }
 }

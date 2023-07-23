@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PlayerScripts;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "NewPlayableCharacter", menuName = "ScriptableObjects/Create New Playable Character")]
 public class PlayableCharacter : PlayerData
 {
     public Sprite characterIcon;
