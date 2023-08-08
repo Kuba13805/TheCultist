@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de94adfc79ddfa246a42a784efb1fb97, type: 3}
   m_Name: NewAbility
   m_EditorClassIdentifier: 
-  abilityName: 
+  abilityName: Test Ability!
   abilityIcon: {fileID: 21300000, guid: 2c04f4986ebc72e48a8b0c3eb2e42db2, type: 3}
-  abilityDesc: 
+  abilityDesc: Test desc

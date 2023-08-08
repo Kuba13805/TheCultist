@@ -49,7 +49,7 @@ public class LoadCharacterDetails : MonoBehaviour
     {
         HidePanel();
         
-        CharacterButtonScript.OnPointerOverButton += LoadCharacter;
+        CharacterButtonScript.OnCharacterSelected += LoadCharacter;
     }
 
     private void ShowPanel()
@@ -118,15 +118,17 @@ public class LoadCharacterDetails : MonoBehaviour
             var newAbility = Instantiate(abilityPrefab, abilitiesBox);
 
             newAbility.GetComponentInChildren<Image>().sprite = ability.abilityIcon;
+
+            newAbility.GetComponent<ShowStatDesc>().desc = ability.abilityName + " - " + ability.abilityDesc;
         }
     }
 
     private void DisplayCharacterAttributes(PlayableCharacter character)
     {
         DeleteAllTransformChildren(attributesBox.gameObject);
-
+        
         #region Attributes
-
+        
         DisplayMain(character.dexterity, attributePrefab, attributesBox, badAtSkillsBox);
         
         DisplayMain(character.strength, attributePrefab, attributesBox, badAtSkillsBox);
@@ -208,6 +210,8 @@ public class LoadCharacterDetails : MonoBehaviour
             var newItem = Instantiate(itemPrefab, startInventory);
 
             newItem.GetComponentInChildren<Image>().sprite = item.icon;
+
+            newItem.GetComponent<ShowStatDesc>().desc = item.itemName + " - " + item.itemDesc;
         }
         
         foreach (var item in character.playerInventoryItems)
@@ -215,6 +219,8 @@ public class LoadCharacterDetails : MonoBehaviour
             var newItem = Instantiate(itemPrefab, startInventory);
 
             newItem.GetComponentInChildren<Image>().sprite = item.icon;
+            
+            newItem.GetComponent<ShowStatDesc>().desc = item.itemName + " - " + item.itemDesc;
         }
     }
 
@@ -225,12 +231,16 @@ public class LoadCharacterDetails : MonoBehaviour
             var newMain = Instantiate(instancePrefab, mainBox);
 
             newMain.GetComponentInChildren<Image>().sprite = statToCheck.statIcon;
+
+            newMain.GetComponent<ShowStatDesc>().desc = statToCheck.statDesc;
         }
         else if (DetermineDrawback(statToCheck.statValue))
         {
             var newMain = Instantiate(instancePrefab, drawbackBox);
 
             newMain.GetComponentInChildren<Image>().sprite = statToCheck.statIcon;
+            
+            newMain.GetComponent<ShowStatDesc>().desc = statToCheck.statDesc;
         }
     }
     

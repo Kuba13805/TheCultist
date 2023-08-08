@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using NaughtyAttributes;
-using Questlines;
 using UnityEngine;
 
 namespace PlayerScripts
@@ -8,6 +9,16 @@ namespace PlayerScripts
     [CreateAssetMenu(fileName = "NewPlayerData", menuName = "ScriptableObjects/Create New Player Data", order = 1)]
     public class PlayerData : BaseCharacter
     {
+        protected virtual void OnEnable()
+        {
+            ConfirmCharacterSelection.OnCharacterConfirmedSelection += SwitchStats;
+        }
+
+        private void SwitchStats(PlayableCharacter newStats)
+        {
+            CopyData(newStats);
+        }
+
         #region Skills
 
         [Foldout("Skills")] public Perception perception;
@@ -63,5 +74,24 @@ namespace PlayerScripts
         public List<BaseItem> characterEquipment;
 
         public List<Ability> playerAbilities;
+        
+        public void CopyData(PlayableCharacter newStats)
+        {
+            Type playableCharType = typeof(PlayableCharacter);
+            Type playerDataType = typeof(PlayerData);
+
+            FieldInfo[] playableFields = playableCharType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+            FieldInfo[] playerFields = playerDataType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (FieldInfo playableField in playableFields)
+            {
+                FieldInfo correspondingPlayerField = Array.Find(playerFields, field => field.Name == playableField.Name);
+
+                if (correspondingPlayerField != null)
+                {
+                    correspondingPlayerField.SetValue(this, playableField.GetValue(newStats));
+                }
+            }
+        }
     }
 }

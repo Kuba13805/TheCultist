@@ -11,7 +11,7 @@ public class CharacterButtonScript : MonoBehaviour
 
     #region Events
 
-    public static event Action<PlayableCharacter> OnPointerOverButton;
+    public static event Action<PlayableCharacter> OnCharacterSelected;
 
     #endregion
     private void Start()
@@ -24,18 +24,18 @@ public class CharacterButtonScript : MonoBehaviour
 
     public void OnButtonClick()
     {
-        OnPointerOverButton?.Invoke(characterInfo);
+        OnCharacterSelected?.Invoke(characterInfo);
         
         TransformOnClick();
 
-        OnPointerOverButton += ReturnToState;
+        OnCharacterSelected += ReturnToState;
     }
 
     private void ReturnToState(PlayableCharacter obj)
     {
         TransformToNormal();
         
-        OnPointerOverButton -= ReturnToState;
+        OnCharacterSelected -= ReturnToState;
     }
     private void TransformOnClick()
     {

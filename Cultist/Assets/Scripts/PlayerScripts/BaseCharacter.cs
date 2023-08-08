@@ -13,7 +13,7 @@ namespace PlayerScripts
         public Sprite playerPortrait;
 
         #region Attributes
-        
+
         [Foldout("Attributes")] public Dexterity dexterity;
         
         [Foldout("Attributes")] public Strength strength;

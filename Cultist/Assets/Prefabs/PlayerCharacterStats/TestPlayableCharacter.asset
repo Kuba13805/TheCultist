@@ -18,125 +18,156 @@ MonoBehaviour:
   playerPortrait: {fileID: 21300000, guid: 7f5b00bd12772014e9b4c2af9f6b999a, type: 3}
   dexterity:
     statValue: 5
-    statIcon: {fileID: 0}
+    statIcon: {fileID: 21300000, guid: f6cf17bd3e0c53c4b8c62ea1557f0430, type: 3}
+    statDesc: Agility allows you to move faster and more nimbly around the city.
+      In combat, it allows you to dodge enemy attacks and affects the player character's
+      accuracy.
     isDerived: 0
   strength:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   power:
     statValue: 2
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   condition:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   wisdom:
     statValue: 1
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   perception:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   occultism:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   medicine:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   electrics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   history:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   persuasion:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   intimidation:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   locksmithing:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   mechanics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   acrobatics:
     statValue: -4
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   forensics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   acting:
     statValue: 4
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   alchemy:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   astrology:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   thievery:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   rangedCombat:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   handToHandCombat:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   etiquette:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   animism:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   empathy:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   demonology:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   stealth:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   necromancy:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   playerInventoryItems:
+  - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+  - {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
   - {fileID: 11400000, guid: fa3b78069b531de4b886d344d586c896, type: 2}
-  - {fileID: 11400000, guid: e3870aa5cd4b9684b81ad6378f0dfb88, type: 2}
   characterEquipment:
   - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
   playerAbilities:
   - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
   - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
-  characterIcon: {fileID: 0}
+  characterIcon: {fileID: 21300000, guid: d605befd4bec61449b7a5c492aaf2361, type: 3}
   charDesc: "Liennet Marquisia Vierro, kuzynka rajcy Dewenana, trzynasta w kolejce
     do g\u0142owy Szafirowego Domu. Wywodzi si\u0119 ze znakomitej rodziny, kt\xF3rej
     historia si\u0119ga setek lat wstecz. Jej spragniony wiedzy umys\u0142 zaspokaja

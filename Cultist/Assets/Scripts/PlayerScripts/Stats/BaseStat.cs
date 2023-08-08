@@ -1,19 +1,20 @@
 using UnityEngine;
 using System.Runtime.Serialization;
+using Unity.VisualScripting;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class BaseStat
 {
     public int statValue;
     [HideInInspector] public Sprite statIcon;
-    public string StatDesc { get; protected set; }
+    [HideInInspector] [FormerlySerializedAs("StatDesc")] public string statDesc;
 
     // Konstruktor klasy
     public BaseStat(int value, Sprite icon, string description)
     {
         statValue = value;
         statIcon = icon;
-        StatDesc = description;
     }
 }
 
@@ -25,7 +26,7 @@ public interface IStatSerializationSurrogate
 }
 
 [System.Serializable]
-public class StatContainer : MonoBehaviour, ISerializationCallbackReceiver
+public class StatContainer : ISerializationCallbackReceiver
 {
     [SerializeField]
     private BaseStat baseStat;
@@ -44,7 +45,7 @@ public class StatContainer : MonoBehaviour, ISerializationCallbackReceiver
         // Przed serializacją przypisz dane z BaseStat do pomocniczych pól
         statValue = baseStat.statValue;
         statIcon = baseStat.statIcon;
-        statDescription = baseStat.StatDesc;
+        statDescription = baseStat.statDesc;
     }
 
     public void OnAfterDeserialize()
@@ -63,6 +64,7 @@ public class DerivedStat : BaseStat, IStatSerializationSurrogate
 
     public DerivedStat(int value, Sprite icon, string description, bool derived) : base(value, icon, description)
     {
+        statDesc = "test desc";
         isDerived = derived;
     }
 
@@ -86,8 +88,8 @@ public class Dexterity : DerivedStat
 {
     public Dexterity(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Dex desc";
-
+        statDesc = "Dex desc";
+        
         statIcon = Resources.Load<Sprite>("Sprites/statDexterityIcon");
     }
 }
@@ -96,7 +98,7 @@ public class Strength : DerivedStat
 {
     public Strength(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Str desc";
+        statDesc = "Str desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statStrengthIcon");
     }
@@ -106,7 +108,7 @@ public class Power : DerivedStat
 {
     public Power(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Pow desc";
+        statDesc = "Pow desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statPowerIcon");
     }
@@ -116,7 +118,7 @@ public class Condition : DerivedStat
 {
     public Condition(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Con desc";
+        statDesc = "Con desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statConditionIcon");
     }
@@ -126,7 +128,7 @@ public class Wisdom : DerivedStat
 {
     public Wisdom(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Wis desc";
+        statDesc = "Wis desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statWisdomIcon");
     }
@@ -138,7 +140,7 @@ public class Perception : DerivedStat
 {
     public Perception(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Perception desc";
+        statDesc = "Perception desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statPerceptionIcon");
     }
@@ -149,7 +151,7 @@ public class Occultism : DerivedStat
 {
     public Occultism(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Occultism desc";
+        statDesc = "Occultism desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statOccultismIcon");
     }
@@ -159,7 +161,7 @@ public class Medicine : DerivedStat
 {
     public Medicine(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Medicine desc";
+        statDesc = "Medicine desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statMedicineIcon");
     }
@@ -169,7 +171,7 @@ public class Electrics : DerivedStat
 {
     public Electrics(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Electrics desc";
+        statDesc = "Electrics desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statElectricsIcon");
     }
@@ -179,7 +181,7 @@ public class History : DerivedStat
 {
     public History(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "History desc";
+        statDesc = "History desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statHistoryIcon");
     }
@@ -189,7 +191,7 @@ public class Persuasion : DerivedStat
 {
     public Persuasion(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Persuasion desc";
+        statDesc = "Persuasion desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statPersuasionIcon");
     }
@@ -199,7 +201,7 @@ public class Intimidation : DerivedStat
 {
     public Intimidation(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Intimidation desc";
+        statDesc = "Intimidation desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statIntimidationIcon");
     }
@@ -209,7 +211,7 @@ public class Locksmithing : DerivedStat
 {
     public Locksmithing(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Locksmithing desc";
+        statDesc = "Locksmithing desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statLocksmithingIcon");
     }
@@ -219,7 +221,7 @@ public class Mechanics : DerivedStat
 {
     public Mechanics(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Mechanics desc";
+        statDesc = "Mechanics desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statMechanicsIcon");
     }
@@ -229,7 +231,7 @@ public class Acrobatics : DerivedStat
 {
     public Acrobatics(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Acrobatics desc";
+        statDesc = "Acrobatics desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statAcrobaticsIcon");
     }
@@ -239,7 +241,7 @@ public class Forensics : DerivedStat
 {
     public Forensics(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Forensics desc";
+        statDesc = "Forensics desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statForensicsIcon");
     }
@@ -249,7 +251,7 @@ public class Acting : DerivedStat
 {
     public Acting(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Acting desc";
+        statDesc = "Acting desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statActingIcon");
     }
@@ -259,7 +261,7 @@ public class Alchemy : DerivedStat
 {
     public Alchemy(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Alchemy desc";
+        statDesc = "Alchemy desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statAlchemyIcon");
     }
@@ -269,7 +271,7 @@ public class Astrology : DerivedStat
 {
     public Astrology(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Astrology desc";
+        statDesc = "Astrology desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statAstrologyIcon");
     }
@@ -279,7 +281,7 @@ public class Thievery : DerivedStat
 {
     public Thievery(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Thievery desc";
+        statDesc = "Thievery desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statThieveryIcon");
     }
@@ -289,7 +291,7 @@ public class RangedCombat : DerivedStat
 {
     public RangedCombat(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "RangedCombat desc";
+        statDesc = "RangedCombat desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statRangedCombatIcon");
     }
@@ -299,7 +301,7 @@ public class HandToHandCombat : DerivedStat
 {
     public HandToHandCombat(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "HandToHandCombat desc";
+        statDesc = "HandToHandCombat desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statHandToHandCombatIcon");
     }
@@ -309,7 +311,7 @@ public class Etiquette : DerivedStat
 {
     public Etiquette(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Etiquette desc";
+        statDesc = "Etiquette desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statEtiquetteIcon");
     }
@@ -319,7 +321,7 @@ public class Animism : DerivedStat
 {
     public Animism(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Etiquette desc";
+        statDesc = "Etiquette desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statAnimismIcon");
     }
@@ -329,7 +331,7 @@ public class Empathy : DerivedStat
 {
     public Empathy(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Empathy desc";
+        statDesc = "Empathy desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statEmpathyIcon");
     }
@@ -339,7 +341,7 @@ public class Demonology : DerivedStat
 {
     public Demonology(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Demonology desc";
+        statDesc = "Demonology desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statDemonologyIcon");
     }
@@ -349,7 +351,7 @@ public class Stealth : DerivedStat
 {
     public Stealth(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Stealth desc";
+        statDesc = "Stealth desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statStealthIcon");
     }
@@ -359,7 +361,7 @@ public class Necromancy : DerivedStat
 {
     public Necromancy(int value, Sprite icon, string description, bool derived) : base(value, icon, description, derived)
     {
-        StatDesc = "Necromancy desc";
+        statDesc = "Necromancy desc";
 
         statIcon = Resources.Load<Sprite>("Sprites/statNecromancyIcon");
     }

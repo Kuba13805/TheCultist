@@ -6,6 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayableCharacter", menuName = "ScriptableObjects/Create New Playable Character")]
 public class PlayableCharacter : PlayerData
 {
+    protected override void OnEnable()
+    {
+        
+    }
+
     public Sprite characterIcon;
 
     [TextArea(15, 20)]

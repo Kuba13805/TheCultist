@@ -18,115 +18,145 @@ MonoBehaviour:
   playerPortrait: {fileID: 21300000, guid: 8e3ffe2784c5c61439317954bd2d289f, type: 3}
   dexterity:
     statValue: 5
-    statIcon: {fileID: 0}
+    statIcon: {fileID: 21300000, guid: f6cf17bd3e0c53c4b8c62ea1557f0430, type: 3}
+    statDesc: Agility allows you to move faster and more nimbly around the city.
+      In combat, it allows you to dodge enemy attacks and affects the player character's
+      accuracy.
     isDerived: 0
   strength:
     statValue: 5
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   power:
     statValue: 5
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   condition:
     statValue: 5
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   wisdom:
     statValue: 5
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   perception:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   occultism:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   medicine:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   electrics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   history:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   persuasion:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   intimidation:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   locksmithing:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   mechanics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   acrobatics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   forensics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   acting:
     statValue: -2
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   alchemy:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   astrology:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   thievery:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   rangedCombat:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   handToHandCombat:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   etiquette:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   animism:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   empathy:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   demonology:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   stealth:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   necromancy:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   playerInventoryItems:
   - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}

@@ -19,116 +19,146 @@ MonoBehaviour:
   dexterity:
     statValue: 4
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   strength:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   power:
     statValue: 1
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   condition:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   wisdom:
     statValue: 5
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   perception:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   occultism:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   medicine:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   electrics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   history:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   persuasion:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   intimidation:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   locksmithing:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   mechanics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   acrobatics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   forensics:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   acting:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   alchemy:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   astrology:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   thievery:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   rangedCombat:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   handToHandCombat:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   etiquette:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   animism:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   empathy:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   demonology:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   stealth:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   necromancy:
     statValue: 0
     statIcon: {fileID: 0}
+    statDesc: 
     isDerived: 0
   playerInventoryItems:
-  - {fileID: 11400000, guid: c0a5d50aa2a3c034586250b04bda3284, type: 2}
+  - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+  - {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
+  - {fileID: 11400000, guid: fa3b78069b531de4b886d344d586c896, type: 2}
   characterEquipment: []
   playerAbilities: []
