@@ -74,8 +74,8 @@ namespace PlayerScripts
         public List<BaseItem> characterEquipment;
 
         public List<Ability> playerAbilities;
-        
-        public void CopyData(PlayableCharacter newStats)
+
+        private void CopyData(PlayableCharacter newStats)
         {
             Type playableCharType = typeof(PlayableCharacter);
             Type playerDataType = typeof(PlayerData);

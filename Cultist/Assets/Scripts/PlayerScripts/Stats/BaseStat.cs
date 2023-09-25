@@ -81,6 +81,10 @@ public class DerivedStat : BaseStat, IStatSerializationSurrogate
         derivedStat.isDerived = info.GetBoolean("isDerived");
         return derivedStat;
     }
+    public override string ToString()
+    {
+        return statValue.ToString();
+    }
 }
 
 [System.Serializable]

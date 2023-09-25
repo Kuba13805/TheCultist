@@ -6,6 +6,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class TravelPoint : BaseInteractableObject
 {
@@ -17,17 +18,10 @@ public class TravelPoint : BaseInteractableObject
 
    #endregion
 
-   private enum objectType
-   {
-      Door,
-      Ladder,
-      Stairs
-   }
-
    public bool isLocal;
-   [SerializeField] private objectType ObjectType;
+   [SerializeField] private TravelPointType travelPointType;
    [EnableIf("isLocal")]
-   public string destinantionName;
+   [SerializeField] private string destinationName;
 
    [Foldout("Conditions")] public string pointIdFromWhichPlayerComes;
    [Foldout("Conditions")] public string sceneNameFromWhichPlayerComes;
@@ -62,12 +56,12 @@ public class TravelPoint : BaseInteractableObject
    }
    private void HandleLocalTransition()
    {
-      if (destinantionName == null) return;
+      if (destinationName == null) return;
       try
       {
          var playerNavMeshAgent = player.GetComponent<NavMeshAgent>();
 
-         playerNavMeshAgent.Warp(GameObject.Find(destinantionName + "TravelPoint")
+         playerNavMeshAgent.Warp(GameObject.Find(destinationName + "TravelPoint")
             .GetComponent<TravelPoint>().interactor.interactorPosition);
          playerNavMeshAgent.transform.Rotate(0f, 180f, 0f);
       }
@@ -83,4 +77,10 @@ public class TravelPoint : BaseInteractableObject
    {
       // SceneManager.LoadScene("GlobalScene", LoadSceneMode.Additive);
    }
+}
+public enum TravelPointType
+{
+   Door,
+   Ladder,
+   Stairs
 }

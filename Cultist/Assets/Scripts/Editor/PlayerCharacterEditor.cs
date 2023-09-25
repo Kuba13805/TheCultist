@@ -23,6 +23,7 @@ public class PlayerCharacterEditor : Editor
                                              "it allows you to dodge enemy attacks and affects the player character's accuracy.";
         
         playerCharacter.dexterity.statIcon = Resources.Load<Sprite>("Sprites/statDexterityIcon");
+        
 
         EditorUtility.SetDirty(playerCharacter);
         AssetDatabase.SaveAssets();
