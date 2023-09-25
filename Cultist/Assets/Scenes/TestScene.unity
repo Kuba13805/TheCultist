@@ -1603,10 +1603,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 581190516}
     m_Modifications:
+    - target: {fileID: 3749418295429685184, guid: 943f4374e489b1840b813dd9a8ae2c9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749418295492498460, guid: 943f4374e489b1840b813dd9a8ae2c9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3749418295683856538, guid: 943f4374e489b1840b813dd9a8ae2c9d,
         type: 3}
       propertyPath: m_Name
       value: TravelPoint - Global
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749418295683856538, guid: 943f4374e489b1840b813dd9a8ae2c9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3749418295683856541, guid: 943f4374e489b1840b813dd9a8ae2c9d,
         type: 3}
@@ -1616,12 +1631,27 @@ PrefabInstance:
     - target: {fileID: 3749418295683856541, guid: 943f4374e489b1840b813dd9a8ae2c9d,
         type: 3}
       propertyPath: objectId
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3749418295683856541, guid: 943f4374e489b1840b813dd9a8ae2c9d,
         type: 3}
       propertyPath: objectName
-      value: DoorToGlobalScene
+      value: TestPoint1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749418295683856541, guid: 943f4374e489b1840b813dd9a8ae2c9d,
+        type: 3}
+      propertyPath: newSceneName
+      value: WorldHub
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749418295683856541, guid: 943f4374e489b1840b813dd9a8ae2c9d,
+        type: 3}
+      propertyPath: transitionType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749418295683856541, guid: 943f4374e489b1840b813dd9a8ae2c9d,
+        type: 3}
+      propertyPath: newTravelPointId
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3749418295683856543, guid: 943f4374e489b1840b813dd9a8ae2c9d,
         type: 3}
@@ -2246,6 +2276,7 @@ MonoBehaviour:
   oneTimeConversation: 0
   dialogueSaved: 
   dialogueAsset: {fileID: 4900000, guid: fc7a2b4ce04966c42a9075ba72ea455e, type: 3}
+  dialogueInteractions: []
 --- !u!1 &789201480
 GameObject:
   m_ObjectHideFlags: 0
@@ -5278,6 +5309,25 @@ Transform:
   m_Father: {fileID: 1069942340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1638632591 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3749418295683856538, guid: 943f4374e489b1840b813dd9a8ae2c9d,
+    type: 3}
+  m_PrefabInstance: {fileID: 521023193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1638632596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638632591}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1668926737
 GameObject:
   m_ObjectHideFlags: 0

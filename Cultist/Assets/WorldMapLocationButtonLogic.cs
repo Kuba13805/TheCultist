@@ -8,9 +8,10 @@ public class WorldMapLocationButtonLogic : MonoBehaviour
 {
     [SerializeField][Scene] private string locationToLoad;
 
-    private void LoadLocation()
+    public void LoadLocation()
     {
-        SceneManager.LoadSceneAsync(locationToLoad);
+        SceneManager.LoadSceneAsync(locationToLoad, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
     }
 
     private IEnumerator LoadSceneAsync()

@@ -16,29 +16,43 @@ public class TravelPoint : BaseInteractableObject
 
    public static event Action OnPlayerTravelDone;
 
+   public static event Action<int> OnSceneToScenePlayerTravel;
+
    #endregion
+   
+   [SerializeField] private CharacterTransitionType transitionType;
+   
+   [ShowIf("transitionType", CharacterTransitionType.Local)]
+   [SerializeField] private TravelPoint travelDestination;
 
-   public bool isLocal;
-   [SerializeField] private TravelPointType travelPointType;
-   [EnableIf("isLocal")]
-   [SerializeField] private string destinationName;
+   [Foldout("Conditions")][ShowIf("transitionType", CharacterTransitionType.SceneToScene)] 
+   public int newTravelPointId;
 
-   [Foldout("Conditions")] public string pointIdFromWhichPlayerComes;
-   [Foldout("Conditions")] public string sceneNameFromWhichPlayerComes;
+   [Foldout("Conditions")] [ShowIf("transitionType", CharacterTransitionType.SceneToScene)] [Scene]
+   public string newSceneName;
+
+   private void OnEnable()
+   {
+      OnSceneToScenePlayerTravel += MakePlayerTransition;
+   }
 
    public override void Interact()
    {
-      DeterminLoad();
+      DetermineLoad();
    }
-   private void DeterminLoad()
+   private void DetermineLoad()
    {
-      if (isLocal)
+      switch (transitionType)
       {
-         LoadLocalScene();
-      }
-      else
-      {
-         StartCoroutine(WaitFor(LoadGlobalScene));
+         case CharacterTransitionType.Local:
+            LoadLocalScene();
+            break;
+         case CharacterTransitionType.SceneToScene:
+            StartCoroutine(HandleSceneToSceneTransition());
+            break;
+         case CharacterTransitionType.GlobalMap:
+            HandleGlobalMapTransition();
+            break;
       }
    }
    private void LoadLocalScene()
@@ -56,13 +70,18 @@ public class TravelPoint : BaseInteractableObject
    }
    private void HandleLocalTransition()
    {
-      if (destinationName == null) return;
+      Transition(travelDestination.interactor.interactorPosition);
+      
+      OnPlayerTravelDone?.Invoke();
+   }
+
+   private void Transition(Vector3 newPosition)
+   {
       try
       {
          var playerNavMeshAgent = player.GetComponent<NavMeshAgent>();
 
-         playerNavMeshAgent.Warp(GameObject.Find(destinationName + "TravelPoint")
-            .GetComponent<TravelPoint>().interactor.interactorPosition);
+         playerNavMeshAgent.Warp(newPosition);
          playerNavMeshAgent.transform.Rotate(0f, 180f, 0f);
       }
       catch (Exception exception)
@@ -70,17 +89,47 @@ public class TravelPoint : BaseInteractableObject
          Debug.Log(exception + "Cannot find directed travel point");
          throw;
       }
-      OnPlayerTravelDone?.Invoke();
    }
 
-   private static void LoadGlobalScene()
+   private IEnumerator HandleSceneToSceneTransition()
    {
-      // SceneManager.LoadScene("GlobalScene", LoadSceneMode.Additive);
+      var activeScene = SceneManager.GetActiveScene();
+      
+      var newLoadSceneAsync = SceneManager.LoadSceneAsync(newSceneName, LoadSceneMode.Additive);
+
+      while (!newLoadSceneAsync.isDone)
+      {
+         yield return null;
+      }
+      Debug.Log("Scene Loaded!");
+         
+      OnSceneToScenePlayerTravel?.Invoke(objectId);
+
+      SceneManager.SetActiveScene(SceneManager.GetSceneByName(newSceneName));
+      Debug.Log(SceneManager.GetActiveScene().name);
+      
+      SceneManager.UnloadSceneAsync(activeScene);
+   }
+   private void MakePlayerTransition(int travelPointId)
+   {
+      if (travelPointId == objectId)
+      {
+         Transition(interactor.interactorPosition);
+      }
+
+      if (travelPointId == objectId)
+      {
+         Debug.Log("Point found!");
+      }
+   }
+   private static void HandleGlobalMapTransition()
+   {
+       // kod do otwarcia UI mapy
    }
 }
-public enum TravelPointType
+public enum CharacterTransitionType
 {
-   Door,
-   Ladder,
-   Stairs
+   Local,
+   SceneToScene,
+   GlobalMap,
 }
