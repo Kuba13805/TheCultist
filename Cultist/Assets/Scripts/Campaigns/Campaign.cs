@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,17 +25,34 @@ public class Campaign : ScriptableObject
 
     [SerializeField][Label("Campaigns Required To Start")] private List<Campaign> requiredCampaigns;
 
-    private bool hasStarted;
+    public bool hasStarted;
 
-    private bool isCompleted;
+    public bool isCompleted;
 
-    private void StartCampaign()
+    private void OnEnable()
     {
+        NewGameManager.OnNewGameStart += StartCampaign;
+    }
+
+    private void StartCampaign(Campaign startCampaign)
+    {
+        if(startCampaign.campaignId != campaignId) return;
+
+        if (requiredCampaigns.Any(campaign => !campaign.isCompleted))
+        {
+            return;
+        }
+        
         hasStarted = true;
     }
 
     private void CompleteCampaign()
     {
+        if (requiredQuestlines.Any(questline => !questline.questlineCompleted))
+        {
+            return;
+        }
+        
         isCompleted = true;
     }
 }

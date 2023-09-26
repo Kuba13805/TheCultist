@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using PlayerScripts;
 using UnityEngine;
 
 public class NewGameManager : MonoBehaviour
@@ -10,14 +8,19 @@ public class NewGameManager : MonoBehaviour
 
     #region Events
 
-    public static event Action<List<PlayableCharacter>> ReturnCharacterList; 
+    public static event Action<List<PlayableCharacter>> ReturnCharacterList;
+
+    public static event Action<Campaign> OnNewGameStart; 
 
     #endregion
 
     private void OnEnable()
     {
         LoadCharactersToSelect.CallForCharacterList += ReturnCharactersOnCall;
+
+        ConfirmCharacterSelection.OnCharacterConfirmedSelection += StartNewGameOnCall;
     }
+
 
     private void OnDisable()
     {
@@ -27,5 +30,11 @@ public class NewGameManager : MonoBehaviour
     private void ReturnCharactersOnCall()
     {
         ReturnCharacterList?.Invoke(characterList);
+    }
+    private void StartNewGameOnCall(PlayableCharacter selectedPlayableCharacter)
+    {
+        var startingCampaign = selectedPlayableCharacter.characterStartingCampaign;
+        
+        OnNewGameStart?.Invoke(startingCampaign);
     }
 }

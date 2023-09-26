@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ConfirmCharacterSelection : MonoBehaviour
 {
-    private PlayableCharacter selectedCharacter;
+    private PlayableCharacter _selectedCharacter;
     
     public static event Action<PlayableCharacter> OnCharacterConfirmedSelection;
     private void Start()
@@ -16,11 +16,11 @@ public class ConfirmCharacterSelection : MonoBehaviour
     {
         GetComponent<Button>().interactable = true;
 
-        selectedCharacter = character;
+        _selectedCharacter = character;
     }
 
     public void TransferCharacterInfoIntoPlayerData()
     {
-        OnCharacterConfirmedSelection?.Invoke(selectedCharacter);
+        OnCharacterConfirmedSelection?.Invoke(_selectedCharacter);
     }
 }

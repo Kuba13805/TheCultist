@@ -19,5 +19,5 @@ public class PlayableCharacter : PlayerData
     [TextArea(3, 5)]
     public string charQuote;
 
-    [SerializeField] private Campaign characterStartingCampaign;
+    public Campaign characterStartingCampaign;
 }

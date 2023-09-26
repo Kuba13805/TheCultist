@@ -18,6 +18,8 @@ public class TravelPoint : BaseInteractableObject
 
    public static event Action<int> OnSceneToScenePlayerTravel;
 
+   public static event Action OnGlobalMapPlayerTravel;
+
    #endregion
    
    [SerializeField] private CharacterTransitionType transitionType;
@@ -101,12 +103,10 @@ public class TravelPoint : BaseInteractableObject
       {
          yield return null;
       }
-      Debug.Log("Scene Loaded!");
-         
+      
       OnSceneToScenePlayerTravel?.Invoke(objectId);
 
       SceneManager.SetActiveScene(SceneManager.GetSceneByName(newSceneName));
-      Debug.Log(SceneManager.GetActiveScene().name);
       
       SceneManager.UnloadSceneAsync(activeScene);
    }
@@ -124,7 +124,7 @@ public class TravelPoint : BaseInteractableObject
    }
    private static void HandleGlobalMapTransition()
    {
-       // kod do otwarcia UI mapy
+       OnGlobalMapPlayerTravel?.Invoke();
    }
 }
 public enum CharacterTransitionType

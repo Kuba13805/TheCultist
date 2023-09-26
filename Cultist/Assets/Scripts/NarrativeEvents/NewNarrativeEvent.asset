@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0baf8c5de202bb44ab1faf64b7cbb2b, type: 3}
+  m_Name: NewNarrativeEvent
+  m_EditorClassIdentifier: 
+  narrativeEventId:
+    eventCampaign: {fileID: 0}
+    eventNumber: 0
+  narrativeEventText: {fileID: 0}
+  selectedEventAction: -1
+  firstSceneToLoad: WorldHub
