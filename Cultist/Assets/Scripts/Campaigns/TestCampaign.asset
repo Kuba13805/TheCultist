@@ -16,5 +16,8 @@ MonoBehaviour:
   campaignName: 
   campaignImage: {fileID: 0}
   campaignDesc: 
+  firstSceneToLoad: WorldHub
   requiredQuestlines: []
   requiredCampaigns: []
+  hasStarted: 0
+  isCompleted: 0

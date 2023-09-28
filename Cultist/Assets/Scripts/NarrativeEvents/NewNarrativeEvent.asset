@@ -16,5 +16,4 @@ MonoBehaviour:
     eventCampaign: {fileID: 0}
     eventNumber: 0
   narrativeEventText: {fileID: 0}
-  selectedEventAction: -1
-  firstSceneToLoad: WorldHub
+  actionsList: []

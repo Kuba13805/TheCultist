@@ -179,3 +179,5 @@ MonoBehaviour:
     w \u017Cy\u0142ach, gdy wymaga tego sytuacja, co uczyni\u0142o z niego idealny
     nabytek dla jego by\u0142ej jednostki."
   charQuote: '"Test quote"'
+  characterStartingCampaign: {fileID: 11400000, guid: c99fe98cc3229d4459f8c21a8fa54985,
+    type: 2}

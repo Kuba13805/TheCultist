@@ -176,3 +176,5 @@ MonoBehaviour:
     do siebie drugiego cz\u0142owieka, wyci\u0105gaj\u0105c z niego wszystko, co
     tylko zechce. Nic si\u0119 przed ni\u0105 nie ukryje, nawet obce my\u015Bli. "
   charQuote: '"Test quote"'
+  characterStartingCampaign: {fileID: 11400000, guid: c99fe98cc3229d4459f8c21a8fa54985,
+    type: 2}

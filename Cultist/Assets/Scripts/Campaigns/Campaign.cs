@@ -18,10 +18,13 @@ public class Campaign : ScriptableObject
 
     [TextArea(15, 20)]
     public string campaignDesc;
+
+    [Scene]
+    public string firstSceneToLoad;
     
     [SerializeField][Label("Questlines Required To Complete")] private List<Questline> requiredQuestlines;
-    
-    // startEvent
+
+    public NarrativeEvent startingEvent { get; }
 
     [SerializeField][Label("Campaigns Required To Start")] private List<Campaign> requiredCampaigns;
 
@@ -48,7 +51,7 @@ public class Campaign : ScriptableObject
 
     private void CompleteCampaign()
     {
-        if (requiredQuestlines.Any(questline => !questline.questlineCompleted))
+        if (requiredQuestlines.Any(questline => !questline.questlineCompleted) || !hasStarted)
         {
             return;
         }

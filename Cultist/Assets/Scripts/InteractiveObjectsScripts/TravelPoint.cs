@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Managers;
+using Events;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class TravelPoint : BaseInteractableObject
 {
@@ -20,7 +18,14 @@ public class TravelPoint : BaseInteractableObject
 
    public static event Action OnGlobalMapPlayerTravel;
 
+   public static event Action<TravelPoint> OnReturnDefaultSpawnPoint; 
+
    #endregion
+   
+   
+   public bool isDefaultSpawnPoint;
+
+   public bool travelNotAllowed;
    
    [SerializeField] private CharacterTransitionType transitionType;
    
@@ -35,11 +40,23 @@ public class TravelPoint : BaseInteractableObject
 
    private void OnEnable()
    {
-      OnSceneToScenePlayerTravel += MakePlayerTransition;
+      CurrentLocationManager.CallForTravelPointTransition += MakePlayerTransition;
+
+      CurrentLocationManager.OnCallForDefaultSpawnPoint += ReturnDefaultSpawnPoint;
+   }
+
+   private void ReturnDefaultSpawnPoint()
+   {
+      if (isDefaultSpawnPoint)
+      {
+         OnReturnDefaultSpawnPoint?.Invoke(this);
+      }
    }
 
    public override void Interact()
    {
+      if (travelNotAllowed) return;
+      
       DetermineLoad();
    }
    private void DetermineLoad()
@@ -50,7 +67,7 @@ public class TravelPoint : BaseInteractableObject
             LoadLocalScene();
             break;
          case CharacterTransitionType.SceneToScene:
-            StartCoroutine(HandleSceneToSceneTransition());
+            HandleSceneToSceneTransition();
             break;
          case CharacterTransitionType.GlobalMap:
             HandleGlobalMapTransition();
@@ -81,10 +98,7 @@ public class TravelPoint : BaseInteractableObject
    {
       try
       {
-         var playerNavMeshAgent = player.GetComponent<NavMeshAgent>();
-
-         playerNavMeshAgent.Warp(newPosition);
-         playerNavMeshAgent.transform.Rotate(0f, 180f, 0f);
+         player.GetComponent<CharacterControllerScript>().SpawnPlayer(newPosition);
       }
       catch (Exception exception)
       {
@@ -93,33 +107,17 @@ public class TravelPoint : BaseInteractableObject
       }
    }
 
-   private IEnumerator HandleSceneToSceneTransition()
+   private void HandleSceneToSceneTransition()
    {
-      var activeScene = SceneManager.GetActiveScene();
+      var change = new CallLocationChange();
       
-      var newLoadSceneAsync = SceneManager.LoadSceneAsync(newSceneName, LoadSceneMode.Additive);
-
-      while (!newLoadSceneAsync.isDone)
-      {
-         yield return null;
-      }
-      
-      OnSceneToScenePlayerTravel?.Invoke(objectId);
-
-      SceneManager.SetActiveScene(SceneManager.GetSceneByName(newSceneName));
-      
-      SceneManager.UnloadSceneAsync(activeScene);
+      change.ChangeLocation(newSceneName, newTravelPointId);
    }
-   private void MakePlayerTransition(int travelPointId)
+   private void MakePlayerTransition(string scene, int travelPointId)
    {
-      if (travelPointId == objectId)
+      if (travelPointId == objectId && scene == newSceneName)
       {
          Transition(interactor.interactorPosition);
-      }
-
-      if (travelPointId == objectId)
-      {
-         Debug.Log("Point found!");
       }
    }
    private static void HandleGlobalMapTransition()

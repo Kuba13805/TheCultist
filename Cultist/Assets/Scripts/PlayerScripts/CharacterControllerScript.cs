@@ -19,7 +19,6 @@ public class CharacterControllerScript : MonoBehaviour
 
     private NavMeshAgent _playerNavMeshAgent;
     
-    private const float DoubleClickTime = .2f;
     private float _lastClickTime;
     private bool _doubledClicked;
     
@@ -38,6 +37,8 @@ public class CharacterControllerScript : MonoBehaviour
         _normalSpeed = _playerNavMeshAgent.speed;
         
         InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed += MovePlayerToPosition;
+
+        CurrentLocationManager.OnSpawnPlayerAtDefaultSpawnPoint += SpawnPlayer;
     }
 
     private void OnDestroy()
@@ -49,6 +50,12 @@ public class CharacterControllerScript : MonoBehaviour
     {
         DestroyFlagWhenDestinationReached();
         IsMoving();
+    }
+
+    public void SpawnPlayer(Vector3 newPosition)
+    {
+        _playerNavMeshAgent.Warp(newPosition);
+        _playerNavMeshAgent.transform.Rotate(0, 180f, 0);
     }
     private void Interact(BaseInteractableObject interactionToPerformOnObject)
     {
