@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Events;
 using Managers;
 using UnityEngine;
 using UnityEngine.AI;
@@ -30,6 +32,12 @@ public class CharacterControllerScript : MonoBehaviour
     private BaseInteractableObject _interactionToPerform;
 
     private Vector3 _newPosition;
+
+    #region Events
+
+    public static event Action OnPlayerSpawnDone; 
+
+    #endregion
     private void Start()
     {
         _playerAnimator = GetComponentInChildren<Animator>();
@@ -38,12 +46,14 @@ public class CharacterControllerScript : MonoBehaviour
         
         InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed += MovePlayerToPosition;
 
-        CurrentLocationManager.OnSpawnPlayerAtDefaultSpawnPoint += SpawnPlayer;
+        CurrentLocationManager.OnSpawnPlayerAtPosition += SpawnPlayer;
     }
 
     private void OnDestroy()
     {
         InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed -= MovePlayerToPosition;
+        
+        CurrentLocationManager.OnSpawnPlayerAtPosition -= SpawnPlayer;
     }
 
     private void Update()
@@ -55,7 +65,10 @@ public class CharacterControllerScript : MonoBehaviour
     public void SpawnPlayer(Vector3 newPosition)
     {
         _playerNavMeshAgent.Warp(newPosition);
+        
         _playerNavMeshAgent.transform.Rotate(0, 180f, 0);
+        
+        OnPlayerSpawnDone?.Invoke();
     }
     private void Interact(BaseInteractableObject interactionToPerformOnObject)
     {
@@ -63,15 +76,34 @@ public class CharacterControllerScript : MonoBehaviour
                 interactionToPerformOnObject.interactor.interactorPosition) < 1.0))) return;
         
         _playerNavMeshAgent.transform.LookAt(_interactionToPerform.transform);
+        
         interactionToPerformOnObject.Interact();
+    }
+
+    private IEnumerator MoveToTarget(Vector3 start, Vector3 end)
+    {
+        float distanceToTarget = Vector3.Distance(start, end);
+
+        while (distanceToTarget > 1f)
+        {
+            isRunning = true;
+            isIdle = false;
+            ChangeMovement(runningSpeed, end);
+            yield return null;
+        }
+
+        if (distanceToTarget <= 1f)
+        {
+            isRunning = false;
+            isIdle = true;
+        }
+        
+        _playerAnimator.SetBool("IsRunning", isRunning);
+        _playerAnimator.SetBool("IsIdle", isIdle);
     }
     private void MovePlayerToPosition(InputAction.CallbackContext context)
     {
-        if (Time.timeScale == 0)
-        {
-            return;
-        }
-        
+
         var myRay = playerCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         
         if (!Physics.Raycast(myRay, out var myRaycastHit)) return;

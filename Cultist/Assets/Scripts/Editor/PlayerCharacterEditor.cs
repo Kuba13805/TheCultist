@@ -2,6 +2,7 @@
 using PlayerScripts;
 using UnityEditor;
 using UnityEngine;
+using NaughtyAttributes;
 
 [CustomEditor(typeof(PlayerData), true)]
 public class PlayerCharacterEditor : Editor

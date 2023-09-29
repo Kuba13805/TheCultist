@@ -5,6 +5,7 @@ using PlayerScripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class DisplayPlayerSkills : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class DisplayPlayerSkills : MonoBehaviour
 
     private void OnDisable()
     {
-        foreach (var prompt in GetComponentsInChildren<Transform>())
+        foreach (var prompt in GetComponentsInChildren<HorizontalLayoutGroup>())
         {
             Destroy(prompt.gameObject);
         }

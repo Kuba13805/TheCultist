@@ -7,17 +7,19 @@ public class NarrativeEvent : ScriptableObject
 {
     public static event Action<NarrativeEvent> CallForEventToOpen;
     
-    [SerializeField] private NarrativeEventId narrativeEventId;
+    public NarrativeEventId narrativeEventId;
 
-    [SerializeField] private TextAsset narrativeEventText;
+    public TextAsset narrativeEventText;
 
-    [SerializeField] private List<NarrativeEventAction> actionsList;
+    public List<Sprite> eventImages;
+
+    public List<NarrativeEventAction> actionsList;
 
     public void CallForEvent()
     {
         CallForEventToOpen?.Invoke(this);
     }
-    private void DoAllActions()
+    public void DoAllActions()
     {
         foreach (var action in actionsList)
         {

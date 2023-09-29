@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Runtime.Serialization;
-using Unity.VisualScripting;
+using NaughtyAttributes;
 using UnityEngine.Serialization;
 
 [System.Serializable]
 public class BaseStat
 {
-    public int statValue;
+    [AllowNesting] public int statValue;
     [HideInInspector] public Sprite statIcon;
     [HideInInspector] [FormerlySerializedAs("StatDesc")] public string statDesc;
 

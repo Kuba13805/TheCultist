@@ -3,8 +3,6 @@ using System.Collections;
 using Events;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 
 public class TravelPoint : BaseInteractableObject
 {
@@ -14,11 +12,14 @@ public class TravelPoint : BaseInteractableObject
 
    public static event Action OnPlayerTravelDone;
 
-   public static event Action<int> OnSceneToScenePlayerTravel;
+   public static event Action OnSceneToScenePlayerTravel;
 
    public static event Action OnGlobalMapPlayerTravel;
 
-   public static event Action<TravelPoint> OnReturnDefaultSpawnPoint; 
+   public static event Action<Vector3> OnReportDefaultSpawnPoint;
+
+   public static event Action<Vector3, int> OnReportTravelPointSpawn;
+   
 
    #endregion
    
@@ -32,24 +33,30 @@ public class TravelPoint : BaseInteractableObject
    [ShowIf("transitionType", CharacterTransitionType.Local)]
    [SerializeField] private TravelPoint travelDestination;
 
-   [Foldout("Conditions")][ShowIf("transitionType", CharacterTransitionType.SceneToScene)] 
+   [Foldout("Conditions")] [ShowIf("transitionType", CharacterTransitionType.SceneToScene)] [AllowNesting]
    public int newTravelPointId;
 
    [Foldout("Conditions")] [ShowIf("transitionType", CharacterTransitionType.SceneToScene)] [Scene]
    public string newSceneName;
 
-   private void OnEnable()
+   public override void Start()
    {
-      CurrentLocationManager.CallForTravelPointTransition += MakePlayerTransition;
+      base.Start();
+      
+      ReportSpawnPoint();
 
-      CurrentLocationManager.OnCallForDefaultSpawnPoint += ReturnDefaultSpawnPoint;
+      ReportTravelPointPosition();
    }
 
-   private void ReturnDefaultSpawnPoint()
+   private void ReportTravelPointPosition()
+   {
+      OnReportTravelPointSpawn?.Invoke(interactor.transform.position, objectId);
+   }
+   private void ReportSpawnPoint()
    {
       if (isDefaultSpawnPoint)
       {
-         OnReturnDefaultSpawnPoint?.Invoke(this);
+         OnReportDefaultSpawnPoint?.Invoke(interactor.transform.position);
       }
    }
 
@@ -93,7 +100,14 @@ public class TravelPoint : BaseInteractableObject
       
       OnPlayerTravelDone?.Invoke();
    }
-
+   private void HandleSceneToSceneTransition()
+   {
+      OnSceneToScenePlayerTravel?.Invoke();
+      
+      var change = new CallLocationChange();
+      
+      change.ChangeLocation(newSceneName, newTravelPointId);
+   }
    private void Transition(Vector3 newPosition)
    {
       try
@@ -104,20 +118,6 @@ public class TravelPoint : BaseInteractableObject
       {
          Debug.Log(exception + "Cannot find directed travel point");
          throw;
-      }
-   }
-
-   private void HandleSceneToSceneTransition()
-   {
-      var change = new CallLocationChange();
-      
-      change.ChangeLocation(newSceneName, newTravelPointId);
-   }
-   private void MakePlayerTransition(string scene, int travelPointId)
-   {
-      if (travelPointId == objectId && scene == newSceneName)
-      {
-         Transition(interactor.interactorPosition);
       }
    }
    private static void HandleGlobalMapTransition()

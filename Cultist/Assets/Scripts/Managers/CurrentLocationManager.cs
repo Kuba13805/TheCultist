@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
+using System.Net.NetworkInformation;
 using Events;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CurrentLocationManager : MonoBehaviour
 {
@@ -10,18 +13,79 @@ public class CurrentLocationManager : MonoBehaviour
 
     private string _locationToLoad;
 
-    public static event Action<string, int> CallForTravelPointTransition;
+    private int _travelPointIdToSpawnAt;
 
-    public static event Action OnCallForDefaultSpawnPoint;
+    private Vector3 _playerNewPosition;
 
-    public static event Action<Vector3> OnSpawnPlayerAtDefaultSpawnPoint; 
+    [SerializeField][Scene] private string mainMenuScene;
+    
+    [SerializeField][Scene] private string playerAndUI;
+
+    [SerializeField] private GameObject loadingScreen;
+
+    [SerializeField] private Image loadingBar;
+
+    public static event Action<Vector3> OnSpawnPlayerAtPosition;
+
+    public static event Action OnSceneLoaded;
     private void OnEnable()
     {
         CallLocationChange.OnChangeLocation += OnChangeLocation;
 
         CallLocationChange.OnChangeLocationOnTravelPoint += OnChangeLocation;
 
-        TravelPoint.OnReturnDefaultSpawnPoint += SpawnPlayerAtDefaultSpawnPoint;
+        TravelPoint.OnReportDefaultSpawnPoint += SetNewDefaultSpawnPoint;
+
+        TravelPoint.OnReportTravelPointSpawn += SetPlayerAtTravelPoint;
+
+        CharacterControllerScript.OnPlayerSpawnDone += UnloadScene;
+
+        CameraController.OnCameraMovementDone += CloseLoadingScreen;
+    }
+
+
+    private void Start()
+    {
+        StartCoroutine(LoadMainMenuOnStart());
+    }
+    private void SetPlayerAtTravelPoint(Vector3 interactorPosition, int newTravelPointId)
+    {
+        if (newTravelPointId != _travelPointIdToSpawnAt) return;
+        
+        _playerNewPosition = interactorPosition;
+            
+        SpawnPlayerAtPosition(_playerNewPosition);
+
+    }
+    private void SetNewDefaultSpawnPoint(Vector3 interactorPosition)
+    {
+        _playerNewPosition = interactorPosition;
+        
+        SpawnPlayerAtPosition(_playerNewPosition);
+    }
+    private void CloseLoadingScreen()
+    {
+        loadingScreen.SetActive(false);
+        
+        OnSceneLoaded?.Invoke();
+    }
+
+    private IEnumerator LoadMainMenuOnStart()
+    {
+        var operation = SceneManager.LoadSceneAsync(mainMenuScene, LoadSceneMode.Additive);
+        
+        while (!operation.isDone)
+        {
+            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+
+            loadingBar.fillAmount = progressValue;
+            
+            yield return null;
+        }
+        
+        loadingScreen.SetActive(false);
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(mainMenuScene));
     }
 
     #region LocationChangeAndSceneLoad
@@ -31,11 +95,9 @@ public class CurrentLocationManager : MonoBehaviour
         
         _locationToLoad = scene;
         
-        UnloadScene();
-
-        StartCoroutine(LoadSceneAsync(setActive));
+        StartCoroutine(LoadSceneAsync(scene, setActive));
         
-        CallForDefaultSpawnPoint();
+        loadingScreen.SetActive(false);
     }
     private void OnChangeLocation(string scene, int travelPointId)
     {
@@ -43,27 +105,30 @@ public class CurrentLocationManager : MonoBehaviour
         
         _locationToLoad = scene;
         
-        UnloadScene();
+        _travelPointIdToSpawnAt = travelPointId;
         
-        StartCoroutine(LoadSceneAsync(true));
-        
-        
-        CallForTravelPointTransition?.Invoke(scene, travelPointId);
+        StartCoroutine(LoadSceneAsync(_locationToLoad ,true));
     }
 
-    private IEnumerator LoadSceneAsync(bool setActive)
+    private IEnumerator LoadSceneAsync(string newScene, bool setActive)
     {
-        var loadSceneAsync = SceneManager.LoadSceneAsync(_locationToLoad, LoadSceneMode.Additive);
-
+        loadingScreen.SetActive(true);
+        
+        var loadSceneAsync = SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
+        
         while (!loadSceneAsync.isDone)
         {
+            float progressValue = Mathf.Clamp01(loadSceneAsync.progress / 0.9f);
+
+            loadingBar.fillAmount = progressValue;
+            
             yield return null;
+            
         }
-        
-        if (setActive)
-        {
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(_locationToLoad));
-        }
+
+        if (!setActive) yield break;
+            
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(_locationToLoad));
     }
 
     private void UnloadScene()
@@ -73,16 +138,9 @@ public class CurrentLocationManager : MonoBehaviour
     #endregion
 
     #region PlayerTransition
-
-    private void CallForDefaultSpawnPoint()
+    private static void SpawnPlayerAtPosition(Vector3 newPlayerPosition)
     {
-        OnCallForDefaultSpawnPoint?.Invoke();
-    }
-
-    private void SpawnPlayerAtDefaultSpawnPoint(TravelPoint defaultSpawnPoint)
-    {
-        OnSpawnPlayerAtDefaultSpawnPoint?.Invoke(defaultSpawnPoint.interactor.interactorPosition
-        );
+        OnSpawnPlayerAtPosition?.Invoke(newPlayerPosition);
     }
 
     #endregion

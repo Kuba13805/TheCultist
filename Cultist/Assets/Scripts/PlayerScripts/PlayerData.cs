@@ -21,55 +21,56 @@ namespace PlayerScripts
 
         #region Skills
 
-        [Foldout("Skills")] public Perception perception;
         
-        [Foldout("Skills")] public Occultism occultism;
+        [HorizontalLine(color: EColor.Green)][Foldout("Skills")][AllowNesting] public Perception perception;
         
-        [Foldout("Skills")] public Medicine medicine;
+        [Foldout("Skills")][AllowNesting] public Occultism occultism;
         
-        [Foldout("Skills")] public Electrics electrics;
+        [Foldout("Skills")][AllowNesting] public Medicine medicine;
         
-        [Foldout("Skills")] public History history;
+        [Foldout("Skills")][AllowNesting] public Electrics electrics;
         
-        [Foldout("Skills")] public Persuasion persuasion;
+        [Foldout("Skills")][AllowNesting] public History history;
         
-        [Foldout("Skills")] public Intimidation intimidation;
+        [Foldout("Skills")][AllowNesting] public Persuasion persuasion;
         
-        [Foldout("Skills")] public Locksmithing locksmithing;
+        [Foldout("Skills")][AllowNesting] public Intimidation intimidation;
         
-        [Foldout("Skills")] public Mechanics mechanics;
+        [Foldout("Skills")][AllowNesting] public Locksmithing locksmithing;
         
-        [Foldout("Skills")] public Acrobatics acrobatics;
+        [Foldout("Skills")][AllowNesting] public Mechanics mechanics;
         
-        [Foldout("Skills")] public Forensics forensics;
+        [Foldout("Skills")][AllowNesting] public Acrobatics acrobatics;
         
-        [Foldout("Skills")] public Acting acting;
+        [Foldout("Skills")][AllowNesting] public Forensics forensics;
         
-        [Foldout("Skills")] public Alchemy alchemy;
+        [Foldout("Skills")][AllowNesting] public Acting acting;
+        
+        [Foldout("Skills")][AllowNesting] public Alchemy alchemy;
 
-        [Foldout("Skills")] public Astrology astrology;
+        [Foldout("Skills")][AllowNesting] public Astrology astrology;
 
-        [Foldout("Skills")] public Thievery thievery;
+        [Foldout("Skills")][AllowNesting] public Thievery thievery;
 
-        [Foldout("Skills")] public RangedCombat rangedCombat;
+        [Foldout("Skills")][AllowNesting] public RangedCombat rangedCombat;
 
-        [Foldout("Skills")] public HandToHandCombat handToHandCombat;
+        [Foldout("Skills")][AllowNesting] public HandToHandCombat handToHandCombat;
 
-        [Foldout("Skills")] public Etiquette etiquette;
+        [Foldout("Skills")][AllowNesting] public Etiquette etiquette;
 
-        [Foldout("Skills")] public Animism animism;
+        [Foldout("Skills")][AllowNesting] public Animism animism;
 
-        [Foldout("Skills")] public Empathy empathy;
+        [Foldout("Skills")][AllowNesting] public Empathy empathy;
 
-        [Foldout("Skills")] public Demonology demonology;
+        [Foldout("Skills")][AllowNesting] public Demonology demonology;
 
-        [Foldout("Skills")] public Stealth stealth;
+        [Foldout("Skills")][AllowNesting] public Stealth stealth;
 
-        [Foldout("Skills")] public Necromancy necromancy;
+        [Foldout("Skills")][AllowNesting] public Necromancy necromancy;
 
         #endregion
 
-        public List<BaseItem> playerInventoryItems;
+        [HorizontalLine(color: EColor.Green)] public List<BaseItem> playerInventoryItems;
 
         public List<BaseItem> characterEquipment;
 

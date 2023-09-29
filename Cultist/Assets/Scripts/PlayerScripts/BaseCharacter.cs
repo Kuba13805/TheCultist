@@ -14,7 +14,7 @@ namespace PlayerScripts
 
         #region Attributes
 
-        [Foldout("Attributes")] public Dexterity dexterity;
+        [HorizontalLine(color: EColor.Green)] [Foldout("Attributes")] public Dexterity dexterity;
         
         [Foldout("Attributes")] public Strength strength;
         

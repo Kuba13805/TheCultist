@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using DG.Tweening.Plugins.Options;
 using Managers;
 using Unity.Mathematics;
@@ -30,6 +32,8 @@ public class CameraController : MonoBehaviour
 
     private Vector3 _rotateCurrentPosition;
 
+    public static event Action OnCameraMovementDone;
+
     private void Start()
     {
         _player = GameObject.FindWithTag("Player");
@@ -44,6 +48,8 @@ public class CameraController : MonoBehaviour
         _cameraActions.Camera.CameraFocusOnPlayer.performed += FocusCamera;
         
         TravelPoint.OnPlayerTravelDone += MoveCameraToTravelPoint;
+
+        CharacterControllerScript.OnPlayerSpawnDone += MoveCameraToTravelPoint;
     }
 
     private void Update()
@@ -51,8 +57,6 @@ public class CameraController : MonoBehaviour
         HandleMouseInput();
         
         HandleKeyboardInput();
-        
-        FollowPlayerPositionY();
     }
 
     private void HandleMouseInput()
@@ -131,20 +135,14 @@ public class CameraController : MonoBehaviour
     }
     private void MoveCameraToPoint()
     {
-        var transformPosition = transform.position;
-        
-        transformPosition = _player.transform.position;
+        var transformPosition = _player.transform.position;
 
         _newPosition = transformPosition;
-    }
 
-    private void FollowPlayerPositionY()
-    {
-        // var transformPosition = transform.position;
-        //
-        // transformPosition.y = _player.transform.position.y;
-        // transformPosition.y -= 0.03f;
-        //
-        // _newPosition.y = transformPosition.y;
+        if (Vector3.Distance(_newPosition, transformPosition) == 0)
+        {
+            OnCameraMovementDone?.Invoke();
+            
+        }
     }
 }

@@ -22,19 +22,21 @@ public class Campaign : ScriptableObject
     [Scene]
     public string firstSceneToLoad;
     
+    public NarrativeEvent startingEvent;
+    
     [SerializeField][Label("Questlines Required To Complete")] private List<Questline> requiredQuestlines;
-
-    public NarrativeEvent startingEvent { get; }
 
     [SerializeField][Label("Campaigns Required To Start")] private List<Campaign> requiredCampaigns;
 
     public bool hasStarted;
 
     public bool isCompleted;
-
+    
     private void OnEnable()
     {
         NewGameManager.OnNewGameStart += StartCampaign;
+
+        CurrentLocationManager.OnSceneLoaded += CallForFirstNarrativeEvent;
     }
 
     private void StartCampaign(Campaign startCampaign)
@@ -47,6 +49,15 @@ public class Campaign : ScriptableObject
         }
         
         hasStarted = true;
+        
+        NewGameManager.OnNewGameStart -= StartCampaign;
+    }
+
+    private void CallForFirstNarrativeEvent()
+    {
+        startingEvent.CallForEvent();
+        
+        CurrentLocationManager.OnSceneLoaded -= CallForFirstNarrativeEvent;
     }
 
     private void CompleteCampaign()

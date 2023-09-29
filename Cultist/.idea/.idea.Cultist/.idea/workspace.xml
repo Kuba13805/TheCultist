@@ -42,6 +42,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerJournal/DisplayedQuestline.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerTest/DisplayDiceRollResult.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/WorldMapLocationButtonLogic.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@3.0.25/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Actions/InputActionAsset.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.sequences@1.0.4/Editor/AssetDatabase/SequencesAssetDatabase.cs" root0="SKIP_HIGHLIGHTING" />
@@ -84,7 +85,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="E:/The Cultist 0.1\Cultist.exe" />
+      <option name="EXE_PATH" value="E:/The Cultist 0.1.1/Cultist.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="D:\The Cultist 0.1" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -237,7 +238,8 @@
       <workItem from="1695721173733" duration="138000" />
       <workItem from="1695721612120" duration="12687000" />
       <workItem from="1695810070744" duration="607000" />
-      <workItem from="1695891351683" duration="9771000" />
+      <workItem from="1695891351683" duration="29050000" />
+      <workItem from="1695992398867" duration="13784000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using NaughtyAttributes;
 using PlayerScripts;
 using UnityEngine;
 
@@ -11,6 +10,7 @@ public class PlayableCharacter : PlayerData
         
     }
 
+    [HorizontalLine(color: EColor.Green)]
     public Sprite characterIcon;
 
     [TextArea(15, 20)]

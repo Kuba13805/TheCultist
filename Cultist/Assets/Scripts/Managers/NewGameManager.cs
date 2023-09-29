@@ -42,6 +42,7 @@ public class NewGameManager : MonoBehaviour
         var startingCampaign = selectedPlayableCharacter.characterStartingCampaign;
         
         OnNewGameStart?.Invoke(startingCampaign);
+        
 
         var baseScenePlayerUi = new CallLocationChange();
         
@@ -50,6 +51,5 @@ public class NewGameManager : MonoBehaviour
         var loadFirstScene = new CallLocationChange();
         
         loadFirstScene.ChangeLocation(startingCampaign.firstSceneToLoad, true);
-
     }
 }

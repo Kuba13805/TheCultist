@@ -19,5 +19,5 @@ MonoBehaviour:
   firstSceneToLoad: WorldHub
   requiredQuestlines: []
   requiredCampaigns: []
-  hasStarted: 0
+  hasStarted: 1
   isCompleted: 0
