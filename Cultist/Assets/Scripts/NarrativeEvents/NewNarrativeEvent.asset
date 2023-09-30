@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: NewNarrativeEvent
   m_EditorClassIdentifier: 
   narrativeEventId:
-    eventCampaign: {fileID: 0}
-    eventNumber: 0
-  narrativeEventText: {fileID: 0}
+    eventCampaign: {fileID: 11400000, guid: c99fe98cc3229d4459f8c21a8fa54985, type: 2}
+    eventNumber: 1
+  narrativeEventText: {fileID: 4900000, guid: d0a4097cb45da2c46ba465f9f4aa8211, type: 3}
+  eventImages: []
   actionsList: []

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Events;
 using PlayerScripts;
 using UnityEngine.InputSystem;
 
@@ -25,7 +26,6 @@ namespace Managers
             PlayerInputActions = new PlayerInputActions();
 
             ChangeActionMapToPlayer();
-            //PlayerInputActions.Camera.Enable();
 
             #region Events
 
@@ -45,7 +45,63 @@ namespace Managers
 
             CallContainerEvents.OnContainerClosed += ChangeActionMapToPlayer;
 
+            CallPlayerInputChange.OnSetAllInput += SetAllActionMaps;
+
+            CallPlayerInputChange.OnSetPlayerInput += SetPlayerActions;
+
+            CallPlayerInputChange.OnSetCameraInput += SetCameraActions;
+            
+            CallPlayerInputChange.OnSetUiInput += SetUiCameraActions;
+
             #endregion
+        }
+
+        private void SetCameraActions(bool setActive)
+        {
+            if (setActive)
+            {
+                PlayerInputActions.Camera.Enable();
+            }
+            else
+            {
+                PlayerInputActions.Camera.Disable();
+            }
+        }
+
+        private void SetPlayerActions(bool setActive)
+        {
+            if (setActive)
+            {
+                PlayerInputActions.Player.Enable();
+            }
+            else
+            {
+                PlayerInputActions.Player.Disable();
+            }
+        }
+        
+        private void SetUiCameraActions(bool setActive)
+        {
+            if (setActive)
+            {
+                PlayerInputActions.UI.Enable();
+            }
+            else
+            {
+                PlayerInputActions.UI.Disable();
+            }
+        }
+
+        private void SetAllActionMaps(bool setActive)
+        {
+            if (setActive)
+            {
+                PlayerInputActions.Enable();
+            }
+            else
+            {
+                PlayerInputActions.Disable();
+            }
         }
 
         private void OnDestroy()
@@ -66,6 +122,15 @@ namespace Managers
             CallContainerEvents.OnContainerOpen -= ChangeActionMapToUI;
 
             CallContainerEvents.OnContainerClosed -= ChangeActionMapToPlayer;
+            
+            CallPlayerInputChange.OnSetAllInput -= SetAllActionMaps;
+
+            CallPlayerInputChange.OnSetPlayerInput -= SetPlayerActions;
+
+            CallPlayerInputChange.OnSetCameraInput -= SetCameraActions;
+
+            CallPlayerInputChange.OnSetUiInput -= SetUiCameraActions;
+
             #endregion
         }
 

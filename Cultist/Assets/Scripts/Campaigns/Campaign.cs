@@ -31,6 +31,8 @@ public class Campaign : ScriptableObject
     public bool hasStarted;
 
     public bool isCompleted;
+
+    public static event Action<Campaign> OnCampaignStart; 
     
     private void OnEnable()
     {
@@ -49,6 +51,8 @@ public class Campaign : ScriptableObject
         }
         
         hasStarted = true;
+        
+        OnCampaignStart?.Invoke(this);
         
         NewGameManager.OnNewGameStart -= StartCampaign;
     }

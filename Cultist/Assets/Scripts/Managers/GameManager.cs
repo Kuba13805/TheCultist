@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Events;
 using NaughtyAttributes;
 using PlayerScripts;
 using Questlines.SingleQuests;
@@ -71,6 +72,20 @@ namespace Managers
             
 
             QuestReturnItem.OnQuestItemRemove += RemoveQuestItem;
+
+            CallGameManagerEvents.OnGamePause += HandleGamePause;
+        }
+
+        private static void HandleGamePause(bool boolean)
+        {
+            if (boolean)
+            {
+                PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
         }
 
         private void UpdateGameState(GameState newState)

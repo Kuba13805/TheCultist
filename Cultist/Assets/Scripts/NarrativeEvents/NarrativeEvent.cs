@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Events;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewNarrativeEvent", menuName = "ScriptableObjects/Create New Narrative Event")]
