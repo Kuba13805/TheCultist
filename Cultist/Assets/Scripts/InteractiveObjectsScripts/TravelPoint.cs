@@ -18,7 +18,7 @@ public class TravelPoint : BaseInteractableObject
 
    public static event Action<Vector3> OnReportDefaultSpawnPoint;
 
-   public static event Action<Vector3, int> OnReportTravelPointSpawn;
+   public static event Action<Vector3> OnReportTravelPointSpawn;
    
 
    #endregion
@@ -42,27 +42,43 @@ public class TravelPoint : BaseInteractableObject
    public override void Start()
    {
       base.Start();
-      
-      ReportSpawnPoint();
 
-      ReportTravelPointPosition();
+      CurrentLocationManager.OnFindTravelPoint += ReportTravelPointPosition;
+
+      CurrentLocationManager.OnFindDefaultSpawnPoint += ReportSpawnPoint;
    }
 
-   private void ReportTravelPointPosition()
+   private void OnDisable()
    {
-      OnReportTravelPointSpawn?.Invoke(interactor.transform.position, objectId);
+      CurrentLocationManager.OnFindTravelPoint -= ReportTravelPointPosition;
+
+      CurrentLocationManager.OnFindDefaultSpawnPoint -= ReportSpawnPoint;
+   }
+
+   private void ReportTravelPointPosition(int id)
+   {
+      if (objectId != id) return;
+      
+      OnReportTravelPointSpawn?.Invoke(interactor.interactorPosition);
+      
+      Debug.Log("Returned position of travel point: " + interactor.transform.position);
    }
    private void ReportSpawnPoint()
    {
-      if (isDefaultSpawnPoint)
-      {
-         OnReportDefaultSpawnPoint?.Invoke(interactor.transform.position);
-      }
+      if (!isDefaultSpawnPoint) return;
+      
+      OnReportDefaultSpawnPoint?.Invoke(interactor.interactorPosition);
+         
+      Debug.Log("Returned position of default point: " + interactor.transform.position);
    }
 
    public override void Interact()
    {
       if (travelNotAllowed) return;
+      
+      CurrentLocationManager.OnFindTravelPoint -= ReportTravelPointPosition;
+
+      CurrentLocationManager.OnFindDefaultSpawnPoint -= ReportSpawnPoint;
       
       DetermineLoad();
    }

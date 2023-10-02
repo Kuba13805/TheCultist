@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using Events;
 using Ink.Runtime;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,6 +43,7 @@ public class NarrativeEventHandler : MonoBehaviour
         NarrativeEventChoice.OnChoiceChoosen -= ChooseChoice;
     }
 
+    #region EventDisplaying
     private void ShowEvent(NarrativeEvent newEvent)
     {
         narrativeEventPanel.SetActive(true);
@@ -79,15 +82,15 @@ public class NarrativeEventHandler : MonoBehaviour
         if (!_currentStory.canContinue) return;
         
         eventTextBox.GetComponent<TextMeshProUGUI>().text = _currentStory.Continue();
+        
+        SearchForCommand();
+        
+        DisplayChoices();
 
         if (eventTextBox.GetComponent<TextMeshProUGUI>().text == "")
         {
             CloseEvent();
-                
-            return;
         }
-            
-        DisplayChoices();
     }
 
     private void DisplayChoices()
@@ -136,4 +139,90 @@ public class NarrativeEventHandler : MonoBehaviour
         
         CallGameManagerEvents.StopGame(false);
     }
+    #endregion
+
+    #region EventFunctionsCode
+
+    // zczytaj komendę z tekstu
+    private void SearchForCommand()
+    {
+        if (_currentStory.currentTags == null) return;
+        
+        var commandList = _currentStory.currentTags;
+
+        foreach (var array in commandList.Select(command => command.Split(':')))
+        {
+            if (!array[0].Contains("command") || array[0] == null) return;
+            
+            if (array[1].Contains("loadLevel"))
+            {
+                LoadLevelFromNarrativeEvent(array[2]);
+            }
+            else if (array[1].Contains("addItem"))
+            {
+                AddItemFromNarrativeEvent(int.Parse(array[2]));
+            }
+            else if (array[1].Contains("removeItem"))
+            {
+                RemoveItemFromNarrativeEvent(int.Parse(array[2]));
+            }
+            else if (array[1].Contains("startTimeline"))
+            {
+                StartTimelineFromNarrativeEvent();
+            }
+            else if (array[1].Contains("gameOver"))
+            {
+                FinishGameFromNarrativeEvent();
+            }
+            else if (array[1].Contains("addClue"))
+            {
+                AddClueFromNarrativeEvent();
+            }
+            else if (array[1].Contains("addEntryToCompendium"))
+            {
+                AddEntryToCompendiumFromNarrativeEvent();
+            }
+        }
+    }
+    
+    // ładowanie levelu
+    private void LoadLevelFromNarrativeEvent(string sceneName)
+    {
+        var locationChange = new CallLocationChange();
+        
+        locationChange.ChangeLocation(sceneName, true);
+    }
+    // dodawanie przedmiotu
+    private void AddItemFromNarrativeEvent(int itemId)
+    {
+        var playerEvent = new PlayerEvents();
+        
+        //playerEvent.AddItem();
+    }
+    // usuwanie przedmiotu
+    private void RemoveItemFromNarrativeEvent(int itemId)
+    {
+        
+    }
+    // uruchom timeline
+    private void StartTimelineFromNarrativeEvent()
+    {
+        
+    }
+    // gameover
+    private void FinishGameFromNarrativeEvent()
+    {
+        
+    }
+    // dodaj wskazówkę
+    private void AddClueFromNarrativeEvent()
+    {
+        
+    }
+    // dodaj wpis do kompedium
+    private void AddEntryToCompendiumFromNarrativeEvent()
+    {
+        
+    }
+    #endregion
 }

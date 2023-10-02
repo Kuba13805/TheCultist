@@ -1,6 +1,6 @@
 using UnityEditor;
 using UnityEngine;
-using NaughtyAttributes;
+using UnityEngine.SceneManagement;
 
 [CustomEditor(typeof(TravelPoint))]
 public class DefaultSpawnPointEditor : Editor
@@ -8,26 +8,36 @@ public class DefaultSpawnPointEditor : Editor
     public override void OnInspectorGUI()
     {
         TravelPoint travelPoint = (TravelPoint)target;
-
-        if (travelPoint.isDefaultSpawnPoint)
+        
+        if (IsObjectInActiveScene(travelPoint.gameObject))
         {
-            GUIStyle greenTextStyle = new GUIStyle();
-            greenTextStyle.normal.textColor = Color.green;
-            
-            GUILayout.Label("Default spawn point", greenTextStyle);
-
-            
-            TravelPoint[] allTravelPoints = FindObjectsOfType<TravelPoint>();
-            foreach (TravelPoint otherTravelPoint in allTravelPoints)
+            if (travelPoint.isDefaultSpawnPoint)
             {
-                if (otherTravelPoint != travelPoint && otherTravelPoint.isDefaultSpawnPoint)
+                GUIStyle greenTextStyle = new GUIStyle();
+                greenTextStyle.normal.textColor = Color.green;
+                
+                GUILayout.Label("Default spawn point", greenTextStyle);
+
+                
+                TravelPoint[] allTravelPoints = FindObjectsOfType<TravelPoint>();
+                foreach (TravelPoint otherTravelPoint in allTravelPoints)
                 {
-                    otherTravelPoint.isDefaultSpawnPoint = false;
-                    EditorUtility.SetDirty(otherTravelPoint);
+                    if (otherTravelPoint != travelPoint && otherTravelPoint.isDefaultSpawnPoint)
+                    {
+                        otherTravelPoint.isDefaultSpawnPoint = false;
+                        EditorUtility.SetDirty(otherTravelPoint);
+                    }
                 }
             }
         }
 
         DrawDefaultInspector();
+    }
+
+    // Funkcja sprawdzająca, czy obiekt jest w aktywnej scenie
+    private bool IsObjectInActiveScene(GameObject obj)
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        return obj.scene == activeScene;
     }
 }

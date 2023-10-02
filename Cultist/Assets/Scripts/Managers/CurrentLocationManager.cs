@@ -15,11 +15,17 @@ public class CurrentLocationManager : MonoBehaviour
 
     private int _travelPointIdToSpawnAt;
 
-    private Vector3 _playerNewPosition;
+    private Vector3 _defaultSpawnPoint;
+
+    private Vector3 _newSpawnPoint;
+
+    private bool _pointFound;
 
     [SerializeField][Scene] private string mainMenuScene;
     
     [SerializeField][Scene] private string playerAndUI;
+    
+    [SerializeField][Scene] private string sceneManager;
 
     [SerializeField] private GameObject loadingScreen;
 
@@ -28,6 +34,10 @@ public class CurrentLocationManager : MonoBehaviour
     public static event Action<Vector3> OnSpawnPlayerAtPosition;
 
     public static event Action OnSceneLoaded;
+
+    public static event Action<int> OnFindTravelPoint;
+
+    public static event Action OnFindDefaultSpawnPoint;
     private void OnEnable()
     {
         CallLocationChange.OnChangeLocation += OnChangeLocation;
@@ -38,9 +48,9 @@ public class CurrentLocationManager : MonoBehaviour
 
         TravelPoint.OnReportTravelPointSpawn += SetPlayerAtTravelPoint;
 
-        CharacterControllerScript.OnPlayerSpawnDone += UnloadScene;
-
         CameraController.OnCameraMovementDone += CloseLoadingScreen;
+
+        //CharacterControllerScript.OnPlayerSpawnDone += UnloadScene;
     }
 
 
@@ -48,20 +58,25 @@ public class CurrentLocationManager : MonoBehaviour
     {
         StartCoroutine(LoadMainMenuOnStart());
     }
-    private void SetPlayerAtTravelPoint(Vector3 interactorPosition, int newTravelPointId)
+    private void SetPlayerAtTravelPoint(Vector3 interactorPosition)
     {
-        if (newTravelPointId != _travelPointIdToSpawnAt) return;
+        _newSpawnPoint = interactorPosition;
         
-        _playerNewPosition = interactorPosition;
-            
-        SpawnPlayerAtPosition(_playerNewPosition);
-
+        _pointFound = true;
+        
+        SpawnPlayerAtPosition(_newSpawnPoint);
+        
+        Debug.Log("Travel point set: " + _newSpawnPoint);
     }
     private void SetNewDefaultSpawnPoint(Vector3 interactorPosition)
     {
-        _playerNewPosition = interactorPosition;
+        _defaultSpawnPoint = interactorPosition;
         
-        SpawnPlayerAtPosition(_playerNewPosition);
+        _pointFound = true;
+        
+        SpawnPlayerAtPosition(_defaultSpawnPoint);
+        
+        Debug.Log("Default point set: " + _defaultSpawnPoint);
     }
     private void CloseLoadingScreen()
     {
@@ -95,9 +110,12 @@ public class CurrentLocationManager : MonoBehaviour
         
         _locationToLoad = scene;
         
-        StartCoroutine(LoadSceneAsync(scene, setActive));
+        _pointFound = false;
         
-        loadingScreen.SetActive(false);
+        
+        StartCoroutine(LoadSceneAsync(_locationToLoad, setActive));
+        
+        UnloadScene();
     }
     private void OnChangeLocation(string scene, int travelPointId)
     {
@@ -107,7 +125,11 @@ public class CurrentLocationManager : MonoBehaviour
         
         _travelPointIdToSpawnAt = travelPointId;
         
+        _pointFound = false;
+        
         StartCoroutine(LoadSceneAsync(_locationToLoad ,true));
+        
+        UnloadScene();
     }
 
     private IEnumerator LoadSceneAsync(string newScene, bool setActive)
@@ -116,6 +138,8 @@ public class CurrentLocationManager : MonoBehaviour
         
         var loadSceneAsync = SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
         
+        Debug.Log("Start scene load: " + newScene);
+        
         while (!loadSceneAsync.isDone)
         {
             float progressValue = Mathf.Clamp01(loadSceneAsync.progress / 0.9f);
@@ -123,9 +147,12 @@ public class CurrentLocationManager : MonoBehaviour
             loadingBar.fillAmount = progressValue;
             
             yield return null;
-            
         }
-
+        
+        Debug.Log("Scene loaded:" + newScene);
+        
+        OnFindDefaultSpawnPoint?.Invoke();
+        OnFindTravelPoint?.Invoke(_travelPointIdToSpawnAt);
         if (!setActive) yield break;
             
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(_locationToLoad));
@@ -133,6 +160,10 @@ public class CurrentLocationManager : MonoBehaviour
 
     private void UnloadScene()
     {
+        if(_currentLocation.name == sceneManager) return;
+        
+        Debug.Log("Previous scene unloading: " + _currentLocation.name);
+        
         SceneManager.UnloadSceneAsync(_currentLocation);
     }
     #endregion
