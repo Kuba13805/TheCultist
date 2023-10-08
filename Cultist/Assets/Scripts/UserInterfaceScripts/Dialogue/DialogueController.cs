@@ -79,6 +79,8 @@ public class DialogueController : MonoBehaviour
     private void Start()
     {
         OnDialogueShown?.Invoke();
+        
+        PlayerEvents.StopPlayer();
     }
 
     private void OnDestroy()

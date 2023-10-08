@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ModestTree;
 using NaughtyAttributes;
 using Questlines.SingleQuests;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class Quest : ScriptableObject
     public string questName;
     public QuestId questId;
 
-    [TextArea(15, 20)]
+    [TextArea(5, 20)]
     public string questDesc;
     
     [TextArea(3, 8)]
@@ -23,7 +24,7 @@ public class Quest : ScriptableObject
     public bool questCompleted;
     public bool questFailed;
 
-    [TextArea(15, 20)][ShowIf("questFailed")]
+    [TextArea(5, 20)]
     public string questFailedDesc;
 
     public List<Quest> questSteps;
@@ -137,5 +138,26 @@ public class Quest : ScriptableObject
         DialogueController.OnQuestStart -= StartQuestFromDialogue;
 
         DialogueController.OnQuestComplete -= MarkQuestAsCompletedFromDialogue;
+    }
+
+    public void RestartQuest()
+    {
+        questStarted = false;
+        
+        questCompleted = false;
+        
+        questFailed = false;
+
+        foreach (var variable in questVariables)
+        {
+            variable.conditionPassed = false;
+        }
+        
+        if (questSteps.IsEmpty()) return;
+
+        foreach (var step in questSteps)
+        {
+            RestartQuest();
+        }
     }
 }

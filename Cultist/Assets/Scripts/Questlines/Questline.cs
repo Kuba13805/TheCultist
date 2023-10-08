@@ -75,4 +75,16 @@ public class Questline : ScriptableObject
          MarkQuestlineAsCompleted();
       }
    }
+
+   public void RestartQuestline()
+   {
+      questlineStarted = false;
+
+      questlineCompleted = false;
+
+      foreach (var quest in questlineSteps)
+      {
+         quest.RestartQuest();
+      }
+   }
 }

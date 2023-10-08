@@ -28,6 +28,8 @@ public class PlayerEvents
     public static event Action OnAddEntryInCompendium;
 
     public static event Action OnEndGame;
+
+    public static event Action OnStopPlayer;
     
     #endregion
     
@@ -81,8 +83,13 @@ public class PlayerEvents
         OnAddEntryInCompendium?.Invoke();
     }
 
-    public void FinishGame()
+    public static void FinishGame()
     {
         OnEndGame?.Invoke();
+    }
+
+    public static void StopPlayer()
+    {
+        OnStopPlayer?.Invoke();   
     }
 }

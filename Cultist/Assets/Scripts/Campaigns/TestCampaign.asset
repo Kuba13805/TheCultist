@@ -18,7 +18,10 @@ MonoBehaviour:
   campaignDesc: 
   firstSceneToLoad: WorldHub
   startingEvent: {fileID: 11400000, guid: d0d692effb55f9b42b1ae3761e8e96aa, type: 2}
-  requiredQuestlines: []
+  campaignQuestlines:
+  - {fileID: 11400000, guid: 0b5a683e886102241843761a5c93ce00, type: 2}
+  requiredQuestlines:
+  - {fileID: 11400000, guid: 0b5a683e886102241843761a5c93ce00, type: 2}
   requiredCampaigns: []
-  hasStarted: 1
+  hasStarted: 0
   isCompleted: 0

@@ -16,5 +16,6 @@ MonoBehaviour:
     eventCampaign: {fileID: 11400000, guid: c99fe98cc3229d4459f8c21a8fa54985, type: 2}
     eventNumber: 1
   narrativeEventText: {fileID: 4900000, guid: d0a4097cb45da2c46ba465f9f4aa8211, type: 3}
-  eventImages: []
+  eventImages:
+  - {fileID: 21300000, guid: 775fe9c0fc5d03446ba77a2b96901482, type: 3}
   itemsInEvent: []

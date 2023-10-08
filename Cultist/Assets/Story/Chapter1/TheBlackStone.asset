@@ -19,4 +19,3 @@ MonoBehaviour:
   questlineVisible: 1
   questlineStarted: 0
   questlineCompleted: 0
-  remainingQuests: 2

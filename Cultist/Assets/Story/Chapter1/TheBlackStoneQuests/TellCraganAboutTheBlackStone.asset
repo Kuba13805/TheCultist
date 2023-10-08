@@ -21,6 +21,8 @@ MonoBehaviour:
   shortQuestDesc: Return to Cragan
   questStarted: 0
   questCompleted: 0
+  questFailed: 0
+  questFailedDesc: 
   questSteps: []
   questVariables:
   - variableName: has_touched_the_stone

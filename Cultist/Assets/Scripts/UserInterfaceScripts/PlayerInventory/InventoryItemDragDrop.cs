@@ -138,9 +138,9 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     {
         var detailsPanelPrefab = Resources.Load<GameObject>("ItemDetailsPanel");
         if (detailsPanelActive) return;
-        var uiPosition = Input.mousePosition;
+        var uiPosition = transform.position;
 
-        uiPosition.x += 120;
+        uiPosition.x += 160;
         uiPosition.y -= 80;
 
         _detailsPanelInstance = Instantiate(detailsPanelPrefab, uiPosition, Quaternion.identity, transform.root);

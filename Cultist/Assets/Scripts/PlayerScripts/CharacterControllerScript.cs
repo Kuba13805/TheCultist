@@ -47,6 +47,8 @@ public class CharacterControllerScript : MonoBehaviour
         InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed += MovePlayerToPosition;
 
         CurrentLocationManager.OnSpawnPlayerAtPosition += SpawnPlayer;
+
+        PlayerEvents.OnStopPlayer += StopPlayerMovement;
     }
 
     private void OnDestroy()
@@ -121,7 +123,10 @@ public class CharacterControllerScript : MonoBehaviour
             MoveToInteract(myRaycastHit);
         }
     }
-
+    private void StopPlayerMovement()
+    {
+        _playerNavMeshAgent.SetDestination(transform.position);
+    }
 
     private void MoveToInteract(RaycastHit myRaycastHit)
     {

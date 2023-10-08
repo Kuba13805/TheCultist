@@ -23,6 +23,9 @@ public class Campaign : ScriptableObject
     public string firstSceneToLoad;
     
     public NarrativeEvent startingEvent;
+
+    [SerializeField] [Label("Questlines In Campaign")]
+    private List<Questline> campaignQuestlines;
     
     [SerializeField][Label("Questlines Required To Complete")] private List<Questline> requiredQuestlines;
 
@@ -39,6 +42,8 @@ public class Campaign : ScriptableObject
         NewGameManager.OnNewGameStart += StartCampaign;
 
         CurrentLocationManager.OnSceneLoaded += CallForFirstNarrativeEvent;
+
+        Questline.OnQuestlineCompleted += CompleteCampaign;
     }
 
     private void StartCampaign(Campaign startCampaign)
@@ -64,13 +69,29 @@ public class Campaign : ScriptableObject
         CurrentLocationManager.OnSceneLoaded -= CallForFirstNarrativeEvent;
     }
 
-    private void CompleteCampaign()
+    private void CompleteCampaign(Questline recentlyCompletedQuestline)
     {
+        if (campaignQuestlines.Any(questline => questline.questlineName != recentlyCompletedQuestline.questlineName))
+        {
+            return;
+        }
+        
         if (requiredQuestlines.Any(questline => !questline.questlineCompleted) || !hasStarted)
         {
             return;
         }
         
         isCompleted = true;
+    }
+
+    public void ResetCampaign()
+    {
+        hasStarted = false;
+        isCompleted = false;
+
+        foreach (var questline in campaignQuestlines)
+        {
+            questline.RestartQuestline();
+        }
     }
 }
