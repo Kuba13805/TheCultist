@@ -19,6 +19,12 @@ namespace Managers
 
         public static event Action<GameState> OnGameStateChanged;
 
+        public static event Action OnPlayerHealed;
+
+        public static event Action OnPlayerDamaged;
+
+        public static event Action<string> OnPlayerNicknameChanged; 
+
         #endregion
         
         [BoxGroup("General")][FormerlySerializedAs("PlayerData")] public PlayerData playerData;
@@ -49,8 +55,6 @@ namespace Managers
         
             CallCollectableEvents.OnCollectableClosed += ResumeGame;
             
-            
-            DialogueController.OnTestCheck += TestPlayerAbilities;
 
             DialogueController.OnDialogueShown += ChangeGameStateToDialogue;
             
@@ -75,6 +79,20 @@ namespace Managers
             PlayerEvents.OnAddItemToInventory += AddItemToInventory;
 
             PlayerEvents.OnRemoveItemFromInventory += RemoveItemFromInventory;
+            
+            PlayerEvents.OnTestPlayerStat += TestPlayerAbilities;
+
+            PlayerEvents.OnChangePlayerNickname += ChangePlayerNickname;
+
+            PlayerEvents.OnHealPlayer += HealPlayer;
+
+            PlayerEvents.OnDamagePlayer += DamagePlayer;
+
+            PlayerEvents.OnEndGame += EndGame;
+
+            PlayerEvents.OnAddMoneyToPlayer += AddMoneyToPlayer;
+
+            PlayerEvents.OnRemoveMoneyFromPlayer += RemoveMoneyFromPlayer;
         }
 
         private static void HandleGamePause(bool boolean)
@@ -113,95 +131,94 @@ namespace Managers
         }
         
 
-        private void TestPlayerAbilities(int baseTestDifficulty, string abilityToCheck)
+        private void TestPlayerAbilities(Stat abilityToCheck, int baseTestDifficulty)
         {
             var basePlayerNumber = 0;
-
-            var checkedAbility = (ModifiedStat)Enum.Parse(typeof(ModifiedStat), abilityToCheck);
-            switch (checkedAbility)
+            
+            switch (abilityToCheck)
             {
-                case ModifiedStat.Strength:
+                case Stat.Strength:
                     basePlayerNumber = playerData.strength.statValue;
                     break;
-                case ModifiedStat.Dexterity:
+                case Stat.Dexterity:
                     basePlayerNumber = playerData.dexterity.statValue;
                     break;
-                case ModifiedStat.Power:
+                case Stat.Power:
                     basePlayerNumber = playerData.power.statValue;
                     break;
-                case ModifiedStat.Wisdom:
+                case Stat.Wisdom:
                     basePlayerNumber = playerData.wisdom.statValue;
                     break;
-                case ModifiedStat.Condition:
+                case Stat.Condition:
                     basePlayerNumber = playerData.condition.statValue;
                     break;
-                case ModifiedStat.Perception:
+                case Stat.Perception:
                     basePlayerNumber = playerData.perception.statValue;
                     break;
-                case ModifiedStat.Occultism:
+                case Stat.Occultism:
                     basePlayerNumber = playerData.occultism.statValue;
                     break;
-                case ModifiedStat.Medicine:
+                case Stat.Medicine:
                     basePlayerNumber = playerData.medicine.statValue;
                     break;
-                case ModifiedStat.Electrics:
+                case Stat.Electrics:
                     basePlayerNumber = playerData.electrics.statValue;
                     break;
-                case ModifiedStat.History:
+                case Stat.History:
                     basePlayerNumber = playerData.history.statValue;
                     break;
-                case ModifiedStat.Persuasion:
+                case Stat.Persuasion:
                     basePlayerNumber = playerData.persuasion.statValue;
                     break;
-                case ModifiedStat.Intimidation:
+                case Stat.Intimidation:
                     basePlayerNumber = playerData.intimidation.statValue;
                     break;
-                case ModifiedStat.Locksmithing:
+                case Stat.Locksmithing:
                     basePlayerNumber = playerData.locksmithing.statValue;
                     break;
-                case ModifiedStat.Mechanics:
+                case Stat.Mechanics:
                     basePlayerNumber = playerData.mechanics.statValue;
                     break;
-                case ModifiedStat.Acrobatics:
+                case Stat.Acrobatics:
                     basePlayerNumber = playerData.acrobatics.statValue;
                     break;
-                case ModifiedStat.Forensics:
+                case Stat.Forensics:
                     basePlayerNumber = playerData.forensics.statValue;
                     break;
-                case ModifiedStat.Acting:
+                case Stat.Acting:
                     basePlayerNumber = playerData.acting.statValue;
                     break;
-                case ModifiedStat.Alchemy:
+                case Stat.Alchemy:
                     basePlayerNumber = playerData.alchemy.statValue;
                     break;
-                case ModifiedStat.Astrology:
+                case Stat.Astrology:
                     basePlayerNumber = playerData.astrology.statValue;
                     break;
-                case ModifiedStat.Thievery:
+                case Stat.Thievery:
                     basePlayerNumber = playerData.thievery.statValue;
                     break;
-                case ModifiedStat.RangedCombat:
+                case Stat.RangedCombat:
                     basePlayerNumber = playerData.rangedCombat.statValue;
                     break;
-                case ModifiedStat.HandToHandCombat:
+                case Stat.HandToHandCombat:
                     basePlayerNumber = playerData.handToHandCombat.statValue;
                     break;
-                case ModifiedStat.Etiquette:
+                case Stat.Etiquette:
                     basePlayerNumber = playerData.etiquette.statValue;
                     break;
-                case ModifiedStat.Animism:
+                case Stat.Animism:
                     basePlayerNumber = playerData.animism.statValue;
                     break;
-                case ModifiedStat.Empathy:
+                case Stat.Empathy:
                     basePlayerNumber = playerData.empathy.statValue;
                     break;
-                case ModifiedStat.Demonology:
+                case Stat.Demonology:
                     basePlayerNumber = playerData.demonology.statValue;
                     break;
-                case ModifiedStat.Stealth:
+                case Stat.Stealth:
                     basePlayerNumber = playerData.stealth.statValue;
                     break;
-                case ModifiedStat.Necromancy:
+                case Stat.Necromancy:
                     basePlayerNumber = playerData.necromancy.statValue;
                     break;
                 default:
@@ -347,88 +364,88 @@ namespace Managers
         {
             switch (itemEffect.statToEffect)
             {
-                case ModifiedStat.Strength:
+                case Stat.Strength:
                     playerDataSet.strength.statValue = CalculateStatValue(playerDataSet.strength.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Dexterity:
+                case Stat.Dexterity:
                     playerDataSet.dexterity.statValue = CalculateStatValue(playerDataSet.dexterity.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Power:
+                case Stat.Power:
                     playerDataSet.power.statValue = CalculateStatValue(playerDataSet.power.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Wisdom:
+                case Stat.Wisdom:
                     playerDataSet.wisdom.statValue = CalculateStatValue(playerDataSet.wisdom.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Condition:
+                case Stat.Condition:
                     playerDataSet.condition.statValue = CalculateStatValue(playerDataSet.condition.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Perception:
+                case Stat.Perception:
                     playerDataSet.perception.statValue = CalculateStatValue(playerDataSet.perception.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Occultism:
+                case Stat.Occultism:
                     playerDataSet.occultism.statValue = CalculateStatValue(playerDataSet.occultism.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Medicine:
+                case Stat.Medicine:
                     playerDataSet.medicine.statValue = CalculateStatValue(playerDataSet.medicine.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Electrics:
+                case Stat.Electrics:
                     playerDataSet.electrics.statValue = CalculateStatValue(playerDataSet.electrics.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.History:
+                case Stat.History:
                     playerDataSet.history.statValue = CalculateStatValue(playerDataSet.history.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Persuasion:
+                case Stat.Persuasion:
                     playerDataSet.persuasion.statValue = CalculateStatValue(playerDataSet.persuasion.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Intimidation:
+                case Stat.Intimidation:
                     playerDataSet.intimidation.statValue = CalculateStatValue(playerDataSet.intimidation.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Locksmithing:
+                case Stat.Locksmithing:
                     playerDataSet.locksmithing.statValue = CalculateStatValue(playerDataSet.locksmithing.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Mechanics:
+                case Stat.Mechanics:
                     playerDataSet.mechanics.statValue = CalculateStatValue(playerDataSet.mechanics.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Acrobatics:
+                case Stat.Acrobatics:
                     playerDataSet.acrobatics.statValue = CalculateStatValue(playerDataSet.acrobatics.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Forensics:
+                case Stat.Forensics:
                     playerDataSet.forensics.statValue = CalculateStatValue(playerDataSet.forensics.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Acting:
+                case Stat.Acting:
                     playerDataSet.acting.statValue = CalculateStatValue(playerDataSet.acting.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Alchemy:
+                case Stat.Alchemy:
                     playerDataSet.alchemy.statValue = CalculateStatValue(playerDataSet.alchemy.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Astrology:
+                case Stat.Astrology:
                     playerDataSet.astrology.statValue = CalculateStatValue(playerDataSet.astrology.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Thievery:
+                case Stat.Thievery:
                     playerDataSet.thievery.statValue = CalculateStatValue(playerDataSet.thievery.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.RangedCombat:
+                case Stat.RangedCombat:
                     playerDataSet.rangedCombat.statValue = CalculateStatValue(playerDataSet.rangedCombat.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.HandToHandCombat:
+                case Stat.HandToHandCombat:
                     playerDataSet.handToHandCombat.statValue = CalculateStatValue(playerDataSet.handToHandCombat.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Etiquette:
+                case Stat.Etiquette:
                     playerDataSet.etiquette.statValue = CalculateStatValue(playerDataSet.etiquette.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Animism:
+                case Stat.Animism:
                     playerDataSet.animism.statValue = CalculateStatValue(playerDataSet.animism.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Empathy:
+                case Stat.Empathy:
                     playerDataSet.empathy.statValue = CalculateStatValue(playerDataSet.empathy.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Demonology:
+                case Stat.Demonology:
                     playerDataSet.demonology.statValue = CalculateStatValue(playerDataSet.demonology.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Stealth:
+                case Stat.Stealth:
                     playerDataSet.stealth.statValue = CalculateStatValue(playerDataSet.stealth.statValue, itemEffect, isEffectActive);
                     break;
-                case ModifiedStat.Necromancy:
+                case Stat.Necromancy:
                     playerDataSet.necromancy.statValue = CalculateStatValue(playerDataSet.necromancy.statValue, itemEffect, isEffectActive);
                     break;
                 default:
@@ -465,6 +482,46 @@ namespace Managers
         }
 
         #endregion
+
+        #region HandlePlayerAlterations
+
+        private void ChangePlayerNickname(string newNickname)
+        {
+            playerData.nickname = newNickname;
+            
+            OnPlayerNicknameChanged?.Invoke(newNickname);
+        }
+        
+        private void DamagePlayer(int points)
+        {
+            playerData.health -= points;
+            
+            OnPlayerDamaged?.Invoke();
+        }
+
+        private void HealPlayer(int points)
+        {
+            playerData.health += points;
+            
+            OnPlayerHealed?.Invoke();
+        }
+
+        private void AddMoneyToPlayer(float quantity)
+        {
+            
+        }
+
+        private void RemoveMoneyFromPlayer(float quantity)
+        {
+            
+        }
+
+        private void EndGame()
+        {
+            
+        }
+
+        #endregion
     }
 }
 public enum GameState
@@ -475,7 +532,7 @@ public enum GameState
     MenuOpened
 }
 
-public enum ModifiedStat
+public enum Stat
 {
     Strength,
     Dexterity,

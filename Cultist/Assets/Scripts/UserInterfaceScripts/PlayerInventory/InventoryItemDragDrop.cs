@@ -93,7 +93,7 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
             
             case PointerEventData.InputButton.Left when !isInPlayerInventory && !transform.GetComponentInParent<EquipmentSlot>():
                 var playerEvent = new PlayerEvents();
-                playerEvent.AddItem(item);
+                PlayerEvents.AddItem(item);
                 DestroyItem();
                 break;
             
@@ -124,7 +124,7 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         if (isInPlayerInventory)
         {
             var playerEvent = new PlayerEvents();
-            playerEvent.RemoveItem(item);
+            PlayerEvents.RemoveItem(item);
         }
         
         if (detailsPanelActive)

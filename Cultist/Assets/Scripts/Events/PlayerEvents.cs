@@ -13,9 +13,9 @@ public class PlayerEvents
 
     public static event Action<float> OnAddMoneyToPlayer;
 
-    public static event Action<float> OnRemoveMoneyToPlayer; 
+    public static event Action<float> OnRemoveMoneyFromPlayer; 
 
-    public static event Action<BaseStat, int> OnTestPlayerStat;
+    public static event Action<Stat, int> OnTestPlayerStat;
 
     public static event Action<string> OnChangePlayerNickname;
 
@@ -31,12 +31,12 @@ public class PlayerEvents
     
     #endregion
     
-    public void AddItem(BaseItem item)
+    public static void AddItem(BaseItem item)
     {
         OnAddItemToInventory?.Invoke(item);
     }
 
-    public void RemoveItem(BaseItem item)
+    public static void RemoveItem(BaseItem item)
     {
         OnRemoveItemFromInventory?.Invoke(item);
     }
@@ -48,10 +48,10 @@ public class PlayerEvents
 
     public void RemoveMoney(float quantity)
     {
-        OnRemoveMoneyToPlayer?.Invoke(quantity);
+        OnRemoveMoneyFromPlayer?.Invoke(quantity);
     }
 
-    public void TestStat(BaseStat stat, int value)
+    public static void TestStat(Stat stat, int value)
     {
         OnTestPlayerStat?.Invoke(stat, value);
     }

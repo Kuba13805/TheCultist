@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using InteractiveObjectsScripts;
 using ModestTree;
 using UnityEngine;
@@ -11,6 +12,12 @@ public class PlayerDetector : MonoBehaviour
     private bool _playerDetected;
 
     [SerializeField] private List<PlayerDetectionAction> _detectionActions;
+
+    #region Events
+
+    public static event Action<string, GameObject> OnCallCommentOnObject; 
+
+    #endregion
 
     private void OnDrawGizmosSelected()
     {
@@ -30,8 +37,11 @@ public class PlayerDetector : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player detected!");
             _playerDetected = true;
+            
+            Debug.Log("Player detected!");
+            
+            DoAction();
         }
     }
 
@@ -46,6 +56,65 @@ public class PlayerDetector : MonoBehaviour
 
     private void DoAction()
     {
+        switch (_detectionActions.First().actionType)
+        {
+            case ActionType.CallForNarrativeEvent:
+                CallNarrativeEvent();
+                break;
+            case ActionType.CallForDialogue:
+                CallDialogue();
+                break;
+            case ActionType.CallForTimeline:
+                CallTimeline();
+                break;
+            case ActionType.CallForComment:
+                CallComment();
+                break;
+            case ActionType.CallForScript:
+                CallScript();
+                break;
+            case ActionType.CallForTest:
+                CallPlayerTest();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        if (_detectionActions.First().oneTimeAction)
+        {
+            _detectionActions.Remove(_detectionActions.First());
+        }
+
         
+    }
+
+    private void CallNarrativeEvent()
+    {
+        _detectionActions.First().narrativeEvent.CallForEvent();
+    }
+
+    private void CallDialogue()
+    {
+        _detectionActions.First().dialogue.InteractWithObject();
+    }
+
+    private void CallTimeline()
+    {
+        
+    }
+
+    private void CallComment()
+    {
+        OnCallCommentOnObject?.Invoke(_detectionActions.First().comment, _detectionActions.First().commentOrigin);
+    }
+
+    private void CallScript()
+    {
+        
+    }
+
+    private void CallPlayerTest()
+    {
+        PlayerEvents.TestStat(_detectionActions.First().skillToTest, _detectionActions.First().testDifficulty);
     }
 }

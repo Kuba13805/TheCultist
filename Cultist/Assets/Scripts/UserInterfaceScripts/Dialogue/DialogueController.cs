@@ -329,7 +329,8 @@ public class DialogueController : MonoBehaviour
         
         var array = testTag.Split(":");
         
-        OnTestCheck?.Invoke(int.Parse(array[1]), array[0]);
+        PlayerEvents.TestStat((Stat)Enum.Parse(typeof(Stat),array[0]), int.Parse(array[1]));
+        OnTestCheck?.Invoke(int.Parse(array[1]), (string)Enum.Parse(typeof(Stat),array[0]));
 
         return true;
     }

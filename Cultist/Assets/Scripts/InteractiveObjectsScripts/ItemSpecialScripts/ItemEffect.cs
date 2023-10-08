@@ -16,7 +16,7 @@ public class ItemEffect : ScriptableObject
     public float effectTime;
     public int pointsAffecting;
     
-    public ModifiedStat statToEffect;
+    public Stat statToEffect;
     public TypesOfInfluenceOnStat typeOfInfluence;
     [EnableIf("NotEnabled")][ShowIf("timeEffect")]
     public float startedTime;
