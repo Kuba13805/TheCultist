@@ -1817,7 +1817,7 @@ PrefabInstance:
     - target: {fileID: 3749418295683856541, guid: 943f4374e489b1840b813dd9a8ae2c9d,
         type: 3}
       propertyPath: isDefaultSpawnPoint
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3749418295683856543, guid: 943f4374e489b1840b813dd9a8ae2c9d,
         type: 3}

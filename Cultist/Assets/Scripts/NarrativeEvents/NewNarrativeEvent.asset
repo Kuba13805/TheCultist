@@ -17,4 +17,4 @@ MonoBehaviour:
     eventNumber: 1
   narrativeEventText: {fileID: 4900000, guid: d0a4097cb45da2c46ba465f9f4aa8211, type: 3}
   eventImages: []
-  actionsList: []
+  itemsInEvent: []

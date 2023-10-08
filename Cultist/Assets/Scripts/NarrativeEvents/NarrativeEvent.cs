@@ -12,19 +12,14 @@ public class NarrativeEvent : ScriptableObject
 
     public TextAsset narrativeEventText;
 
+    [NonReorderable]
     public List<Sprite> eventImages;
 
-    public List<NarrativeEventAction> actionsList;
+    [NonReorderable]
+    public List<BaseItem> itemsInEvent;
 
     public void CallForEvent()
     {
         CallForEventToOpen?.Invoke(this);
-    }
-    public void DoAllActions()
-    {
-        foreach (var action in actionsList)
-        {
-            action.DoAction();
-        }
     }
 }

@@ -27,10 +27,6 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
 
     #region Events
 
-    public static event Action<BaseItem> OnItemAddedToInventory;
-    
-    public static event Action<BaseItem> OnItemRemovedFromInventory;
-
     public static event Action<BaseItem> OnItemEquipped;
 
     public static event Action<BaseItem> OnItemStriped;
@@ -96,7 +92,8 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
                 break;
             
             case PointerEventData.InputButton.Left when !isInPlayerInventory && !transform.GetComponentInParent<EquipmentSlot>():
-                OnItemAddedToInventory?.Invoke(item);
+                var playerEvent = new PlayerEvents();
+                playerEvent.AddItem(item);
                 DestroyItem();
                 break;
             
@@ -126,7 +123,8 @@ public class InventoryItemDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
     {
         if (isInPlayerInventory)
         {
-            OnItemRemovedFromInventory?.Invoke(item);
+            var playerEvent = new PlayerEvents();
+            playerEvent.RemoveItem(item);
         }
         
         if (detailsPanelActive)

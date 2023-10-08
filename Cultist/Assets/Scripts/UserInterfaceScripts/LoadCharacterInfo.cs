@@ -31,9 +31,9 @@ public class LoadCharacterInfo : MonoBehaviour
 
     private void OnEnable()
     {
-        InventoryItemDragDrop.OnItemAddedToInventory += SwitchOnOff;
+        PlayerEvents.OnAddItemToInventory += SwitchOnOff;
         
-        InventoryItemDragDrop.OnItemRemovedFromInventory += SwitchOnOff;
+        PlayerEvents.OnRemoveItemFromInventory += SwitchOnOff;
         
         InventoryItemDragDrop.OnItemEquipped += SwitchOnOff;
         
@@ -47,9 +47,9 @@ public class LoadCharacterInfo : MonoBehaviour
 
     private void OnDisable()
     {
-        InventoryItemDragDrop.OnItemAddedToInventory -= SwitchOnOff;
+        PlayerEvents.OnAddItemToInventory -= SwitchOnOff;
         
-        InventoryItemDragDrop.OnItemRemovedFromInventory -= SwitchOnOff;
+        PlayerEvents.OnRemoveItemFromInventory -= SwitchOnOff;
         
         InventoryItemDragDrop.OnItemEquipped -= SwitchOnOff;
         

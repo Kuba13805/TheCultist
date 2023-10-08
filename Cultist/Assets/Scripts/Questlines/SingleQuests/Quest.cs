@@ -21,7 +21,10 @@ public class Quest : ScriptableObject
 
     public bool questStarted;
     public bool questCompleted;
+    public bool questFailed;
 
+    [TextArea(15, 20)][ShowIf("questFailed")]
+    public string questFailedDesc;
 
     public List<Quest> questSteps;
 

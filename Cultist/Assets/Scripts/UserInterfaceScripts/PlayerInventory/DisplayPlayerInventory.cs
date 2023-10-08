@@ -8,9 +8,9 @@ public class DisplayPlayerInventory : MonoBehaviour
 
     private void OnEnable()
     {
-        InventoryItemDragDrop.OnItemAddedToInventory += ReloadInventory;
+        PlayerEvents.OnAddItemToInventory += ReloadInventory;
         
-        InventoryItemDragDrop.OnItemRemovedFromInventory += ReloadInventory;
+        PlayerEvents.OnRemoveItemFromInventory += ReloadInventory;
         
         InventoryItemDragDrop.OnItemEquipped += ReloadInventory;
         
@@ -20,9 +20,9 @@ public class DisplayPlayerInventory : MonoBehaviour
     }
     private void OnDisable()
     {
-        InventoryItemDragDrop.OnItemAddedToInventory -= ReloadInventory;
+        PlayerEvents.OnAddItemToInventory -= ReloadInventory;
         
-        InventoryItemDragDrop.OnItemRemovedFromInventory -= ReloadInventory;
+        PlayerEvents.OnRemoveItemFromInventory -= ReloadInventory;
         
         InventoryItemDragDrop.OnItemEquipped -= ReloadInventory;
         

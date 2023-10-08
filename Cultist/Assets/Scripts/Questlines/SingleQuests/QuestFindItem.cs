@@ -26,9 +26,9 @@ namespace Questlines.SingleQuests
             
             GameManager.OnReturnQuantityOfItems += UpdateItemQuantity;
             
-            InventoryItemDragDrop.OnItemAddedToInventory += CheckForItemInInventory;
+            PlayerEvents.OnAddItemToInventory += CheckForItemInInventory;
 
-            InventoryItemDragDrop.OnItemRemovedFromInventory += CheckForRemovedItem;
+            PlayerEvents.OnRemoveItemFromInventory += CheckForRemovedItem;
             
             savedDesc = questDesc;
             
@@ -109,9 +109,9 @@ namespace Questlines.SingleQuests
             
             GameManager.OnReturnQuantityOfItems -= UpdateItemQuantity;
             
-            InventoryItemDragDrop.OnItemAddedToInventory -= CheckForItemInInventory;
+            PlayerEvents.OnAddItemToInventory -= CheckForItemInInventory;
 
-            InventoryItemDragDrop.OnItemRemovedFromInventory -= CheckForRemovedItem;
+            PlayerEvents.OnRemoveItemFromInventory -= CheckForRemovedItem;
         }
     }
 }

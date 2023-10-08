@@ -20,6 +20,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/DisplayObjectName.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/ItemSpecialScripts/ItemMultipleEffects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/NPCScripts/DialogueInteraction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/PlayerDetector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NarrativeEvents/NarrativeEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NarrativeEvents/NarrativeEventAction.cs" root0="FORCE_HIGHLIGHTING" />
@@ -244,7 +245,8 @@
       <workItem from="1696066997214" duration="12727000" />
       <workItem from="1696151435223" duration="2090000" />
       <workItem from="1696158311556" duration="7523000" />
-      <workItem from="1696245046493" duration="11810000" />
+      <workItem from="1696245046493" duration="14059000" />
+      <workItem from="1696670979995" duration="12882000" />
     </task>
     <servers />
   </component>

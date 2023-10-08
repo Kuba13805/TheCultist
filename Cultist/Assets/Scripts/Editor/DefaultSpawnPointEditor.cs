@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,11 +34,11 @@ public class DefaultSpawnPointEditor : Editor
 
         DrawDefaultInspector();
     }
-
-    // Funkcja sprawdzająca, czy obiekt jest w aktywnej scenie
+    
     private bool IsObjectInActiveScene(GameObject obj)
     {
         Scene activeScene = SceneManager.GetActiveScene();
         return obj.scene == activeScene;
     }
 }
+#endif

@@ -21,6 +21,8 @@ MonoBehaviour:
   shortQuestDesc: 'Examine the Black Stone '
   questStarted: 0
   questCompleted: 0
+  questFailed: 0
+  questFailedDesc: 
   questSteps: []
   questVariables: []
   prerequisiteQuests: []

@@ -24,31 +24,49 @@ MonoBehaviour:
   questSteps: []
   questVariables:
   - variableName: has_touched_the_stone
-    conditionDesc: 
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
     conditionPassed: 0
   - variableName: had_a_vision
-    conditionDesc: 
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
     conditionPassed: 0
   - variableName: had_a_snow_fight
-    conditionDesc: 
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
     conditionPassed: 0
   - variableName: has_seen_the_golden_palace
-    conditionDesc: 
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
     conditionPassed: 0
   - variableName: became_a_god
-    conditionDesc: 
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
     conditionPassed: 0
   - variableName: became_a_cult_leader
-    conditionDesc: 
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
     conditionPassed: 0
   - variableName: has_escaped_the_tortures
-    conditionDesc: 
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
     conditionPassed: 0
   - variableName: snow_fight_lost
-    conditionDesc: 
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
     conditionPassed: 0
   - variableName: wanted_to_stop_the_vision
-    conditionDesc: 
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
     conditionPassed: 0
   prerequisiteQuests:
   - {fileID: 11400000, guid: 406185c4329e2714cba0e95619cf53fc, type: 2}

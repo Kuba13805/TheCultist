@@ -25,7 +25,7 @@ public class Container : BaseInteractableObject
     public bool isActive;
     public override void Interact()
     {
-        InventoryItemDragDrop.OnItemAddedToInventory += RemoveItemFromContainerList;
+        PlayerEvents.OnAddItemToInventory += RemoveItemFromContainerList;
         ShowContainerLoadout();
     }
 

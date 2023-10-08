@@ -1,9 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Events;
 using Ink.Runtime;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +18,8 @@ public class NarrativeEventHandler : MonoBehaviour
     [SerializeField] private GameObject eventChoicesBox;
 
     [SerializeField] private GameObject choicePrompt;
+
+    private List<BaseItem> _currentEventItems;
 
     private TextAsset _currentEventTextAsset;
 
@@ -56,6 +58,8 @@ public class NarrativeEventHandler : MonoBehaviour
         
         
         _currentEventTextAsset = newEvent.narrativeEventText;
+
+        _currentEventItems = newEvent.itemsInEvent;
         
         InitializeEventStory();
 

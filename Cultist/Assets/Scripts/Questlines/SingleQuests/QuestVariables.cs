@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Questlines.SingleQuests
@@ -6,8 +7,16 @@ namespace Questlines.SingleQuests
     public class QuestVariables
     {
         public string variableName;
-        [TextArea(4, 6)]
-        public string conditionDesc;
-        public bool conditionPassed;
+        
+        [Label("Major decision")][AllowNesting] public bool isMajorDecision;
+        
+        [TextArea(3, 8)]
+        public string conditionPassedDesc;
+        
+        [TextArea(3, 8)]
+        public string conditionNotPassedDesc;
+
+        
+        [Label("Passed")][AllowNesting] public bool conditionPassed;
     }
 }

@@ -55,10 +55,6 @@ namespace Managers
             DialogueController.OnDialogueShown += ChangeGameStateToDialogue;
             
             
-            InventoryItemDragDrop.OnItemAddedToInventory += AddItemToInventory;
-        
-            InventoryItemDragDrop.OnItemRemovedFromInventory += RemoveItemFromInventory;
-        
             InventoryItemDragDrop.OnItemEquipped += AddItemToCharacterEquipment;
             
             InventoryItemDragDrop.OnItemEquipped += ActivateItemEffects;
@@ -74,6 +70,11 @@ namespace Managers
             QuestReturnItem.OnQuestItemRemove += RemoveQuestItem;
 
             CallGameManagerEvents.OnGamePause += HandleGamePause;
+            
+
+            PlayerEvents.OnAddItemToInventory += AddItemToInventory;
+
+            PlayerEvents.OnRemoveItemFromInventory += RemoveItemFromInventory;
         }
 
         private static void HandleGamePause(bool boolean)
