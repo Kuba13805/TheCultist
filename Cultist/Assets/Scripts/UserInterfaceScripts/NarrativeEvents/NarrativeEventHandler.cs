@@ -104,12 +104,10 @@ public class NarrativeEventHandler : MonoBehaviour
     {
         if (_currentStory.currentChoices.Count <= 0) return;
 
+        Debug.Log(_currentStory.currentChoices.Count());
         foreach (var choice in _currentStory.currentChoices)
         {
-            if (SearchForChoiceFlag(choice))
-            {
-                CreateChoicePrompt(choice);
-            }
+            SearchForChoiceFlag(choice);
         }
     }
     private void CreateChoicePrompt(Choice choice)
@@ -193,21 +191,19 @@ public class NarrativeEventHandler : MonoBehaviour
             }
         }
     }
-
-    private void HandleChoiceLogic(Choice choice)
+    
+    private void SearchForChoiceFlag(Choice choice)
     {
-        var canBeShown = SearchForChoiceFlag(choice);
-        
-    }
-    private bool SearchForChoiceFlag(Choice choice)
-    {
-        var commandList = choice.tags;
-        if (commandList == null) return true;
-
         var conditionsPassed = new List<bool>();
 
-        foreach (var flag in commandList)
+        if (choice.tags == null)
         {
+            CreateChoicePrompt(choice);
+            return;
+        }
+        foreach (var flag in choice.tags)
+        {
+            Debug.Log(flag);
             var array = flag.Split(":");
             
             if(!array[0].Contains("flag")) continue;
@@ -231,13 +227,12 @@ public class NarrativeEventHandler : MonoBehaviour
             conditionsPassed.Add(choiceCanBeSeen);
         }
 
-        if (conditionsPassed.Any(boolean => boolean == false))
+        if (conditionsPassed.Any(condition => condition == false))
         {
-            Debug.Log(conditionsPassed[0]);
-            return false;
+            return;
         }
-
-        return true;
+        
+        CreateChoicePrompt(choice);
     }
 
     private void CheckForTag()
