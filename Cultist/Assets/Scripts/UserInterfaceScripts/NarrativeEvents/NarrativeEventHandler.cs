@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Events;
 using Ink.Runtime;
+using Managers;
+using ModestTree;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -100,10 +103,13 @@ public class NarrativeEventHandler : MonoBehaviour
     private void DisplayChoices()
     {
         if (_currentStory.currentChoices.Count <= 0) return;
-        
+
         foreach (var choice in _currentStory.currentChoices)
         {
-            CreateChoicePrompt(choice);
+            if (SearchForChoiceFlag(choice))
+            {
+                CreateChoicePrompt(choice);
+            }
         }
     }
     private void CreateChoicePrompt(Choice choice)
@@ -146,8 +152,7 @@ public class NarrativeEventHandler : MonoBehaviour
     #endregion
 
     #region EventFunctionsCode
-
-    // zczytaj komendę z tekstu
+    
     private void SearchForCommand()
     {
         if (_currentStory.currentTags == null) return;
@@ -164,11 +169,11 @@ public class NarrativeEventHandler : MonoBehaviour
             }
             else if (array[1].Contains("addItem"))
             {
-                AddItemFromNarrativeEvent(int.Parse(array[2]));
+                AddItemFromNarrativeEvent(int.Parse(array[2]), int.Parse(array[3]));
             }
             else if (array[1].Contains("removeItem"))
             {
-                RemoveItemFromNarrativeEvent(int.Parse(array[2]));
+                RemoveItemFromNarrativeEvent(int.Parse(array[2]), int.Parse(array[3]));
             }
             else if (array[1].Contains("startTimeline"))
             {
@@ -188,25 +193,137 @@ public class NarrativeEventHandler : MonoBehaviour
             }
         }
     }
+
+    private void HandleChoiceLogic(Choice choice)
+    {
+        var canBeShown = SearchForChoiceFlag(choice);
+        
+    }
+    private bool SearchForChoiceFlag(Choice choice)
+    {
+        var commandList = choice.tags;
+        if (commandList == null) return true;
+
+        var conditionsPassed = new List<bool>();
+
+        foreach (var flag in commandList)
+        {
+            var array = flag.Split(":");
+            
+            if(!array[0].Contains("flag")) continue;
+            
+            bool choiceCanBeSeen = false;
+            
+            switch (array[1])
+            {
+                case "hasItem":
+                    StartCoroutine(CheckForItemInInventory(ReturnItemFromList(int.Parse(array[2])),
+                        result => { choiceCanBeSeen = result;}));
+                    break;
+                    
+                case "statValue":
+                    break;
+                    
+                case "hasTag":
+                    break;
+                    
+            }
+            conditionsPassed.Add(choiceCanBeSeen);
+        }
+
+        if (conditionsPassed.Any(boolean => boolean == false))
+        {
+            Debug.Log(conditionsPassed[0]);
+            return false;
+        }
+
+        return true;
+    }
+
+    private void CheckForTag()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void CheckForStatValue()
+    {
+        throw new NotImplementedException();
+    }
+
+    private IEnumerator CheckForItemInInventory(BaseItem itemToCheck, Action<bool> onResult)
+    {
+        bool itemInInventory = false;
+        bool isProcessing = true;
+
+        var playerEvent = new PlayerEvents();
+
+        GameManager.OnReturnQuantityOfItems += ReturnItemStatus;
+
+        playerEvent.CheckForItem(itemToCheck);
+        
+        while (isProcessing)
+        {
+            yield return null;
+        }
+
+        GameManager.OnReturnQuantityOfItems -= ReturnItemStatus;
+        
+        onResult(itemInInventory);
+        yield break;
+
+        void ReturnItemStatus(int quantity)
+        {
+            itemInInventory = quantity > 0;
+
+            Debug.Log("Item: " + itemToCheck.itemName + ". Is in inventory: " + itemInInventory);
+            
+            isProcessing = false;
+        }
+    }
     
-    // ładowanie levelu
+    private BaseItem ReturnItemFromList(int itemId)
+    {
+        foreach (var item in _currentEventItems.Where(item => item.itemId == itemId))
+        {
+            return item;
+        }
+
+        return null;
+    }
+
     private void LoadLevelFromNarrativeEvent(string sceneName)
     {
         var locationChange = new CallLocationChange();
         
         locationChange.ChangeLocation(sceneName, true);
     }
-    // dodawanie przedmiotu
-    private void AddItemFromNarrativeEvent(int itemId)
+    private void AddItemFromNarrativeEvent(int itemId, int quantity)
     {
-        var playerEvent = new PlayerEvents();
-        
-        //playerEvent.AddItem();
+        foreach (var item in _currentEventItems)
+        {
+            if (item.itemId != itemId) continue;
+            
+            var playerEvent = new PlayerEvents();
+
+            for (int i = 0; i < quantity; i++)
+            {
+                playerEvent.AddItem(item);
+            }
+        }
     }
-    // usuwanie przedmiotu
-    private void RemoveItemFromNarrativeEvent(int itemId)
+    private void RemoveItemFromNarrativeEvent(int itemId, int quantity)
     {
+        foreach (var item in _currentEventItems)
+        {
+            if (item.itemId != itemId) continue;
+            
+            var playerEvent = new PlayerEvents();
         
+            for (int i = 0; i < quantity; i++)
+            {
+                playerEvent.RemoveItem(item);
+            }
+        }
     }
     // uruchom timeline
     private void StartTimelineFromNarrativeEvent()
@@ -216,7 +333,7 @@ public class NarrativeEventHandler : MonoBehaviour
     // gameover
     private void FinishGameFromNarrativeEvent()
     {
-        
+        PlayerEvents.EndGame();
     }
     // dodaj wskazówkę
     private void AddClueFromNarrativeEvent()

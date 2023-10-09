@@ -93,6 +93,8 @@ namespace Managers
             PlayerEvents.OnAddMoneyToPlayer += AddMoneyToPlayer;
 
             PlayerEvents.OnRemoveMoneyFromPlayer += RemoveMoneyFromPlayer;
+
+            PlayerEvents.OnCheckForItem += CheckForItemInInventory;
         }
 
         private static void HandleGamePause(bool boolean)
@@ -520,7 +522,6 @@ namespace Managers
         {
             
         }
-
         #endregion
     }
 }

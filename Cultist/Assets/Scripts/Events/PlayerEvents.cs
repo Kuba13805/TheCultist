@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerEvents
 {
+    public bool HasItem;
+    
     #region Events
 
     public static event Action<BaseItem> OnAddItemToInventory;
@@ -30,17 +32,24 @@ public class PlayerEvents
     public static event Action OnEndGame;
 
     public static event Action OnStopPlayer;
+
+    public static event Action<BaseItem> OnCheckForItem;
     
     #endregion
     
-    public static void AddItem(BaseItem item)
+    public void AddItem(BaseItem item)
     {
         OnAddItemToInventory?.Invoke(item);
     }
 
-    public static void RemoveItem(BaseItem item)
+    public void RemoveItem(BaseItem item)
     {
         OnRemoveItemFromInventory?.Invoke(item);
+    }
+
+    public void CheckForItem(BaseItem item)
+    {
+        OnCheckForItem?.Invoke(item);
     }
 
     public void AddMoney(float quantity)
@@ -53,7 +62,7 @@ public class PlayerEvents
         OnRemoveMoneyFromPlayer?.Invoke(quantity);
     }
 
-    public static void TestStat(Stat stat, int value)
+    public void TestStat(Stat stat, int value)
     {
         OnTestPlayerStat?.Invoke(stat, value);
     }
@@ -83,7 +92,7 @@ public class PlayerEvents
         OnAddEntryInCompendium?.Invoke();
     }
 
-    public static void FinishGame()
+    public static void EndGame()
     {
         OnEndGame?.Invoke();
     }

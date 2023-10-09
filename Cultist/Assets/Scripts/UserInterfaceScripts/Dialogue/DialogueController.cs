@@ -330,8 +330,10 @@ public class DialogueController : MonoBehaviour
         if (testTag == "No tags") return false;
         
         var array = testTag.Split(":");
+
+        var playerTest = new PlayerEvents();
         
-        PlayerEvents.TestStat((Stat)Enum.Parse(typeof(Stat),array[0]), int.Parse(array[1]));
+        playerTest.TestStat((Stat)Enum.Parse(typeof(Stat),array[0]), int.Parse(array[1]));
         OnTestCheck?.Invoke(int.Parse(array[1]), (string)Enum.Parse(typeof(Stat),array[0]));
 
         return true;

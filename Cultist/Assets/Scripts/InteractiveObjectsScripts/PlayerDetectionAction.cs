@@ -28,9 +28,6 @@ namespace InteractiveObjectsScripts
         [ShowIf("actionType", ActionType.CallForComment)][AllowNesting]
         public GameObject commentOrigin;
         
-        [ShowIf("actionType", ActionType.CallForScript)][AllowNesting]
-        public GameObject gameObjectWithScript;
-
         [ShowIf("actionType", ActionType.CallForTest)][AllowNesting]
         public Stat skillToTest;
         
@@ -47,6 +44,5 @@ namespace InteractiveObjectsScripts
         CallForDialogue,
         CallForTimeline,
         CallForComment,
-        CallForScript,
         CallForTest
     }

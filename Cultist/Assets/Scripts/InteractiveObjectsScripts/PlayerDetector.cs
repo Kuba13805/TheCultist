@@ -70,9 +70,6 @@ public class PlayerDetector : MonoBehaviour
             case ActionType.CallForComment:
                 CallComment();
                 break;
-            case ActionType.CallForScript:
-                CallScript();
-                break;
             case ActionType.CallForTest:
                 CallPlayerTest();
                 break;
@@ -108,13 +105,10 @@ public class PlayerDetector : MonoBehaviour
         OnCallCommentOnObject?.Invoke(_detectionActions.First().comment, _detectionActions.First().commentOrigin);
     }
 
-    private void CallScript()
-    {
-        
-    }
-
     private void CallPlayerTest()
     {
-        PlayerEvents.TestStat(_detectionActions.First().skillToTest, _detectionActions.First().testDifficulty);
+        var playerTest = new PlayerEvents();
+        
+        playerTest.TestStat(_detectionActions.First().skillToTest, _detectionActions.First().testDifficulty);
     }
 }

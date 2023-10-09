@@ -14,9 +14,16 @@ namespace PlayerScripts
             ConfirmCharacterSelection.OnCharacterConfirmedSelection += SwitchStats;
         }
 
+        protected void OnDisable()
+        {
+            ConfirmCharacterSelection.OnCharacterConfirmedSelection -= SwitchStats;
+        }
+
         private void SwitchStats(PlayableCharacter newStats)
         {
-            CopyData(newStats);
+            var statsToPass = Instantiate(newStats);
+            
+            CopyData(statsToPass);
         }
 
         #region Skills

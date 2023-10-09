@@ -20,11 +20,13 @@ MonoBehaviour:
     his carrots were onced blessed by Golden Father. I must find these carrots and
     return them to their rightful owner.
   shortQuestDesc: Find the blessed carrots.
-  questStarted: 1
-  questCompleted: 1
+  questStarted: 0
+  questCompleted: 0
+  questFailed: 0
+  questFailedDesc: 
   questSteps: []
   questVariables: []
   prerequisiteQuests: []
   itemToFind: {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
   quantityOfItemNeeded: 2
-  quantityOfItemInInventory: 2
+  quantityOfItemInInventory: 1

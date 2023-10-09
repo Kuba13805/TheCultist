@@ -31,7 +31,7 @@ public class QuestlineEditor : Editor
         }
     }
 }
-[CustomEditor(typeof(Quest))]
+[CustomEditor(typeof(Quest), true)]
 public class QuestEditor : Editor
 {
     public override void OnInspectorGUI()
