@@ -203,12 +203,11 @@ public class NarrativeEventHandler : MonoBehaviour
         }
         foreach (var flag in choice.tags)
         {
-            Debug.Log(flag);
             var array = flag.Split(":");
             
             if(!array[0].Contains("flag")) continue;
             
-            bool choiceCanBeSeen = false;
+            var choiceCanBeSeen = false;
             
             switch (array[1])
             {
@@ -218,6 +217,8 @@ public class NarrativeEventHandler : MonoBehaviour
                     break;
                     
                 case "statValue":
+                    StartCoroutine(CheckForStatValue(array[2], int.Parse(array[3]), 
+                        result => { choiceCanBeSeen = result; }));
                     break;
                     
                 case "hasTag":
@@ -235,20 +236,51 @@ public class NarrativeEventHandler : MonoBehaviour
         CreateChoicePrompt(choice);
     }
 
-    private void CheckForTag()
+    private IEnumerator CheckForTag()
     {
         throw new NotImplementedException();
     }
 
-    private void CheckForStatValue()
+    private IEnumerator CheckForStatValue(string statToCheck, int neededStatValue, Action<bool> onResult)
     {
-        throw new NotImplementedException();
+        var statOnNeededValue = false;
+        var isProcessing = true;
+
+        var playerEvent = new PlayerEvents();
+
+        GameManager.OnReturnStatValue += ReturnStatValue;
+        
+        playerEvent.CheckForStatValue(ParseStringToStat(statToCheck));
+
+        while (isProcessing)
+        {
+            yield return null;
+        }
+        
+        GameManager.OnReturnStatValue -= ReturnStatValue;
+
+        onResult(statOnNeededValue);
+        yield break;
+        
+        void ReturnStatValue(int statValue)
+        {
+            statOnNeededValue = statValue >= neededStatValue;
+
+            isProcessing = false;
+        }
+
+        Stat ParseStringToStat(string statName)
+        {
+            Enum.TryParse(statName, out Stat statToFind);
+
+            return statToFind;
+        }
     }
 
     private IEnumerator CheckForItemInInventory(BaseItem itemToCheck, Action<bool> onResult)
     {
-        bool itemInInventory = false;
-        bool isProcessing = true;
+        var itemInInventory = false;
+        var isProcessing = true;
 
         var playerEvent = new PlayerEvents();
 

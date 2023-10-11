@@ -34,6 +34,8 @@ public class PlayerEvents
     public static event Action OnStopPlayer;
 
     public static event Action<BaseItem> OnCheckForItem;
+
+    public static event Action<Stat> OnCheckForStatValue;
     
     #endregion
     
@@ -50,6 +52,11 @@ public class PlayerEvents
     public void CheckForItem(BaseItem item)
     {
         OnCheckForItem?.Invoke(item);
+    }
+
+    public void CheckForStatValue(Stat stat)
+    {
+        OnCheckForStatValue?.Invoke(stat);
     }
 
     public void AddMoney(float quantity)

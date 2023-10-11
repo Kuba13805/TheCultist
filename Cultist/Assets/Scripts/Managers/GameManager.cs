@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Events;
 using NaughtyAttributes;
 using PlayerScripts;
@@ -23,7 +24,9 @@ namespace Managers
 
         public static event Action OnPlayerDamaged;
 
-        public static event Action<string> OnPlayerNicknameChanged; 
+        public static event Action<string> OnPlayerNicknameChanged;
+
+        public static event Action<int> OnReturnStatValue; 
 
         #endregion
         
@@ -95,6 +98,8 @@ namespace Managers
             PlayerEvents.OnRemoveMoneyFromPlayer += RemoveMoneyFromPlayer;
 
             PlayerEvents.OnCheckForItem += CheckForItemInInventory;
+
+            PlayerEvents.OnCheckForStatValue += CheckForStatValue;
         }
 
         private static void HandleGamePause(bool boolean)
@@ -521,6 +526,25 @@ namespace Managers
         private void EndGame()
         {
             
+        }
+
+        private void CheckForStatValue(Stat statToCheck)
+        {
+            var fieldName = statToCheck.ToString();
+            
+            var field = playerData.GetType().GetField(fieldName.ToLower());
+
+            if (field == null) return;
+            
+            var statObject = field.GetValue(playerData);
+            
+            var valueField = statObject.GetType().GetField("statValue");
+
+            if (valueField == null) return;
+            
+            var statValue = (int)valueField.GetValue(statObject);
+                    
+            OnReturnStatValue?.Invoke(statValue);
         }
         #endregion
     }
