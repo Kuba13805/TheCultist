@@ -39,7 +39,7 @@ MonoBehaviour:
     statDesc: 
     isDerived: 0
   wisdom:
-    statValue: 1
+    statValue: 2
     statIcon: {fileID: 0}
     statDesc: 
     isDerived: 0

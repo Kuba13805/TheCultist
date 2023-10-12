@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Events;
 using ModestTree;
 using NaughtyAttributes;
 using Questlines.SingleQuests;
@@ -39,13 +40,17 @@ public class Quest : ScriptableObject
 
     public static event Action<Quest> OnQuestStarted;
 
+    public static event Action<Quest> OnQuestFailed; 
+
     #endregion
 
     public virtual void OnEnable()
     {
-        DialogueController.OnQuestStart += StartQuestFromDialogue;
+        CallQuestEvents.OnQuestStart += StartQuestFromEvent;
 
-        DialogueController.OnQuestComplete += MarkQuestAsCompletedFromDialogue;
+        CallQuestEvents.OnQuestComplete += MarkQuestAsCompletedFromEvent;
+
+        CallQuestEvents.OnQuestFail += MarkQuestAsFailedFromEvent;
 
         OnQuestCompleted += OnPrerequisiteQuestComplete;
         
@@ -69,9 +74,40 @@ public class Quest : ScriptableObject
         }
     }
 
-    private void MarkQuestAsCompletedFromDialogue(QuestId questIdFromEvent)
+    private void MarkQuestAsCompletedFromEvent(QuestId questIdFromEvent)
     {
         CompleteQuest(questIdFromEvent);
+    }
+
+    private void MarkQuestAsFailedFromEvent(QuestId questIdFromEvent)
+    {
+        FailQuest(questIdFromEvent);
+    }
+
+    protected virtual void FailQuest(QuestId questIdFromEvent)
+    {
+        if (questIdFromEvent.ToString() != questId.ToString())
+        {
+            return;
+        }
+
+        if (questFailed || !questStarted || questCompleted) return;
+
+        if (prerequisiteQuests != null)
+        {
+            foreach (var quest in prerequisiteQuests.Where(quest => quest.questStarted))
+            {
+                quest.FailQuest(quest.questId);
+            }
+        }
+
+        questFailed = true;
+
+        questCompleted = true;
+        
+        StopListeningToQuestEvents();
+        
+        OnQuestFailed?.Invoke(this);
     }
 
     protected virtual void CompleteQuest(QuestId questIdFromEvent)
@@ -81,10 +117,7 @@ public class Quest : ScriptableObject
             return;
         }
 
-        if (questCompleted)
-        {
-            return;
-        }
+        if (questCompleted || questFailed) return;
 
         if (prerequisiteQuests != null)
         {
@@ -101,7 +134,7 @@ public class Quest : ScriptableObject
         OnQuestCompleted?.Invoke(this);
     }
 
-    private void StartQuestFromDialogue(QuestId questIdFromEvent)
+    private void StartQuestFromEvent(QuestId questIdFromEvent)
     {
         StartQuest(questIdFromEvent);
     }
@@ -135,9 +168,13 @@ public class Quest : ScriptableObject
 
     protected virtual void StopListeningToQuestEvents()
     {
-        DialogueController.OnQuestStart -= StartQuestFromDialogue;
+        CallQuestEvents.OnQuestStart -= StartQuestFromEvent;
 
-        DialogueController.OnQuestComplete -= MarkQuestAsCompletedFromDialogue;
+        CallQuestEvents.OnQuestComplete -= MarkQuestAsCompletedFromEvent;
+
+        CallQuestEvents.OnQuestFail -= MarkQuestAsFailedFromEvent;
+
+        OnQuestCompleted -= OnPrerequisiteQuestComplete;
     }
 
     public void RestartQuest()

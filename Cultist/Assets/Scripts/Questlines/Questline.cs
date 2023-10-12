@@ -30,6 +30,8 @@ public class Questline : ScriptableObject
       Quest.OnQuestStarted += StartQuestline;
       
       Quest.OnQuestCompleted += CheckForRemainingOnQuests;
+
+      Quest.OnQuestFailed += CheckForRemainingOnQuests;
    }
 
    private void StartQuestline(Quest startedQuest)
@@ -55,6 +57,8 @@ public class Questline : ScriptableObject
       Quest.OnQuestCompleted -= CheckForRemainingOnQuests;
       
       Quest.OnQuestStarted -= StartQuestline;
+      
+      Quest.OnQuestFailed -= CheckForRemainingOnQuests;
    }
 
    private void CheckForRemainingOnQuests(Quest completedQuest)

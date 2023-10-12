@@ -8,5 +8,5 @@ W ciepły letni dzień, tłumy ludzi z różnych zakątków kraju zebrały się 
     **[Zajmij się dokumentami] -> END
 
 ===Dalej===
-Bawisz się wybornie. Spędzasz tak cały dzień. #command:addItem:1:2
+Bawisz się wybornie. Spędzasz tak cały dzień. #command:addItem:1:2 #command:startQuest:testQuestline:2
 *[Kontynuuj] -> END 

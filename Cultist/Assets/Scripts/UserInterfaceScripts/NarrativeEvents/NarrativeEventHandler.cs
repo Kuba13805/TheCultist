@@ -5,7 +5,7 @@ using System.Linq;
 using Events;
 using Ink.Runtime;
 using Managers;
-using ModestTree;
+using Questlines.SingleQuests;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -149,49 +149,10 @@ public class NarrativeEventHandler : MonoBehaviour
     }
     #endregion
 
-    #region EventFunctionsCode
+    #region EventFunctionsLogic
     
-    private void SearchForCommand()
-    {
-        if (_currentStory.currentTags == null) return;
-        
-        var commandList = _currentStory.currentTags;
 
-        foreach (var array in commandList.Select(command => command.Split(':')))
-        {
-            if (!array[0].Contains("command") || array[0] == null) return;
-            
-            if (array[1].Contains("loadLevel"))
-            {
-                LoadLevelFromNarrativeEvent(array[2]);
-            }
-            else if (array[1].Contains("addItem"))
-            {
-                AddItemFromNarrativeEvent(int.Parse(array[2]), int.Parse(array[3]));
-            }
-            else if (array[1].Contains("removeItem"))
-            {
-                RemoveItemFromNarrativeEvent(int.Parse(array[2]), int.Parse(array[3]));
-            }
-            else if (array[1].Contains("startTimeline"))
-            {
-                StartTimelineFromNarrativeEvent();
-            }
-            else if (array[1].Contains("gameOver"))
-            {
-                FinishGameFromNarrativeEvent();
-            }
-            else if (array[1].Contains("addClue"))
-            {
-                AddClueFromNarrativeEvent();
-            }
-            else if (array[1].Contains("addEntryToCompendium"))
-            {
-                AddEntryToCompendiumFromNarrativeEvent();
-            }
-        }
-    }
-    
+    #region ChoiceFlags
     private void SearchForChoiceFlag(Choice choice)
     {
         var conditionsPassed = new List<bool>();
@@ -223,6 +184,12 @@ public class NarrativeEventHandler : MonoBehaviour
                     
                 case "hasTag":
                     break;
+                
+                case "questStatus":
+                    break;
+                
+                case "questVariableStatus":
+                    break;
                     
             }
             conditionsPassed.Add(choiceCanBeSeen);
@@ -234,6 +201,15 @@ public class NarrativeEventHandler : MonoBehaviour
         }
         
         CreateChoicePrompt(choice);
+    }
+    private IEnumerator CheckForQuestVariable()
+    {
+        throw new NotImplementedException();
+    }
+
+    private IEnumerator CheckForQuestStatus()
+    {
+        throw new NotImplementedException();
     }
 
     private IEnumerator CheckForTag()
@@ -317,7 +293,69 @@ public class NarrativeEventHandler : MonoBehaviour
 
         return null;
     }
+    #endregion
 
+    #region ChoiceCommands
+    private void SearchForCommand()
+    {
+        if (_currentStory.currentTags == null) return;
+        
+        var commandList = _currentStory.currentTags;
+
+        foreach (var array in commandList.Select(command => command.Split(':')))
+        {
+            if (!array[0].Contains("command") || array[0] == null) return;
+            
+            switch (array[1])
+            {
+                case "loadLevel":
+                    LoadLevelFromNarrativeEvent(array[2]);
+                    break;
+                
+                case "addItem":
+                    AddItemFromNarrativeEvent(int.Parse(array[2]), int.Parse(array[3]));
+                    break;
+                
+                case "removeItem":
+                    RemoveItemFromNarrativeEvent(int.Parse(array[2]), int.Parse(array[3]));
+                    break;
+                case "startQuest":
+                    StartQuest(array[2], int.Parse(array[3]));
+                    break;
+                
+                case "completeQuest":
+                    CompleteQuest(array[2], int.Parse(array[3]));
+                    break;
+                
+                case "failQuest":
+                    FailQuest(array[2], int.Parse(array[3]));
+                    break;
+                
+                case "CompleteCampaign":
+                    CompleteCampaign();
+                    break;
+                
+                case "startTimeline":
+                    StartTimelineFromNarrativeEvent();
+                    break;
+                
+                case "gameOver":
+                    FinishGameFromNarrativeEvent();
+                    break;
+                
+                case "addClue":
+                    AddClueFromNarrativeEvent();
+                    break;
+                
+                case "addEntryToCompendium":
+                    AddEntryToCompendiumFromNarrativeEvent();
+                    break;
+                
+                default:
+                    throw new Exception("Command not found or wrong syntax");
+            }
+        }
+    }
     private void LoadLevelFromNarrativeEvent(string sceneName)
     {
         var locationChange = new CallLocationChange();
@@ -352,6 +390,41 @@ public class NarrativeEventHandler : MonoBehaviour
             }
         }
     }
+
+    private void StartQuest(string questlineName, int questNumber)
+    {
+        var questEvent = new CallQuestEvents();
+        
+        questEvent.StartQuest(ReturnQuestId(questlineName, questNumber));
+    }
+
+    private void CompleteQuest(string questlineName, int questNumber)
+    {
+        var questEvent = new CallQuestEvents();
+        
+        questEvent.CompleteQuest(ReturnQuestId(questlineName, questNumber));
+    }
+    private void FailQuest(string questlineName, int questNumber)
+    {
+        var questEvent = new CallQuestEvents();
+        
+        questEvent.FailQuest(ReturnQuestId(questlineName, questNumber));
+    }
+
+    private QuestId ReturnQuestId(string questlineName, int questNumber)
+    {
+        var questIdToReturn = new QuestId();
+
+        questIdToReturn.idPrefix = questlineName;
+        questIdToReturn.questNumber = questNumber;
+
+        return questIdToReturn;
+    }
+
+    private void CompleteCampaign()
+    {
+        
+    }
     // uruchom timeline
     private void StartTimelineFromNarrativeEvent()
     {
@@ -372,5 +445,9 @@ public class NarrativeEventHandler : MonoBehaviour
     {
         
     }
+
+    
+
+    #endregion
     #endregion
 }

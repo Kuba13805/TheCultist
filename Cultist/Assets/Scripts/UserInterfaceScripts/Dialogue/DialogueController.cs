@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Events;
 using Ink.Parsed;
 using UnityEngine;
 using Managers;
@@ -56,10 +57,6 @@ public class DialogueController : MonoBehaviour
     public static event Action<List<string>> OnCallVariables;
 
     public static event Action<List<QuestVariables>> OnSetNewVariables;
-
-    public static event Action<QuestId> OnQuestStart;
-
-    public static event Action<QuestId> OnQuestComplete; 
 
     #endregion
 
@@ -175,15 +172,6 @@ public class DialogueController : MonoBehaviour
         
         _npcTextBox.text = $"<color=yellow>{_charName}:</color> " + _inkStory.Continue();
         HandleQuestManagement();
-        // if (_inkStory.currentTags != null)
-        // {
-        //     foreach (var VARIABLE in _inkStory.currentTags)
-        //     {
-        //         var strings = VARIABLE.Split(':');
-        //         
-        //         Debug.Log(strings[0]);
-        //     }
-        // }
     }
 
     private void SubmitChoice(Choice choice)
@@ -294,13 +282,19 @@ public class DialogueController : MonoBehaviour
         {
             questIdToReturn.idPrefix = tagContent[1];
             questIdToReturn.questNumber = int.Parse(tagContent[2]);
+            
+            var questEvent = new CallQuestEvents();
+            
             switch (tagContent[0])
             {
                 case "questStart":
-                    OnQuestStart?.Invoke(questIdToReturn);
+                    questEvent.StartQuest(questIdToReturn);
                     break;
                 case "questComplete":
-                    OnQuestComplete?.Invoke(questIdToReturn);
+                    questEvent.CompleteQuest(questIdToReturn);
+                    break;
+                case "questFail":
+                    questEvent.FailQuest(questIdToReturn);
                     break;
             }
         }
