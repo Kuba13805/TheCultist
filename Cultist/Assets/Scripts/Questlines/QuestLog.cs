@@ -9,7 +9,7 @@ namespace Questlines
     [CreateAssetMenu(fileName = "New QuestLog", menuName = "ScriptableObjects/Create new QuestLog")]
     public class QuestLog : ScriptableObject
     {
-        [SerializeField] private List<Questline> activeQuestslines;
+        [SerializeField] private List<Questline> activeQuestlines;
 
         [SerializeField] private List<Questline> completedQuestlines;
 
@@ -21,7 +21,9 @@ namespace Questlines
 
         private void OnEnable()
         {
-            Questline.OnQuestlineCompleted += AddOnQuestlineToCompleted;
+            Questline.OnQuestlineCompleted += AddQuestlineToCompleted;
+
+            Questline.OnQuestlineStart += AddQuestlineToActive;
 
             DialogueController.OnCallVariables += ReturnNeededVariables;
 
@@ -30,22 +32,43 @@ namespace Questlines
 
         private void OnDisable()
         {
-            Questline.OnQuestlineCompleted -= AddOnQuestlineToCompleted;
+            Questline.OnQuestlineCompleted -= AddQuestlineToCompleted;
+            
+            Questline.OnQuestlineStart -= AddQuestlineToActive;
             
             DialogueController.OnCallVariables -= ReturnNeededVariables;
             
             DialogueController.OnSetNewVariables -= SetNewVariablesValue;
         }
 
-        private void AddOnQuestlineToCompleted(Questline questline)
+        private void AddQuestlineToActive(Questline questline)
         {
-            Debug.Log(questline.questlineName);
+            if (activeQuestlines.Any(activeQuestline => activeQuestline == questline))
+            {
+                return;
+            }
+
+            activeQuestlines.Add(questline);
+        }
+        private void AddQuestlineToCompleted(Questline questline)
+        {
+            if (activeQuestlines.Any(activeQuestline => activeQuestline == questline))
+            {
+                return;
+            }
+
+            activeQuestlines.Remove(questline);
+
+            if (completedQuestlines.Any(completedQuestline => completedQuestline == questline))
+            {
+                return;
+            }
+
             completedQuestlines.Add(questline);
-            activeQuestslines.Remove(questline);
         }
         private void ReturnNeededVariables(List<string> listOfNeededVariables)
         {
-            var listOfActiveQuestVariables = (from t in listOfNeededVariables from questLine in activeQuestslines from quest 
+            var listOfActiveQuestVariables = (from t in listOfNeededVariables from questLine in activeQuestlines from quest 
                 in questLine.questlineSteps from variable in quest.questVariables where variable.variableName == t select variable).ToList();
             
             var listOfCompletedQuestVariables = (from t in listOfNeededVariables from questLine in completedQuestlines from quest 
@@ -60,7 +83,7 @@ namespace Questlines
         {
             foreach (var newValue in listOfNewValues)
             {
-                foreach (var variable in from questline in activeQuestslines from quest in questline.questlineSteps from variable in quest.questVariables where newValue.variableName == variable.variableName select variable)
+                foreach (var variable in from questline in activeQuestlines from quest in questline.questlineSteps from variable in quest.questVariables where newValue.variableName == variable.variableName select variable)
                 {
                     variable.conditionPassed = newValue.conditionPassed;
                 }
@@ -69,12 +92,19 @@ namespace Questlines
 
         public List<Questline> ReturnActiveQuestlines()
         {
-            return activeQuestslines;
+            return activeQuestlines;
         }
 
         public List<Questline> ReturnCompletedQuestlines()
         {
             return completedQuestlines;
+        }
+
+        private void ClearQuestLog()
+        {
+            activeQuestlines.Clear();
+            
+            completedQuestlines.Clear();
         }
     }
 }
