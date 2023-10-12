@@ -14,25 +14,38 @@ public class Quest : ScriptableObject
     
     public string questName;
     public QuestId questId;
-
+    
     [TextArea(5, 20)]
-    public string questDesc;
+    public string originalQuestDesc;
     
     [TextArea(3, 8)]
-    public string shortQuestDesc;
+    public string originalShortQuestDesc;
 
+
+    //public List<BaseItem> listOfRewards;
+
+    public bool questVisible = true;
     public bool questStarted;
     public bool questCompleted;
     public bool questFailed;
 
-    [TextArea(5, 20)]
+    [TextArea(5, 20)][Foldout("QuestStatusDesc")][AllowNesting]
     public string questFailedDesc;
+    
+    [TextArea(5, 20)][Foldout("QuestStatusDesc")][AllowNesting]
+    public string questCompletedDesc;
 
     public List<Quest> questSteps;
 
     public List<QuestVariables> questVariables;
 
     public List<Quest> prerequisiteQuests;
+    
+    [TextArea(5, 20)]
+    public string questDesc;
+    
+    [TextArea(3, 8)]
+    public string shortQuestDesc;
 
     #region Events
 
@@ -101,6 +114,8 @@ public class Quest : ScriptableObject
             }
         }
 
+        questDesc = questFailedDesc;
+        
         questFailed = true;
 
         questCompleted = true;
@@ -127,6 +142,8 @@ public class Quest : ScriptableObject
             }
         }
 
+        questDesc = questCompletedDesc;
+        
         questCompleted = true;
 
         StopListeningToQuestEvents();
@@ -156,6 +173,10 @@ public class Quest : ScriptableObject
             return;
         }
 
+        questDesc = originalQuestDesc;
+
+        shortQuestDesc = originalShortQuestDesc;
+
         questStarted = true;
 
         if (questVariables.Count > 0)
@@ -177,8 +198,12 @@ public class Quest : ScriptableObject
         OnQuestCompleted -= OnPrerequisiteQuestComplete;
     }
 
-    public void RestartQuest()
+    public virtual void RestartQuest()
     {
+        questDesc = originalQuestDesc;
+
+        shortQuestDesc = originalShortQuestDesc;
+        
         questStarted = false;
         
         questCompleted = false;

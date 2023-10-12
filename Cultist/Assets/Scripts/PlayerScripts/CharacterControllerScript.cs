@@ -38,6 +38,12 @@ public class CharacterControllerScript : MonoBehaviour
     public static event Action OnPlayerSpawnDone; 
 
     #endregion
+
+    private void OnEnable()
+    {
+        CurrentLocationManager.OnSceneLoaded += SwitchPlayerNavAgent;
+    }
+
     private void Start()
     {
         _playerAnimator = GetComponentInChildren<Animator>();
@@ -62,6 +68,11 @@ public class CharacterControllerScript : MonoBehaviour
     {
         DestroyFlagWhenDestinationReached();
         IsMoving();
+    }
+
+    private void SwitchPlayerNavAgent()
+    {
+        GetComponent<NavMeshAgent>().enabled = true;
     }
 
     public void SpawnPlayer(Vector3 newPosition)
@@ -192,6 +203,7 @@ public class CharacterControllerScript : MonoBehaviour
     }
     private void IsMoving()
     {
+        if (!_playerNavMeshAgent.isActiveAndEnabled) return;
         if (_playerNavMeshAgent.remainingDistance <= _playerNavMeshAgent.stoppingDistance)
         {
             isIdle = true;

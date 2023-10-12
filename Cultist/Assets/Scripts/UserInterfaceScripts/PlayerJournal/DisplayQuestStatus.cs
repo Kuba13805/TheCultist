@@ -22,8 +22,6 @@ public class DisplayQuestStatus : MonoBehaviour
 
         Quest.OnQuestCompleted += DisplayCompletedQuestName;
         
-       
-
         questNameTextBox.DOFade(0, 0);
 
         questPanel.GetComponent<Image>().DOFade(0, 0);
@@ -33,6 +31,8 @@ public class DisplayQuestStatus : MonoBehaviour
     }
     private void DisplayStartingQuestName(Quest quest)
     {
+        if(!quest.questVisible) return;
+        
         questPanel.SetActive(true);
         
         questNameTextBox.text = "Started: " + quest.questName;
@@ -45,6 +45,8 @@ public class DisplayQuestStatus : MonoBehaviour
     }
     private void DisplayCompletedQuestName(Quest quest)
     {
+        if(!quest.questVisible) return;
+        
         questPanel.SetActive(true);
         
         questNameTextBox.text = "Completed: " + quest.questName;

@@ -103,8 +103,7 @@ public class NarrativeEventHandler : MonoBehaviour
     private void DisplayChoices()
     {
         if (_currentStory.currentChoices.Count <= 0) return;
-
-        Debug.Log(_currentStory.currentChoices.Count());
+        
         foreach (var choice in _currentStory.currentChoices)
         {
             SearchForChoiceFlag(choice);

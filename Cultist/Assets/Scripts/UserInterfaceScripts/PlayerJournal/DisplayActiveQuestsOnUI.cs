@@ -80,7 +80,6 @@ public class DisplayActiveQuestsOnUI : MonoBehaviour
 
         for (var i = 0; i < transform.childCount; i++)
         {
-            Debug.Log("Quest prompt deleted");
             Destroy(GetComponentsInChildren<SingleQuestPanelOnUIData>()[i].gameObject);
         }
     }

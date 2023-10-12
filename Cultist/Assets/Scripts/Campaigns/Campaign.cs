@@ -35,7 +35,9 @@ public class Campaign : ScriptableObject
 
     public bool isCompleted;
 
-    public static event Action<Campaign> OnCampaignStart; 
+    public static event Action<Campaign> OnCampaignStart;
+
+    public static event Action<Campaign> OnCampaignComplete;
     
     private void OnEnable()
     {
@@ -82,6 +84,8 @@ public class Campaign : ScriptableObject
         }
         
         isCompleted = true;
+        
+        OnCampaignComplete?.Invoke(this);
     }
 
     public void ResetCampaign()

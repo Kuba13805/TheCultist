@@ -10,6 +10,7 @@ public class Questline : ScriptableObject
 {
    public string questlineName;
    public List<Quest> questlineSteps;
+   [SerializeField] private Campaign parentCampaign;
 
    public bool questlineVisible;
 
@@ -44,7 +45,21 @@ public class Questline : ScriptableObject
             
          OnQuestlineStart?.Invoke(this);
 
+         Campaign.OnCampaignComplete += ForceQuestCompletion;
+
          return;
+      }
+   }
+
+   private void ForceQuestCompletion(Campaign campaign)
+   {
+      if (campaign.ToString() != parentCampaign.ToString() || !questlineStarted) return;
+      
+      MarkQuestlineAsCompleted();
+
+      foreach (var quest in questlineSteps.Where(quest => quest.questStarted))
+      {
+         quest.questFailed = true;
       }
    }
 

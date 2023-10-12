@@ -12,12 +12,6 @@ namespace Questlines.SingleQuests
         [SerializeField] private int quantityOfItemNeeded;
         
         [SerializeField] private int quantityOfItemInInventory;
-        
-        [TextArea(5, 20)]
-        public string originalQuestDesc;
-    
-        [TextArea(3, 8)]
-        public string originalShortQuestDesc;
 
         public static event Action<BaseItem> OnCheckForItemAtInventory;
 
@@ -115,6 +109,15 @@ namespace Questlines.SingleQuests
             PlayerEvents.OnAddItemToInventory -= CheckForItemInInventory;
 
             PlayerEvents.OnRemoveItemFromInventory -= CheckForRemovedItem;
+        }
+
+        public override void RestartQuest()
+        {
+            base.RestartQuest();
+
+            questDesc = originalQuestDesc;
+
+            shortQuestDesc = originalShortQuestDesc;
         }
     }
 }
