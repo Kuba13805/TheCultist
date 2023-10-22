@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Events;
 using NaughtyAttributes;
@@ -100,6 +101,8 @@ namespace Managers
             PlayerEvents.OnCheckForItem += CheckForItemInInventory;
 
             PlayerEvents.OnCheckForStatValue += CheckForStatValue;
+
+            PlayerEvents.OnAddStatLevel += ModifyPlayerStat;
         }
 
         private static void HandleGamePause(bool boolean)
@@ -315,15 +318,8 @@ namespace Managers
 
         private void CheckForItemInInventory(BaseItem itemToFind)
         {
-            var quantityOfItemsFound = 0;
-            
-            foreach (var item in playerData.playerInventoryItems)
-            {
-                if (item == itemToFind)
-                {
-                    quantityOfItemsFound += 1;
-                }
-            }
+            var quantityOfItemsFound = playerData.playerInventoryItems.Count(item => item == itemToFind);
+
             OnReturnQuantityOfItems?.Invoke(quantityOfItemsFound);
         }
         
@@ -347,23 +343,17 @@ namespace Managers
 
         private void ActivateItemEffects(BaseItem item)
         {
-            foreach (var multipleEffect in item.effectsOnItem)
+            foreach (var effect in item.effectsOnItem.SelectMany(multipleEffect => multipleEffect.listOfAdditionalEffects))
             {
-                foreach (var effect in multipleEffect.listOfAdditionalEffects)
-                {
-                    AffectStat(effect, playerData, true);
-                }
+                AffectStat(effect, playerData, true);
             }
         }
 
         private void DeactivateItemEffects(BaseItem item)
         {
-            foreach (var multipleEffect in item.effectsOnItem)
+            foreach (var effect in item.effectsOnItem.SelectMany(multipleEffect => multipleEffect.listOfAdditionalEffects))
             {
-                foreach (var effect in multipleEffect.listOfAdditionalEffects)
-                {
-                    AffectStat(effect, playerData, false);
-                }
+                AffectStat(effect, playerData, false);
             }
         }
 
@@ -523,6 +513,19 @@ namespace Managers
             
         }
 
+        private void ModifyPlayerStat(Stat statToModify, int statLevelToIncrease)
+        {
+            var statObject = GetFieldFromPlayerData(statToModify.ToString().ToLower());
+
+            var valueField = statObject.GetType().GetField("statValue");
+            
+            if (valueField == null) return;
+            
+            var currentStatValue = (int)valueField.GetValue(statObject);
+            
+            valueField.SetValue(statObject, currentStatValue + statLevelToIncrease);
+        }
+
         private void EndGame()
         {
             
@@ -530,13 +533,7 @@ namespace Managers
 
         private void CheckForStatValue(Stat statToCheck)
         {
-            var fieldName = statToCheck.ToString();
-            
-            var field = playerData.GetType().GetField(fieldName.ToLower());
-
-            if (field == null) return;
-            
-            var statObject = field.GetValue(playerData);
+            var statObject = GetFieldFromPlayerData(statToCheck.ToString().ToLower());
             
             var valueField = statObject.GetType().GetField("statValue");
 
@@ -545,6 +542,17 @@ namespace Managers
             var statValue = (int)valueField.GetValue(statObject);
                     
             OnReturnStatValue?.Invoke(statValue);
+        }
+
+        private object GetFieldFromPlayerData(string fieldName)
+        {
+            var field = playerData.GetType().GetField(fieldName);
+
+            if (field == null) return null;
+
+            var fieldValue = field.GetValue(playerData);
+
+            return fieldValue;
         }
         #endregion
     }

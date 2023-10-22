@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using NaughtyAttributes.Editor;
 
 [CustomEditor(typeof(Campaign))]
 public class CampaignEditor : Editor
@@ -13,6 +14,11 @@ public class CampaignEditor : Editor
         if (GUILayout.Button("Restart campaign"))
         {
             campaign.ResetCampaign();
+        }
+        
+        if (GUILayout.Button("Force complete campaign"))
+        {
+            campaign.ForceCompleteCampaign();
         }
     }
 }
@@ -29,6 +35,11 @@ public class QuestlineEditor : Editor
         {
             questline.RestartQuestline();
         }
+        
+        if (GUILayout.Button("Force complete questline"))
+        {
+            questline.ForceCompleteQuestline();
+        }
     }
 }
 [CustomEditor(typeof(Quest), true)]
@@ -43,6 +54,11 @@ public class QuestEditor : Editor
         if (GUILayout.Button("Restart quest"))
         {
             quest.RestartQuest();
+        }
+        
+        if (GUILayout.Button("Force complete quest"))
+        {
+            quest.ForceCompleteQuest();
         }
     }
 }

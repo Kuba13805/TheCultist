@@ -20,6 +20,7 @@ MonoBehaviour:
     claims that his carrots were onced blessed by Golden Father. I must find these
     carrots and return them to their rightful owner.
   originalShortQuestDesc: Find the blessed carrots.
+  questRewards: []
   questVisible: 1
   questStarted: 0
   questCompleted: 0

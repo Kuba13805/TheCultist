@@ -22,11 +22,15 @@ public class Quest : ScriptableObject
     public string originalShortQuestDesc;
 
 
-    //public List<BaseItem> listOfRewards;
+    public List<Reward> questRewards;
 
+    [AllowNesting][Foldout("QuestStatus")]
     public bool questVisible = true;
+    [Foldout("QuestStatus")][AllowNesting]
     public bool questStarted;
+    [Foldout("QuestStatus")][AllowNesting]
     public bool questCompleted;
+    [Foldout("QuestStatus")][AllowNesting]
     public bool questFailed;
 
     [TextArea(5, 20)][Foldout("QuestStatusDesc")][AllowNesting]
@@ -147,10 +151,80 @@ public class Quest : ScriptableObject
         questCompleted = true;
 
         StopListeningToQuestEvents();
+        
+        RewardPlayer();
 
         OnQuestCompleted?.Invoke(this);
     }
 
+    #region QuestRewardSystem
+
+    private void RewardPlayer()
+    {
+        foreach (var reward in questRewards)
+        {
+            switch (reward.rewardType)
+            {
+                case RewardType.GiveItem:
+                    GiveItemReward(reward.rewardItem);
+                    break;
+                case RewardType.GiveClue:
+                    break;
+                case RewardType.GiveMoney:
+                    GiveMoneyReward(reward.rewardMoney);
+                    break;
+                case RewardType.GiveStatExp:
+                    break;
+                case RewardType.GiveStatLevel:
+                    GiveStatLevelReward(reward.statToModify, reward.rewardStatLevel);
+                    break;
+                case RewardType.GiveAbility:
+                    GiveAbilityReward(reward.rewardAbility);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+    }
+
+    private static void GiveItemReward(BaseItem rewardItem)
+    {
+        var playerEvent = new PlayerEvents();
+        
+        playerEvent.AddItem(rewardItem);
+    }
+
+    private void GiveClueReward()
+    {
+        
+    }
+    private static void GiveMoneyReward(float moneyAmount)
+    {
+        var playerEvent = new PlayerEvents();
+        
+        playerEvent.AddMoney(moneyAmount);
+    }
+
+    private void GiveStatExpReward()
+    {
+        
+    }
+
+    private static void GiveStatLevelReward(Stat statName, int statLevel)
+    {
+        var playerEvent = new PlayerEvents();
+        
+        playerEvent.AddStatLevel(statName, statLevel);
+    }
+
+    private static void GiveAbilityReward(Ability ability)
+    {
+        var playerEvent = new PlayerEvents();
+        
+        playerEvent.AddAbility(ability);
+    }
+
+    #endregion
     private void StartQuestFromEvent(QuestId questIdFromEvent)
     {
         StartQuest(questIdFromEvent);
@@ -220,6 +294,27 @@ public class Quest : ScriptableObject
         foreach (var step in questSteps)
         {
             RestartQuest();
+        }
+    }
+
+    public virtual void ForceCompleteQuest()
+    {
+        questDesc = originalQuestDesc;
+
+        shortQuestDesc = originalShortQuestDesc;
+        
+        questStarted = true;
+        
+        questCompleted = true;
+        
+        foreach (var variable in questVariables)
+        {
+            variable.conditionPassed = true;
+        }
+        
+        foreach (var step in questSteps)
+        {
+            ForceCompleteQuest();
         }
     }
 }

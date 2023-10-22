@@ -5,13 +5,14 @@ using System.Linq;
 using InteractiveObjectsScripts;
 using ModestTree;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerDetector : MonoBehaviour
 {
     [SerializeField] private float detectionRadius;
     private bool _playerDetected;
 
-    [SerializeField] private List<PlayerDetectionAction> _detectionActions;
+    [SerializeField] private List<PlayerDetectionAction> detectionActions;
 
     #region Events
 
@@ -56,7 +57,7 @@ public class PlayerDetector : MonoBehaviour
 
     private void DoAction()
     {
-        switch (_detectionActions.First().actionType)
+        switch (detectionActions.First().actionType)
         {
             case ActionType.CallForNarrativeEvent:
                 CallNarrativeEvent();
@@ -77,9 +78,9 @@ public class PlayerDetector : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
 
-        if (_detectionActions.First().oneTimeAction)
+        if (detectionActions.First().oneTimeAction)
         {
-            _detectionActions.Remove(_detectionActions.First());
+            detectionActions.Remove(detectionActions.First());
         }
 
         
@@ -87,12 +88,12 @@ public class PlayerDetector : MonoBehaviour
 
     private void CallNarrativeEvent()
     {
-        _detectionActions.First().narrativeEvent.CallForEvent();
+        detectionActions.First().narrativeEvent.CallForEvent();
     }
 
     private void CallDialogue()
     {
-        _detectionActions.First().dialogue.InteractWithObject();
+        detectionActions.First().dialogue.InteractWithObject();
     }
 
     private void CallTimeline()
@@ -102,13 +103,13 @@ public class PlayerDetector : MonoBehaviour
 
     private void CallComment()
     {
-        OnCallCommentOnObject?.Invoke(_detectionActions.First().comment, _detectionActions.First().commentOrigin);
+        OnCallCommentOnObject?.Invoke(detectionActions.First().comment, detectionActions.First().commentOrigin);
     }
 
     private void CallPlayerTest()
     {
         var playerTest = new PlayerEvents();
         
-        playerTest.TestStat(_detectionActions.First().skillToTest, _detectionActions.First().testDifficulty);
+        playerTest.TestStat(detectionActions.First().skillToTest, detectionActions.First().testDifficulty);
     }
 }

@@ -37,18 +37,14 @@ public class Questline : ScriptableObject
 
    private void StartQuestline(Quest startedQuest)
    {
-      foreach (var quest in questlineSteps)
-      {
-         if (quest != startedQuest || questlineStarted) continue;
-         
-         questlineStarted = true;
+      if (!questlineSteps.Any(quest => quest == startedQuest && !questlineStarted)) return;
+      
+      questlineStarted = true;
             
-         OnQuestlineStart?.Invoke(this);
+      OnQuestlineStart?.Invoke(this);
 
-         Campaign.OnCampaignComplete += ForceQuestCompletion;
-
-         return;
-      }
+      Campaign.OnCampaignComplete += ForceQuestCompletion;
+      
    }
 
    private void ForceQuestCompletion(Campaign campaign)
@@ -104,6 +100,18 @@ public class Questline : ScriptableObject
       foreach (var quest in questlineSteps)
       {
          quest.RestartQuest();
+      }
+   }
+
+   public void ForceCompleteQuestline()
+   {
+      questlineStarted = true;
+
+      questlineCompleted = true;
+
+      foreach (var quest in questlineSteps)
+      {
+         quest.ForceCompleteQuest();
       }
    }
 }

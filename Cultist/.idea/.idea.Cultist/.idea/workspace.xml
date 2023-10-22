@@ -27,6 +27,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NarrativeEvents/NarrativeEventId.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerAbilities/Ability.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/Questline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/Rewards/Reward.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/SingleQuests/QuestReturnItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/CharacterButtonScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/ConfirmCharacterSelection.cs" root0="FORCE_HIGHLIGHTING" />
@@ -251,6 +252,11 @@
       <workItem from="1696837658671" duration="19580000" />
       <workItem from="1697021883621" duration="7065000" />
       <workItem from="1697099980867" duration="13759000" />
+      <workItem from="1697635226152" duration="2329000" />
+      <workItem from="1697707226691" duration="10772000" />
+      <workItem from="1697885185614" duration="1211000" />
+      <workItem from="1697925865704" duration="594000" />
+      <workItem from="1697969201955" duration="4119000" />
     </task>
     <servers />
   </component>

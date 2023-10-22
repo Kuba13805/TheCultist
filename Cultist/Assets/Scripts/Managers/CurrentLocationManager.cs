@@ -27,6 +27,8 @@ public class CurrentLocationManager : MonoBehaviour
     
     [SerializeField][Scene] private string sceneManager;
 
+    [SerializeField] [Scene] private string campaignSummaryScene;
+
     [SerializeField] private GameObject loadingScreen;
 
     [SerializeField] private Image loadingBar;
@@ -50,7 +52,7 @@ public class CurrentLocationManager : MonoBehaviour
 
         CameraController.OnCameraMovementDone += CloseLoadingScreen;
 
-        //CharacterControllerScript.OnPlayerSpawnDone += UnloadScene;
+        Campaign.OnCampaignComplete += ChangeSceneToCampaignSummary;
     }
 
 
@@ -165,6 +167,11 @@ public class CurrentLocationManager : MonoBehaviour
         Debug.Log("Previous scene unloading: " + _currentLocation.name);
         
         SceneManager.UnloadSceneAsync(_currentLocation);
+    }
+
+    private void ChangeSceneToCampaignSummary(Campaign campaign)
+    {
+        OnChangeLocation(campaignSummaryScene, true);
     }
     #endregion
 

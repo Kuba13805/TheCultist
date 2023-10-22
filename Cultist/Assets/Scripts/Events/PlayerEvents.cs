@@ -36,6 +36,8 @@ public class PlayerEvents
     public static event Action<BaseItem> OnCheckForItem;
 
     public static event Action<Stat> OnCheckForStatValue;
+
+    public static event Action<Stat, int> OnAddStatLevel; 
     
     #endregion
     
@@ -97,6 +99,21 @@ public class PlayerEvents
     public void AddNewEntry()
     {
         OnAddEntryInCompendium?.Invoke();
+    }
+
+    public void AddStatExp()
+    {
+        
+    }
+
+    public void AddStatLevel(Stat statToModify, int statLevelToAdd)
+    {
+        OnAddStatLevel?.Invoke(statToModify, statLevelToAdd);
+    }
+
+    public void AddAbility(Ability newAbility)
+    {
+        
     }
 
     public static void EndGame()

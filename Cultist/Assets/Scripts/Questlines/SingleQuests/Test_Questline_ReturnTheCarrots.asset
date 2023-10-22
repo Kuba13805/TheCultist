@@ -19,9 +19,16 @@ MonoBehaviour:
   originalQuestDesc: I found the blessed carrots. Now I have to return them to the
     old cleric.
   originalShortQuestDesc: Return the blessed carrots.
+  questRewards:
+  - rewardType: 4
+    rewardItem: {fileID: 11400000, guid: fa3b78069b531de4b886d344d586c896, type: 2}
+    rewardMoney: 0
+    statToModify: 25
+    rewardStatLevel: 10
+    rewardAbility: {fileID: 0}
   questVisible: 1
-  questStarted: 0
-  questCompleted: 0
+  questStarted: 1
+  questCompleted: 1
   questFailed: 0
   questFailedDesc: 
   questCompletedDesc: I have returned the blessed carrots.
@@ -29,7 +36,7 @@ MonoBehaviour:
   questVariables: []
   prerequisiteQuests:
   - {fileID: 11400000, guid: 41b360f47cbcde74b8b8c40bd644ae1e, type: 2}
-  questDesc: I found the blessed carrots. Now I have to return them to the old cleric.
+  questDesc: I have returned the blessed carrots.
   shortQuestDesc: Return the blessed carrots.
   itemToReturn: {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
   numberOfItemsToRemove: 2

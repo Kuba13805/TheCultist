@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "NewCampaign", menuName = "ScriptableObjects/Create New Campaign")]
 public class Campaign : ScriptableObject
@@ -14,7 +12,7 @@ public class Campaign : ScriptableObject
     [TextArea(2, 4)]
     public string campaignName;
 
-    public Image campaignImage;
+    public Sprite campaignImage;
 
     [TextArea(15, 20)]
     public string campaignDesc;
@@ -97,5 +95,18 @@ public class Campaign : ScriptableObject
         {
             questline.RestartQuestline();
         }
+    }
+
+    public void ForceCompleteCampaign()
+    {
+        hasStarted = true;
+        isCompleted = true;
+
+        foreach (var questline in requiredQuestlines)
+        {
+            questline.ForceCompleteQuestline();
+        }
+        
+        OnCampaignComplete?.Invoke(this);
     }
 }

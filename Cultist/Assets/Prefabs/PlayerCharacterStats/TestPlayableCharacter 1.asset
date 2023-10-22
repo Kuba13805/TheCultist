@@ -161,6 +161,8 @@ MonoBehaviour:
   playerInventoryItems:
   - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
   - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
+  - {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
+  - {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
   characterEquipment: []
   playerAbilities:
   - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
