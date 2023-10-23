@@ -40,6 +40,8 @@ public class CurrentLocationManager : MonoBehaviour
     public static event Action<int> OnFindTravelPoint;
 
     public static event Action OnFindDefaultSpawnPoint;
+
+    public static event Action<Campaign> OnPassCampaignDataToSummary; 
     private void OnEnable()
     {
         CallLocationChange.OnChangeLocation += OnChangeLocation;
@@ -58,7 +60,7 @@ public class CurrentLocationManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LoadMainMenuOnStart());
+        StartCoroutine(LoadMenu(mainMenuScene, false));
     }
     private void SetPlayerAtTravelPoint(Vector3 interactorPosition)
     {
@@ -87,9 +89,11 @@ public class CurrentLocationManager : MonoBehaviour
         OnSceneLoaded?.Invoke();
     }
 
-    private IEnumerator LoadMainMenuOnStart()
+    private IEnumerator LoadMenu(string menuSceneName, bool unloadScene)
     {
-        var operation = SceneManager.LoadSceneAsync(mainMenuScene, LoadSceneMode.Additive);
+        var currentMenuScene = SceneManager.GetActiveScene();
+        
+        var operation = SceneManager.LoadSceneAsync(menuSceneName, LoadSceneMode.Additive);
         
         while (!operation.isDone)
         {
@@ -100,9 +104,12 @@ public class CurrentLocationManager : MonoBehaviour
             yield return null;
         }
         
-        loadingScreen.SetActive(false);
 
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(mainMenuScene));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(menuSceneName));
+
+        if (unloadScene) SceneManager.UnloadSceneAsync(currentMenuScene);
+        
+        loadingScreen.SetActive(false);
     }
 
     #region LocationChangeAndSceneLoad
@@ -171,8 +178,18 @@ public class CurrentLocationManager : MonoBehaviour
 
     private void ChangeSceneToCampaignSummary(Campaign campaign)
     {
-        OnChangeLocation(campaignSummaryScene, true);
+        StartCoroutine(PassCampaignData(campaign));
     }
+
+    private IEnumerator PassCampaignData(Campaign campaign)
+    {
+        yield return StartCoroutine(LoadMenu(campaignSummaryScene, true));
+
+        SceneManager.UnloadSceneAsync(playerAndUI);
+        
+        OnPassCampaignDataToSummary?.Invoke(campaign);
+    }
+    
     #endregion
 
     #region PlayerTransition

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
@@ -22,8 +23,8 @@ public class Campaign : ScriptableObject
     
     public NarrativeEvent startingEvent;
 
-    [SerializeField] [Label("Questlines In Campaign")]
-    private List<Questline> campaignQuestlines;
+    [Label("Questlines In Campaign")]
+    public List<Questline> campaignQuestlines;
     
     [SerializeField][Label("Questlines Required To Complete")] private List<Questline> requiredQuestlines;
 
@@ -32,6 +33,8 @@ public class Campaign : ScriptableObject
     public bool hasStarted;
 
     public bool isCompleted;
+
+    public List<Reward> campaignRewards;
 
     public static event Action<Campaign> OnCampaignStart;
 
@@ -84,6 +87,18 @@ public class Campaign : ScriptableObject
         isCompleted = true;
         
         OnCampaignComplete?.Invoke(this);
+    }
+
+    public List<Reward> ReturnCampaignRewards()
+    {
+        var rewardsToReturn = new List<Reward>();
+
+        foreach (var quest in campaignQuestlines.SelectMany(questline => questline.questlineSteps.Where(quest => quest.questRewards != null)))
+        {
+            rewardsToReturn.AddRange(quest.questRewards.Where(reward => quest.questCompleted));
+        }
+
+        return rewardsToReturn;
     }
 
     public void ResetCampaign()

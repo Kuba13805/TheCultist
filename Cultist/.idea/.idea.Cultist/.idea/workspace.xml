@@ -21,6 +21,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/ItemSpecialScripts/ItemMultipleEffects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/NPCScripts/DialogueInteraction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/PlayerDetector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/CampaignSummaryManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NarrativeEvents/NarrativeEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NarrativeEvents/NarrativeEventAction.cs" root0="FORCE_HIGHLIGHTING" />
@@ -45,7 +46,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerJournal/DisplayedQuestline.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerTest/DisplayDiceRollResult.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/WorldMapLocationButtonLogic.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@3.0.25/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Actions/InputActionAsset.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.sequences@1.0.4/Editor/AssetDatabase/SequencesAssetDatabase.cs" root0="SKIP_HIGHLIGHTING" />
@@ -256,7 +256,9 @@
       <workItem from="1697707226691" duration="10772000" />
       <workItem from="1697885185614" duration="1211000" />
       <workItem from="1697925865704" duration="594000" />
-      <workItem from="1697969201955" duration="4119000" />
+      <workItem from="1697969201955" duration="4881000" />
+      <workItem from="1698007878108" duration="1710000" />
+      <workItem from="1698061500756" duration="10981000" />
     </task>
     <servers />
   </component>

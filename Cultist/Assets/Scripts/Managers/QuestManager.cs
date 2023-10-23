@@ -17,6 +17,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private Campaign ongoingCampaign;
 
     [SerializeField] private NarrativeEvent currentNarrativeEvent;
+
+    [SerializeField] private List<Reward> earnedRewards;
     
     private void OnEnable()
     {

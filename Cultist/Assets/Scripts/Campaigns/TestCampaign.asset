@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestCampaign
   m_EditorClassIdentifier: 
   campaignId: 0
-  campaignName: 
+  campaignName: Into the Mist
   campaignImage: {fileID: 0}
   campaignDesc: 
   firstSceneToLoad: WorldHub
@@ -25,3 +25,4 @@ MonoBehaviour:
   requiredCampaigns: []
   hasStarted: 0
   isCompleted: 0
+  campaignRewards: []
