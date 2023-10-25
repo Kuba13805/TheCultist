@@ -395,9 +395,9 @@ public class DialogueController : MonoBehaviour
         {
             var variableContent = variable.conditionPassed;
 
-            _inkStory.variablesState[variable.variableName] = variableContent;
+            _inkStory.variablesState[variable.variableCodeName] = variableContent;
             
-            Debug.Log("Variable with name: " + variable.variableName + " has been passed to story!");
+            Debug.Log("Variable with name: " + variable.variableCodeName + " has been passed to story!");
         }
         SaveStoryState();
         LoadStoryState(_originConversationPoint.dialogueSaved);
@@ -416,7 +416,7 @@ public class DialogueController : MonoBehaviour
         {
             var newVariableToSet = new QuestVariables
             {
-                variableName = variable,
+                variableCodeName = variable,
                 conditionPassed = (bool)_inkStory.variablesState[variable]
             };
 

@@ -75,9 +75,9 @@ public class Quest : ScriptableObject
 
             foreach (var questVariable in questVariables)
         {
-            var trim = questVariable.variableName.Trim();
+            var trim = questVariable.variableCodeName.Trim();
 
-            questVariable.variableName = trim;
+            questVariable.variableCodeName = trim;
         }
     }
 

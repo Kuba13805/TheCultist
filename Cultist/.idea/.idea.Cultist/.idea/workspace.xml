@@ -13,6 +13,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/ExitGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/InputSystem/PlayerInputActions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CampaignSummaryScripts/MajorDecisionLogic.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Campaigns/Campaign.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/DefaultSpawnPointEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Events/CallContainerEvents.cs" root0="FORCE_HIGHLIGHTING" />
@@ -41,6 +42,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/FadeScreen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/InteractableInfoScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/NarrativeEvents/NarrativeEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerInventory/DisplayItemDetails.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerJournal/DisplayQuestlineDetails.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerJournal/DisplayQuestlogContent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerJournal/DisplayedQuestline.cs" root0="FORCE_HIGHLIGHTING" />
@@ -259,6 +261,9 @@
       <workItem from="1697969201955" duration="4881000" />
       <workItem from="1698007878108" duration="1710000" />
       <workItem from="1698061500756" duration="10981000" />
+      <workItem from="1698139645927" duration="11009000" />
+      <workItem from="1698179543169" duration="595000" />
+      <workItem from="1698231854925" duration="8287000" />
     </task>
     <servers />
   </component>

@@ -69,10 +69,10 @@ namespace Questlines
         private void ReturnNeededVariables(List<string> listOfNeededVariables)
         {
             var listOfActiveQuestVariables = (from t in listOfNeededVariables from questLine in activeQuestlines from quest 
-                in questLine.questlineSteps from variable in quest.questVariables where variable.variableName == t select variable).ToList();
+                in questLine.questlineSteps from variable in quest.questVariables where variable.variableCodeName == t select variable).ToList();
             
             var listOfCompletedQuestVariables = (from t in listOfNeededVariables from questLine in completedQuestlines from quest 
-                in questLine.questlineSteps from variable in quest.questVariables where variable.variableName == t select variable).ToList();
+                in questLine.questlineSteps from variable in quest.questVariables where variable.variableCodeName == t select variable).ToList();
 
             listOfActiveQuestVariables.AddRange(listOfCompletedQuestVariables);
 
@@ -83,7 +83,7 @@ namespace Questlines
         {
             foreach (var newValue in listOfNewValues)
             {
-                foreach (var variable in from questline in activeQuestlines from quest in questline.questlineSteps from variable in quest.questVariables where newValue.variableName == variable.variableName select variable)
+                foreach (var variable in from questline in activeQuestlines from quest in questline.questlineSteps from variable in quest.questVariables where newValue.variableCodeName == variable.variableCodeName select variable)
                 {
                     variable.conditionPassed = newValue.conditionPassed;
                 }

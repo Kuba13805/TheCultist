@@ -20,6 +20,11 @@ public class DisplayQuestlineDetails : MonoBehaviour
         DisplayedQuestline.OnQuestlineButtonClicked += ShowQuestLineDetails;
     }
 
+    private void OnDestroy()
+    {
+        DisplayedQuestline.OnQuestlineButtonClicked -= ShowQuestLineDetails;
+    }
+
     private void ShowQuestLineDetails(Questline questline)
     {
         _questline = questline;

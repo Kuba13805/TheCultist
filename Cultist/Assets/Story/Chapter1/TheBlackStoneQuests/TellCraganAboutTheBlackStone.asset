@@ -16,59 +16,81 @@ MonoBehaviour:
   questId:
     idPrefix: TheBlackStone
     questNumber: 2
-  questDesc: I complied with Cragan's request. I don't know what I saw, but it was
-    certainly nothing good. I must inform the professor of my discovery.
-  shortQuestDesc: Return to Cragan
-  questStarted: 0
-  questCompleted: 0
+  originalQuestDesc: 
+  originalShortQuestDesc: 
+  questRewards: []
+  questVisible: 1
+  questStarted: 1
+  questCompleted: 1
   questFailed: 0
   questFailedDesc: 
+  questCompletedDesc: 
   questSteps: []
   questVariables:
-  - variableName: has_touched_the_stone
+  - variableCodeName: has_touched_the_stone
+    variableName: has_touched_the_stone
     isMajorDecision: 0
     conditionPassedDesc: 
     conditionNotPassedDesc: 
-    conditionPassed: 0
-  - variableName: had_a_vision
+    variableIcon: {fileID: 0}
+    conditionPassed: 1
+  - variableCodeName: had_a_vision
+    variableName: had_a_vision
     isMajorDecision: 0
     conditionPassedDesc: 
     conditionNotPassedDesc: 
-    conditionPassed: 0
-  - variableName: had_a_snow_fight
+    variableIcon: {fileID: 0}
+    conditionPassed: 1
+  - variableCodeName: had_a_snow_fight
+    variableName: had_a_snow_fight
     isMajorDecision: 0
     conditionPassedDesc: 
     conditionNotPassedDesc: 
-    conditionPassed: 0
-  - variableName: has_seen_the_golden_palace
+    variableIcon: {fileID: 0}
+    conditionPassed: 1
+  - variableCodeName: has_seen_the_golden_palace
+    variableName: has_seen_the_golden_palace
     isMajorDecision: 0
     conditionPassedDesc: 
     conditionNotPassedDesc: 
+    variableIcon: {fileID: 0}
+    conditionPassed: 1
+  - variableCodeName: became_a_god
+    variableName: A New God For People
+    isMajorDecision: 1
+    conditionPassedDesc: You are a god now.
+    conditionNotPassedDesc: You refused to become a god.
+    variableIcon: {fileID: 21300000, guid: fb11e14e93b45fe4ca06723dea9dcdb8, type: 3}
     conditionPassed: 0
-  - variableName: became_a_god
+  - variableCodeName: became_a_cult_leader
+    variableName: Dark Night
+    isMajorDecision: 1
+    conditionPassedDesc: You accepted the position of a cult leader.
+    conditionNotPassedDesc: You refused to become a cult leader.
+    variableIcon: {fileID: 21300000, guid: c735c2fbfeffe4e45ac4bec63c724cfe, type: 3}
+    conditionPassed: 1
+  - variableCodeName: has_escaped_the_tortures
+    variableName: has_escaped_the_tortures
     isMajorDecision: 0
     conditionPassedDesc: 
     conditionNotPassedDesc: 
-    conditionPassed: 0
-  - variableName: became_a_cult_leader
+    variableIcon: {fileID: 0}
+    conditionPassed: 1
+  - variableCodeName: snow_fight_lost
+    variableName: snow_fight_lost
     isMajorDecision: 0
     conditionPassedDesc: 
     conditionNotPassedDesc: 
-    conditionPassed: 0
-  - variableName: has_escaped_the_tortures
+    variableIcon: {fileID: 0}
+    conditionPassed: 1
+  - variableCodeName: wanted_to_stop_the_vision
+    variableName: wanted_to_stop_the_vision
     isMajorDecision: 0
     conditionPassedDesc: 
     conditionNotPassedDesc: 
-    conditionPassed: 0
-  - variableName: snow_fight_lost
-    isMajorDecision: 0
-    conditionPassedDesc: 
-    conditionNotPassedDesc: 
-    conditionPassed: 0
-  - variableName: wanted_to_stop_the_vision
-    isMajorDecision: 0
-    conditionPassedDesc: 
-    conditionNotPassedDesc: 
-    conditionPassed: 0
+    variableIcon: {fileID: 0}
+    conditionPassed: 1
   prerequisiteQuests:
   - {fileID: 11400000, guid: 406185c4329e2714cba0e95619cf53fc, type: 2}
+  questDesc: 
+  shortQuestDesc: 

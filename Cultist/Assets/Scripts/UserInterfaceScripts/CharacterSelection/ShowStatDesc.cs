@@ -11,17 +11,17 @@ public class ShowStatDesc : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     
     [HideInInspector] public string desc;
 
-    private GameObject panelInstance;
+    private GameObject _panelInstance;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        panelInstance = Instantiate(descPanel,new Vector3(transform.position.x + 150, transform.position.y, 0) , Quaternion.identity, transform.root);
+        _panelInstance = Instantiate(descPanel,new Vector3(transform.position.x + 150, transform.position.y, 0) , Quaternion.identity, transform.root);
 
-        panelInstance.GetComponentInChildren<TextMeshProUGUI>().text = desc;
+        _panelInstance.GetComponentInChildren<TextMeshProUGUI>().text = desc;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Destroy(panelInstance.gameObject);
+        Destroy(_panelInstance.gameObject);
     }
 }
