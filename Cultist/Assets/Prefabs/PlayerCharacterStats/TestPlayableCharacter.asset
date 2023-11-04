@@ -159,11 +159,7 @@ MonoBehaviour:
     statDesc: 
     isDerived: 0
   playerInventoryItems:
-  - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
-  - {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
-  - {fileID: 11400000, guid: fa3b78069b531de4b886d344d586c896, type: 2}
-  - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
-  - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
+  - {fileID: 11400000, guid: 2276c3d9ad4dc8848af61c4e43d4c3ef, type: 2}
   characterEquipment:
   - {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
   playerAbilities:
