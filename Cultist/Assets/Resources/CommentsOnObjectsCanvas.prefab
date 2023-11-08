@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1430581228958719607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,8 +182,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: This text should apper above object and stay there for a while.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 74a6f3e330f76c349af8ec1c82141f3e, type: 2}
+  m_sharedMaterial: {fileID: 1825906198230818445, guid: 74a6f3e330f76c349af8ec1c82141f3e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -11,6 +11,8 @@ public class ShowStatDesc : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     
     [HideInInspector] public string desc;
 
+    public Sprite icon;
+
     private GameObject _panelInstance;
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -18,6 +20,10 @@ public class ShowStatDesc : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         _panelInstance = Instantiate(descPanel,new Vector3(transform.position.x + 150, transform.position.y, 0) , Quaternion.identity, transform.root);
 
         _panelInstance.GetComponentInChildren<TextMeshProUGUI>().text = desc;
+        
+        if (_panelInstance.GetComponent<LoadStatSprite>() == null) return;
+        
+        _panelInstance.GetComponent<LoadStatSprite>().LoadStat(icon);
     }
 
     public void OnPointerExit(PointerEventData eventData)

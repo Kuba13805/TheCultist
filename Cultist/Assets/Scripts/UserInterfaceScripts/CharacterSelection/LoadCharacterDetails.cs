@@ -120,6 +120,11 @@ public class LoadCharacterDetails : MonoBehaviour
             newAbility.GetComponentInChildren<Image>().sprite = ability.abilityIcon;
 
             newAbility.GetComponent<ShowStatDesc>().desc = ability.abilityName + " - " + ability.abilityDesc;
+            
+            if(newAbility.GetComponent<LoadStatSprite>() == null) return;
+            newAbility.GetComponent<LoadStatSprite>().LoadStat(ability.abilityIcon);
+
+            newAbility.GetComponent<ShowStatDesc>().icon = ability.abilityIcon;
         }
     }
 
@@ -209,18 +214,24 @@ public class LoadCharacterDetails : MonoBehaviour
         {
             var newItem = Instantiate(itemPrefab, startInventory);
 
-            newItem.GetComponentInChildren<Image>().sprite = item.icon;
-
             newItem.GetComponent<ShowStatDesc>().desc = item.itemName + " - " + item.itemDesc;
+            
+            if(newItem.GetComponent<LoadStatSprite>() == null) return;
+            newItem.GetComponent<LoadStatSprite>().LoadStat(item.icon);
+
+            newItem.GetComponent<ShowStatDesc>().icon = item.icon;
         }
         
         foreach (var item in character.playerInventoryItems)
         {
             var newItem = Instantiate(itemPrefab, startInventory);
-
-            newItem.GetComponentInChildren<Image>().sprite = item.icon;
             
             newItem.GetComponent<ShowStatDesc>().desc = item.itemName + " - " + item.itemDesc;
+            
+            if(newItem.GetComponent<LoadStatSprite>() == null) return;
+            newItem.GetComponent<LoadStatSprite>().LoadStat(item.icon);
+
+            newItem.GetComponent<ShowStatDesc>().icon = item.icon;
         }
     }
 
@@ -229,18 +240,26 @@ public class LoadCharacterDetails : MonoBehaviour
         if (DetermineMain(statToCheck.statValue))
         {
             var newMain = Instantiate(instancePrefab, mainBox);
-
-            newMain.GetComponentInChildren<Image>().sprite = statToCheck.statIcon;
-
+            
             newMain.GetComponent<ShowStatDesc>().desc = statToCheck.statDesc;
+            
+            if(newMain.GetComponent<LoadStatSprite>() == null) return;
+            newMain.GetComponent<LoadStatSprite>().LoadStat(statToCheck.statIcon);
+
+            newMain.GetComponent<ShowStatDesc>().icon = statToCheck.statIcon;
+
+
         }
         else if (DetermineDrawback(statToCheck.statValue))
         {
             var newMain = Instantiate(instancePrefab, drawbackBox);
-
-            newMain.GetComponentInChildren<Image>().sprite = statToCheck.statIcon;
             
             newMain.GetComponent<ShowStatDesc>().desc = statToCheck.statDesc;
+            
+            if(newMain.GetComponent<LoadStatSprite>() == null) return;
+            newMain.GetComponent<LoadStatSprite>().LoadStat(statToCheck.statIcon);
+            
+            newMain.GetComponent<ShowStatDesc>().icon = statToCheck.statIcon;
         }
     }
     

@@ -23,4 +23,9 @@ public class ConfirmCharacterSelection : MonoBehaviour
     {
         OnCharacterConfirmedSelection?.Invoke(_selectedCharacter);
     }
+
+    private void OnDisable()
+    {
+        CharacterButtonScript.OnCharacterSelected -= MakeInteractable;
+    }
 }

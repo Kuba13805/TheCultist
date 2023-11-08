@@ -1,6 +1,5 @@
 using UnityEditor;
 using UnityEngine;
-using NaughtyAttributes.Editor;
 
 [CustomEditor(typeof(Campaign))]
 public class CampaignEditor : Editor
