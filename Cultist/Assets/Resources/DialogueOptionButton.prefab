@@ -222,8 +222,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Dialogue option to chose
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 74a6f3e330f76c349af8ec1c82141f3e, type: 2}
-  m_sharedMaterial: {fileID: 1825906198230818445, guid: 74a6f3e330f76c349af8ec1c82141f3e,
+  m_fontAsset: {fileID: 11400000, guid: f790f113d28be4147b877d60d97f0490, type: 2}
+  m_sharedMaterial: {fileID: -1332291319315319523, guid: f790f113d28be4147b877d60d97f0490,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

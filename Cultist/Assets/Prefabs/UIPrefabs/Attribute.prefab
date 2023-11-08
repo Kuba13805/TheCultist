@@ -69,8 +69,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f790f113d28be4147b877d60d97f0490, type: 2}
+  m_sharedMaterial: {fileID: -1332291319315319523, guid: f790f113d28be4147b877d60d97f0490,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -148,9 +149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a10990d142de4d45b71f875b76fed57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadAttribute: 1
-  LoadBasic: 0
-  LoadSkill: 0
+  loadAttribute: 0
+  loadBasic: 0
+  loadSkill: 0
   attributeToLoad: 0
   basicInfoToLoad: 0
   skillToLoad: 0
