@@ -13,6 +13,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/ExitGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/InputSystem/PlayerInputActions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Analytics/CollectingDataAgreement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CampaignSummaryScripts/MajorDecisionLogic.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Campaigns/Campaign.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/DefaultSpawnPointEditor.cs" root0="FORCE_HIGHLIGHTING" />
@@ -269,7 +270,7 @@
       <workItem from="1699207138004" duration="1086000" />
       <workItem from="1699364253253" duration="9720000" />
       <workItem from="1699456951676" duration="4033000" />
-      <workItem from="1699611740471" duration="803000" />
+      <workItem from="1699611740471" duration="3880000" />
     </task>
     <servers />
   </component>
