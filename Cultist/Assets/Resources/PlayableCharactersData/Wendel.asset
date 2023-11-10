@@ -213,7 +213,7 @@ MonoBehaviour:
   playerAbilities:
   - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
   - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
-  characterIcon: {fileID: 0}
+  characterIcon: {fileID: 21300000, guid: 68e709d2740825240b54f657bc37e897, type: 3}
   charDesc: "Gdyby nie wstawiennictwo kogo\u015B z g\xF3ry, zapewne pos\u0142u\u017Cy\u0142by
     za przyk\u0142ad tego, jak ko\u0144czy ka\u017Cdy dobijaj\u0105cy targu z mrocznymi
     si\u0142ami. Abrahan, dawniej kultysta Belgrama, teraz emerytowany i odkupiony
