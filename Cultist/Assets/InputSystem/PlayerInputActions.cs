@@ -116,6 +116,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenGameMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d16c96e-6a73-4dc9-84ba-54fcca48e3cd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -226,6 +235,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ShowHideTips"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""749972f3-78e0-4248-90b8-616d6e1294f9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""OpenGameMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1035,6 +1055,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_DisplayInteractablesInfo = m_Player.FindAction("DisplayInteractablesInfo", throwIfNotFound: true);
         m_Player_OpenJournal = m_Player.FindAction("OpenJournal", throwIfNotFound: true);
         m_Player_ShowHideTips = m_Player.FindAction("ShowHideTips", throwIfNotFound: true);
+        m_Player_OpenGameMenu = m_Player.FindAction("OpenGameMenu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1126,6 +1147,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DisplayInteractablesInfo;
     private readonly InputAction m_Player_OpenJournal;
     private readonly InputAction m_Player_ShowHideTips;
+    private readonly InputAction m_Player_OpenGameMenu;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1140,6 +1162,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @DisplayInteractablesInfo => m_Wrapper.m_Player_DisplayInteractablesInfo;
         public InputAction @OpenJournal => m_Wrapper.m_Player_OpenJournal;
         public InputAction @ShowHideTips => m_Wrapper.m_Player_ShowHideTips;
+        public InputAction @OpenGameMenu => m_Wrapper.m_Player_OpenGameMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1179,6 +1202,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ShowHideTips.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowHideTips;
                 @ShowHideTips.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowHideTips;
                 @ShowHideTips.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowHideTips;
+                @OpenGameMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenGameMenu;
+                @OpenGameMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenGameMenu;
+                @OpenGameMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenGameMenu;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1213,6 +1239,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ShowHideTips.started += instance.OnShowHideTips;
                 @ShowHideTips.performed += instance.OnShowHideTips;
                 @ShowHideTips.canceled += instance.OnShowHideTips;
+                @OpenGameMenu.started += instance.OnOpenGameMenu;
+                @OpenGameMenu.performed += instance.OnOpenGameMenu;
+                @OpenGameMenu.canceled += instance.OnOpenGameMenu;
             }
         }
     }
@@ -1468,6 +1497,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnDisplayInteractablesInfo(InputAction.CallbackContext context);
         void OnOpenJournal(InputAction.CallbackContext context);
         void OnShowHideTips(InputAction.CallbackContext context);
+        void OnOpenGameMenu(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -16,6 +16,7 @@ MonoBehaviour:
   questlineSteps:
   - {fileID: 11400000, guid: 406185c4329e2714cba0e95619cf53fc, type: 2}
   - {fileID: 11400000, guid: 54228b8dbc0394e419d997eb31760935, type: 2}
+  parentCampaign: {fileID: 11400000, guid: c99fe98cc3229d4459f8c21a8fa54985, type: 2}
   questlineVisible: 1
   questlineStarted: 0
   questlineCompleted: 0

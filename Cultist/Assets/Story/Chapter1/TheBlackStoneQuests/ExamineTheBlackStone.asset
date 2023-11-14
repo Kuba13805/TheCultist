@@ -16,13 +16,17 @@ MonoBehaviour:
   questId:
     idPrefix: TheBlackStone
     questNumber: 1
-  questDesc: 'I met one of the professors researching the history of Lucius. He asked
-    me to examine the Black Stone standing in the square in the middle of the Alceron. '
-  shortQuestDesc: 'Examine the Black Stone '
+  originalQuestDesc: 
+  originalShortQuestDesc: 
+  questRewards: []
+  questVisible: 1
   questStarted: 0
   questCompleted: 0
   questFailed: 0
   questFailedDesc: 
+  questCompletedDesc: 
   questSteps: []
   questVariables: []
   prerequisiteQuests: []
+  questDesc: 
+  shortQuestDesc: 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Events;
 using ModestTree;
 using NaughtyAttributes;
+using PlayerScripts;
 using Questlines.SingleQuests;
 using TMPro;
 using UnityEngine;
@@ -211,7 +212,7 @@ public class CampaignSummaryManager : MonoBehaviour
     private void DisplayAttributeReward(Reward reward)
     {
         var rewardPrompt = Instantiate(attributeRewardPrefab, campaignAttributeRewardsBox.transform);
-
-        rewardPrompt.GetComponentInChildren<TextMeshProUGUI>().text = reward.statToModify + " +" + reward.rewardStatLevel;
+        
+        rewardPrompt.GetComponent<AttributeRewardLogic>().InitializeReward(reward.statToModify.ToString(), reward.rewardStatLevel);
     }
 }

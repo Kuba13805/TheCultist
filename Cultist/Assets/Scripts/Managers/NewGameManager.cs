@@ -20,17 +20,18 @@ public class NewGameManager : MonoBehaviour
 
     #endregion
 
-    private void OnEnable()
+    private void Start()
     {
         LoadCharactersToSelect.CallForCharacterList += ReturnCharactersOnCall;
 
         ConfirmCharacterSelection.OnCharacterConfirmedSelection += StartNewGameOnCall;
     }
 
-
-    private void OnDisable()
+    private void OnDestroy()
     {
         LoadCharactersToSelect.CallForCharacterList -= ReturnCharactersOnCall;
+        
+        ConfirmCharacterSelection.OnCharacterConfirmedSelection -= StartNewGameOnCall;
     }
 
     private void ReturnCharactersOnCall()
@@ -42,6 +43,7 @@ public class NewGameManager : MonoBehaviour
         var startingCampaign = selectedPlayableCharacter.characterStartingCampaign;
         
         OnNewGameStart?.Invoke(startingCampaign);
+        Debug.Log(startingCampaign.campaignName);
         
 
         var baseScenePlayerUi = new CallLocationChange();

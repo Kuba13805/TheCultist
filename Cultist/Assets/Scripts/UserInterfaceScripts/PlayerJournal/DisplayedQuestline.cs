@@ -12,8 +12,6 @@ public class DisplayedQuestline : MonoBehaviour
     public void InvokeQuestline()
     {
         OnQuestlineButtonClicked?.Invoke(questlineToDisplay);
-        
-        Debug.Log("CLICK!");
     }
 
     private void Start()

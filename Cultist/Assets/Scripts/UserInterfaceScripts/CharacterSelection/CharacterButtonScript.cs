@@ -16,10 +16,17 @@ public class CharacterButtonScript : MonoBehaviour
     #endregion
     private void Start()
     {
+        TransformToNormal();
+        
         if (characterInfo.characterIcon != null)
         {
             GetComponentInChildren<Image>().sprite = characterInfo.characterIcon;
         }
+    }
+
+    private void OnDisable()
+    {
+        OnCharacterSelected -= ReturnToState;
     }
 
     public void OnButtonClick()

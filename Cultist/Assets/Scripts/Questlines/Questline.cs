@@ -33,6 +33,8 @@ public class Questline : ScriptableObject
       Quest.OnQuestCompleted += CheckForRemainingOnQuests;
 
       Quest.OnQuestFailed += CheckForRemainingOnQuests;
+      
+      Campaign.OnCampaignComplete += ForceQuestCompletion;
    }
 
    private void StartQuestline(Quest startedQuest)
@@ -42,14 +44,11 @@ public class Questline : ScriptableObject
       questlineStarted = true;
             
       OnQuestlineStart?.Invoke(this);
-
-      Campaign.OnCampaignComplete += ForceQuestCompletion;
-      
    }
 
    private void ForceQuestCompletion(Campaign campaign)
    {
-      if (campaign.ToString() != parentCampaign.ToString() || !questlineStarted) return;
+      if (campaign.campaignId != parentCampaign.campaignId || !questlineStarted) return;
       
       MarkQuestlineAsCompleted();
 
@@ -93,6 +92,12 @@ public class Questline : ScriptableObject
 
    public void RestartQuestline()
    {
+      Quest.OnQuestStarted += StartQuestline;
+      
+      Quest.OnQuestCompleted += CheckForRemainingOnQuests;
+
+      Quest.OnQuestFailed += CheckForRemainingOnQuests;
+      
       questlineStarted = false;
 
       questlineCompleted = false;

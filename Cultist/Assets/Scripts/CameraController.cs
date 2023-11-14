@@ -52,6 +52,15 @@ public class CameraController : MonoBehaviour
         CharacterControllerScript.OnPlayerSpawnDone += MoveCameraToTravelPoint;
     }
 
+    private void OnDisable()
+    {
+        _cameraActions.Camera.CameraFocusOnPlayer.performed -= FocusCamera;
+        
+        TravelPoint.OnPlayerTravelDone -= MoveCameraToTravelPoint;
+
+        CharacterControllerScript.OnPlayerSpawnDone -= MoveCameraToTravelPoint;
+    }
+
     private void Update()
     {
         HandleMouseInput();

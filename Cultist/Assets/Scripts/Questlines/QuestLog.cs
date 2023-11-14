@@ -28,6 +28,15 @@ namespace Questlines
             DialogueController.OnCallVariables += ReturnNeededVariables;
 
             DialogueController.OnSetNewVariables += SetNewVariablesValue;
+
+            NewGameManager.OnNewGameStart += RestartPlayerLog;
+        }
+
+        private void RestartPlayerLog(Campaign obj)
+        {
+            activeQuestlines.Clear();
+            
+            completedQuestlines.Clear();
         }
 
         private void OnDisable()
@@ -39,6 +48,8 @@ namespace Questlines
             DialogueController.OnCallVariables -= ReturnNeededVariables;
             
             DialogueController.OnSetNewVariables -= SetNewVariablesValue;
+            
+            NewGameManager.OnNewGameStart -= RestartPlayerLog;
         }
 
         private void AddQuestlineToActive(Questline questline)
@@ -85,7 +96,8 @@ namespace Questlines
             {
                 foreach (var variable in from questline in activeQuestlines from quest in questline.questlineSteps from variable in quest.questVariables where newValue.variableCodeName == variable.variableCodeName select variable)
                 {
-                    variable.conditionPassed = newValue.conditionPassed;
+                    if (newValue.conditionPassed)
+                        variable.MarkVariableComplete();
                 }
             }
         }

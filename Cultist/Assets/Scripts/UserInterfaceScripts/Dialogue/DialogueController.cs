@@ -113,10 +113,10 @@ public class DialogueController : MonoBehaviour
     private void InitializeStoryUIBoxes(string objectName, Component dialogueInteraction)
     {
         _playerChoicesContainer = FindPlayerChoiceContent();
-        _playerPortraitBox = FindUiElement("PlayerPortrait");
+        //_playerPortraitBox = FindUiElement("PlayerPortrait");
         _playerPortraitSprite = GameManager.Instance.playerData.playerPortrait;
 
-        _playerPortraitBox.GetComponentInChildren<Image>().sprite = _playerPortraitSprite;
+        //_playerPortraitBox.GetComponentInChildren<Image>().sprite = _playerPortraitSprite;
         
         _charName = objectName;
         _npcTextBox = FindNpcTextBox();

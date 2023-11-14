@@ -8,7 +8,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewCampaign", menuName = "ScriptableObjects/Create New Campaign")]
 public class Campaign : ScriptableObject
 {
-    [SerializeField] private int campaignId;
+    public int campaignId;
 
     [TextArea(2, 4)]
     public string campaignName;
@@ -42,13 +42,19 @@ public class Campaign : ScriptableObject
     
     private void OnEnable()
     {
-        NewGameManager.OnNewGameStart += StartCampaign;
-
+        NewGameManager.OnNewGameStart += HandleNewGameStart;
+        
         CurrentLocationManager.OnSceneLoaded += CallForFirstNarrativeEvent;
 
         Questline.OnQuestlineCompleted += CompleteCampaign;
     }
 
+    private void HandleNewGameStart(Campaign startCampaign)
+    {
+        ResetCampaign();
+        
+        StartCampaign(startCampaign);
+    }
     private void StartCampaign(Campaign startCampaign)
     {
         if(startCampaign.campaignId != campaignId) return;
@@ -61,8 +67,6 @@ public class Campaign : ScriptableObject
         hasStarted = true;
         
         OnCampaignStart?.Invoke(this);
-        
-        NewGameManager.OnNewGameStart -= StartCampaign;
     }
 
     private void CallForFirstNarrativeEvent()
@@ -103,6 +107,10 @@ public class Campaign : ScriptableObject
 
     public void ResetCampaign()
     {
+        CurrentLocationManager.OnSceneLoaded += CallForFirstNarrativeEvent;
+
+        Questline.OnQuestlineCompleted += CompleteCampaign;
+        
         hasStarted = false;
         isCompleted = false;
 

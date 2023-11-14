@@ -18,5 +18,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51cc1d6a67ceff1459f391f9e63a4a2d, type: 2}
   parentCampaign: {fileID: 0}
   questlineVisible: 1
-  questlineStarted: 0
+  questlineStarted: 1
   questlineCompleted: 0

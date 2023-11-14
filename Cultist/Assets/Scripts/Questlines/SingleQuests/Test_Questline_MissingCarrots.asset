@@ -22,8 +22,8 @@ MonoBehaviour:
   originalShortQuestDesc: Find the blessed carrots.
   questRewards: []
   questVisible: 1
-  questStarted: 0
-  questCompleted: 0
+  questStarted: 1
+  questCompleted: 1
   questFailed: 0
   questFailedDesc: 
   questCompletedDesc: 
@@ -36,4 +36,4 @@ MonoBehaviour:
   shortQuestDesc: Find the blessed carrots.
   itemToFind: {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
   quantityOfItemNeeded: 2
-  quantityOfItemInInventory: 0
+  quantityOfItemInInventory: 2

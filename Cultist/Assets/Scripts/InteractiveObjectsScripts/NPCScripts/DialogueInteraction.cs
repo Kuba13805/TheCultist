@@ -98,7 +98,7 @@ public class DialogueInteraction : MonoBehaviour
 
     private static GameObject LoadDialogueWindowPrefab()
     {
-        var prefab = Resources.Load<GameObject>("DialoguePanel");
+        var prefab = Resources.Load<GameObject>("DialoguePanelNew");
         return prefab;
     }
     private static GameObject GetDialogueCanvas()

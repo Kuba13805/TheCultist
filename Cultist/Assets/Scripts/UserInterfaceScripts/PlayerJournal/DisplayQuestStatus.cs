@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
-using Questlines.SingleQuests;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DisplayQuestStatus : MonoBehaviour
@@ -15,25 +12,29 @@ public class DisplayQuestStatus : MonoBehaviour
     [SerializeField] private GameObject questPanel;
 
     [SerializeField] private float timeToAppear;
+    
 
     private void Start()
     {
-        Quest.OnQuestStarted += DisplayStartingQuestName;
-
-        Quest.OnQuestCompleted += DisplayCompletedQuestName;
-        
         questNameTextBox.DOFade(0, 0);
 
         questPanel.GetComponent<Image>().DOFade(0, 0);
         
-        questPanel.SetActive(false);
+        Quest.OnQuestStarted += DisplayStartingQuestName;
 
+        Quest.OnQuestCompleted += DisplayCompletedQuestName;
     }
+
+    private void OnDisable()
+    {
+        Quest.OnQuestStarted -= DisplayStartingQuestName;
+
+        Quest.OnQuestCompleted -= DisplayCompletedQuestName;
+    }
+
     private void DisplayStartingQuestName(Quest quest)
     {
         if(!quest.questVisible) return;
-        
-        questPanel.SetActive(true);
         
         questNameTextBox.text = "Started: " + quest.questName;
         

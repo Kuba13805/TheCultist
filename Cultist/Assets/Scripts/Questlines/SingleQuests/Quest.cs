@@ -5,6 +5,7 @@ using Events;
 using ModestTree;
 using NaughtyAttributes;
 using Questlines.SingleQuests;
+using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -153,6 +154,8 @@ public class Quest : ScriptableObject
         StopListeningToQuestEvents();
         
         RewardPlayer();
+        
+        SendCompletedQuestData(questId.ToString(), questName);
 
         OnQuestCompleted?.Invoke(this);
     }
@@ -252,12 +255,9 @@ public class Quest : ScriptableObject
         shortQuestDesc = originalShortQuestDesc;
 
         questStarted = true;
-
-        if (questVariables.Count > 0)
-        {
-            questVariables[0].conditionPassed = true;
-        }
-
+        
+        SendStartedQuestData(questId.ToString(), questName);
+        
         OnQuestStarted?.Invoke(this);
     }
 
@@ -274,6 +274,14 @@ public class Quest : ScriptableObject
 
     public virtual void RestartQuest()
     {
+        CallQuestEvents.OnQuestStart += StartQuestFromEvent;
+
+        CallQuestEvents.OnQuestComplete += MarkQuestAsCompletedFromEvent;
+
+        CallQuestEvents.OnQuestFail += MarkQuestAsFailedFromEvent;
+
+        OnQuestCompleted += OnPrerequisiteQuestComplete;
+        
         questDesc = originalQuestDesc;
 
         shortQuestDesc = originalShortQuestDesc;
@@ -316,5 +324,27 @@ public class Quest : ScriptableObject
         {
             ForceCompleteQuest();
         }
+    }
+
+    private static void SendStartedQuestData(string idToPass, string nameToPass)
+    {
+        var parameters = new Dictionary<string, object>()
+        {
+            { "questId", idToPass },
+            { "questName", nameToPass }
+        };
+
+        AnalyticsService.Instance.CustomData("questStarted", parameters);
+    }
+
+    private static void SendCompletedQuestData(string idToPass, string nameToPass)
+    {
+        var parameters = new Dictionary<string, object>()
+        {
+            { "questId", idToPass },
+            { "questName", nameToPass }
+        };
+
+        AnalyticsService.Instance.CustomData("questCompleted", parameters);
     }
 }

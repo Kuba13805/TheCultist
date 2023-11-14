@@ -59,9 +59,13 @@ public class CharacterControllerScript : MonoBehaviour
 
     private void OnDestroy()
     {
+        CurrentLocationManager.OnSceneLoaded -= SwitchPlayerNavAgent;
+        
         InputManager.Instance.PlayerInputActions.Player.MoveCharacter.performed -= MovePlayerToPosition;
         
         CurrentLocationManager.OnSpawnPlayerAtPosition -= SpawnPlayer;
+        
+        PlayerEvents.OnStopPlayer -= StopPlayerMovement;
     }
 
     private void Update()

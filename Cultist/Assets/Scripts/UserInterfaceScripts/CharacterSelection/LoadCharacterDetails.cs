@@ -52,8 +52,15 @@ public class LoadCharacterDetails : MonoBehaviour
         CharacterButtonScript.OnCharacterSelected += LoadCharacter;
     }
 
+    private void OnDestroy()
+    {
+        CharacterButtonScript.OnCharacterSelected -= LoadCharacter;
+    }
+
     private void ShowPanel()
     {
+        HidePanel();
+        
         const bool condition = true;
 
         for (int i = 0; i < transform.childCount; i++)
@@ -79,12 +86,13 @@ public class LoadCharacterDetails : MonoBehaviour
     }
     private void LoadCharacter(PlayableCharacter character)
     {
+        Debug.Log("Created details");
+        
         ShowPanel();
         
         LoadBasicCharacterInfo(character);
         
         LoadExtendedCharacterInfo(character);
-        
     }
 
     private void LoadBasicCharacterInfo(PlayableCharacter character)

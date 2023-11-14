@@ -17,6 +17,7 @@ public class ItemDetailsPanelLoad : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemEffects;
     
     [SerializeField] private TextMeshProUGUI itemDesc;
+
     private void OnDisable()
     {
         Destroy(gameObject);

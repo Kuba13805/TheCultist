@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c082ac4b6ca2cd344a02801e5f311276, type: 3}
-  m_Name: Wendel
+  m_Name: Abrahan_Belgram_Cultist
   m_EditorClassIdentifier: 
-  charName: Wendel
-  nickname: 
-  health: 0
-  playerPortrait: {fileID: 21300000, guid: 8e3ffe2784c5c61439317954bd2d289f, type: 3}
+  charName: Abrahan Blakeborn
+  nickname: '"White Flame of Dunrah"'
+  health: 12
+  playerPortrait: {fileID: 21300000, guid: 7f5b00bd12772014e9b4c2af9f6b999a, type: 3}
   dexterity:
     statValue: 5
     statIcon: {fileID: 21300000, guid: 47605d5c14476794eb417552896f4e47, type: 3}
@@ -209,11 +209,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
   - {fileID: 11400000, guid: 97e48188c787aa14986ea226e7c82683, type: 2}
   - {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
+  - {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
+  - {fileID: 11400000, guid: b82a84350aef08b4786215ff07ef3941, type: 2}
   characterEquipment: []
   playerAbilities:
   - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
   - {fileID: 11400000, guid: d963a636e076a8842996f8d22f60d869, type: 2}
-  characterIcon: {fileID: 21300000, guid: 68e709d2740825240b54f657bc37e897, type: 3}
+  characterIcon: {fileID: 21300000, guid: 5005ca43662fafe4e82fb152d6ea30d4, type: 3}
   charDesc: "Gdyby nie wstawiennictwo kogo\u015B z g\xF3ry, zapewne pos\u0142u\u017Cy\u0142by
     za przyk\u0142ad tego, jak ko\u0144czy ka\u017Cdy dobijaj\u0105cy targu z mrocznymi
     si\u0142ami. Abrahan, dawniej kultysta Belgrama, teraz emerytowany i odkupiony

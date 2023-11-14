@@ -104,6 +104,8 @@ public class NarrativeEventHandler : MonoBehaviour
     {
         if (_currentStory.currentChoices.Count <= 0) return;
         
+        ClearChoices();
+        
         foreach (var choice in _currentStory.currentChoices)
         {
             SearchForChoiceFlag(choice);
@@ -111,7 +113,6 @@ public class NarrativeEventHandler : MonoBehaviour
     }
     private void CreateChoicePrompt(Choice choice)
     {
-        
         var newChoicePrompt = Instantiate(choicePrompt, eventChoicesBox.transform);
 
         newChoicePrompt.GetComponent<NarrativeEventChoice>().InitializeChoice(choice);

@@ -57,6 +57,21 @@ public class CurrentLocationManager : MonoBehaviour
         Campaign.OnCampaignComplete += ChangeSceneToCampaignSummary;
     }
 
+    private void OnDisable()
+    {
+        CallLocationChange.OnChangeLocation -= OnChangeLocation;
+
+        CallLocationChange.OnChangeLocationOnTravelPoint -= OnChangeLocation;
+
+        TravelPoint.OnReportDefaultSpawnPoint -= SetNewDefaultSpawnPoint;
+
+        TravelPoint.OnReportTravelPointSpawn -= SetPlayerAtTravelPoint;
+
+        CameraController.OnCameraMovementDone -= CloseLoadingScreen;
+
+        Campaign.OnCampaignComplete -= ChangeSceneToCampaignSummary;
+    }
+
 
     private void Start()
     {
