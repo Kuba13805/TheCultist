@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: TestQuestline
   m_EditorClassIdentifier: 
   questlineName: Problems in Alceron
+  questlineId: 0
   questlineSteps:
   - {fileID: 11400000, guid: 41b360f47cbcde74b8b8c40bd644ae1e, type: 2}
   - {fileID: 11400000, guid: 51cc1d6a67ceff1459f391f9e63a4a2d, type: 2}
-  parentCampaign: {fileID: 0}
+  parentCampaign: {fileID: 11400000, guid: 36d3be34469974843ba41521cb2c0d3b, type: 2}
   questlineVisible: 1
   questlineStarted: 1
   questlineCompleted: 0

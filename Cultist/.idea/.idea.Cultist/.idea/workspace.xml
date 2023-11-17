@@ -58,6 +58,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Actions/InputActionAsset.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.sequences@1.0.4/Editor/AssetDatabase/SequencesAssetDatabase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.analytics@5.0.1/Runtime/AnalyticsService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -97,7 +98,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="E:/The Cultist 0.1.1/Cultist.exe" />
+      <option name="EXE_PATH" value="E:/The Cultist 0.2/Cultist.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="D:\The Cultist 0.1" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -277,7 +278,10 @@
       <workItem from="1699611740471" duration="14342000" />
       <workItem from="1699809902956" duration="3080000" />
       <workItem from="1699963051749" duration="8258000" />
-      <workItem from="1699972005576" duration="5740000" />
+      <workItem from="1699972005576" duration="7143000" />
+      <workItem from="1700139806120" duration="953000" />
+      <workItem from="1700166750941" duration="3436000" />
+      <workItem from="1700206731672" duration="45000" />
     </task>
     <servers />
   </component>

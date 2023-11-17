@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
+using Unity.Services.Analytics;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewCampaign", menuName = "ScriptableObjects/Create New Campaign")]
@@ -67,6 +68,8 @@ public class Campaign : ScriptableObject
         hasStarted = true;
         
         OnCampaignStart?.Invoke(this);
+
+        SendStartedCampaignData(campaignId.ToString(), campaignName);
     }
 
     private void CallForFirstNarrativeEvent()
@@ -91,6 +94,8 @@ public class Campaign : ScriptableObject
         isCompleted = true;
         
         OnCampaignComplete?.Invoke(this);
+        
+        SendCompletedCampaignData(campaignId.ToString(), campaignName);
     }
 
     public List<Reward> ReturnCampaignRewards()
@@ -130,6 +135,30 @@ public class Campaign : ScriptableObject
             questline.ForceCompleteQuestline();
         }
         
-        OnCampaignComplete?.Invoke(this);
+        //OnCampaignComplete?.Invoke(this);
+        
+        SendCompletedCampaignData(campaignId.ToString(), campaignName);
     }
+    
+    private static void SendStartedCampaignData(string idToPass, string nameToPass)
+        {
+            var parameters = new Dictionary<string, object>()
+            {
+                { "campaignStoryId", idToPass },
+                { "questName", nameToPass }
+            };
+    
+            AnalyticsService.Instance.CustomData("campaignStarted", parameters);
+        }
+    
+        private static void SendCompletedCampaignData(string idToPass, string nameToPass)
+        {
+            var parameters = new Dictionary<string, object>()
+            {
+                { "campaignStoryId", idToPass },
+                { "questName", nameToPass }
+            };
+    
+            AnalyticsService.Instance.CustomData("campaignCompleted", parameters);
+        }
 }

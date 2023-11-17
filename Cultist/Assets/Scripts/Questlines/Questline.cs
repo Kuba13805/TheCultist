@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Questlines.SingleQuests;
+using Unity.Services.Analytics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,6 +10,7 @@ using UnityEngine.Serialization;
 public class Questline : ScriptableObject
 {
    public string questlineName;
+   public int questlineId;
    public List<Quest> questlineSteps;
    [SerializeField] private Campaign parentCampaign;
 
@@ -44,13 +46,17 @@ public class Questline : ScriptableObject
       questlineStarted = true;
             
       OnQuestlineStart?.Invoke(this);
+
+      SendStartedQuestlineData(questlineId.ToString(), questlineName);
    }
 
    private void ForceQuestCompletion(Campaign campaign)
    {
       if (campaign.campaignId != parentCampaign.campaignId || !questlineStarted) return;
       
-      MarkQuestlineAsCompleted();
+      Debug.Log(campaign.campaignId + ":" + parentCampaign.campaignId);
+      
+      CompleteQuestline();
 
       foreach (var quest in questlineSteps.Where(quest => quest.questStarted))
       {
@@ -58,11 +64,13 @@ public class Questline : ScriptableObject
       }
    }
 
-   private void MarkQuestlineAsCompleted()
+   private void CompleteQuestline()
    {
       questlineCompleted = true;
       
       OnQuestlineCompleted?.Invoke(this);
+      
+      SendCompletedQuestlineData(questlineId.ToString(), questlineName);
 
       Quest.OnQuestCompleted -= CheckForRemainingOnQuests;
       
@@ -86,7 +94,7 @@ public class Questline : ScriptableObject
 
       if (allQuestsCompleted)
       {
-         MarkQuestlineAsCompleted();
+         CompleteQuestline();
       }
    }
 
@@ -118,5 +126,27 @@ public class Questline : ScriptableObject
       {
          quest.ForceCompleteQuest();
       }
+   }
+   
+   private static void SendStartedQuestlineData(string idToPass, string nameToPass)
+   {
+      var parameters = new Dictionary<string, object>()
+      {
+         { "questlineStoryId", idToPass },
+         { "questName", nameToPass }
+      };
+    
+      AnalyticsService.Instance.CustomData("questlineStarted", parameters);
+   }
+    
+   private static void SendCompletedQuestlineData(string idToPass, string nameToPass)
+   {
+      var parameters = new Dictionary<string, object>()
+      {
+         { "questlineStoryId", idToPass },
+         { "questName", nameToPass }
+      };
+    
+      AnalyticsService.Instance.CustomData("questlineCompleted", parameters);
    }
 }
