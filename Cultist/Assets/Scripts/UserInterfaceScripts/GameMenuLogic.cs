@@ -13,15 +13,12 @@ public class GameMenuLogic : MonoBehaviour
     private void Start()
     {
         InputManager.Instance.PlayerInputActions.Player.OpenGameMenu.performed += OpenGameMenu;
-
-        InputManager.Instance.PlayerInputActions.UI.CloseUI.performed += CloseGameMenu;
     }
 
     private void OnDisable()
     {
         InputManager.Instance.PlayerInputActions.Player.OpenGameMenu.performed -= OpenGameMenu;
-
-        InputManager.Instance.PlayerInputActions.UI.CloseUI.performed -= CloseGameMenu;
+        
     }
 
     private void CloseGameMenu(InputAction.CallbackContext obj)

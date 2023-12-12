@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb042b1ba57441a9873823dd819a8d0, type: 3}
+  m_Name: FindTheBloodyKnife
+  m_EditorClassIdentifier: 
+  questName: Port Mistery
+  questId:
+    idPrefix: InvestigateLowerCityPort
+    questNumber: 3
+  originalQuestDesc: Someone suspicious was hanging around the crates from the last
+    delivery. Perhaps he was trying to hide something there?
+  originalShortQuestDesc: Find evidence of the crime
+  questRewards: []
+  questVisible: 1
+  questStarted: 0
+  questCompleted: 1
+  questFailed: 0
+  questFailedDesc: 
+  questCompletedDesc: You have found the evidence of crime.
+  questSteps: []
+  questVariables: []
+  prerequisiteQuests:
+  - {fileID: 11400000, guid: 1a4514dfea0e5074e8ecb155bcd80197, type: 2}
+  questDesc: Someone suspicious was hanging around the crates from the last delivery.
+    Perhaps he was trying to hide something there?
+  shortQuestDesc: Find evidence of the crime
+  itemToFind: {fileID: 11400000, guid: b65973fc98fbfdb469755bee69ef5ef6, type: 2}
+  quantityOfItemNeeded: 1
+  quantityOfItemInInventory: 3

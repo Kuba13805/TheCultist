@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Events;
 using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -32,16 +33,20 @@ public class PlayerUIVisibilityController : MonoBehaviour
     }
     private void OpenJournalOnPerformed(InputAction.CallbackContext obj)
     {
-        OpenPlayerUICanvas();
-        
         playerJournal.SetActive(true);
+        
+        CallPlayerInputChange.SetAllInput(false);
+        
+        CallPlayerInputChange.SetUiActions(true);
     }
 
     private void OpenInventoryOnPerformed(InputAction.CallbackContext context)
     {
-        OpenPlayerUICanvas();
-        
         playerInventory.SetActive(true);
+        
+        CallPlayerInputChange.SetAllInput(false);
+        
+        CallPlayerInputChange.SetUiActions(true);
     }
     private void CloseUIOnPerformed(InputAction.CallbackContext obj)
     {
@@ -51,16 +56,10 @@ public class PlayerUIVisibilityController : MonoBehaviour
             uiElement.gameObject.SetActive(false);
         }
         
-        ClosePlayerUICanvas();
-    }
-
-    private void ClosePlayerUICanvas()
-    {
-        playerUICanvas.SetActive(false);
-    }
-
-    private void OpenPlayerUICanvas()
-    {
-        playerUICanvas.SetActive(true);
+        CallPlayerInputChange.SetAllInput(false);
+        
+        CallPlayerInputChange.SetPlayerActions(true);
+        
+        CallPlayerInputChange.SetCameraActions(true);
     }
 }

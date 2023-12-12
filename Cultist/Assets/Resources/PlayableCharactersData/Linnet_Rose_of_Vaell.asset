@@ -221,5 +221,5 @@ MonoBehaviour:
     do siebie drugiego cz\u0142owieka, wyci\u0105gaj\u0105c z niego wszystko, co
     tylko zechce. Nic si\u0119 przed ni\u0105 nie ukryje, nawet obce my\u015Bli. "
   charQuote: '"Za Luciusa! Za Jego miasto! Za Dom Vierro!"'
-  characterStartingCampaign: {fileID: 11400000, guid: 36d3be34469974843ba41521cb2c0d3b,
+  characterStartingCampaign: {fileID: 11400000, guid: 25de5100e96dc9e468ac4d9e75a06ddd,
     type: 2}

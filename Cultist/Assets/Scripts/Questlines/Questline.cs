@@ -41,6 +41,7 @@ public class Questline : ScriptableObject
 
    private void StartQuestline(Quest startedQuest)
    {
+      Instantiate(this);
       if (!questlineSteps.Any(quest => quest == startedQuest && !questlineStarted)) return;
       
       questlineStarted = true;
@@ -109,7 +110,7 @@ public class Questline : ScriptableObject
       questlineStarted = false;
 
       questlineCompleted = false;
-
+      
       foreach (var quest in questlineSteps)
       {
          quest.RestartQuest();

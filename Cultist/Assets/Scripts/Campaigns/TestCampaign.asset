@@ -24,7 +24,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0b5a683e886102241843761a5c93ce00, type: 2}
   requiredCampaigns: []
   hasStarted: 1
-  isCompleted: 1
+  isCompleted: 0
   campaignRewards:
   - rewardType: 0
     rewardItem: {fileID: 11400000, guid: ec9d6fe786f7a7048a4863a44e98a1cd, type: 2}

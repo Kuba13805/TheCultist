@@ -57,6 +57,8 @@ public class PlayerDetector : MonoBehaviour
 
     private void DoAction()
     {
+        if (detectionActions.Count == 0) return;
+        
         switch (detectionActions.First().actionType)
         {
             case ActionType.CallForNarrativeEvent:

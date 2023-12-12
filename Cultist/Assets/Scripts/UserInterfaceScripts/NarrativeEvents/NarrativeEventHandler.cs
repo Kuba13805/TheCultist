@@ -24,7 +24,7 @@ public class NarrativeEventHandler : MonoBehaviour
 
     private List<BaseItem> _currentEventItems;
 
-    private TextAsset _currentEventTextAsset;
+    [SerializeField]private TextAsset _currentEventTextAsset;
 
     private Story _currentStory;
 
@@ -34,7 +34,7 @@ public class NarrativeEventHandler : MonoBehaviour
 
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         QuestManager.OnNarrativeEventPass += ShowEvent;
 
@@ -63,6 +63,8 @@ public class NarrativeEventHandler : MonoBehaviour
         _currentEventTextAsset = newEvent.narrativeEventText;
 
         _currentEventItems = newEvent.itemsInEvent;
+        
+        if (_currentEventTextAsset == null) return;
         
         InitializeEventStory();
 

@@ -2303,7 +2303,7 @@ RectTransform:
   m_Children:
   - {fileID: 1386763742}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2328,6 +2328,7 @@ MonoBehaviour:
   eventChoicesBox: {fileID: 1174279293}
   choicePrompt: {fileID: 1468893089400292194, guid: cc2c80816938e114e9e7ec3082b51ddc,
     type: 3}
+  _currentEventTextAsset: {fileID: 0}
 --- !u!1 &228101997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2788,7 +2789,7 @@ RectTransform:
   m_Children:
   - {fileID: 146672709}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3130,7 +3131,7 @@ RectTransform:
   - {fileID: 1098737744}
   - {fileID: 1090866386}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4702,6 +4703,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1575909341651959222, guid: 4364936f235271a4e8967e96f0ba80e5,
         type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575909341651959222, guid: 4364936f235271a4e8967e96f0ba80e5,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -5052,7 +5058,7 @@ Transform:
   - {fileID: 343765811}
   - {fileID: 1519742697}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &979106869
 GameObject:
@@ -5326,7 +5332,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6976,7 +6982,7 @@ RectTransform:
   - {fileID: 314458342}
   - {fileID: 537360237}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6995,6 +7001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85de1b45f1d9c3244bf8727e16c96f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questLogContent: {fileID: 1348315818}
 --- !u!1 &1377545272
 GameObject:
   m_ObjectHideFlags: 0
@@ -8887,7 +8894,7 @@ RectTransform:
   - {fileID: 1505762721}
   - {fileID: 1492441591}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9819,7 +9826,7 @@ RectTransform:
   m_Children:
   - {fileID: 792245362}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

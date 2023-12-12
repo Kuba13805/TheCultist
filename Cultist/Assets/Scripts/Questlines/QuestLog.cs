@@ -54,7 +54,7 @@ namespace Questlines
 
         private void AddQuestlineToActive(Questline questline)
         {
-            if (activeQuestlines.Any(activeQuestline => activeQuestline == questline))
+            if (activeQuestlines.Any(activeQuestline => activeQuestline.questlineId == questline.questlineId))
             {
                 return;
             }

@@ -1,0 +1,4 @@
+-> Start
+===Start===
+Life in Lucius is not easy. Many work to the limit so that a small group can enjoy prosperity. Your life is not strewn with roses, so you have to work for a living doing what you do best. Where the municipal police and investigators fail, you step in. You are on your way to a small port on an island in the bay where the city of Lucius lies. A few days ago, a young boy approached you and wordlessly handed you a letter written quickly and sloppily. In it was a request for help. It was impossible to refuse such a request, so thanks to old accounts you managed to get on a ferry heading for the closed port, where another mystery awaits you. You believe you can handle it.
+*[Start the investigation] -> END

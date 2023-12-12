@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2773b4c7513afcb40b58856403f81b34, type: 3}
+  m_Name: InvestigateLowerCityPort
+  m_EditorClassIdentifier: 
+  questlineName: Investigate Lower City Port
+  questlineId: 10
+  questlineSteps:
+  - {fileID: 11400000, guid: 0230e74e7ff08fd4ea151e8381cca592, type: 2}
+  - {fileID: 11400000, guid: 3783499e2ef2c074d90da875bb261c9b, type: 2}
+  - {fileID: 11400000, guid: 1a4514dfea0e5074e8ecb155bcd80197, type: 2}
+  - {fileID: 11400000, guid: 86022176f98c2b24fa4ede92fc60a8e3, type: 2}
+  - {fileID: 11400000, guid: c13a61620dfcddd4a9586e1f1e4c44d7, type: 2}
+  parentCampaign: {fileID: 11400000, guid: 25de5100e96dc9e468ac4d9e75a06ddd, type: 2}
+  questlineVisible: 1
+  questlineStarted: 0
+  questlineCompleted: 0

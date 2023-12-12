@@ -9,6 +9,7 @@ public class CallMenuEvents : MonoBehaviour
 
     public static event Action OnMenuClosed;
 
+    [SerializeField] private GameObject questLogContent; 
     private void OnEnable()
     {
         OnMenuShown?.Invoke();
@@ -17,5 +18,12 @@ public class CallMenuEvents : MonoBehaviour
     private void OnDisable()
     {
         OnMenuClosed?.Invoke();
+    }
+
+    private void Start()
+    {
+        // if (questLogContent.GetComponent<DisplayQuestlogContent>() != null) Destroy(questLogContent.GetComponent<DisplayQuestlogContent>());
+        //
+        // questLogContent.AddComponent<DisplayQuestlogContent>();
     }
 }

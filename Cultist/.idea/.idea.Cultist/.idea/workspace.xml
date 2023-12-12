@@ -98,7 +98,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="E:/The Cultist 0.2/Cultist.exe" />
+      <option name="EXE_PATH" value="E:/The Cultist 0.2\Cultist.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="D:\The Cultist 0.1" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -282,6 +282,11 @@
       <workItem from="1700139806120" duration="953000" />
       <workItem from="1700166750941" duration="3436000" />
       <workItem from="1700206731672" duration="45000" />
+      <workItem from="1701438570971" duration="1000" />
+      <workItem from="1702303953357" duration="2000" />
+      <workItem from="1702306899496" duration="2119000" />
+      <workItem from="1702331960619" duration="3205000" />
+      <workItem from="1702373881489" duration="6245000" />
     </task>
     <servers />
   </component>

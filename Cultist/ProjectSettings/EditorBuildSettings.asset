@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CampaignSummaryScene.unity
     guid: 5760bae15b2c4be4c94a8ed65c93f41a
+  - enabled: 1
+    path: Assets/Scenes/Small_port.unity
+    guid: 409e256330a4ee549bf1c2ad7120ce09
+  - enabled: 1
+    path: Assets/Scenes/Port_house.unity
+    guid: 51fdbf18793b18e4e86d6085719747cf
   m_configObjects: {}
