@@ -524,7 +524,7 @@ PrefabInstance:
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
       propertyPath: dialogueInteractions.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
@@ -533,13 +533,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].oneTimeDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].oneTimeDialogue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
       propertyPath: dialogueInteractions.Array.data[0].dialogueInstance
       value: 
       objectReference: {fileID: 4900000, guid: 52244fc55521be94ea1f3a7b5564bf6f, type: 3}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].dialogueInstance
+      value: 
+      objectReference: {fileID: 4900000, guid: 8298a0221cd74db4e914030cf9ee3e32, type: 3}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].dialogueInstance
+      value: 
+      objectReference: {fileID: 4900000, guid: cc70f84bfe5383949928ff22ea82c3e9, type: 3}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
       propertyPath: dialogueInteractions.Array.data[0].RequiredQuests.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].RequiredQuests.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].RequiredQuests.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
@@ -553,6 +583,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].RequiredQuests.Array.data[0].questStatus
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].RequiredQuests.Array.data[1].questStatus
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].RequiredQuests.Array.data[0].questStatus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
       propertyPath: dialogueInteractions.Array.data[0].RequiredQuests.Array.data[0].requiredQuest
       value: 
       objectReference: {fileID: 11400000, guid: 0230e74e7ff08fd4ea151e8381cca592,
@@ -561,7 +606,37 @@ PrefabInstance:
         type: 3}
       propertyPath: dialogueInteractions.Array.data[0].RequiredQuests.Array.data[1].requiredQuest
       value: 
+      objectReference: {fileID: 11400000, guid: 1a4514dfea0e5074e8ecb155bcd80197,
+        type: 2}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[0].RequiredQuests.Array.data[2].requiredQuest
+      value: 
       objectReference: {fileID: 11400000, guid: 3783499e2ef2c074d90da875bb261c9b,
+        type: 2}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].RequiredQuests.Array.data[0].requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 3783499e2ef2c074d90da875bb261c9b,
+        type: 2}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[1].RequiredQuests.Array.data[1].requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 86022176f98c2b24fa4ede92fc60a8e3,
+        type: 2}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].RequiredQuests.Array.data[0].requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: c13a61620dfcddd4a9586e1f1e4c44d7,
+        type: 2}
+    - target: {fileID: 1705160903982946227, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
+        type: 3}
+      propertyPath: dialogueInteractions.Array.data[2].RequiredQuests.Array.data[1].requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 86022176f98c2b24fa4ede92fc60a8e3,
         type: 2}
     - target: {fileID: 1705160903982946228, guid: 7679b0a3cc7ddc14a9d40db5c54b0943,
         type: 3}

@@ -36,7 +36,7 @@ public class Questline : ScriptableObject
 
       Quest.OnQuestFailed += CheckForRemainingOnQuests;
       
-      Campaign.OnCampaignComplete += ForceQuestCompletion;
+      //Campaign.OnCampaignComplete += ForceQuestCompletion;
    }
 
    private void StartQuestline(Quest startedQuest)

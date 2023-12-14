@@ -21,15 +21,6 @@ public class DisplayQuestlogContent : MonoBehaviour
         
         QuestManager.OnQuestLogPass += LoadQuestLogContent;
     }
-
-    // private void Start()
-    // {
-    //     Questline.OnQuestlineStart += SetNewDisplayedQuestlineOnUI;
-    //     
-    //     QuestManager.OnQuestLogPass += LoadQuestLogContent;
-    //     
-    // }
-
     private void OnEnable()
     {
         if (transform.childCount > 0) ClearLog();

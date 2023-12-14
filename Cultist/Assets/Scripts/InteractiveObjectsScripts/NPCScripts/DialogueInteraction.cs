@@ -45,49 +45,94 @@ public class DialogueInteraction : MonoBehaviour
 
     private void HandleDialogues()
     {
+        dialogueAsset = null;
         foreach (var dialogue in dialogueInteractions)
         {
             if (!dialogue.wasSeen && dialogue.oneTimeDialogue)
             {
                 var allRequirementsPassed = true;
-
-                if (dialogue.RequiredQuests == null)
-                {
-                    dialogue.wasSeen = true;
-                    dialogueAsset = dialogue.dialogueInstance;
-                    return;
-                }
                 
-                foreach (var dialogueRequirement in dialogue.RequiredQuests)
+                foreach (var condition in dialogue.RequiredQuests)
                 {
-                    switch (dialogueRequirement.questStatus)
+                    var conditionPassed = false;
+
+                    switch (condition.questStatus)
                     {
-                        case QuestStatus.Completed when dialogueRequirement.requiredQuest.questCompleted:
-                            allRequirementsPassed = true;
+                        case QuestStatus.Completed:
+                        {
+                            if (condition.requiredQuest.questCompleted)
+                            {
+                                conditionPassed = true;
+                            }
+
                             break;
-                        case QuestStatus.Started when dialogueRequirement.requiredQuest.questStarted:
-                            allRequirementsPassed = true;
+                        }
+                        case QuestStatus.Started:
+                        {
+                            if (condition.requiredQuest.questStarted)
+                            {
+                                conditionPassed = true;
+                            }
+
                             break;
-                        case QuestStatus.NotStarted when !dialogueRequirement.requiredQuest.questStarted:
-                            allRequirementsPassed = true;
+                        }
+                        case QuestStatus.NotStarted:
+                        {
+                            if (!condition.requiredQuest.questStarted)
+                            {
+                                conditionPassed = true;
+                            }
+
                             break;
+                        }
                         default:
-                            allRequirementsPassed = false;
+                            conditionPassed = false;
+                            
                             break;
                     }
+
+                    if (!conditionPassed)
+                    {
+                        allRequirementsPassed = false;
+                    }
+                }
+                
+                // foreach (var dialogueRequirement in dialogue.RequiredQuests)
+                // {
+                //     switch (dialogueRequirement.questStatus)
+                //     {
+                //         case QuestStatus.Completed when dialogueRequirement.requiredQuest.questCompleted:
+                //             allRequirementsPassed = true;
+                //             Debug.Log(dialogueRequirement.requiredQuest.name + ":completed");
+                //             break;
+                //         case QuestStatus.Started when dialogueRequirement.requiredQuest.questStarted:
+                //             Debug.Log(dialogueRequirement.requiredQuest.name + ":started");
+                //             allRequirementsPassed = true;
+                //             break;
+                //         case QuestStatus.NotStarted when !dialogueRequirement.requiredQuest.questStarted:
+                //             Debug.Log(dialogueRequirement.requiredQuest.name + ":notStarted");
+                //             allRequirementsPassed = true;
+                //             break;
+                //         default:
+                //             allRequirementsPassed = false;
+                //             break;
+                //     }
+                // }
+                if (!allRequirementsPassed)
+                {
+                    continue;
                 }
 
-                if (!allRequirementsPassed) continue;
-                
                 dialogue.wasSeen = true;
                 dialogueAsset = dialogue.dialogueInstance;
+                Debug.Log("Current dialog file: " + dialogue.dialogueInstance.name);
                 return;
             }
 
-            if (dialogue.oneTimeDialogue) continue;
-            
-            dialogueAsset = dialogue.dialogueInstance;
-            return;
+            if (!dialogue.oneTimeDialogue)
+            {
+                dialogueAsset = dialogue.dialogueInstance;
+            }
         }
     }
 

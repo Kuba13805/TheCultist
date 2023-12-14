@@ -55,6 +55,8 @@ public class CurrentLocationManager : MonoBehaviour
         CameraController.OnCameraMovementDone += CloseLoadingScreen;
 
         Campaign.OnCampaignComplete += ChangeSceneToCampaignSummary;
+
+        Campaign.OnForcedCampaignComplete += ChangeSceneToCampaignSummary;
     }
 
     private void OnDisable()
@@ -70,6 +72,8 @@ public class CurrentLocationManager : MonoBehaviour
         CameraController.OnCameraMovementDone -= CloseLoadingScreen;
 
         Campaign.OnCampaignComplete -= ChangeSceneToCampaignSummary;
+        
+        Campaign.OnForcedCampaignComplete -= ChangeSceneToCampaignSummary;
     }
 
 
@@ -193,6 +197,8 @@ public class CurrentLocationManager : MonoBehaviour
 
     private void ChangeSceneToCampaignSummary(Campaign campaign)
     {
+        Campaign.OnCampaignComplete -= ChangeSceneToCampaignSummary;
+        
         StartCoroutine(PassCampaignData(campaign));
     }
 

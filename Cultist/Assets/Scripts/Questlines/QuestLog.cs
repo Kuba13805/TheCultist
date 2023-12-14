@@ -54,6 +54,8 @@ namespace Questlines
 
         private void AddQuestlineToActive(Questline questline)
         {
+            if (questline == null) return;
+            
             if (activeQuestlines.Any(activeQuestline => activeQuestline.questlineId == questline.questlineId))
             {
                 return;
@@ -63,6 +65,8 @@ namespace Questlines
         }
         private void AddQuestlineToCompleted(Questline questline)
         {
+            if (questline == null) return;
+            
             if (activeQuestlines.Any(activeQuestline => activeQuestline == questline))
             {
                 return;
@@ -97,7 +101,11 @@ namespace Questlines
                 foreach (var variable in from questline in activeQuestlines from quest in questline.questlineSteps from variable in quest.questVariables where newValue.variableCodeName == variable.variableCodeName select variable)
                 {
                     if (newValue.conditionPassed)
+                    {
                         variable.MarkVariableComplete();
+                        Debug.Log(variable.variableCodeName + ":" + variable.conditionPassed);
+                    }
+                        
                 }
             }
         }
@@ -110,13 +118,6 @@ namespace Questlines
         public List<Questline> ReturnCompletedQuestlines()
         {
             return completedQuestlines;
-        }
-
-        private void ClearQuestLog()
-        {
-            activeQuestlines.Clear();
-            
-            completedQuestlines.Clear();
         }
     }
 }

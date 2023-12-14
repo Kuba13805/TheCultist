@@ -40,6 +40,8 @@ public class Campaign : ScriptableObject
     public static event Action<Campaign> OnCampaignStart;
 
     public static event Action<Campaign> OnCampaignComplete;
+
+    public static event Action<Campaign> OnForcedCampaignComplete; 
     
     private void OnEnable()
     {
@@ -94,6 +96,7 @@ public class Campaign : ScriptableObject
         isCompleted = true;
         
         OnCampaignComplete?.Invoke(this);
+        Debug.Log(campaignName + " completed!");
         
         SendCompletedCampaignData(campaignId.ToString(), campaignName);
     }
@@ -130,12 +133,12 @@ public class Campaign : ScriptableObject
         hasStarted = true;
         isCompleted = true;
 
-        foreach (var questline in requiredQuestlines)
+        OnForcedCampaignComplete?.Invoke(this);
+
+        foreach (var questline in campaignQuestlines)
         {
             questline.ForceCompleteQuestline();
         }
-        
-        //OnCampaignComplete?.Invoke(this);
         
         SendCompletedCampaignData(campaignId.ToString(), campaignName);
     }

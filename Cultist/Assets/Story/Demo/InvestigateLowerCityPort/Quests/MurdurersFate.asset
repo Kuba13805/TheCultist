@@ -21,8 +21,8 @@ MonoBehaviour:
   originalShortQuestDesc: Pass judgment on the murderer
   questRewards: []
   questVisible: 1
-  questStarted: 0
-  questCompleted: 0
+  questStarted: 1
+  questCompleted: 1
   questFailed: 0
   questFailedDesc: 
   questCompletedDesc: You made a judgment. Only Lucius knows if it's a good one.
@@ -60,5 +60,5 @@ MonoBehaviour:
     variableIcon: {fileID: 21300000, guid: 8066e15c4e3df6e4f9806f9d5f71e70a, type: 3}
     conditionPassed: 0
   prerequisiteQuests: []
-  questDesc: 
-  shortQuestDesc: 
+  questDesc: You made a judgment. Only Lucius knows if it's a good one.
+  shortQuestDesc: Pass judgment on the murderer

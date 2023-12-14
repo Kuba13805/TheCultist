@@ -63,14 +63,23 @@ public class DialogueController : MonoBehaviour
     private void Awake()
     {
         InputManager.Instance.PlayerInputActions.UI.SkipConversation.performed += NextDialogue;
-        
+
         DialogueSendChoice.OnChoiceSubmitted += SubmitChoice;
-        
+
         GameManager.OnPlayerTestCheck += ReturnTestResult;
-        
+
         DialogueInteraction.OnDialogueCall += Initialize;
 
         QuestLog.OnQuestVariablesReturn += LoadQuestVariablesToDialogue;
+
+        Campaign.OnCampaignComplete += CloseDialogue;
+
+        Campaign.OnForcedCampaignComplete += CloseDialogue;
+    }
+
+    private void CloseDialogue(Campaign obj)
+    {
+        EndDialogue();
     }
 
     private void Start()
