@@ -169,6 +169,7 @@ public class CharacterControllerScript : MonoBehaviour
             SpawnFlagAtDestination(_newPosition);
             
             DetermineMovement(_playerNavMeshAgent.transform.position, _interactionToPerform.interactor.interactorPosition, _newPosition);
+            
         }
         else
         {

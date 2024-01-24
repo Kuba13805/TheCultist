@@ -45,7 +45,6 @@ public class DialogueInteraction : MonoBehaviour
 
     private void HandleDialogues()
     {
-        dialogueAsset = null;
         foreach (var dialogue in dialogueInteractions)
         {
             if (!dialogue.wasSeen && dialogue.oneTimeDialogue)

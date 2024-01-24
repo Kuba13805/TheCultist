@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Events;
 using NaughtyAttributes;
+using PlayerScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +17,11 @@ public class NewGameManager : MonoBehaviour
 
     public static event Action<List<PlayableCharacter>> ReturnCharacterList;
 
-    public static event Action<Campaign> OnNewGameStart; 
+    public static event Action<Campaign> OnNewGameStart;
+
+    public static event Action<PlayableCharacter> PassSelectedCharacterInfo;
+
+    public PlayerData PlayerData;
 
     #endregion
 
@@ -41,6 +46,11 @@ public class NewGameManager : MonoBehaviour
     private void StartNewGameOnCall(PlayableCharacter selectedPlayableCharacter)
     {
         var startingCampaign = selectedPlayableCharacter.characterStartingCampaign;
+        
+        PassSelectedCharacterInfo?.Invoke(selectedPlayableCharacter);
+        Debug.Log("New character selected: " + selectedPlayableCharacter.name);
+        
+        PlayerData.SwitchStats(selectedPlayableCharacter);
         
         OnNewGameStart?.Invoke(startingCampaign);
         Debug.Log(startingCampaign.campaignName);

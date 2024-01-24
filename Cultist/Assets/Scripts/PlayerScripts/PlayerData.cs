@@ -9,21 +9,28 @@ namespace PlayerScripts
     [CreateAssetMenu(fileName = "NewPlayerData", menuName = "ScriptableObjects/Create New Player Data", order = 1)]
     public class PlayerData : BaseCharacter
     {
+        public static event Action<PlayableCharacter> OnCharDataCopied; 
+        
         protected virtual void OnEnable()
         {
-            ConfirmCharacterSelection.OnCharacterConfirmedSelection += SwitchStats;
+           
         }
 
         protected void OnDisable()
         {
-            ConfirmCharacterSelection.OnCharacterConfirmedSelection -= SwitchStats;
+            
         }
 
-        private void SwitchStats(PlayableCharacter newStats)
+        public void SwitchStats(PlayableCharacter newStats)
         {
-            var statsToPass = Instantiate(newStats);
             
-            CopyData(statsToPass);
+            Debug.Log("Switching stats");
+            
+            CopyData(newStats);
+            
+            Debug.Log("Stats switched.");
+            
+            OnCharDataCopied?.Invoke(newStats);
         }
 
         #region Skills
@@ -100,6 +107,8 @@ namespace PlayerScripts
                     correspondingPlayerField.SetValue(this, playableField.GetValue(newStats));
                 }
             }
+            
+            Debug.Log("Data copied!");
         }
     }
 }

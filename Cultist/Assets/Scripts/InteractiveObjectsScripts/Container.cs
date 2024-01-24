@@ -19,6 +19,8 @@ public class Container : BaseInteractableObject
     [SerializeField] private ContainerType type;
     public List<BaseItem> itemsInContainer;
     
+    [SerializeField] private Quest questNeeded;
+    
     private int containerSlotsNumber;
     private GameObject containerUIToLoad;
     private GameObject panelInstance;
@@ -31,6 +33,11 @@ public class Container : BaseInteractableObject
 
     private void ShowContainerLoadout()
     {
+        if (questNeeded != null)
+        {
+            if (!questNeeded.questStarted) return;
+        }
+        
         DeterminePanelToShow();
         
         if (Time.timeScale != 0)

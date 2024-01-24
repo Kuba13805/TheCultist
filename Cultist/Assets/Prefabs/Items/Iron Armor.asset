@@ -21,6 +21,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 15f306496ab25f3409589b05e4dd0bd9, type: 3}
   itemType: 0
   armorPart: 1
-  effectsOnItem:
-  - {fileID: 11400000, guid: 1d3591f4067dd3a4aaf7c68c169b5d59, type: 2}
-  - {fileID: 11400000, guid: 64a99e12ef543f842aeea93d739e6b0c, type: 2}
+  effectsOnItem: []

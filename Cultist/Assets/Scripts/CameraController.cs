@@ -24,6 +24,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minZoom;
     [SerializeField] private float maxZoom;
 
+    [SerializeField] private float maxDistance;
+
     private Vector3 _newPosition;
 
     private Vector3 _newZoom;

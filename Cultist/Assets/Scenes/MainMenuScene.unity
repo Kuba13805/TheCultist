@@ -6635,6 +6635,7 @@ MonoBehaviour:
   characterList:
   - {fileID: 11400000, guid: 4dbcee80e68f5cb42aeaaf8aaf73375a, type: 2}
   - {fileID: 11400000, guid: 03a4bbe21107ac74692d9189195bf1f3, type: 2}
+  PlayerData: {fileID: 11400000, guid: 8dc8fc84a4b497f4e8268f9c47de18b9, type: 2}
 --- !u!4 &1953837900
 Transform:
   m_ObjectHideFlags: 0

@@ -146,6 +146,8 @@ public class Quest : ScriptableObject
                 return;
             }
         }
+        
+        if (!questStarted) return;
 
         questDesc = questCompletedDesc;
         

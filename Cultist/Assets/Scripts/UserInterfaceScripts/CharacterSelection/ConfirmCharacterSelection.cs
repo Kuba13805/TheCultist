@@ -26,6 +26,8 @@ public class ConfirmCharacterSelection : MonoBehaviour
         SendSelectedCharacterData(_selectedCharacter.name);
         
         OnCharacterConfirmedSelection?.Invoke(_selectedCharacter);
+        
+        GetComponent<Button>().interactable = false;
     }
 
     private void OnDisable()
