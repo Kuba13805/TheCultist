@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bc0e24e6-9294-45e6-b498-4798eb3aa6b0" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/ExitGame.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/InputSystem/PlayerInputActions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Analytics/CollectingDataAgreement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CampaignSummaryScripts/AttributeRewardLogic.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CampaignSummaryScripts/MajorDecisionLogic.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Campaigns/Campaign.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/DefaultSpawnPointEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/PlayerDataEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Events/CallContainerEvents.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Events/CallMenuEvents.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/DisplayObjectName.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/ItemSpecialScripts/ItemMultipleEffects.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/NPCScripts/DialogueInteraction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/InteractiveObjectsScripts/PlayerDetector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/CampaignSummaryManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NarrativeEvents/NarrativeEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NarrativeEvents/NarrativeEventAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NarrativeEvents/NarrativeEventId.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerAbilities/Ability.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/Questline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/Rewards/Reward.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questlines/SingleQuests/QuestReturnItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/CharacterButtonScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/ConfirmCharacterSelection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/LoadCharacterDetails.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/LoadCharactersToSelect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/LoadStatSprite.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/RestartCharacterDetails.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/CharacterSelection/ShowStatDesc.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/Dialogue/DialogueSendChoice.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/DisplayCommentOnObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/FadeScreen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/GameMenuLogic.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/InteractableInfoScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/LoadBaseCharacterData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/NarrativeEvents/NarrativeEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerInventory/DisplayItemDetails.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerJournal/DisplayQuestlineDetails.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerJournal/DisplayQuestlogContent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerJournal/DisplayedQuestline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserInterfaceScripts/PlayerTest/DisplayDiceRollResult.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/WorldMapLocationButtonLogic.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Actions/InputActionAsset.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.sequences@1.0.4/Editor/AssetDatabase/SequencesAssetDatabase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.33/UnityEngine.TestRunner/NUnitExtensions/Commands/EnumerableTestState.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2MrayaE8Kb7LG7ohzFolomgnmYI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ReSpellerSettingsId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Jakub\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Jakub\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Jakub\\AppData\\Local\\Symbols\\src&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="E:/The Cultist 1.0/Cultist.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="D:\The Cultist 0.1" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="D:\Unity Editor\2021.3.12f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath D:\Game-Project\TheCultist\Cultist -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="D:\Game-Project\TheCultist\Cultist" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="D:\Unity Editor\2021.3.12f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\Game-Project\TheCultist\Cultist -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="D:\Game-Project\TheCultist\Cultist" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="D:\Unity Editor\2021.3.12f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\Game-Project\TheCultist\Cultist -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="D:\Game-Project\TheCultist\Cultist" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bc0e24e6-9294-45e6-b498-4798eb3aa6b0" name="Changes" comment="" />
+      <created>1678528412355</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678528412355</updated>
+      <workItem from="1678528415265" duration="407000" />
+      <workItem from="1678534208160" duration="11079000" />
+      <workItem from="1678560476882" duration="2096000" />
+      <workItem from="1678617433737" duration="3749000" />
+      <workItem from="1678625895440" duration="3774000" />
+      <workItem from="1678645796464" duration="11805000" />
+      <workItem from="1678702232782" duration="25333000" />
+      <workItem from="1678785744307" duration="2620000" />
+      <workItem from="1678900208287" duration="5469000" />
+      <workItem from="1678984874161" duration="108000" />
+      <workItem from="1679063742928" duration="1195000" />
+      <workItem from="1679082977328" duration="121000" />
+      <workItem from="1679134243776" duration="4795000" />
+      <workItem from="1679224711043" duration="27033000" />
+      <workItem from="1679309533975" duration="24408000" />
+      <workItem from="1679388428527" duration="20261000" />
+      <workItem from="1679487814296" duration="19030000" />
+      <workItem from="1679564184000" duration="28702000" />
+      <workItem from="1679667805922" duration="1457000" />
+      <workItem from="1679743403416" duration="26515000" />
+      <workItem from="1679824888949" duration="18118000" />
+      <workItem from="1679856456446" duration="5331000" />
+      <workItem from="1679912535864" duration="11167000" />
+      <workItem from="1680002436007" duration="1283000" />
+      <workItem from="1680031189794" duration="6268000" />
+      <workItem from="1680116447384" duration="79000" />
+      <workItem from="1680116871810" duration="699000" />
+      <workItem from="1680165258333" duration="9843000" />
+      <workItem from="1680183712058" duration="8328000" />
+      <workItem from="1680528228385" duration="14948000" />
+      <workItem from="1680629616191" duration="1757000" />
+      <workItem from="1680631406126" duration="2341000" />
+      <workItem from="1680688676048" duration="21955000" />
+      <workItem from="1680724736048" duration="1741000" />
+      <workItem from="1680769959817" duration="5810000" />
+      <workItem from="1680797408582" duration="3073000" />
+      <workItem from="1681139693463" duration="5382000" />
+      <workItem from="1681212510190" duration="4206000" />
+      <workItem from="1681377693419" duration="15548000" />
+      <workItem from="1681467509640" duration="7299000" />
+      <workItem from="1682160852278" duration="7575000" />
+      <workItem from="1682260061382" duration="8270000" />
+      <workItem from="1682331420417" duration="20067000" />
+      <workItem from="1682425110125" duration="15575000" />
+      <workItem from="1682527427192" duration="3995000" />
+      <workItem from="1682585762608" duration="16967000" />
+      <workItem from="1682673206559" duration="13333000" />
+      <workItem from="1682701376876" duration="4240000" />
+      <workItem from="1682760394671" duration="15186000" />
+      <workItem from="1682852804291" duration="14828000" />
+      <workItem from="1682943422408" duration="26569000" />
+      <workItem from="1683018794771" duration="23389000" />
+      <workItem from="1683119516964" duration="16275000" />
+      <workItem from="1683192753901" duration="11219000" />
+      <workItem from="1683383307747" duration="9943000" />
+      <workItem from="1683398804653" duration="3561000" />
+      <workItem from="1683456749461" duration="10762000" />
+      <workItem from="1683540025245" duration="18959000" />
+      <workItem from="1683631118024" duration="16944000" />
+      <workItem from="1683899950190" duration="5000" />
+      <workItem from="1684239063039" duration="5501000" />
+      <workItem from="1685440087323" duration="1624000" />
+      <workItem from="1685442159985" duration="13867000" />
+      <workItem from="1685530029620" duration="2464000" />
+      <workItem from="1685637370303" duration="5559000" />
+      <workItem from="1685712904255" duration="1801000" />
+      <workItem from="1685884501105" duration="772000" />
+      <workItem from="1686045872562" duration="17669000" />
+      <workItem from="1686129543163" duration="8680000" />
+      <workItem from="1686220174680" duration="12499000" />
+      <workItem from="1686291960859" duration="4256000" />
+      <workItem from="1686412152704" duration="1568000" />
+      <workItem from="1686493269325" duration="2000" />
+      <workItem from="1686566400735" duration="1943000" />
+      <workItem from="1686575640458" duration="6739000" />
+      <workItem from="1686651447838" duration="598000" />
+      <workItem from="1686822374144" duration="1106000" />
+      <workItem from="1686916243856" duration="380000" />
+      <workItem from="1687110329069" duration="1006000" />
+      <workItem from="1689429549398" duration="5594000" />
+      <workItem from="1689596693798" duration="9418000" />
+      <workItem from="1689668813885" duration="6287000" />
+      <workItem from="1689772510961" duration="7977000" />
+      <workItem from="1689854282270" duration="9773000" />
+      <workItem from="1689956568892" duration="4562000" />
+      <workItem from="1690025197414" duration="11406000" />
+      <workItem from="1690112136745" duration="15569000" />
+      <workItem from="1691481528906" duration="8576000" />
+      <workItem from="1691573869550" duration="9212000" />
+      <workItem from="1695638246105" duration="16799000" />
+      <workItem from="1695721173733" duration="138000" />
+      <workItem from="1695721612120" duration="12687000" />
+      <workItem from="1695810070744" duration="607000" />
+      <workItem from="1695891351683" duration="29050000" />
+      <workItem from="1695992398867" duration="16397000" />
+      <workItem from="1696066997214" duration="12727000" />
+      <workItem from="1696151435223" duration="2090000" />
+      <workItem from="1696158311556" duration="7523000" />
+      <workItem from="1696245046493" duration="14059000" />
+      <workItem from="1696670979995" duration="12882000" />
+      <workItem from="1696757163938" duration="18480000" />
+      <workItem from="1696837658671" duration="19580000" />
+      <workItem from="1697021883621" duration="7065000" />
+      <workItem from="1697099980867" duration="13759000" />
+      <workItem from="1697635226152" duration="2329000" />
+      <workItem from="1697707226691" duration="10772000" />
+      <workItem from="1697885185614" duration="1211000" />
+      <workItem from="1697925865704" duration="594000" />
+      <workItem from="1697969201955" duration="4881000" />
+      <workItem from="1698007878108" duration="1710000" />
+      <workItem from="1698061500756" duration="10981000" />
+      <workItem from="1698139645927" duration="11009000" />
+      <workItem from="1698179543169" duration="595000" />
+      <workItem from="1698231854925" duration="8724000" />
+      <workItem from="1699207138004" duration="1086000" />
+      <workItem from="1699364253253" duration="9720000" />
+      <workItem from="1699456951676" duration="4033000" />
+      <workItem from="1699611740471" duration="14342000" />
+      <workItem from="1699809902956" duration="3080000" />
+      <workItem from="1699963051749" duration="8258000" />
+      <workItem from="1699972005576" duration="7143000" />
+      <workItem from="1700139806120" duration="953000" />
+      <workItem from="1700166750941" duration="3436000" />
+      <workItem from="1700206731672" duration="45000" />
+      <workItem from="1701438570971" duration="1000" />
+      <workItem from="1702303953357" duration="2000" />
+      <workItem from="1702306899496" duration="2119000" />
+      <workItem from="1702331960619" duration="3205000" />
+      <workItem from="1702373881489" duration="7533000" />
+      <workItem from="1702552812705" duration="913000" />
+      <workItem from="1702557729846" duration="6924000" />
+      <workItem from="1702631114054" duration="2068000" />
+      <workItem from="1704544950806" duration="2273000" />
+      <workItem from="1705329388043" duration="629000" />
+      <workItem from="1705572432802" duration="4139000" />
+      <workItem from="1706118981583" duration="3081000" />
+      <workItem from="1706265530010" duration="4806000" />
+      <workItem from="1706724790761" duration="3371000" />
+      <workItem from="1706780748543" duration="2231000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

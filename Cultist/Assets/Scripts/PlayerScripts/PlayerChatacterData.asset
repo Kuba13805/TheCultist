@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397f540b789c0dd4f9e01a9311b2e7b0, type: 3}
+  m_Name: PlayerChatacterData
+  m_EditorClassIdentifier: 
+  charName: Abrahan Blakeborn
+  nickname: '"White Flame of Dunrah"'
+  health: 12
+  playerPortrait: {fileID: 21300000, guid: 7f5b00bd12772014e9b4c2af9f6b999a, type: 3}
+  dexterity:
+    statValue: 5
+    statIcon: {fileID: 21300000, guid: 47605d5c14476794eb417552896f4e47, type: 3}
+    statDesc: Agility allows you to move faster and more nimbly around the city.
+      In combat, it allows you to dodge enemy attacks and affects the player character's
+      accuracy.
+    isDerived: 0
+  strength:
+    statValue: 5
+    statIcon: {fileID: 21300000, guid: 80f93e959561d1142948df6c9d75e0b3, type: 3}
+    statDesc: Strength determines your physical tetany. It allows you to lift heavy
+      objects, hit harder during a fight or be a harder target to defeat.
+    isDerived: 0
+  power:
+    statValue: 5
+    statIcon: {fileID: 21300000, guid: ed8bf4983e23dd74b804621b5a22c80a, type: 3}
+    statDesc: The power allows you to better draw on demon magic, cast spells or
+      interact with enchanted objects. Those who have possessed enough of it often
+      reach for more, giving away part of themselves.
+    isDerived: 0
+  condition:
+    statValue: 5
+    statIcon: {fileID: 21300000, guid: 7dc50d091b3e5eb4f9ca3ff8daa96474, type: 3}
+    statDesc: Condition determines your resilience to diseases and injuries sustained.
+      Increases your life points and stamina against negative effects during gameplay.
+    isDerived: 0
+  wisdom:
+    statValue: 5
+    statIcon: {fileID: 21300000, guid: 353750a1a760d454c9900aeb322d587a, type: 3}
+    statDesc: Knowledge is the key to knowing the world. It allows you to learn more
+      about what surrounds you and about the people living in this world. Sometimes
+      it uncovers unknown facts and stories.
+    isDerived: 0
+  perception:
+    statValue: 6
+    statIcon: {fileID: 21300000, guid: 711cdf61577c62f4eb0fd90fdbe72d9c, type: 3}
+    statDesc: Perception allows you to see details that escape other people. You
+      perceive hidden objects, passages or events in the world.
+    isDerived: 0
+  occultism:
+    statValue: 6
+    statIcon: {fileID: 21300000, guid: b92e913325beca945b27c8070f85aaee, type: 3}
+    statDesc: Occultism determines how well you know the cursed and forbidden practices
+      of followers of dark forces. You recognize their rituals, symbols or purposes.
+    isDerived: 0
+  medicine:
+    statValue: -7
+    statIcon: {fileID: 21300000, guid: c668698c8395ff548aff2a5317e46b6b, type: 3}
+    statDesc: Medicine helps to treat wounds, neutralize disease symptoms and examine
+      corpses. You know well what happened to the deceased, and the human body has
+      no secrets for you.
+    isDerived: 0
+  electrics:
+    statValue: 5
+    statIcon: {fileID: 21300000, guid: 4076fffc41e5d814f9819611f3856eda, type: 3}
+    statDesc: Electrical engineering is a new field that provides you with the power
+      to wield electricity. You are able to repair electrical wires or damage them,
+      and you combine physics and chemistry with it to use it against your enemies.
+      It also helps you use some new technologies.
+    isDerived: 0
+  history:
+    statValue: 5
+    statIcon: {fileID: 21300000, guid: b92e913325beca945b27c8070f85aaee, type: 3}
+    statDesc: History is the memory of the world. It is detailed knowledge, too boring
+      for ordinary people. You know about past events, dead people and organizations.
+      You use it to avoid the mistakes of those who are no longer with us.
+    isDerived: 0
+  persuasion:
+    statValue: 8
+    statIcon: {fileID: 21300000, guid: 1a793eb088e19f3458e8950ad6ff458a, type: 3}
+    statDesc: Persuasion will help you persuade someone to your point. You are able
+      to cozy up and sweep your eyes when needed. You manipulate people, draw out
+      information and get them to follow your words.
+    isDerived: 0
+  intimidation:
+    statValue: -8
+    statIcon: {fileID: 21300000, guid: 96a917c057a77f74a970edd37a15ead2, type: 3}
+    statDesc: Intimidation allows you to dominate over another person. She feels
+      fear at the mere thought of you, and you use this to your advantage. Orders,
+      information or an easy way to an unattainable goal.
+    isDerived: 0
+  locksmithing:
+    statValue: -4
+    statIcon: {fileID: 21300000, guid: 8a9605272e0162048a57d5ef389bbfaf, type: 3}
+    statDesc: Locksmithing is the delicate art of opening locks. You don't need a
+      key when you have your picks with you. No door stands locked in front of you.
+    isDerived: 0
+  mechanics:
+    statValue: -9
+    statIcon: {fileID: 21300000, guid: a66db67ac36f98f43814e5203783eff0, type: 3}
+    statDesc: Mechanics is also called engineering. With it, you can repair simple
+      mechanisms and know their construction and operation.
+    isDerived: 0
+  acrobatics:
+    statValue: 8
+    statIcon: {fileID: 21300000, guid: 6380377aa7451d4409229768672f16e6, type: 3}
+    statDesc: Acrobatics is a circus art that will help you get into hard-to-reach
+      places. You also use it from distraction or quick escape.
+    isDerived: 0
+  forensics:
+    statValue: 8
+    statIcon: {fileID: 21300000, guid: 83798e2eb28396c468200c484363399d, type: 3}
+    statDesc: Forensic science makes it possible to better identify the objects of
+      a crime, examine the places where it occurred, and find out the hidden motives
+      of the perpetrator. It also allows you to read investigation files and know
+      the applicable laws.
+    isDerived: 0
+  acting:
+    statValue: -9
+    statIcon: {fileID: 21300000, guid: ec1f0f6b552e92645b4a5fdf4781769b, type: 3}
+    statDesc: Acting is not only an art, but also a derivative of persuasion. In
+      a truly theatrical way, you draw from people what you need from them, with
+      the addition of drama or comedy.
+    isDerived: 0
+  alchemy:
+    statValue: -6
+    statIcon: {fileID: 21300000, guid: db434cf24e0638c49889f4e64d4c8088, type: 3}
+    statDesc: Alchemy uses the gifts of the earth to create potions and elixirs.
+      You are familiar with herbs and decoctions. It allows you to use some of them
+      in battle as non-obvious weapons.
+    isDerived: 0
+  astrology:
+    statValue: 9
+    statIcon: {fileID: 21300000, guid: e9329cd62663e6b44aa852f96a705b57, type: 3}
+    statDesc: Astrology allows you to read the night sky, in which the fate of the
+      world is written. You recognize constellations, stars and planets. It has a
+      special connection with the occult and knowledge of demons.
+    isDerived: 0
+  thievery:
+    statValue: -6
+    statIcon: {fileID: 21300000, guid: d7bbd5aa1da4d6e41918b96b984a0b91, type: 3}
+    statDesc: Thievery is the foul art of stealing from unsuspecting passersby. You
+      easily take money and documents out of their pockets.
+    isDerived: 0
+  rangedCombat:
+    statValue: -6
+    statIcon: {fileID: 21300000, guid: d951162c92899034fa6d257c594cbaab, type: 3}
+    statDesc: Ranged combat determines how well you handle a revolver, rifle, shotgun
+      or traditional crossbow.
+    isDerived: 0
+  handToHandCombat:
+    statValue: 5
+    statIcon: {fileID: 21300000, guid: 35cd241bf84a79447b827c3c2bcb1727, type: 3}
+    statDesc: Melee combat determines your proficiency with daggers, swords, axes
+      and similar weapons.
+    isDerived: 0
+  etiquette:
+    statValue: 4
+    statIcon: {fileID: 21300000, guid: d1e6dd622e81b994d9c09fb88a1fa001, type: 3}
+    statDesc: Etiquette is mainly used when dealing with the city's social cream.
+      You know how to behave, what to avoid and how to successfully gain the respect
+      and approval of the noble.
+    isDerived: 0
+  animism:
+    statValue: 8
+    statIcon: {fileID: 21300000, guid: 74a31edf64e3cd64c957d9652cf3d38e, type: 3}
+    statDesc: Animism is an old field that combines magic with alchemy and biology.
+      You know ways to communicate with animals and their souls. You use it in battle
+      to draw on animal and plant powers. The most experienced can allegedly even
+      hear the voice of plants.
+    isDerived: 0
+  empathy:
+    statValue: -7
+    statIcon: {fileID: 21300000, guid: 42d01ceffa1bcb2439cca8414132e3fc, type: 3}
+    statDesc: Empathy allows you to recognize the interlocutor's intentions, emotions
+      and desires. You are able to get into someone's skin and feel what the other
+      person might be feeling. You simply know people.
+    isDerived: 0
+  demonology:
+    statValue: -8
+    statIcon: {fileID: 21300000, guid: 7fc9053111d9f2d4ba438f587c578c58, type: 3}
+    statDesc: Demonology is dangerous and old knowledge. You know the types of demonic
+      creatures, their rulers, abilities, powers or purpose. You know how to fight
+      them and how to get rid of them. Or perhaps dominate them?
+    isDerived: 0
+  stealth:
+    statValue: 6
+    statIcon: {fileID: 21300000, guid: 85d2e558d8dffec47b9bf8f1238f2c09, type: 3}
+    statDesc: Sneaking allows you to avoid unnecessary eyes. You stick to the shadows
+      and blend in with the crowd. You disappear from the eyes of your pursuers and
+      skillfully track your target.
+    isDerived: 0
+  necromancy:
+    statValue: -6
+    statIcon: {fileID: 21300000, guid: c5c6c1e8bdbf792459310ebe63cfcef2, type: 3}
+    statDesc: Necromancy is magic that wields the dead, drawing their souls to your
+      call. It allows you to communicate with them or use the power of death against
+      your enemies.
+    isDerived: 0
+  playerInventoryItems: []
+  characterEquipment: []
+  playerAbilities: []

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1d06e3e851cc94bbb250ea42d2b066, type: 3}
+  m_Name: PortInvestigation
+  m_EditorClassIdentifier: 
+  campaignId: 1
+  campaignName: Shadows in the lower city
+  campaignImage: {fileID: 21300000, guid: 6e0ccf650b7595949b3fd5e9281c39e9, type: 3}
+  campaignDesc: 
+  firstSceneToLoad: Small_port
+  startingEvent: {fileID: 11400000, guid: c810d171494b82540ae8e4ec3bfd8aaa, type: 2}
+  campaignQuestlines:
+  - {fileID: 11400000, guid: c54a623ae4560e341a325149e35b9f1e, type: 2}
+  requiredQuestlines:
+  - {fileID: 11400000, guid: c54a623ae4560e341a325149e35b9f1e, type: 2}
+  requiredCampaigns: []
+  hasStarted: 1
+  isCompleted: 0
+  campaignRewards:
+  - rewardType: 4
+    rewardItem: {fileID: 0}
+    rewardMoney: 200
+    statToModify: 15
+    rewardStatLevel: 1
+    rewardAbility: {fileID: 0}
+  - rewardType: 2
+    rewardItem: {fileID: 0}
+    rewardMoney: 200
+    statToModify: 0
+    rewardStatLevel: 0
+    rewardAbility: {fileID: 0}
+  - rewardType: 0
+    rewardItem: {fileID: 11400000, guid: fa3b78069b531de4b886d344d586c896, type: 2}
+    rewardMoney: 200
+    statToModify: 0
+    rewardStatLevel: 0
+    rewardAbility: {fileID: 0}

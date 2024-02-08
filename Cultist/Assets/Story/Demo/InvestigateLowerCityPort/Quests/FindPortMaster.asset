@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df05591fa7e2474c834c0e706d8f65f6, type: 3}
+  m_Name: FindPortMaster
+  m_EditorClassIdentifier: 
+  questName: Port Mistery
+  questId:
+    idPrefix: InvestigateLowerCityPort
+    questNumber: 1
+  originalQuestDesc: I was commissioned to find a murderer from a small port. I have
+    to find the harbor master and determine what he knows.
+  originalShortQuestDesc: Fint the harbor master
+  questRewards: []
+  questVisible: 1
+  questStarted: 0
+  questCompleted: 0
+  questFailed: 0
+  questFailedDesc: 
+  questCompletedDesc: You have found the harbor master.
+  questSteps: []
+  questVariables: []
+  prerequisiteQuests: []
+  questDesc: 
+  shortQuestDesc: 

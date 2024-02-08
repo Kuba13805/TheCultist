@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df05591fa7e2474c834c0e706d8f65f6, type: 3}
+  m_Name: TellCraganAboutTheBlackStone
+  m_EditorClassIdentifier: 
+  questName: Strange Stone
+  questId:
+    idPrefix: TheBlackStone
+    questNumber: 2
+  originalQuestDesc: 
+  originalShortQuestDesc: 
+  questRewards: []
+  questVisible: 1
+  questStarted: 0
+  questCompleted: 0
+  questFailed: 0
+  questFailedDesc: 
+  questCompletedDesc: 
+  questSteps: []
+  questVariables:
+  - variableCodeName: has_touched_the_stone
+    variableName: has_touched_the_stone
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
+    variableIcon: {fileID: 0}
+    conditionPassed: 0
+  - variableCodeName: had_a_vision
+    variableName: had_a_vision
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
+    variableIcon: {fileID: 0}
+    conditionPassed: 0
+  - variableCodeName: had_a_snow_fight
+    variableName: had_a_snow_fight
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
+    variableIcon: {fileID: 0}
+    conditionPassed: 0
+  - variableCodeName: has_seen_the_golden_palace
+    variableName: has_seen_the_golden_palace
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
+    variableIcon: {fileID: 0}
+    conditionPassed: 0
+  - variableCodeName: became_a_god
+    variableName: A New God For People
+    isMajorDecision: 1
+    conditionPassedDesc: You are a god now.
+    conditionNotPassedDesc: You refused to become a god.
+    variableIcon: {fileID: 21300000, guid: e9329cd62663e6b44aa852f96a705b57, type: 3}
+    conditionPassed: 0
+  - variableCodeName: became_a_cult_leader
+    variableName: Dark Night
+    isMajorDecision: 1
+    conditionPassedDesc: You accepted the position of a cult leader.
+    conditionNotPassedDesc: You refused to become a cult leader.
+    variableIcon: {fileID: 21300000, guid: 85d2e558d8dffec47b9bf8f1238f2c09, type: 3}
+    conditionPassed: 0
+  - variableCodeName: has_escaped_the_tortures
+    variableName: has_escaped_the_tortures
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
+    variableIcon: {fileID: 0}
+    conditionPassed: 0
+  - variableCodeName: snow_fight_lost
+    variableName: snow_fight_lost
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
+    variableIcon: {fileID: 0}
+    conditionPassed: 0
+  - variableCodeName: wanted_to_stop_the_vision
+    variableName: wanted_to_stop_the_vision
+    isMajorDecision: 0
+    conditionPassedDesc: 
+    conditionNotPassedDesc: 
+    variableIcon: {fileID: 0}
+    conditionPassed: 0
+  prerequisiteQuests:
+  - {fileID: 11400000, guid: 406185c4329e2714cba0e95619cf53fc, type: 2}
+  questDesc: 
+  shortQuestDesc: 

@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1d06e3e851cc94bbb250ea42d2b066, type: 3}
+  m_Name: TestCampaign
+  m_EditorClassIdentifier: 
+  campaignId: 0
+  campaignName: Into the Mist
+  campaignImage: {fileID: 0}
+  campaignDesc: 
+  firstSceneToLoad: WorldHub
+  startingEvent: {fileID: 11400000, guid: d0d692effb55f9b42b1ae3761e8e96aa, type: 2}
+  campaignQuestlines:
+  - {fileID: 11400000, guid: 0b5a683e886102241843761a5c93ce00, type: 2}
+  requiredQuestlines:
+  - {fileID: 11400000, guid: 0b5a683e886102241843761a5c93ce00, type: 2}
+  requiredCampaigns: []
+  hasStarted: 1
+  isCompleted: 0
+  campaignRewards:
+  - rewardType: 0
+    rewardItem: {fileID: 11400000, guid: ec9d6fe786f7a7048a4863a44e98a1cd, type: 2}
+    rewardMoney: 0
+    statToModify: 0
+    rewardStatLevel: 0
+    rewardAbility: {fileID: 0}
+  - rewardType: 0
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 0
+    rewardStatLevel: 0
+    rewardAbility: {fileID: 0}
+  - rewardType: 4
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 27
+    rewardStatLevel: 2
+    rewardAbility: {fileID: 0}
+  - rewardType: 4
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 7
+    rewardStatLevel: 12
+    rewardAbility: {fileID: 0}
+  - rewardType: 4
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 3
+    rewardStatLevel: 5
+    rewardAbility: {fileID: 0}
+  - rewardType: 4
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 17
+    rewardStatLevel: 5
+    rewardAbility: {fileID: 0}
+  - rewardType: 0
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 17
+    rewardStatLevel: 5
+    rewardAbility: {fileID: 0}
+  - rewardType: 0
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 17
+    rewardStatLevel: 5
+    rewardAbility: {fileID: 0}
+  - rewardType: 0
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 17
+    rewardStatLevel: 5
+    rewardAbility: {fileID: 0}
+  - rewardType: 0
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 17
+    rewardStatLevel: 5
+    rewardAbility: {fileID: 0}
+  - rewardType: 0
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 17
+    rewardStatLevel: 5
+    rewardAbility: {fileID: 0}
+  - rewardType: 0
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 17
+    rewardStatLevel: 5
+    rewardAbility: {fileID: 0}
+  - rewardType: 0
+    rewardItem: {fileID: 11400000, guid: a7d2e9f24a3ace24fbbd376cb30aa234, type: 2}
+    rewardMoney: 0
+    statToModify: 17
+    rewardStatLevel: 5
+    rewardAbility: {fileID: 0}

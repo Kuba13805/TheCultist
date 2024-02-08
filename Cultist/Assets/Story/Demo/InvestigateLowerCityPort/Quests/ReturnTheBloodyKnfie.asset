@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27f2ad2bf282cc4ea3054eac76f9553, type: 3}
+  m_Name: ReturnTheBloodyKnfie
+  m_EditorClassIdentifier: 
+  questName: Port Mistery
+  questId:
+    idPrefix: InvestigateLowerCityPort
+    questNumber: 4
+  originalQuestDesc: I found the assassin's blade. I may be able to determine who
+    is lurking on the lives of port workers.
+  originalShortQuestDesc: Speak with the port master
+  questRewards: []
+  questVisible: 1
+  questStarted: 1
+  questCompleted: 0
+  questFailed: 0
+  questFailedDesc: 
+  questCompletedDesc: You have handed over proof of the crime to the port master.
+  questSteps: []
+  questVariables: []
+  prerequisiteQuests:
+  - {fileID: 11400000, guid: 3783499e2ef2c074d90da875bb261c9b, type: 2}
+  questDesc: I found the assassin's blade. I may be able to determine who is lurking
+    on the lives of port workers.
+  shortQuestDesc: Speak with the port master
+  itemToReturn: {fileID: 11400000, guid: b65973fc98fbfdb469755bee69ef5ef6, type: 2}
+  numberOfItemsToRemove: 1
