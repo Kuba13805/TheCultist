@@ -54,7 +54,7 @@ public class Campaign : ScriptableObject
 
     private void HandleNewGameStart(Campaign startCampaign)
     {
-        ResetCampaign();
+        //ResetCampaign();
         
         StartCampaign(startCampaign);
     }

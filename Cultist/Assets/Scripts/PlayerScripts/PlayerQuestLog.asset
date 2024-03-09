@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerQuestLog
   m_EditorClassIdentifier: 
   activeQuestlines:
-  - {fileID: 11400000, guid: 5325e2588950d814db720e7a658ec76e, type: 2}
+  - {fileID: 11400000, guid: c54a623ae4560e341a325149e35b9f1e, type: 2}
   completedQuestlines: []

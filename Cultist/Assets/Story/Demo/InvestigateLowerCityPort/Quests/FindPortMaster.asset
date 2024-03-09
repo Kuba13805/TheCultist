@@ -29,5 +29,6 @@ MonoBehaviour:
   questSteps: []
   questVariables: []
   prerequisiteQuests: []
-  questDesc: 
-  shortQuestDesc: 
+  questDesc: I was commissioned to find a murderer from a small port. I have to find
+    the harbor master and determine what he knows.
+  shortQuestDesc: Fint the harbor master

@@ -12,12 +12,12 @@ public class CampaignEditor : Editor
         
         if (GUILayout.Button("Restart campaign"))
         {
-            campaign.ResetCampaign();
+            //campaign.ResetCampaign();
         }
         
         if (GUILayout.Button("Force complete campaign"))
         {
-            campaign.ForceCompleteCampaign();
+            //campaign.ForceCompleteCampaign();
         }
     }
 }

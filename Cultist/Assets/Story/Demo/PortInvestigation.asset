@@ -23,7 +23,7 @@ MonoBehaviour:
   requiredQuestlines:
   - {fileID: 11400000, guid: c54a623ae4560e341a325149e35b9f1e, type: 2}
   requiredCampaigns: []
-  hasStarted: 1
+  hasStarted: 0
   isCompleted: 0
   campaignRewards:
   - rewardType: 4

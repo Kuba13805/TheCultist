@@ -98,7 +98,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="E:/The Cultist 1.0/Cultist.exe" />
+      <option name="EXE_PATH" value="E:/The Cultist 1.1/Cultist.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="D:\The Cultist 0.1" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -106,7 +106,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\Unity Editor\2021.3.12f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Unity Editor\2022.3.19f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath D:\Game-Project\TheCultist\Cultist -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Game-Project\TheCultist\Cultist" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -114,7 +114,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\Unity Editor\2021.3.12f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\Unity Editor\2022.3.19f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\Game-Project\TheCultist\Cultist -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Game-Project\TheCultist\Cultist" />
       <option name="PASS_PARENT_ENVS" value="1" />
